@@ -16,6 +16,7 @@ import {
 	Heading,
 	DropButton,
 	RangeInput,
+  ResponsiveContext,
 } from 'grommet';
 import {
 	Pan,
@@ -46,7 +47,7 @@ import { FlashlightOff } from '@styled-icons/material-rounded/FlashlightOff';
 import { SettingsOutline } from '@styled-icons/evaicons-outline/SettingsOutline';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 
 import {
   JuJiuTagCloudStorageExpired,
@@ -105,12 +106,13 @@ export function ButtonBackToMain() {
 }
 
 export function ZoomControl({ showTitle = true }) {
+  const size = useContext(ResponsiveContext);
 	const title = '变焦';
 
 	return (
 		<Menu
 			plain
-			tip={title}
+			tip={size !== 'small' && title}
 			dropAlign={{ top: 'bottom' }}
 			items={[
 				{ label: '4X', onClick: () => {}, justify: 'end' },
@@ -175,11 +177,12 @@ export function VolumeControl({ showTitle = true }) {
 }
 
 export function ResolutionControl({ showTitle = true }) {
+  const size = useContext(ResponsiveContext);
 	const title = '清晰度'
 	return (
 		<Menu
 			plain
-			tip={title}
+			tip={size !== 'small' && title}
 			dropAlign={{ top: 'bottom' }}
 			items={[
 				{ label: '极清', onClick: () => {}, justify: 'end' },
@@ -201,12 +204,13 @@ export function ResolutionControl({ showTitle = true }) {
 }
 
 export function PanLayer({ target }) {
+  const size = useContext(ResponsiveContext);
 	const [show, setShow] = useState(false);
 	return (
 		<>
 			<Button
 				plain
-				tip='云台'
+				tip={size !== 'small' && '云台'}
 				focusIndicator={false}
 				onClick={() => setShow(!show)}
 			>
@@ -232,9 +236,10 @@ export function PanLayer({ target }) {
 }
 
 export function ScreenCopyControl({ showTitle = true }) {
+  const size = useContext(ResponsiveContext);
 	const title = '截图';
 	return (
-		<Button tip={title}>
+		<Button tip={size !== 'small' && title}>
 			<Box pad='small' align='center'>
 				{<Camera />}
 				{showTitle && (
@@ -246,11 +251,12 @@ export function ScreenCopyControl({ showTitle = true }) {
 }
 
 export function RecordControl({ showTitle = true }) {
+  const size = useContext(ResponsiveContext);
 	const [recording, setRecording] = useState(false);
 	const title = recording ? '停止' : '录像';
 
 	return (
-		<Button tip={title} onClick={() => setRecording(!recording)}>
+		<Button tip={size !== 'small'&& title} onClick={() => setRecording(!recording)}>
 			<Box pad='small' align='center'>
 				{recording ? <RecordStop size='24' /> : <Record size='24' />}
 				{showTitle && (
@@ -262,11 +268,12 @@ export function RecordControl({ showTitle = true }) {
 }
 
 export function MuteControl({ showTitle = true }) {
+  const size = useContext(ResponsiveContext);
 	const [mute, setMute] = useState(false);
 	const title = mute ? '恢复' : '静音';
 
 	return (
-		<Button tip={title} onClick={() => setMute(!mute)}>
+		<Button tip={size !== 'small' && title} onClick={() => setMute(!mute)}>
 			<Box pad='small' align='center'>
 				{mute ? <Volume /> : <VolumeMute />}
 				{showTitle && (
@@ -278,11 +285,12 @@ export function MuteControl({ showTitle = true }) {
 }
 
 export function ChatControl({ showTitle = true }) {
+  const size = useContext(ResponsiveContext);
 	const [speaking, setSpeaking] = useState(false);
 	const title = speaking ? '挂断' : '对讲';
 
 	return (
-		<Button tip={title} onClick={() => setSpeaking(!speaking)}>
+		<Button tip={size !== 'small' && title} onClick={() => setSpeaking(!speaking)}>
 			<Box pad='small' align='center'>
 				{speaking ? <CallDismiss size='24' /> : <Call size='24' />}
 				{showTitle && (
