@@ -212,7 +212,7 @@ export function PanLayer({ target }) {
 				<Layer
 					plain
 					animation='fadeIn'
-					target={target.current}
+					target={target?.current}
 					position='right'
 					responsive={false}
 					margin='small'
