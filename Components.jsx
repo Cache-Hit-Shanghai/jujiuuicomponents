@@ -195,19 +195,24 @@ export function ResolutionControl({ showTitle = true }) {
 	);
 }
 
-export function PanLayer() {
+export function PanLayer({ target }) {
 	const [show, setShow] = useState(false);
 	return (
 		<>
 			<Button
 				plain
 				focusIndicator={false}
-				icon={<Pan />}
 				onClick={() => setShow(!show)}
-			/>
+			>
+				<Box pad='small' align='center'>
+					<Pan />
+				</Box>
+			</Button>
 			{show && (
 				<Layer
 					plain
+					animation='fadeIn'
+					target={target.current}
 					position='right'
 					responsive={false}
 					margin='small'
