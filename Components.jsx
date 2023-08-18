@@ -105,9 +105,12 @@ export function ButtonBackToMain() {
 }
 
 export function ZoomControl({ showTitle = true }) {
+	const title = '变焦';
+
 	return (
 		<Menu
 			plain
+			tip={title}
 			dropAlign={{ top: 'bottom' }}
 			items={[
 				{ label: '4X', onClick: () => {}, justify: 'end' },
@@ -123,7 +126,7 @@ export function ZoomControl({ showTitle = true }) {
 		>
 			<Box pad='small' align='center'>
 				<ZoomIn />
-				{showTitle && <Text size='small'>变焦</Text>}
+				{showTitle && <Text size='small'>{title}</Text>}
 			</Box>
 		</Menu>
 	);
@@ -172,9 +175,11 @@ export function VolumeControl({ showTitle = true }) {
 }
 
 export function ResolutionControl({ showTitle = true }) {
+	const title = '清晰度'
 	return (
 		<Menu
 			plain
+			tip={title}
 			dropAlign={{ top: 'bottom' }}
 			items={[
 				{ label: '极清', onClick: () => {}, justify: 'end' },
@@ -189,7 +194,7 @@ export function ResolutionControl({ showTitle = true }) {
 		>
 			<Box pad='small' align='center'>
 				<ClosedCaption />
-				{showTitle && <Text size='small'>清晰度</Text>}
+				{showTitle && <Text size='small'>{title}</Text>}
 			</Box>
 		</Menu>
 	);
@@ -201,6 +206,7 @@ export function PanLayer({ target }) {
 		<>
 			<Button
 				plain
+				tip='云台'
 				focusIndicator={false}
 				onClick={() => setShow(!show)}
 			>
@@ -226,12 +232,13 @@ export function PanLayer({ target }) {
 }
 
 export function ScreenCopyControl({ showTitle = true }) {
+	const title = '截图';
 	return (
-		<Button>
+		<Button tip={title}>
 			<Box pad='small' align='center'>
 				{<Camera />}
 				{showTitle && (
-					<Text size='small'>截图</Text>
+					<Text size='small'>{title}</Text>
 				)}
 			</Box>
 		</Button>
@@ -240,13 +247,14 @@ export function ScreenCopyControl({ showTitle = true }) {
 
 export function RecordControl({ showTitle = true }) {
 	const [recording, setRecording] = useState(false);
+	const title = recording ? '停止' : '录像';
 
 	return (
-		<Button onClick={() => setRecording(!recording)}>
+		<Button tip={title} onClick={() => setRecording(!recording)}>
 			<Box pad='small' align='center'>
 				{recording ? <RecordStop size='24' /> : <Record size='24' />}
 				{showTitle && (
-					<Text size='small'>{recording ? '停止' : '录像'}</Text>
+					<Text size='small'>{title}</Text>
 				)}
 			</Box>
 		</Button>
@@ -255,13 +263,14 @@ export function RecordControl({ showTitle = true }) {
 
 export function MuteControl({ showTitle = true }) {
 	const [mute, setMute] = useState(false);
+	const title = mute ? '恢复' : '静音';
 
 	return (
-		<Button onClick={() => setMute(!mute)}>
+		<Button tip={title} onClick={() => setMute(!mute)}>
 			<Box pad='small' align='center'>
 				{mute ? <Volume /> : <VolumeMute />}
 				{showTitle && (
-					<Text size='small'>{mute ? '恢复' : '静音'}</Text>
+					<Text size='small'>{title}</Text>
 				)}
 			</Box>
 		</Button>
@@ -270,13 +279,14 @@ export function MuteControl({ showTitle = true }) {
 
 export function ChatControl({ showTitle = true }) {
 	const [speaking, setSpeaking] = useState(false);
+	const title = speaking ? '挂断' : '对讲';
 
 	return (
-		<Button onClick={() => setSpeaking(!speaking)}>
+		<Button tip={title} onClick={() => setSpeaking(!speaking)}>
 			<Box pad='small' align='center'>
 				{speaking ? <CallDismiss size='24' /> : <Call size='24' />}
 				{showTitle && (
-					<Text size='small'>{speaking ? '挂断' : '对讲'}</Text>
+					<Text size='small'>{title}</Text>
 				)}
 			</Box>
 		</Button>
