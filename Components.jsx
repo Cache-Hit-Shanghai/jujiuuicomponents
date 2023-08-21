@@ -67,7 +67,7 @@ export function AppLogo() {
 				<Box align='center' gap='medium'>
 					<Heading margin='none' level={1} size='large'>云探</Heading>
 					<Box direction='row'>
-						<Tag value='IPv6' size='xsmall' background='accent-4' />
+						<Tag value='IPv6' border={false} size='xsmall' background='accent-4' />
 					</Box>
 				</Box>
 			</Box>
