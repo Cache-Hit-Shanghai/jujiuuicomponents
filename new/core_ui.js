@@ -1,6 +1,7 @@
-import { Tag, Box, Text, Layer, Card, Button } from 'grommet';
+import { Tag, Box, Text, Layer, Card, Button, Main } from 'grommet';
 import { CircleInformation } from 'grommet-icons';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 
 function JuJiuTag({ icon, label, background }) {
@@ -88,4 +89,99 @@ function JuJiuInformation({ label, size, ...props }) {
   );
 }
 
-export { JuJiuTag, JuJiuLinkTag, JuJiuLayer, JuJiuMain, JuJiuCard, ButtonLink, JuJiuInformation };
+function InfoGroup({ data }) {
+	return (
+		<JuJiuCard>
+			<CardBody>
+				<List
+					pad={{ vertical: 'small' }}
+					data={data}
+					border={false}
+					primaryKey='key'
+					secondaryKey={item => <Text size='small' color='text-xweak'>{item.value}</Text>}
+				/>
+			</CardBody>
+		</JuJiuCard>
+	);
+}
+
+function ButtonGroup({ data }) {
+	return (
+		<JuJiuCard pad='none'>
+			<CardBody>
+				<List pad='small' data={data} border={false}>
+					{(datum) => (
+						<Button
+							icon={<FormNext color='control' />}
+							label={datum.label}
+							disabled={!!datum.disabled}
+							reverse
+							plain
+							justify='between'
+							onClick={datum.onClick}
+						/>
+					)}
+				</List>
+			</CardBody>
+		</JuJiuCard>
+	);
+}
+
+function LinkGroup({ data }) {
+	return (
+		<JuJiuCard>
+			<CardBody>
+				<List pad={{ vertical: 'small' }} data={data} border={false}>
+					{(datum) => (
+						<Link href={datum.url} passHref legacyBehavior>
+							<Button
+								as='a'
+								icon={<FormNext color='control' />}
+								label={datum.label}
+								reverse
+								plain
+								justify='between'
+							/>
+						</Link>
+					)}
+				</List>
+			</CardBody>
+		</JuJiuCard>
+	);
+}
+
+function IconBack() {
+	const router = useRouter();
+	return (
+		<Button
+			icon={<FormPrevious color='control' />}
+			onClick={() => router.back()}
+		/>
+	);
+}
+
+function IconButton({ icon, label, onClick }) {
+	return (
+		<Button onClick={onClick}>
+			<Box pad='small' align='center'>
+				{icon}
+				<Text size='small'>{label}</Text>
+			</Box>
+		</Button>
+	);
+}
+
+function IconLink({ icon, label, url }) {
+	return (
+		<Link href={url} passHref legacyBehavior>
+			<Button as='a'>
+				<Box pad='small' align='center'>
+					{icon}
+					<Text size='small'>{label}</Text>
+				</Box>
+			</Button>
+		</Link>
+	);
+}
+
+export { JuJiuTag, JuJiuLinkTag, JuJiuLayer, JuJiuMain, JuJiuCard, ButtonLink, JuJiuInformation, InfoGroup, ButtonGroup, LinkGroup, IconBack, IconButton, IconLink };

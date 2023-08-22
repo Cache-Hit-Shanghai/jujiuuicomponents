@@ -9,8 +9,6 @@ import {
 	Menu,
 	Image,
 	Button,
-	List,
-	Main,
 	Layer,
 	Stack,
 	Heading,
@@ -26,13 +24,11 @@ import {
 	ZoomIn,
 	Info,
 	Cycle,
-	FormNext,
 	Volume,
 	VolumeLow,
 	VolumeMute,
 	Checkmark,
 	Camera,
-	FormPrevious,
 	ClosedCaption,
 	CaretLeftFill,
 	StatusCritical,
@@ -45,7 +41,6 @@ import { RecordStop } from '@styled-icons/fluentui-system-regular/RecordStop';
 import { FlashlightOn } from '@styled-icons/material-rounded/FlashlightOn';
 import { FlashlightOff } from '@styled-icons/material-rounded/FlashlightOff';
 import { SettingsOutline } from '@styled-icons/evaicons-outline/SettingsOutline';
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useState, useContext } from 'react';
 
@@ -55,6 +50,7 @@ import {
   JuJiuTagDeviceOnline,
   JuJiuTagDeviceOffline,
 } from './JuJiuTags';
+import { ButtonLink, IconLink } from './new/core_ui';
 import styles from './components.module.css';
 
 // console.log('styles', styles);
@@ -90,15 +86,6 @@ export function AppMark() {
 	);
 }
 
-export function ButtonLink({ href, children, ...props }) {
-	return (
-		<Link href={href} passHref legacyBehavior>
-			<Button as='a' {...props}>
-				{children}
-			</Button>
-		</Link>
-	);
-}
 export function ButtonBackToMain() {
 	return (
 		<ButtonLink primary href='/' label='回到主页' />
@@ -352,7 +339,7 @@ export function ChatControl({ showTitle = true }) {
 // 	);
 // }
 
-function SectorBox({ angle, onClick, index }) {
+function SectorBox({ angle, onClick }) {
 	return (
 		<Box
 			className={styles.SectorContent}
@@ -460,130 +447,6 @@ export function PanControl({
 	);
 }
 
-export function JuJiuMain({ children, ...props }) {
-	return (
-		<Main
-			flex={{ grow: 1, shrink: 1 }}
-			overflow='auto'
-			gap='medium'
-			margin='small'
-			{...props}
-		>
-			{children}
-		</Main>
-	);
-}
-
-export function JuJiuCard({ children, ...props }) {
-	return (
-		<Card
-			pad='small'
-			gap='small'
-			background='background-contrast'
-			focusIndicator={false}
-			flex={false}
-			{...props}
-		>
-			{children}
-		</Card>
-	);
-}
-
-export function InfoGroup({ data }) {
-	return (
-		<JuJiuCard>
-			<CardBody>
-				<List
-					pad={{ vertical: 'small' }}
-					data={data}
-					border={false}
-					primaryKey='key'
-					secondaryKey={item => <Text size='small' color='text-xweak'>{item.value}</Text>}
-				/>
-			</CardBody>
-		</JuJiuCard>
-	);
-}
-
-export function ButtonGroup({ data }) {
-	return (
-		<JuJiuCard pad='none'>
-			<CardBody>
-				<List pad='small' data={data} border={false}>
-					{(datum) => (
-						<Button
-							icon={<FormNext color='control' />}
-							label={datum.label}
-							disabled={!!datum.disabled}
-							reverse
-							plain
-							justify='between'
-							onClick={datum.onClick}
-						/>
-					)}
-				</List>
-			</CardBody>
-		</JuJiuCard>
-	);
-}
-
-export function LinkGroup({ data }) {
-	return (
-		<JuJiuCard>
-			<CardBody>
-				<List pad={{ vertical: 'small' }} data={data} border={false}>
-					{(datum) => (
-						<Link href={datum.url} passHref legacyBehavior>
-							<Button
-								as='a'
-								icon={<FormNext color='control' />}
-								label={datum.label}
-								reverse
-								plain
-								justify='between'
-							/>
-						</Link>
-					)}
-				</List>
-			</CardBody>
-		</JuJiuCard>
-	);
-}
-
-export function IconBack() {
-	const router = useRouter();
-	return (
-		<Button
-			icon={<FormPrevious color='control' />}
-			onClick={() => router.back()}
-		/>
-	);
-}
-
-export function IconButton({ icon, label, onClick }) {
-	return (
-		<Button onClick={onClick}>
-			<Box pad='small' align='center'>
-				{icon}
-				<Text size='small'>{label}</Text>
-			</Box>
-		</Button>
-	);
-}
-
-export function IconLInk({ icon, label, url }) {
-	return (
-		<Link href={url} passHref legacyBehavior>
-			<Button as='a'>
-				<Box pad='small' align='center'>
-					{icon}
-					<Text size='small'>{label}</Text>
-				</Box>
-			</Button>
-		</Link>
-	);
-}
-
 export function AppFooter() {
 	return (
 		<Box
@@ -592,11 +455,11 @@ export function AppFooter() {
 			justify='evenly'
 			flex={false}
 		>
-			<IconLInk icon={<Webcam />} label='设备' url='/' />
-			<IconLInk icon={<Radial />} label='我的' url='/my' />
-			<IconLInk icon={<Home />} label='主页' url='/splash' />
-			<IconLInk icon={<StatusCritical />} label='错误页' url='/errorpage' />
-			<IconLInk icon={<Cycle />} label='其它页' url='/other' />
+			<IconLink icon={<Webcam />} label='设备' url='/' />
+			<IconLink icon={<Radial />} label='我的' url='/my' />
+			<IconLink icon={<Home />} label='主页' url='/splash' />
+			<IconLink icon={<StatusCritical />} label='错误页' url='/errorpage' />
+			<IconLink icon={<Cycle />} label='其它页' url='/other' />
 		</Box>
 	);
 }
