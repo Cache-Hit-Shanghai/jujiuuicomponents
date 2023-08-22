@@ -1,6 +1,6 @@
 import { Box, Text, CardBody, Button } from 'grommet';
 import { FormNext } from 'grommet-icons';
-import { JuJiuCard, ButtonLink } from './Components';
+import { JuJiuCard, ButtonLink } from './core_ui';
 
 
 function JuJiuRawItem({ onClick, children }) {
