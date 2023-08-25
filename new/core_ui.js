@@ -1,7 +1,7 @@
 import { Tag, Box, Text, Layer, Card, Button, Main, CardBody, List } from 'grommet';
 import { CircleInformation, FormPrevious, FormNext } from 'grommet-icons';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import Link from '@/state/translate';
 
 
 function JuJiuTag({ icon, label, background }) {

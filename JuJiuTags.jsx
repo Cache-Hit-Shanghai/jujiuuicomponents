@@ -1,66 +1,73 @@
 import { CloudUpload, StatusGoodSmall, ShareRounded } from 'grommet-icons';
 import { Share } from '@styled-icons/boxicons-regular/Share';
 import { JuJiuTag, JuJiuLinkTag } from './new/core_ui';
+import { useJuJiuT } from '@/state/translate';
 
 
 export function JuJiuTagSharing() {
+	const t = useJuJiuT();
   return (
     <JuJiuTag
       background='graph-0'
       icon={<ShareRounded size='small' />}
-      label='分享中'
+      label={t('分享中')}
     />
   );
 }
 
 export function JuJiuTagFromShared() {
+	const t = useJuJiuT();
   return (
     <JuJiuTag
       background='graph-3'
       icon={<Share size='12' />}
-      label='来自分享'
+      label={t('来自分享')}
     />
   );
 }
 
 export function JuJiuTagCloudStorageExpired() {
+	const t = useJuJiuT();
   return (
     <JuJiuLinkTag
       href='/my/cloudstorage'
       background='status-error'
       icon={<CloudUpload size='small' />}
-      label='云存储已过期'
+      label={t('云存储已过期')}
     />
   );
 }
 
 export function JuJiuTagCloudStorageExpiring() {
+	const t = useJuJiuT();
   return (
     <JuJiuLinkTag
       href='/my/cloudstorage'
       background='status-warning'
       icon={<CloudUpload size='small' />}
-      label='云存储即将过期'
+      label={t('云存储即将过期')}
     />
   );
 }
 
 export function JuJiuTagDeviceOnline() {
+	const t = useJuJiuT();
   return (
     <JuJiuTag
       background='light-6'
       icon={<StatusGoodSmall color='graph-1' size='small' />}
-      label='在线'
+      label={t('在线')}
     />
   );
 }
 
 export function JuJiuTagDeviceOffline() {
+	const t = useJuJiuT();
   return (
     <JuJiuTag
       background='light-6'
       icon={<StatusGoodSmall size='small' />}
-      label='离线'
+      label={t('离线')}
     />
   );
 }
