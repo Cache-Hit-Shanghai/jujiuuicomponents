@@ -41,7 +41,7 @@ import { RecordStop } from '@styled-icons/fluentui-system-regular/RecordStop';
 import { FlashlightOn } from '@styled-icons/material-rounded/FlashlightOn';
 import { FlashlightOff } from '@styled-icons/material-rounded/FlashlightOff';
 import { SettingsOutline } from '@styled-icons/evaicons-outline/SettingsOutline';
-import Link from 'next/link';
+import Link from '@/state/translate';
 import { useState, useContext } from 'react';
 
 import {
