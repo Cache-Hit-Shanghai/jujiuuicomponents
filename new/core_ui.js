@@ -1,4 +1,4 @@
-import { Tag, Box, Text, Layer, Card, Button, Main, CardBody, List } from 'grommet';
+import { Tag, Box, Text, Layer, Card, Button, Main, CardBody, List, MaskedInput } from 'grommet';
 import { CircleInformation, FormPrevious, FormNext } from 'grommet-icons';
 import { useRouter } from 'next/navigation';
 import Link from '@/state/translate';
@@ -73,7 +73,7 @@ function JuJiuCard({ children, ...props }) {
 function ButtonLink({ href, children, ...props }) {
 	return (
 		<Link href={href} passHref legacyBehavior>
-			<Button as='a' {...props}>
+			<Button as='a' style={{ textAlign: 'center' }} {...props}>
 				{children}
 			</Button>
 		</Link>
@@ -184,4 +184,11 @@ function IconLink({ icon, label, url }) {
 	);
 }
 
-export { JuJiuTag, JuJiuLinkTag, JuJiuLayer, JuJiuMain, JuJiuCard, ButtonLink, JuJiuInformation, InfoGroup, ButtonGroup, LinkGroup, IconBack, IconButton, IconLink };
+function TimeInput() {
+	return (
+		<MaskedInput
+		/>
+	);
+}
+
+export { JuJiuTag, JuJiuLinkTag, JuJiuLayer, JuJiuMain, JuJiuCard, ButtonLink, JuJiuInformation, InfoGroup, ButtonGroup, LinkGroup, IconBack, IconButton, IconLink, TimeInput };
