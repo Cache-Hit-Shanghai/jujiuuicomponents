@@ -1,8 +1,8 @@
-import { Tag, Box, Text, Layer, Card, Button, Main, CardBody, List, MaskedInput } from 'grommet';
+import { Tag, Box, Text, Layer, Card, Button, Main, CardBody, List } from 'grommet';
 import { CircleInformation, FormPrevious, FormNext } from 'grommet-icons';
 import { useRouter } from 'next/navigation';
 import Link from '@/state/translate';
-
+import TimePicker from '@ashwinthomas/react-time-picker-dropdown';
 
 function JuJiuTag({ icon, label, background }) {
   return (
@@ -31,9 +31,9 @@ function JuJiuLinkTag({ href, icon, label, background }) {
   );
 }
 
-function JuJiuLayer({ onClickOutside, children, ...props }) {
+function JuJiuLayer({ onClickOutside, position, children, ...props }) {
   return (
-    <Layer position='bottom' full='horizontal' responsive={false} onClickOutside={onClickOutside}>
+    <Layer position={position || 'bottom'} full='horizontal' responsive={false} onClickOutside={onClickOutside}>
       <Box fill round pad='medium' gap='medium' background='background-front' {...props}>
         {children}
       </Box>
@@ -184,10 +184,9 @@ function IconLink({ icon, label, url }) {
 	);
 }
 
-function TimeInput() {
+function TimeInput({ ...props }) {
 	return (
-		<MaskedInput
-		/>
+		<TimePicker { ...props } />
 	);
 }
 
