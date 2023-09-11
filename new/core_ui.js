@@ -2,7 +2,6 @@ import { Tag, Box, Text, Layer, Card, Button, Main, CardBody, List } from 'gromm
 import { CircleInformation, FormPrevious, FormNext } from 'grommet-icons';
 import { useRouter } from 'next/navigation';
 import Link from '@/state/translate';
-import TimePicker from '@ashwinthomas/react-time-picker-dropdown';
 
 function JuJiuTag({ icon, label, background }) {
   return (

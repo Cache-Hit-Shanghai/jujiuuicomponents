@@ -1,4 +1,4 @@
-import { CloudUpload, StatusGoodSmall, ShareRounded } from 'grommet-icons';
+import { CloudUpload, StatusGoodSmall, ShareRounded, UserNew } from 'grommet-icons';
 import { Share } from '@styled-icons/boxicons-regular/Share';
 import { JuJiuTag, JuJiuLinkTag } from './new/core_ui';
 import { useJuJiuT } from '@/state/translate';
@@ -68,6 +68,16 @@ export function JuJiuTagDeviceOffline() {
       background='light-6'
       icon={<StatusGoodSmall size='small' />}
       label={t('离线')}
+    />
+  );
+}
+
+export function JuJiuTagAccountNotBinding() {
+	const t = useJuJiuT();
+  return (
+    <JuJiuTag
+      background='status-critical'
+      icon={<UserNew size='small' />}
     />
   );
 }
