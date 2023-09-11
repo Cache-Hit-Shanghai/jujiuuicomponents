@@ -184,10 +184,5 @@ function IconLink({ icon, label, url }) {
 	);
 }
 
-function TimeInput({ ...props }) {
-	return (
-		<TimePicker { ...props } />
-	);
-}
 
-export { JuJiuTag, JuJiuLinkTag, JuJiuLayer, JuJiuMain, JuJiuCard, ButtonLink, JuJiuInformation, InfoGroup, ButtonGroup, LinkGroup, IconBack, IconButton, IconLink, TimeInput };
+export { JuJiuTag, JuJiuLinkTag, JuJiuLayer, JuJiuMain, JuJiuCard, ButtonLink, JuJiuInformation, InfoGroup, ButtonGroup, LinkGroup, IconBack, IconButton, IconLink };
