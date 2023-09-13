@@ -46,7 +46,7 @@ function JuJiuMain({ children, ...props }) {
 			flex={{ grow: 1, shrink: 1 }}
 			overflow='auto'
 			gap='medium'
-			margin='small'
+			pad='small'
 			{...props}
 		>
 			{children}
