@@ -488,7 +488,7 @@ function IpcCardRaw({ label, imgurl, nextPageUrl }) {
 		<Card>
       <LinkOrNone url={nextPageUrl}>
         <CardBody as='a' background='background-front'>
-          <Stack fill='horizontal' height='small'>
+          <Stack>
             <Image fill src={imgurl} />
             <Box direction='row' margin='medium' gap='small'>
               <Box gap='small'>
