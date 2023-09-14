@@ -22,6 +22,7 @@ import {
 	Radial,
 	Webcam,
 	ZoomIn,
+	Scan,
 	Info,
 	Cycle,
 	Volume,
@@ -458,6 +459,7 @@ export function AppFooter() {
 			<IconLink icon={<Webcam />} label='设备' url='/' />
 			<IconLink icon={<Radial />} label='我的' url='/my' />
 			<IconLink icon={<Home />} label='主页' url='/splash' />
+			<IconLink icon={<Scan />} label='扫一扫' url='/scan' />
 			<IconLink icon={<StatusCritical />} label='错误页' url='/errorpage' />
 			<IconLink icon={<Cycle />} label='其它页' url='/other' />
 		</Box>
