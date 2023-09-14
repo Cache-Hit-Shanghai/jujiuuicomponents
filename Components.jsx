@@ -11,6 +11,7 @@ import {
 	Button,
 	Layer,
 	Stack,
+	CheckBox,
 	Heading,
 	DropButton,
 	RangeInput,
@@ -466,10 +467,26 @@ export function AppFooter() {
 	);
 }
 
-export function IpcCard({ label, imgurl }) {
+function LinkOrNone({ url, children }) {
+	if (url) {
+		return (
+			<Link href={url} passHref legacyBehavior>
+				{children}
+			</Link>
+		);
+	} else {
+		return (
+			<>
+				{children}
+			</>
+		);
+	}
+}
+
+function IpcCardRaw({ label, imgurl, nextPageUrl }) {
 	return (
 		<Card>
-      <Link href='/device/streaming' passHref legacyBehavior>
+      <LinkOrNone url={nextPageUrl}>
         <CardBody as='a' background='background-front'>
           <Stack fill='horizontal' height='small'>
             <Image fill src={imgurl} />
@@ -493,7 +510,7 @@ export function IpcCard({ label, imgurl }) {
             </Box>
           </Stack>
         </CardBody>
-      </Link>
+			</LinkOrNone>
 			<CardFooter pad='small' align='center' justify='between' background='background-contrast'>
 				<Text>{label}</Text>
 				<Menu
@@ -512,5 +529,22 @@ export function IpcCard({ label, imgurl }) {
 				/>
 			</CardFooter>
 		</Card>
+	);
+}
+
+export function IpcCard({ label, imgurl }) {
+	return (
+		<IpcCardRaw label={label} imgurl={imgurl} nextPageUrl='/device/streaming' />
+	);
+}
+
+export function IpcCardSelectable({ label, imgurl }) {
+	return (
+		<Stack anchor='top-right'>
+			<IpcCardRaw label={label} imgurl={imgurl} />
+			<Box pad='small'>
+				<CheckBox />
+			</Box>
+		</Stack>
 	);
 }
