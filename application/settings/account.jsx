@@ -18,6 +18,7 @@ export function ChangeNickname() {
       <Heading level={3} alignSelf='center' margin='none'>修改昵称</Heading>
       <TextInput placeholder='请填写昵称……' />
       <JuJiuInformation label='请设置2-20个字符，不能使用@《等字符。' />
+      <Button label='保存' primary />
     </>
   );
 }
