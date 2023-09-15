@@ -1,4 +1,4 @@
-import { Heading, Button, TextInput } from 'grommet';
+import { Heading, Button, Text, TextInput } from 'grommet';
 import { JuJiuInformation } from '../../core/core_ui';
 
 
@@ -19,6 +19,20 @@ export function ChangeNickname() {
       <TextInput placeholder='请填写昵称……' />
       <JuJiuInformation label='请设置2-20个字符，不能使用@《等字符。' />
       <Button label='保存' primary />
+    </>
+  );
+}
+
+export function ChangePassword() {
+  return (
+    <>
+      <Text>输入旧密码：</Text>
+      <TextInput type='password' />
+      <Text>输入新密码：</Text>
+      <TextInput type='password' />
+      <Text>再次输入新密码：</Text>
+      <TextInput type='password' />
+      <Button primary label='确定' />
     </>
   );
 }
