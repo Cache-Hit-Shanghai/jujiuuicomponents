@@ -1,6 +1,5 @@
-import { Text, Box, Nav, CheckBox } from 'grommet';
-import { IconBack, JuJiuMain } from '@/jujiuuicomponents/core/core_ui';
-import { JuJiuItem, JuJiuItemLink } from '@/jujiuuicomponents/core/core_item';
+import { CheckBox } from 'grommet';
+import { JuJiuItem } from '../../core/core_item';
 
 
 export function ChangeNotification() {
