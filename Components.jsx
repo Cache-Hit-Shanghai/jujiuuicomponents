@@ -52,7 +52,7 @@ import {
   JuJiuTagDeviceOnline,
   JuJiuTagDeviceOffline,
 } from './JuJiuTags';
-import { ButtonLink, IconLink } from './new/core_ui';
+import { ButtonLink, IconLink } from './core/core_ui';
 import styles from './components.module.css';
 
 // console.log('styles', styles);
