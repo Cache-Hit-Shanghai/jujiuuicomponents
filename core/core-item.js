@@ -1,7 +1,6 @@
-import { Box, Text, CardBody, Button } from 'grommet';
-import { FormNext } from 'grommet-icons';
-import { JuJiuCard, ButtonLink } from './core_ui';
-
+import { Box, Text, CardBody, Button } from "grommet";
+import { FormNext } from "grommet-icons";
+import { JuJiuCard, ButtonLink } from "./core-ui";
 
 function JuJiuRawItem({ onClick, children }) {
   return (
@@ -16,11 +15,7 @@ function JuJiuRawItem({ onClick, children }) {
 export function JuJiuItem({ label, onClick, children }) {
   return (
     <JuJiuRawItem onClick={onClick}>
-      <Box
-        direction='row'
-        align='center'
-        justify='between'
-      >
+      <Box direction="row" align="center" justify="between">
         <Text>{label}</Text>
         {children}
       </Box>
@@ -31,9 +26,11 @@ export function JuJiuItem({ label, onClick, children }) {
 export function JuJiuItemText({ label, value, icon }) {
   return (
     <JuJiuItem label={label}>
-      <Box direction='row' align='center'>
+      <Box direction="row" align="center">
         {icon}
-        <Text size='small' color='text-xweak'>{value}</Text>
+        <Text size="small" color="text-xweak">
+          {value}
+        </Text>
       </Box>
     </JuJiuItem>
   );
@@ -42,8 +39,12 @@ export function JuJiuItemText({ label, value, icon }) {
 export function JuJiuItemTextArray({ label, value }) {
   return (
     <JuJiuItem label={label}>
-      <Box align='end'>
-        { value.map(e => <Text size='small' color='text-xweak'>{e}</Text>) }
+      <Box align="end">
+        {value.map((e) => (
+          <Text size="small" color="text-xweak">
+            {e}
+          </Text>
+        ))}
       </Box>
     </JuJiuItem>
   );
@@ -52,7 +53,17 @@ export function JuJiuItemTextArray({ label, value }) {
 export function JuJiuItemButton({ label, value, onClick }) {
   return (
     <JuJiuItem label={label} onClick={onClick}>
-      <Button plain reverse pad='none' label={<Text size='small' color='text-xweak'>{value}</Text>} icon={<FormNext color='control' />} />
+      <Button
+        plain
+        reverse
+        pad="none"
+        label={
+          <Text size="small" color="text-xweak">
+            {value}
+          </Text>
+        }
+        icon={<FormNext color="control" />}
+      />
     </JuJiuItem>
   );
 }
@@ -60,7 +71,13 @@ export function JuJiuItemButton({ label, value, onClick }) {
 export function JuJiuItemRawButton({ label, onClick, children }) {
   return (
     <JuJiuItem label={label} onClick={onClick}>
-      <Button plain reverse pad='none' label={children} icon={<FormNext color='control' />} />
+      <Button
+        plain
+        reverse
+        pad="none"
+        label={children}
+        icon={<FormNext color="control" />}
+      />
     </JuJiuItem>
   );
 }
@@ -69,13 +86,9 @@ export function JuJiuItemLink({ label, href }) {
   return (
     <JuJiuRawItem label={label}>
       <ButtonLink href={href}>
-        <Box
-          direction='row'
-          align='center'
-          justify='between'
-        >
+        <Box direction="row" align="center" justify="between">
           <Text>{label}</Text>
-          <FormNext color='control' />
+          <FormNext color="control" />
         </Box>
       </ButtonLink>
     </JuJiuRawItem>

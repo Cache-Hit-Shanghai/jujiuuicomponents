@@ -1,26 +1,25 @@
-import { CheckBox } from 'grommet';
-import { JuJiuItem } from '../../core/core_item';
-
+import { CheckBox } from "grommet";
+import { JuJiuItem } from "../../core/core-item";
 
 export function ChangeNotification() {
   return (
     <>
-      <JuJiuItem label='设备访问'>
+      <JuJiuItem label="设备访问">
         <CheckBox toggle />
       </JuJiuItem>
-      <JuJiuItem label='设备状态'>
+      <JuJiuItem label="设备状态">
         <CheckBox toggle />
       </JuJiuItem>
-      <JuJiuItem label='设备异常'>
+      <JuJiuItem label="设备异常">
         <CheckBox toggle />
       </JuJiuItem>
-      <JuJiuItem label='设备分享'>
+      <JuJiuItem label="设备分享">
         <CheckBox toggle />
       </JuJiuItem>
-      <JuJiuItem label='服务提醒'>
+      <JuJiuItem label="服务提醒">
         <CheckBox toggle />
       </JuJiuItem>
-      <JuJiuItem label='公告'>
+      <JuJiuItem label="公告">
         <CheckBox toggle />
       </JuJiuItem>
     </>
@@ -30,13 +29,13 @@ export function ChangeNotification() {
 export function ChangeAIAlarm() {
   return (
     <>
-      <JuJiuItem label='画面有人移动'>
+      <JuJiuItem label="画面有人移动">
         <CheckBox toggle />
       </JuJiuItem>
-      <JuJiuItem label='画面人脸识别结果'>
+      <JuJiuItem label="画面人脸识别结果">
         <CheckBox toggle />
       </JuJiuItem>
-      <JuJiuItem label='看护区域有人移动'>
+      <JuJiuItem label="看护区域有人移动">
         <CheckBox toggle />
       </JuJiuItem>
     </>
