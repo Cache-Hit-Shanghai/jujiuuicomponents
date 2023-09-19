@@ -488,6 +488,7 @@ function IpcCardMenu({ onSettings, onInformation }) {
 							<SettingsOutline size='24' />
 						</Box>
 					),
+					onClick: onSettings,
 				},
 				{
 					label: informationsLabel,
@@ -496,6 +497,7 @@ function IpcCardMenu({ onSettings, onInformation }) {
 							<Info />
 						</Box>
 					),
+					onClick: onInformation,
 				},
 			]}
 		/>
