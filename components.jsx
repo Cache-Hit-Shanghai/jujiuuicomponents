@@ -464,7 +464,45 @@ function LinkOrNone({ url, children }) {
 	}
 }
 
-function IpcCardRaw({ label, imgurl, nextPageUrl }) {
+function IpcCardMenu({ onSettings, onInformation }) {
+	const settingsLabel = onSettings ? (<Text>设备设置</Text>) : (
+		<Link href='/device/settings' passHref legacyBehavior>
+			<Text>设备设置</Text>
+		</Link>
+	);
+	const informationsLabel = onInformation ? (<Text>设备信息</Text>) : (
+		<Link href='/device/information' passHref legacyBehavior>
+			<Text>设备信息</Text>
+		</Link>
+	);
+
+	return (
+		<Menu
+			dropProps={{ align: { top: 'bottom', right: 'right' } }}
+			icon={<Settings3 size='24' />}
+			items={[
+				{
+					label: settingsLabel,
+					icon: (
+						<Box margin={{ right: 'small' }}>
+							<SettingsOutline size='24' />
+						</Box>
+					),
+				},
+				{
+					label: informationsLabel,
+					icon: (
+						<Box margin={{ right: 'small' }}>
+							<Info />
+						</Box>
+					),
+				},
+			]}
+		/>
+	);
+}
+
+function IpcCardRaw({ label, imgurl, nextPageUrl, onSettings, onInformation }) {
 	return (
 		<Card>
 			<LinkOrNone url={nextPageUrl}>
@@ -494,35 +532,9 @@ function IpcCardRaw({ label, imgurl, nextPageUrl }) {
 			</LinkOrNone>
 			<CardFooter pad='small' align='center' justify='between' background='background-contrast'>
 				<Text>{label}</Text>
-				<Menu
-					dropProps={{ align: { top: 'bottom', right: 'right' } }}
-					icon={<Settings3 size='24' />}
-					items={[
-						{
-							label: (
-								<Link href='/device/settings' passHref legacyBehavior>
-									<Text>设备设置</Text>
-								</Link>
-							),
-							icon: (
-								<Box margin={{ right: 'small' }}>
-									<SettingsOutline size='24' />
-								</Box>
-							),
-						},
-						{
-							label: (
-								<Link href='/device/information' passHref legacyBehavior>
-									<Text>设备信息</Text>
-								</Link>
-							),
-							icon: (
-								<Box margin={{ right: 'small' }}>
-									<Info />
-								</Box>
-							),
-						},
-					]}
+				<IpcCardMenu
+					onSettings={onSettings}
+					onInformation={onInformation}
 				/>
 			</CardFooter>
 		</Card>
@@ -533,10 +545,15 @@ export function IpcCard({ label, imgurl }) {
 	return <IpcCardRaw label={label} imgurl={imgurl} nextPageUrl='/device/streaming' />;
 }
 
-export function IpcCardSelectable({ label, imgurl }) {
+export function IpcCardSelectable({ label, imgurl, onSettings, onInformation }) {
 	return (
 		<Stack anchor='top-right'>
-			<IpcCardRaw label={label} imgurl={imgurl} />
+			<IpcCardRaw
+				label={label}
+				imgurl={imgurl}
+				onSettings={onSettings}
+				onInformation={onInformation}
+			/>
 			<Box pad='small'>
 				<CheckBox />
 			</Box>
