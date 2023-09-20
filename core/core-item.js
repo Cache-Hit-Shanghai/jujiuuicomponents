@@ -1,5 +1,5 @@
 import { Box, Text, CardBody, Button, Collapsible } from "grommet";
-import { FormNext, FormDown } from "grommet-icons";
+import { FormNext, FormDown, FormUp } from "grommet-icons";
 import { useState } from 'react';
 import { JuJiuCard, ButtonLink } from "./core-ui";
 
@@ -102,7 +102,7 @@ export function JuJiuCollapsible({ label, children, ...props }) {
     <JuJiuRawItem label={label} onClick={() => setOpen(!open)}>
       <Box direction="row" align="center" justify="between">
         <Text>{label}</Text>
-        {open ? <FormDown color='control' /> : <FormNext color='control' />}
+        {open ? <FormUp color='control' /> : <FormDown color='control' />}
       </Box>
       <Collapsible open={open} {...props}>
         <Box pad={{ top: "small" }} />
