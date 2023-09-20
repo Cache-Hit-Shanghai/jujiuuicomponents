@@ -93,8 +93,14 @@ export function JuJiuItemLink({ label, href }) {
 export function JuJiuCollapsible({ label, children, ...props }) {
 	const [open, setOpen] = useState(false);
 	return (
-		<JuJiuRawItem label={label} onClick={() => setOpen(!open)}>
-			<Box direction='row' align='center' justify='between'>
+		<JuJiuRawItem label={label}>
+			<Box
+				direction='row'
+				align='center'
+				justify='between'
+				focusIndicator={false}
+				onClick={() => setOpen(!open)}
+			>
 				<Text>{label}</Text>
 				{open ? <FormUp color='control' /> : <FormDown color='control' />}
 			</Box>
