@@ -4,51 +4,50 @@ import { useRouter } from 'next/navigation';
 import Link from '@/state/translate';
 
 function JuJiuTag({ icon, label, background }) {
-  return (
-    <Tag
-      border={false}
-      fill={false}
-      background={background}
-      size='xsmall'
-      value={
-        <Box direction='row' gap='xsmall' align='center'>
-          {icon}
-          <Text size='xsmall'>{label}</Text>
-        </Box>
-      }
-    />
-  );
+	return (
+		<Tag
+			border={false}
+			fill={false}
+			background={background}
+			size='xsmall'
+			value={
+				<Box direction='row' gap='xsmall' align='center'>
+					{icon}
+					<Text size='xsmall'>{label}</Text>
+				</Box>
+			}
+		/>
+	);
 }
 
 function JuJiuLinkTag({ href, icon, label, background }) {
-  return (
-    <Link href={href} passHref legacyBehavior>
-      <Box as='a'>
-        <JuJiuTag icon={icon} label={label} background={background} />
-      </Box>
-    </Link>
-  );
+	return (
+		<Link href={href} passHref legacyBehavior>
+			<Box as='a'>
+				<JuJiuTag icon={icon} label={label} background={background} />
+			</Box>
+		</Link>
+	);
 }
 
 function JuJiuLayer({ onClickOutside, position, children, ...props }) {
-  return (
-    <Layer position={position || 'bottom'} full='horizontal' responsive={false} onClickOutside={onClickOutside}>
-      <Box fill round pad='medium' gap='medium' background='background-front' {...props}>
-        {children}
-      </Box>
-    </Layer>
-  );
+	return (
+		<Layer
+			position={position || 'bottom'}
+			full='horizontal'
+			responsive={false}
+			onClickOutside={onClickOutside}
+		>
+			<Box fill round pad='medium' gap='medium' background='background-front' {...props}>
+				{children}
+			</Box>
+		</Layer>
+	);
 }
 
 function JuJiuMain({ children, ...props }) {
 	return (
-		<Main
-			flex={{ grow: 1, shrink: 1 }}
-			overflow='auto'
-			gap='medium'
-			pad='small'
-			{...props}
-		>
+		<Main flex={{ grow: 1, shrink: 1 }} overflow='auto' gap='medium' pad='small' {...props}>
 			{children}
 		</Main>
 	);
@@ -80,12 +79,14 @@ function ButtonLink({ href, children, ...props }) {
 }
 
 function JuJiuInformation({ label, size, ...props }) {
-  return (
-    <Box direction='row' gap='small' align='center' flex={false} margin={{ horizontal: 'small' }} {...props}>
-      <CircleInformation size={size} color='accent-4' />
-      <Text size='small' color='accent-4' textAlign='justify'>{label}</Text>
-    </Box>
-  );
+	return (
+		<Box direction='row' gap='small' align='center' flex={false} margin={{ horizontal: 'small' }} {...props}>
+			<CircleInformation size={size} color='accent-4' />
+			<Text size='small' color='accent-4' textAlign='justify'>
+				{label}
+			</Text>
+		</Box>
+	);
 }
 
 function InfoGroup({ data }) {
@@ -97,7 +98,11 @@ function InfoGroup({ data }) {
 					data={data}
 					border={false}
 					primaryKey='key'
-					secondaryKey={item => <Text size='small' color='text-xweak'>{item.value}</Text>}
+					secondaryKey={(item) => (
+						<Text size='small' color='text-xweak'>
+							{item.value}
+						</Text>
+					)}
 				/>
 			</CardBody>
 		</JuJiuCard>
@@ -151,12 +156,7 @@ function LinkGroup({ data }) {
 
 function IconBack() {
 	const router = useRouter();
-	return (
-		<Button
-			icon={<FormPrevious color='control' />}
-			onClick={() => router.back()}
-		/>
-	);
+	return <Button icon={<FormPrevious color='control' />} onClick={() => router.back()} />;
 }
 
 function IconButton({ icon, label, onClick }) {
@@ -183,5 +183,18 @@ function IconLink({ icon, label, url }) {
 	);
 }
 
-
-export { JuJiuTag, JuJiuLinkTag, JuJiuLayer, JuJiuMain, JuJiuCard, ButtonLink, JuJiuInformation, InfoGroup, ButtonGroup, LinkGroup, IconBack, IconButton, IconLink };
+export {
+	JuJiuTag,
+	JuJiuLinkTag,
+	JuJiuLayer,
+	JuJiuMain,
+	JuJiuCard,
+	ButtonLink,
+	JuJiuInformation,
+	InfoGroup,
+	ButtonGroup,
+	LinkGroup,
+	IconBack,
+	IconButton,
+	IconLink,
+};
