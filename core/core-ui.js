@@ -23,7 +23,7 @@ function JuJiuTag({ icon, label, background }) {
 function JuJiuLinkTag({ href, icon, label, background }) {
 	return (
 		<Link href={href} passHref legacyBehavior>
-			<Box as='a'>
+			<Box>
 				<JuJiuTag icon={icon} label={label} background={background} />
 			</Box>
 		</Link>
