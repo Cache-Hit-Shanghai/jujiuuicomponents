@@ -1,6 +1,6 @@
 import { CloudUpload, StatusGoodSmall, ShareRounded, UserNew } from 'grommet-icons';
 import { Share } from '@styled-icons/boxicons-regular/Share';
-import { JuJiuTag, JuJiuLinkTag } from './core/core-ui';
+import { JuJiuTag, JuJiuLinkTag } from './core-ui';
 import { useJuJiuT } from '@/state/translate';
 
 export function JuJiuTagSharing() {

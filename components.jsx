@@ -4,7 +4,6 @@ import {
 	Radial,
 	Webcam,
 	Scan,
-	Info,
 	Cycle,
 	Volume,
 	VolumeLow,
@@ -12,17 +11,12 @@ import {
 	CaretLeftFill,
 	StatusCritical,
 } from 'grommet-icons';
-import { Settings3 } from '@styled-icons/remix-fill/Settings3';
 import { FlashlightOn } from '@styled-icons/material-rounded/FlashlightOn';
 import { FlashlightOff } from '@styled-icons/material-rounded/FlashlightOff';
-import { SettingsOutline } from '@styled-icons/evaicons-outline/SettingsOutline';
-import Link from '@/state/translate';
 import { useState } from 'react';
 
 import { ButtonLink, IconLink } from './core/core-ui';
 import styles from './components.module.css';
-
-// console.log('styles', styles);
 
 export function AppLogo() {
 	return (
@@ -219,61 +213,5 @@ export function AppFooter() {
 			<IconLink icon={<StatusCritical />} label='错误页' url='/errorpage' />
 			<IconLink icon={<Cycle />} label='其它页' url='/other' />
 		</Box>
-	);
-}
-
-function LinkOrNone({ url, children }) {
-	if (url) {
-		return (
-			<Link href={url} passHref legacyBehavior>
-				{children}
-			</Link>
-		);
-	} else {
-		return <>{children}</>;
-	}
-}
-
-function IpcCardMenu({ onSettings, onInformation }) {
-	const settingsLabel = onSettings ? (
-		<Text>设备设置</Text>
-	) : (
-		<Link href='/device/settings' passHref legacyBehavior>
-			<Text>设备设置</Text>
-		</Link>
-	);
-	const informationsLabel = onInformation ? (
-		<Text>设备信息</Text>
-	) : (
-		<Link href='/device/information' passHref legacyBehavior>
-			<Text>设备信息</Text>
-		</Link>
-	);
-
-	return (
-		<Menu
-			dropProps={{ align: { top: 'bottom', right: 'right' } }}
-			icon={<Settings3 size='24' />}
-			items={[
-				{
-					label: settingsLabel,
-					icon: (
-						<Box margin={{ right: 'small' }}>
-							<SettingsOutline size='24' />
-						</Box>
-					),
-					onClick: onSettings,
-				},
-				{
-					label: informationsLabel,
-					icon: (
-						<Box margin={{ right: 'small' }}>
-							<Info />
-						</Box>
-					),
-					onClick: onInformation,
-				},
-			]}
-		/>
 	);
 }
