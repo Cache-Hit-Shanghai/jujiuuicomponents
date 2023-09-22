@@ -1,21 +1,10 @@
-import { Avatar, Text, Tag, Box, Menu, Button, Heading, DropButton, RangeInput } from 'grommet';
-import {
-	Home,
-	Radial,
-	Webcam,
-	Scan,
-	Cycle,
-	Volume,
-	VolumeLow,
-	VolumeMute,
-	CaretLeftFill,
-	StatusCritical,
-} from 'grommet-icons';
+import { Avatar, Text, Tag, Box, Button, Heading, DropButton, RangeInput } from 'grommet';
+import { Webcam, Volume, VolumeLow, VolumeMute, CaretLeftFill } from 'grommet-icons';
 import { FlashlightOn } from '@styled-icons/material-rounded/FlashlightOn';
 import { FlashlightOff } from '@styled-icons/material-rounded/FlashlightOff';
 import { useState } from 'react';
 
-import { ButtonLink, IconLink } from './core/core-ui';
+import { ButtonLink } from './core/core-ui';
 import styles from './components.module.css';
 
 export function AppLogo() {
@@ -200,18 +189,5 @@ function Circle() {
 				bottom: 0,
 			}}
 		/>
-	);
-}
-
-export function AppFooter() {
-	return (
-		<Box direction='row' background='background-contrast' justify='evenly' flex={false}>
-			<IconLink icon={<Webcam />} label='设备' url='/' />
-			<IconLink icon={<Radial />} label='我的' url='/my' />
-			<IconLink icon={<Home />} label='主页' url='/splash' />
-			<IconLink icon={<Scan />} label='扫一扫' url='/scan' />
-			<IconLink icon={<StatusCritical />} label='错误页' url='/errorpage' />
-			<IconLink icon={<Cycle />} label='其它页' url='/other' />
-		</Box>
 	);
 }
