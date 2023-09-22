@@ -1,57 +1,24 @@
+import { Avatar, Text, Tag, Box, Menu, Button, Heading, DropButton, RangeInput } from 'grommet';
 import {
-	Avatar,
-	Text,
-	Tag,
-	Box,
-	Card,
-	CardBody,
-	CardFooter,
-	Menu,
-	Image,
-	Button,
-	Layer,
-	Stack,
-	CheckBox,
-	Heading,
-	DropButton,
-	RangeInput,
-	ResponsiveContext,
-} from 'grommet';
-import {
-	Pan,
 	Home,
 	Radial,
 	Webcam,
-	ZoomIn,
 	Scan,
 	Info,
 	Cycle,
 	Volume,
 	VolumeLow,
 	VolumeMute,
-	Checkmark,
-	Camera,
-	ClosedCaption,
 	CaretLeftFill,
 	StatusCritical,
 } from 'grommet-icons';
 import { Settings3 } from '@styled-icons/remix-fill/Settings3';
-import { Call } from '@styled-icons/fluentui-system-regular/Call';
-import { CallDismiss } from '@styled-icons/fluentui-system-regular/CallDismiss';
-import { Record } from '@styled-icons/fluentui-system-regular/Record';
-import { RecordStop } from '@styled-icons/fluentui-system-regular/RecordStop';
 import { FlashlightOn } from '@styled-icons/material-rounded/FlashlightOn';
 import { FlashlightOff } from '@styled-icons/material-rounded/FlashlightOff';
 import { SettingsOutline } from '@styled-icons/evaicons-outline/SettingsOutline';
 import Link from '@/state/translate';
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 
-import {
-	JuJiuTagCloudStorageExpired,
-	JuJiuTagCloudStorageExpiring,
-	JuJiuTagDeviceOnline,
-	JuJiuTagDeviceOffline,
-} from './jujiu-tags';
 import { ButtonLink, IconLink } from './core/core-ui';
 import styles from './components.module.css';
 
@@ -98,35 +65,6 @@ export function ButtonBackToMain() {
 	return <ButtonLink primary href='/' label='回到主页' />;
 }
 
-export function ZoomControl({ showTitle = true }) {
-	const size = useContext(ResponsiveContext);
-	const title = '变焦';
-
-	return (
-		<Menu
-			plain
-			tip={size !== 'small' && title}
-			dropAlign={{ top: 'bottom' }}
-			items={[
-				{ label: '4X', onClick: () => {}, justify: 'end' },
-				{ label: '3X', onClick: () => {}, justify: 'end' },
-				{
-					label: '2X',
-					onClick: () => {},
-					icon: <Checkmark />,
-					justify: 'end',
-				},
-				{ label: '1X', onClick: () => {}, justify: 'end' },
-			]}
-		>
-			<Box pad='small' align='center'>
-				<ZoomIn />
-				{showTitle && <Text size='small'>{title}</Text>}
-			</Box>
-		</Menu>
-	);
-}
-
 export function FlashLight() {
 	const [on, setOn] = useState(false);
 	return (
@@ -164,123 +102,6 @@ export function VolumeControl({ showTitle = true }) {
 				{showTitle && <Text size='small'>音量</Text>}
 			</Box>
 		</DropButton>
-	);
-}
-
-export function ResolutionControl({ showTitle = true }) {
-	const size = useContext(ResponsiveContext);
-	const title = '清晰度';
-	return (
-		<Menu
-			plain
-			tip={size !== 'small' && title}
-			dropAlign={{ top: 'bottom' }}
-			items={[
-				{ label: '极清', onClick: () => {}, justify: 'end' },
-				{
-					label: '超清',
-					onClick: () => {},
-					icon: <Checkmark />,
-					justify: 'end',
-				},
-				{ label: '标清', onClick: () => {}, justify: 'end' },
-			]}
-		>
-			<Box pad='small' align='center'>
-				<ClosedCaption />
-				{showTitle && <Text size='small'>{title}</Text>}
-			</Box>
-		</Menu>
-	);
-}
-
-export function PanLayer({ target }) {
-	const size = useContext(ResponsiveContext);
-	const [show, setShow] = useState(false);
-	return (
-		<>
-			<Button
-				plain
-				tip={size !== 'small' && '云台'}
-				focusIndicator={false}
-				onClick={() => setShow(!show)}
-			>
-				<Box pad='small' align='center'>
-					<Pan />
-				</Box>
-			</Button>
-			{show && (
-				<Layer
-					plain
-					animation='fadeIn'
-					target={target?.current}
-					position='right'
-					responsive={false}
-					margin='small'
-					onClickOutside={() => setShow(false)}
-				>
-					<PanControl />
-				</Layer>
-			)}
-		</>
-	);
-}
-
-export function ScreenCopyControl({ showTitle = true }) {
-	const size = useContext(ResponsiveContext);
-	const title = '截图';
-	return (
-		<Button tip={size !== 'small' && title}>
-			<Box pad='small' align='center'>
-				{<Camera />}
-				{showTitle && <Text size='small'>{title}</Text>}
-			</Box>
-		</Button>
-	);
-}
-
-export function RecordControl({ showTitle = true }) {
-	const size = useContext(ResponsiveContext);
-	const [recording, setRecording] = useState(false);
-	const title = recording ? '停止' : '录像';
-
-	return (
-		<Button tip={size !== 'small' && title} onClick={() => setRecording(!recording)}>
-			<Box pad='small' align='center'>
-				{recording ? <RecordStop size='24' /> : <Record size='24' />}
-				{showTitle && <Text size='small'>{title}</Text>}
-			</Box>
-		</Button>
-	);
-}
-
-export function MuteControl({ showTitle = true }) {
-	const size = useContext(ResponsiveContext);
-	const [mute, setMute] = useState(false);
-	const title = mute ? '恢复' : '静音';
-
-	return (
-		<Button tip={size !== 'small' && title} onClick={() => setMute(!mute)}>
-			<Box pad='small' align='center'>
-				{mute ? <Volume /> : <VolumeMute />}
-				{showTitle && <Text size='small'>{title}</Text>}
-			</Box>
-		</Button>
-	);
-}
-
-export function ChatControl({ showTitle = true }) {
-	const size = useContext(ResponsiveContext);
-	const [speaking, setSpeaking] = useState(false);
-	const title = speaking ? '挂断' : '对讲';
-
-	return (
-		<Button tip={size !== 'small' && title} onClick={() => setSpeaking(!speaking)}>
-			<Box pad='small' align='center'>
-				{speaking ? <CallDismiss size='24' /> : <Call size='24' />}
-				{showTitle && <Text size='small'>{title}</Text>}
-			</Box>
-		</Button>
 	);
 }
 
@@ -359,8 +180,7 @@ function SectorBox({ angle, onClick }) {
 				background='dark-3'
 				round={{ size: 'full', corner: 'top-left' }}
 				style={{
-					WebkitMaskImage:
-						'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)',
+					WebkitMaskImage: 'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)',
 					mask: 'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)',
 				}}
 			>
@@ -386,56 +206,6 @@ function Circle() {
 				bottom: 0,
 			}}
 		/>
-	);
-}
-
-export function PanControl({ size = 'small', onPanClick = () => {}, ...props }) {
-	return (
-		<Box
-			flex={false}
-			width={size}
-			height={size}
-			style={{
-				position: 'relative',
-				borderRadius: '50% 50%',
-				overflow: 'hidden',
-			}}
-			className={styles.PanControl}
-			alignSelf='center'
-			{...props}
-		>
-			{[
-				{
-					direction: 'top',
-					angle: 45,
-				},
-				{
-					direction: 'right',
-					angle: 135,
-				},
-				{
-					direction: 'bottom',
-					angle: 225,
-				},
-				{
-					direction: 'left',
-					angle: 315,
-				},
-			].map(({ direction, angle }) => (
-				<SectorBox
-					key={direction}
-					angle={angle}
-					onClick={() => {
-						//console.log('onPanClick', direction);
-						onPanClick({
-							direction,
-						});
-					}}
-				/>
-			))}
-
-			<Circle />
-		</Box>
 	);
 }
 
@@ -465,12 +235,16 @@ function LinkOrNone({ url, children }) {
 }
 
 function IpcCardMenu({ onSettings, onInformation }) {
-	const settingsLabel = onSettings ? (<Text>设备设置</Text>) : (
+	const settingsLabel = onSettings ? (
+		<Text>设备设置</Text>
+	) : (
 		<Link href='/device/settings' passHref legacyBehavior>
 			<Text>设备设置</Text>
 		</Link>
 	);
-	const informationsLabel = onInformation ? (<Text>设备信息</Text>) : (
+	const informationsLabel = onInformation ? (
+		<Text>设备信息</Text>
+	) : (
 		<Link href='/device/information' passHref legacyBehavior>
 			<Text>设备信息</Text>
 		</Link>
@@ -501,64 +275,5 @@ function IpcCardMenu({ onSettings, onInformation }) {
 				},
 			]}
 		/>
-	);
-}
-
-function IpcCardRaw({ label, imgurl, nextPageUrl, onSettings, onInformation }) {
-	return (
-		<Card>
-			<LinkOrNone url={nextPageUrl}>
-				<CardBody as='a' background='background-front'>
-					<Stack>
-						<Image fill src={imgurl} />
-						<Box direction='row' margin='medium' gap='small'>
-							<Box gap='small'>
-								<Box direction='row'>
-									<JuJiuTagDeviceOnline />
-								</Box>
-								<Box direction='row'>
-									<JuJiuTagDeviceOffline />
-								</Box>
-							</Box>
-							<Box gap='small'>
-								<Box direction='row'>
-									<JuJiuTagCloudStorageExpiring />
-								</Box>
-								<Box direction='row'>
-									<JuJiuTagCloudStorageExpired />
-								</Box>
-							</Box>
-						</Box>
-					</Stack>
-				</CardBody>
-			</LinkOrNone>
-			<CardFooter pad='small' align='center' justify='between' background='background-contrast'>
-				<Text>{label}</Text>
-				<IpcCardMenu
-					onSettings={onSettings}
-					onInformation={onInformation}
-				/>
-			</CardFooter>
-		</Card>
-	);
-}
-
-export function IpcCard({ label, imgurl }) {
-	return <IpcCardRaw label={label} imgurl={imgurl} nextPageUrl='/device/streaming' />;
-}
-
-export function IpcCardSelectable({ label, imgurl, onSettings, onInformation }) {
-	return (
-		<Stack anchor='top-right'>
-			<IpcCardRaw
-				label={label}
-				imgurl={imgurl}
-				onSettings={onSettings}
-				onInformation={onInformation}
-			/>
-			<Box pad='small'>
-				<CheckBox />
-			</Box>
-		</Stack>
 	);
 }
