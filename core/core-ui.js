@@ -170,9 +170,9 @@ function IconButton({ icon, label, onClick }) {
 	);
 }
 
-function IconLink({ icon, label, url }) {
+function IconLink({ icon, label, href }) {
 	return (
-		<Link href={url} passHref legacyBehavior>
+		<Link href={href} passHref legacyBehavior>
 			<Button as='a'>
 				<Box pad='small' align='center'>
 					{icon}
