@@ -2,7 +2,6 @@ import {
 	Text,
 	Box,
 	Card,
-	Info,
 	CardBody,
 	CardFooter,
 	Menu,
@@ -15,6 +14,7 @@ import {
 } from 'grommet';
 import {
 	Pan,
+	Info,
 	ZoomIn,
 	Volume,
 	VolumeMute,
