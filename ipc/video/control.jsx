@@ -309,7 +309,7 @@ function Circle() {
 	);
 }
 
-export function PanControl({ size = 'medium', ...props }) {
+export function PanControl({ size = 'small', ...props }) {
 	return (
 		<Box flex={false} width={size} height={size} style={{ position: 'relative' }} {...props}>
 			<SectorBox angle={45} onClick={() => console.log('up')} />
