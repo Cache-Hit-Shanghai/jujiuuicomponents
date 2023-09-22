@@ -341,7 +341,7 @@ export function PanLayer({ target }) {
 					margin='small'
 					onClickOutside={() => setShow(false)}
 				>
-					<PanControl size='small' />
+					<PanControl />
 				</Layer>
 			)}
 		</>
