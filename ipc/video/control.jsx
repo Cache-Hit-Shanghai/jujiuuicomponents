@@ -37,6 +37,7 @@ import {
 	JuJiuTagCloudStorageExpiring,
 	JuJiuTagCloudStorageExpired,
 } from '../../core/core-tag';
+import { useJuJiuT } from '@/state/translate';
 
 function LinkOrNone({ url, children }) {
 	if (url) {
@@ -51,18 +52,21 @@ function LinkOrNone({ url, children }) {
 }
 
 function IpcCardMenu({ onSettings, onInformation }) {
+	const t = useJuJiuT();
+	const labelDeviceSettings = t('设备设置');
+	const labelDeviceInformation = t('设备信息');
 	const settingsLabel = onSettings ? (
-		<Text>设备设置</Text>
+		<Text>{labelDeviceSettings}</Text>
 	) : (
 		<Link href='/device/settings' passHref legacyBehavior>
-			<Text>设备设置</Text>
+			<Text>{labelDeviceSettings}</Text>
 		</Link>
 	);
 	const informationsLabel = onInformation ? (
-		<Text>设备信息</Text>
+		<Text>{labelDeviceInformation}</Text>
 	) : (
 		<Link href='/device/information' passHref legacyBehavior>
-			<Text>设备信息</Text>
+			<Text>{labelDeviceInformation}</Text>
 		</Link>
 	);
 
@@ -147,7 +151,8 @@ export function IpcCardSelectable({ label, imgurl, onSettings, onInformation }) 
 
 export function ScreenCopyControl({ showTitle = true }) {
 	const size = useContext(ResponsiveContext);
-	const title = '截图';
+	const t = useJuJiuT();
+	const title = t('截图');
 	return (
 		<Button tip={size !== 'small' && title}>
 			<Box pad='small' align='center'>
@@ -161,7 +166,8 @@ export function ScreenCopyControl({ showTitle = true }) {
 export function ChatControl({ showTitle = true }) {
 	const size = useContext(ResponsiveContext);
 	const [speaking, setSpeaking] = useState(false);
-	const title = speaking ? '挂断' : '对讲';
+	const t = useJuJiuT();
+	const title = t(speaking ? '挂断' : '对讲');
 
 	return (
 		<Button tip={size !== 'small' && title} onClick={() => setSpeaking(!speaking)}>
@@ -176,7 +182,8 @@ export function ChatControl({ showTitle = true }) {
 export function MuteControl({ showTitle = true }) {
 	const size = useContext(ResponsiveContext);
 	const [mute, setMute] = useState(false);
-	const title = mute ? '恢复' : '静音';
+	const t = useJuJiuT();
+	const title = t(mute ? '恢复' : '静音');
 
 	return (
 		<Button tip={size !== 'small' && title} onClick={() => setMute(!mute)}>
@@ -191,7 +198,8 @@ export function MuteControl({ showTitle = true }) {
 export function RecordControl({ showTitle = true }) {
 	const size = useContext(ResponsiveContext);
 	const [recording, setRecording] = useState(false);
-	const title = recording ? '停止' : '录像';
+	const t = useJuJiuT();
+	const title = t(recording ? '停止' : '录像');
 
 	return (
 		<Button tip={size !== 'small' && title} onClick={() => setRecording(!recording)}>
@@ -205,7 +213,8 @@ export function RecordControl({ showTitle = true }) {
 
 export function ZoomControl({ showTitle = true }) {
 	const size = useContext(ResponsiveContext);
-	const title = '变焦';
+	const t = useJuJiuT();
+	const title = t('变焦');
 
 	return (
 		<Menu
@@ -234,21 +243,22 @@ export function ZoomControl({ showTitle = true }) {
 
 export function ResolutionControl({ showTitle = true }) {
 	const size = useContext(ResponsiveContext);
-	const title = '清晰度';
+	const t = useJuJiuT();
+	const title = t('清晰度');
 	return (
 		<Menu
 			plain
 			tip={size !== 'small' && title}
 			dropAlign={{ top: 'bottom' }}
 			items={[
-				{ label: '极清', onClick: () => {}, justify: 'end' },
+				{ label: t('极清'), onClick: () => {}, justify: 'end' },
 				{
-					label: '超清',
+					label: t('超清'),
 					onClick: () => {},
 					icon: <Checkmark />,
 					justify: 'end',
 				},
-				{ label: '标清', onClick: () => {}, justify: 'end' },
+				{ label: t('标清'), onClick: () => {}, justify: 'end' },
 			]}
 		>
 			<Box pad='small' align='center'>
@@ -322,11 +332,12 @@ export function PanControl({ size = 'small', ...props }) {
 }
 
 export function PanLayer({ target }) {
+	const t = useJuJiuT();
 	const size = useContext(ResponsiveContext);
 	const [show, setShow] = useState(false);
 	return (
 		<>
-			<Button plain tip={size !== 'small' && '云台'} focusIndicator={false} onClick={() => setShow(!show)}>
+			<Button plain tip={size !== 'small' && t('云台')} focusIndicator={false} onClick={() => setShow(!show)}>
 				<Box pad='small' align='center'>
 					<Pan />
 				</Box>
