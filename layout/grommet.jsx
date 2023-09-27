@@ -3,10 +3,11 @@
 import { Grommet, grommet } from 'grommet';
 import StyledComponentsRegistry from './registry';
 
-export default function GrommetRoot({ children }) {
+export default function GrommetRoot({ themeMode, children }) {
+	console.log(themeMode);
 	return (
 		<StyledComponentsRegistry>
-			<Grommet full theme={grommet} themeMode='light' options={{ box: { cssGap: true } }}>
+			<Grommet full theme={grommet} themeMode={themeMode} options={{ box: { cssGap: true } }}>
 				{children}
 			</Grommet>
 		</StyledComponentsRegistry>
