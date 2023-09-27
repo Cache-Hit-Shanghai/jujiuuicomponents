@@ -23,7 +23,6 @@ import {
 	ClosedCaption,
 	CaretLeftFill,
 } from 'grommet-icons';
-import Link from '@/state/translate';
 import { useState, useContext } from 'react';
 import { Settings3 } from '@styled-icons/remix-fill/Settings3';
 import { SettingsOutline } from '@styled-icons/evaicons-outline/SettingsOutline';
@@ -37,7 +36,7 @@ import {
 	JuJiuTagCloudStorageExpiring,
 	JuJiuTagCloudStorageExpired,
 } from '../../core/core-tag';
-import { useJuJiuT } from '@/state/translate';
+import Link, { useJuJiuT } from '@/state/translate';
 
 function LinkOrNone({ url, children }) {
 	if (url) {
