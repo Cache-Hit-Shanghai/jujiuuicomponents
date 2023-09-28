@@ -44,10 +44,6 @@ export function AppMark() {
 	);
 }
 
-export function ButtonBackToMain() {
-	return <ButtonLink primary href='/' label='回到主页' />;
-}
-
 export function FlashLight() {
 	const [on, setOn] = useState(false);
 	return (
@@ -85,109 +81,5 @@ export function VolumeControl({ showTitle = true }) {
 				{showTitle && <Text size='small'>音量</Text>}
 			</Box>
 		</DropButton>
-	);
-}
-
-// export function PanControl({ onPanClick = () => {} }) {
-// 	return (
-// 		<Box responsive={false} className={styles.sector}>
-// 			{[
-// 				{
-// 					direction: 'top',
-// 					Icon: CaretUpFill,
-// 				},
-// 				{
-// 					direction: 'right',
-// 					Icon: CaretRightFill,
-// 				},
-// 				{
-// 					direction: 'bottom',
-// 					Icon: CaretDownFill,
-// 				},
-// 				{
-// 					direction: 'left',
-// 					Icon: CaretLeftFill,
-// 				},
-// 				{
-// 					direction: 'center',
-// 					isCenter: true,
-// 				},
-// 			].map(({ className, direction, isCenter = false, Icon }) => (
-// 				<Box
-// 					className={`${isCenter ? '' : styles.box} ${
-// 						styles[direction]
-// 					}`}
-// 					key={className}
-// 					justify='center'
-// 					align='center'
-// 					onClick={() => {
-// 						onPanClick({
-// 							direction,
-// 						});
-// 					}}
-// 				>
-// 					{Icon && (
-// 						<Icon
-// 							className={`${styles.icon} ${
-// 								styles[direction + 'Icon']
-// 							}`}
-// 						></Icon>
-// 					)}
-// 				</Box>
-// 			))}
-// 		</Box>
-// 	);
-// }
-
-function SectorBox({ angle, onClick }) {
-	return (
-		<Box
-			className={styles.SectorContent}
-			width='50%'
-			height='50%'
-			onClick={onClick}
-			focusIndicator={false}
-			flex={false}
-			style={{
-				position: 'absolute',
-				transform: `rotate(${angle}deg)`,
-				transformOrigin: '100% 100%',
-			}}
-		>
-			<Box
-				className={styles.SectorBox}
-				width='calc(100% - 1px)'
-				height='calc(100% - 1px)'
-				align='center'
-				justify='center'
-				background='dark-3'
-				round={{ size: 'full', corner: 'top-left' }}
-				style={{
-					WebkitMaskImage: 'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)',
-					mask: 'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)',
-				}}
-			>
-				<CaretLeftFill style={{ transform: 'rotate(45deg)' }} />
-			</Box>
-		</Box>
-	);
-}
-
-function Circle() {
-	return (
-		<Box
-			round='full'
-			width='calc(40% - 3px)'
-			height='calc(40% - 3px)'
-			margin='auto'
-			background={'dark-3'}
-			style={{
-				position: 'absolute',
-				left: 0,
-				right: 0,
-				top: 0,
-				bottom: 0,
-			}}
-		/>
 	);
 }

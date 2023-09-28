@@ -1,7 +1,6 @@
 import { Tag, Box, Text, Layer, Card, Button, Main, CardBody, List } from 'grommet';
 import { CircleInformation, FormPrevious, FormNext } from 'grommet-icons';
-import { useRouter } from 'next/navigation';
-import Link from '@/state/translate';
+import Link, { useRouter } from '@/state/translate';
 
 function JuJiuTag({ icon, label, background }) {
 	return (
@@ -183,6 +182,10 @@ function IconLink({ icon, label, href }) {
 	);
 }
 
+function ButtonBackToMain() {
+	return <ButtonLink primary href='/' label='回到主页' />;
+}
+
 export {
 	JuJiuTag,
 	JuJiuLinkTag,
@@ -197,4 +200,5 @@ export {
 	IconBack,
 	IconButton,
 	IconLink,
+	ButtonBackToMain,
 };
