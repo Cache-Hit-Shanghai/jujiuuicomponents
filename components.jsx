@@ -1,12 +1,10 @@
 import { Avatar, Text, Tag, Box, Button, DropButton, RangeInput } from 'grommet';
-import { Volume, VolumeLow, VolumeMute, CaretLeftFill } from 'grommet-icons';
+import { Volume, VolumeLow, VolumeMute } from 'grommet-icons';
 import { FlashlightOn } from '@styled-icons/material-rounded/FlashlightOn';
 import { FlashlightOff } from '@styled-icons/material-rounded/FlashlightOff';
 import { useState } from 'react';
-import { ButtonLink } from './core/core-ui';
 import { IpcLogo } from './ipc/about/brand';
 import { useJuJiuT } from '@/state/translate';
-import styles from './components.module.css';
 
 export function AppLogo() {
 	const t = useJuJiuT();
