@@ -113,17 +113,30 @@ function ButtonGroup({ data }) {
 		<JuJiuCard pad='none'>
 			<CardBody>
 				<List pad='small' data={data} border={false}>
-					{(datum) => (
-						<Button
-							icon={<FormNext color='control' />}
-							label={datum.label}
-							disabled={!!datum.disabled}
-							reverse
-							plain
-							justify='between'
-							onClick={datum.onClick}
-						/>
-					)}
+					{(datum) =>
+						datum.href ? (
+							<Link href={datum.href} passHref legacyBehavior>
+								<Button
+									icon={<FormNext color='control' />}
+									label={datum.label}
+									disabled={!!datum.disabled}
+									reverse
+									plain
+									justify='between'
+								/>
+							</Link>
+						) : (
+							<Button
+								icon={<FormNext color='control' />}
+								label={datum.label}
+								disabled={!!datum.disabled}
+								reverse
+								plain
+								justify='between'
+								onClick={datum.onClick}
+							/>
+						)
+					}
 				</List>
 			</CardBody>
 		</JuJiuCard>
