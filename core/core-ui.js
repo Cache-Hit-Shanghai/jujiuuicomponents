@@ -195,10 +195,6 @@ function IconLink({ icon, label, href }) {
 	);
 }
 
-function ButtonBackToMain() {
-	return <ButtonLink primary href='/' label='回到主页' />;
-}
-
 export {
 	JuJiuTag,
 	JuJiuLinkTag,
@@ -213,5 +209,4 @@ export {
 	IconBack,
 	IconButton,
 	IconLink,
-	ButtonBackToMain,
 };
