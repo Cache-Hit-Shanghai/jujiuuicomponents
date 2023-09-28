@@ -1,3 +1,5 @@
+'use client';
+
 import { Text, Box, Tag } from 'grommet';
 import { CreativeCommons } from 'grommet-icons';
 import { useJuJiuT } from '@/state/translate';

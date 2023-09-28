@@ -1,3 +1,5 @@
+'use client';
+
 import { Heading, Button, Text, TextInput } from 'grommet';
 import { JuJiuInformation } from '../../core/core-ui';
 

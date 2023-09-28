@@ -1,3 +1,5 @@
+'use client';
+
 import { Select, Box } from 'grommet';
 import { JuJiuItem } from '../../core/core-item';
 

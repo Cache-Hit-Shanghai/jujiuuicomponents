@@ -1,3 +1,5 @@
+'use client';
+
 import { Tag, Box, Text, Layer, Card, Button, Main, CardBody, List } from 'grommet';
 import { CircleInformation, FormPrevious, FormNext } from 'grommet-icons';
 import Link, { useRouter } from '@/state/translate';

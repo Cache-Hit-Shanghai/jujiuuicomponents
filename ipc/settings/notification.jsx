@@ -1,3 +1,5 @@
+'use client';
+
 import { CheckBox } from 'grommet';
 import { JuJiuItem } from '../../core/core-item';
 

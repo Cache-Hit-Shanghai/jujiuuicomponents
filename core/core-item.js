@@ -1,3 +1,5 @@
+'use client';
+
 import { Box, Text, CardBody, Button, Collapsible } from 'grommet';
 import { FormNext, FormDown, FormUp } from 'grommet-icons';
 import { useState } from 'react';

@@ -1,3 +1,5 @@
+'use client';
+
 import { Avatar, Text, Box, Button, DropButton, RangeInput } from 'grommet';
 import { Volume, VolumeLow, VolumeMute } from 'grommet-icons';
 import { FlashlightOn } from '@styled-icons/material-rounded/FlashlightOn';
