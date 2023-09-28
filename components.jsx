@@ -1,46 +1,8 @@
-import { Avatar, Text, Tag, Box, Button, DropButton, RangeInput } from 'grommet';
+import { Avatar, Text, Box, Button, DropButton, RangeInput } from 'grommet';
 import { Volume, VolumeLow, VolumeMute } from 'grommet-icons';
 import { FlashlightOn } from '@styled-icons/material-rounded/FlashlightOn';
 import { FlashlightOff } from '@styled-icons/material-rounded/FlashlightOff';
 import { useState } from 'react';
-import { IpcLogo } from './ipc/about/brand';
-import { useJuJiuT } from '@/state/translate';
-
-export function AppLogo() {
-	const t = useJuJiuT();
-	return (
-		<Box gap='large'>
-			<Box direction='row' align='center' justify='center' gap='small'>
-				<IpcLogo />
-			</Box>
-			<Box align='center'>
-				<Text>{t('全球领先的Web视觉系统')}</Text>
-				<Box direction='row' gap='small' align='center'>
-					<Text size='small'>
-						Powered by {t('雎鸠云')}
-						<sup>&reg;</sup>
-					</Text>
-					<Tag value='IPv6' border={false} size='xsmall' background='accent-4' />
-				</Box>
-			</Box>
-		</Box>
-	);
-}
-
-export function AppMark() {
-	const t = useJuJiuT();
-	return (
-		<Box flex={false} align='center' margin='large'>
-			<Box direction='row' gap='small' align='center'>
-				<Text size='large'>
-					{t('雎鸠云视觉')}
-					<sup>&reg;</sup>
-				</Text>
-			</Box>
-			<Text size='xsmall'>&copy;2021-2023 {t('上海光方迅视科技有限公司版权所有')}</Text>
-		</Box>
-	);
-}
 
 export function FlashLight() {
 	const [on, setOn] = useState(false);
