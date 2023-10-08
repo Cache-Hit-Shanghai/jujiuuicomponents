@@ -16,6 +16,7 @@ import {
 } from 'grommet';
 import {
 	Pan,
+	More,
 	Info,
 	ZoomIn,
 	Volume,
@@ -150,6 +151,18 @@ export function IpcCardSelectable({ label, imgurl, onSettings, onInformation }) 
 	);
 }
 
+export function MoreControl({ onClick }) {
+	const t = useJuJiuT();
+	return (
+		<Button onClick={onClick}>
+			<Box pad='small' align='center'>
+				<More />
+				<Text size='small'>{t('更多')}</Text>
+			</Box>
+		</Button>
+	);
+}
+
 export function ScreenCopyControl({ showTitle = true }) {
 	const size = useContext(ResponsiveContext);
 	const t = useJuJiuT();
@@ -157,7 +170,7 @@ export function ScreenCopyControl({ showTitle = true }) {
 	return (
 		<Button tip={size !== 'small' && title}>
 			<Box pad='small' align='center'>
-				{<Camera />}
+				<Camera />
 				{showTitle && <Text size='small'>{title}</Text>}
 			</Box>
 		</Button>
