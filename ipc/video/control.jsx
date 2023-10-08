@@ -224,7 +224,15 @@ function IpcCardRawV2({ label, imgurl, nextPageUrl, children }) {
 	);
 }
 
-function IpcCardRaw({ label, imgurl, nextPageUrl, onSettings, onInformation }) {
+function IpcCardRaw({
+	label,
+	imgurl,
+	nextPageUrl,
+	onSettings,
+	onInformation,
+	online = false,
+	cloudStorage = 'expiring',
+}) {
 	return (
 		<Card>
 			<LinkOrNone url={nextPageUrl}>
@@ -233,19 +241,15 @@ function IpcCardRaw({ label, imgurl, nextPageUrl, onSettings, onInformation }) {
 						<Image fill src={imgurl} />
 						<Box direction='row' margin='medium' gap='small'>
 							<Box gap='small'>
-								<Box direction='row'>
-									<JuJiuTagDeviceOnline />
-								</Box>
-								<Box direction='row'>
-									<JuJiuTagDeviceOffline />
-								</Box>
+								<Box direction='row'>{online ? <JuJiuTagDeviceOnline /> : <JuJiuTagDeviceOffline />}</Box>
 							</Box>
 							<Box gap='small'>
 								<Box direction='row'>
-									<JuJiuTagCloudStorageExpiring />
-								</Box>
-								<Box direction='row'>
-									<JuJiuTagCloudStorageExpired />
+									{
+										{ expiring: <JuJiuTagCloudStorageExpiring />, expired: <JuJiuTagCloudStorageExpired /> }[
+											cloudStorage
+										]
+									}
 								</Box>
 							</Box>
 						</Box>
@@ -268,10 +272,10 @@ export function IpcCard({ label, imgurl }) {
 	);
 }
 
-export function IpcCardSelectable({ label, imgurl, onSettings, onInformation }) {
+export function IpcCardSelectable(params) {
 	return (
 		<Stack anchor='top-right'>
-			<IpcCardRaw label={label} imgurl={imgurl} onSettings={onSettings} onInformation={onInformation} />
+			<IpcCardRaw {...params} />
 			<Box pad='small'>
 				<CheckBox />
 			</Box>
