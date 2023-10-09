@@ -68,6 +68,8 @@ export function DeviceSettings() {
 				<CheckBox toggle />
 			</JuJiuItem>
 			<JuJiuItemLink label='休眠计划' href='/device/settings/dormantPlan' />
+			<Button label='重启设备' color='status-warning' />
+			<Button label='删除设备' color='status-critical' />
 		</>
 	);
 }
