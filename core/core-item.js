@@ -107,8 +107,9 @@ export function JuJiuCollapsible({ label, children, ...props }) {
 				{open ? <FormUp color='control' /> : <FormDown color='control' />}
 			</Box>
 			<Collapsible open={open} {...props}>
-				<Box pad={{ top: 'small' }} />
-				{children}
+				<Box pad={{ top: 'small' }} gap='medium'>
+					{children}
+				</Box>
 			</Collapsible>
 		</JuJiuRawItem>
 	);

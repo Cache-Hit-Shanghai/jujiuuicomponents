@@ -17,17 +17,20 @@ import {
 import {
 	Pan,
 	More,
-	Info,
+	Camera,
 	ZoomIn,
 	Volume,
-	VolumeMute,
+	Calendar,
 	Checkmark,
-	Camera,
+	VolumeMute,
+	ContactInfo,
+	Transaction,
+	ShareRounded,
 	ClosedCaption,
 	CaretLeftFill,
+	CircleInformation,
 } from 'grommet-icons';
 import { useState, useContext } from 'react';
-import { Settings3 } from '@styled-icons/remix-fill/Settings3';
 import { SettingsOutline } from '@styled-icons/evaicons-outline/SettingsOutline';
 import { Call } from '@styled-icons/fluentui-system-regular/Call';
 import { CallDismiss } from '@styled-icons/fluentui-system-regular/CallDismiss';
@@ -53,6 +56,91 @@ function LinkOrNone({ url, children }) {
 	}
 }
 
+function IpcCardMenuMobile() {
+	const t = useJuJiuT();
+
+	return (
+		<Menu
+			dropProps={{ align: { top: 'bottom', right: 'right' } }}
+			icon={<More />}
+			items={[
+				{
+					label: (
+						<Link href='/device/settings' passHref legacyBehavior>
+							<Text>{t('设备设置')}</Text>
+						</Link>
+					),
+					icon: (
+						<Box margin={{ right: 'small' }}>
+							<SettingsOutline size='24' />
+						</Box>
+					),
+				},
+				{
+					label: (
+						<Link href='/device/information' passHref legacyBehavior>
+							<Text>{t('设备信息')}</Text>
+						</Link>
+					),
+					icon: (
+						<Box margin={{ right: 'small' }}>
+							<CircleInformation />
+						</Box>
+					),
+				},
+				{
+					label: (
+						<Link href='/device/sharing' passHref legacyBehavior>
+							<Text>{t('设备分享')}</Text>
+						</Link>
+					),
+					icon: (
+						<Box margin={{ right: 'small' }}>
+							<ShareRounded />
+						</Box>
+					),
+				},
+				{
+					label: (
+						<Link href='/device/transfer' passHref legacyBehavior>
+							<Text>{t('设备转移')}</Text>
+						</Link>
+					),
+					icon: (
+						<Box margin={{ right: 'small' }}>
+							<Transaction />
+						</Box>
+					),
+				},
+				{
+					label: (
+						<Link href='/device/contacts' passHref legacyBehavior>
+							<Text>{t('通讯录')}</Text>
+						</Link>
+					),
+					icon: (
+						<Box margin={{ right: 'small' }}>
+							<ContactInfo />
+						</Box>
+					),
+				},
+				{
+					label: (
+						<Link href='/device/calendar' passHref legacyBehavior>
+							<Text>{t('日程提醒')}</Text>
+						</Link>
+					),
+					icon: (
+						<Box margin={{ right: 'small' }}>
+							<Calendar />
+						</Box>
+					),
+				},
+			]}
+		/>
+	);
+}
+
 function IpcCardMenu({ onSettings, onInformation }) {
 	const t = useJuJiuT();
 	const labelDeviceSettings = t('设备设置');
@@ -75,7 +163,7 @@ function IpcCardMenu({ onSettings, onInformation }) {
 	return (
 		<Menu
 			dropProps={{ align: { top: 'bottom', right: 'right' } }}
-			icon={<Settings3 size='24' />}
+			icon={<More />}
 			items={[
 				{
 					label: settingsLabel,
@@ -90,13 +178,49 @@ function IpcCardMenu({ onSettings, onInformation }) {
 					label: informationsLabel,
 					icon: (
 						<Box margin={{ right: 'small' }}>
-							<Info />
+							<CircleInformation />
 						</Box>
 					),
 					onClick: onInformation,
 				},
 			]}
 		/>
+	);
+}
+
+function IpcCardRawV2({ label, imgurl, nextPageUrl, children }) {
+	return (
+		<Card>
+			<LinkOrNone url={nextPageUrl}>
+				<CardBody as='a' background='background-front'>
+					<Stack>
+						<Image fill src={imgurl} />
+						<Box direction='row' margin='medium' gap='small'>
+							<Box gap='small'>
+								<Box direction='row'>
+									<JuJiuTagDeviceOnline />
+								</Box>
+								<Box direction='row'>
+									<JuJiuTagDeviceOffline />
+								</Box>
+							</Box>
+							<Box gap='small'>
+								<Box direction='row'>
+									<JuJiuTagCloudStorageExpiring />
+								</Box>
+								<Box direction='row'>
+									<JuJiuTagCloudStorageExpired />
+								</Box>
+							</Box>
+						</Box>
+					</Stack>
+				</CardBody>
+			</LinkOrNone>
+			<CardFooter pad='small' align='center' justify='between' background='background-contrast'>
+				<Text>{label}</Text>
+				{children}
+			</CardFooter>
+		</Card>
 	);
 }
 
@@ -141,7 +265,11 @@ function IpcCardRaw({
 }
 
 export function IpcCard({ label, imgurl }) {
-	return <IpcCardRaw label={label} imgurl={imgurl} nextPageUrl='/device/streaming' />;
+	return (
+		<IpcCardRawV2 label={label} imgurl={imgurl} nextPageUrl='/device/streaming'>
+			<IpcCardMenuMobile />
+		</IpcCardRawV2>
+	);
 }
 
 export function IpcCardSelectable({ onSelect, selected = false, ...passProps }) {
