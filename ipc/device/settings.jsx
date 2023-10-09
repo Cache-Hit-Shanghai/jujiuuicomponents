@@ -35,7 +35,13 @@ export function DeviceSettings() {
 					<Button label='保存' primary />
 				</JuJiuLayer>
 			)}
-			<JuJiuItem label='启用人形追踪'>
+			<JuJiuItem label='人形追踪'>
+				<CheckBox toggle />
+			</JuJiuItem>
+			<JuJiuItem label='视频水印(OSD)'>
+				<CheckBox toggle />
+			</JuJiuItem>
+			<JuJiuItem label='画面翻转'>
 				<CheckBox toggle />
 			</JuJiuItem>
 			<JuJiuItem label='设备语音提示'>
@@ -52,12 +58,6 @@ export function DeviceSettings() {
 					</Box>
 				</JuJiuLayer>
 			)}
-			<JuJiuItem label='视频水印(OSD)'>
-				<CheckBox toggle />
-			</JuJiuItem>
-			<JuJiuItem label='画面翻转'>
-				<CheckBox toggle />
-			</JuJiuItem>
 			<JuJiuItem label='设备状态灯'>
 				<CheckBox toggle />
 			</JuJiuItem>
