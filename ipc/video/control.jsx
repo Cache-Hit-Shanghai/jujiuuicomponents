@@ -238,7 +238,7 @@ function IpcCardRaw({
 			<LinkOrNone url={nextPageUrl}>
 				<CardBody as='a' background='background-front'>
 					<Stack>
-						<Image fill src={imgurl} />
+						<Box height={'200px'}>{imgurl && <Image src={imgurl} fit='contain' alt='' />}</Box>
 						<Box direction='row' margin='medium' gap='small'>
 							<Box gap='small'>
 								<Box direction='row'>{online ? <JuJiuTagDeviceOnline /> : <JuJiuTagDeviceOffline />}</Box>
@@ -272,12 +272,12 @@ export function IpcCard({ label, imgurl }) {
 	);
 }
 
-export function IpcCardSelectable(params) {
+export function IpcCardSelectable({ onSelect, selected = false, ...passProps }) {
 	return (
 		<Stack anchor='top-right'>
-			<IpcCardRaw {...params} />
+			<IpcCardRaw {...passProps} />
 			<Box pad='small'>
-				<CheckBox />
+				<CheckBox checked={selected} onChange={(e) => onSelect?.(e.target.checked)} />
 			</Box>
 		</Stack>
 	);
