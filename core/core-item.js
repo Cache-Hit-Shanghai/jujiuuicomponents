@@ -19,7 +19,7 @@ export function JuJiuItem({ label, onClick, children }) {
 	return (
 		<JuJiuRawItem onClick={onClick}>
 			<Box direction='row' align='center' justify='between'>
-				<Text>{label}</Text>
+				{label && <Text>{label}</Text>}
 				{children}
 			</Box>
 		</JuJiuRawItem>
