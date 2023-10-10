@@ -295,12 +295,13 @@ export function MoreControl({ onClick }) {
 	);
 }
 
-export function ScreenCopyControl({ showTitle = true }) {
+export function ScreenCopyControl({ onClick, showTitle = true, disabled = false }) {
 	const size = useContext(ResponsiveContext);
 	const t = useJuJiuT();
 	const title = t('截图');
+
 	return (
-		<Button tip={size !== 'small' && title}>
+		<Button tip={size !== 'small' && title} onClick={onClick} disabled={disabled}>
 			<Box pad='small' align='center'>
 				<Camera />
 				{showTitle && <Text size='small'>{title}</Text>}
