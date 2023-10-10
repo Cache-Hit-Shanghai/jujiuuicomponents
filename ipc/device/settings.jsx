@@ -1,20 +1,8 @@
 'use client';
 
-import {
-	CheckBox,
-	Box,
-	Text,
-	RadioButtonGroup,
-	RangeInput,
-	Button,
-	Heading,
-	TextArea,
-	Collapsible,
-	TextInput,
-} from 'grommet';
+import { CheckBox, Box, Text, RadioButtonGroup, RangeInput, Button, Collapsible, TextInput } from 'grommet';
 import { useState } from 'react';
-import { JuJiuItemButton, JuJiuItem } from '../../core/core-item';
-import { JuJiuLayer } from '../../core/core-ui';
+import { JuJiuItem, JuJiuCollapsible } from '../../core/core-item';
 import { useJuJiuT } from '@/state/translate';
 
 function LabeledCheckBox({ label }) {
@@ -81,34 +69,56 @@ function SleepSettings() {
 	);
 }
 
+function DeviceNameControl() {
+	const t = useJuJiuT();
+	const [name, setName] = useState('办3');
+	return (
+		<JuJiuCollapsible label={t('设备名称')} value={name}>
+			<TextInput value={name} onChange={(e) => setName(e.target.value)} />
+		</JuJiuCollapsible>
+	);
+}
+
+function DeviceGroupControl() {
+	const t = useJuJiuT();
+	const Groups = [
+		{ value: 1, label: '办公室' },
+		{ value: 0, label: t('默认分组') },
+	];
+	const [group, setGroup] = useState(1);
+	return (
+		<JuJiuCollapsible label={t('设备分组')} value={Groups.find((e) => e.value === group).label}>
+			<Box border pad='small' gap='small'>
+				<RadioButtonGroup
+					name='deficegroup'
+					options={Groups}
+					value={group}
+					onChange={(e) => setGroup(parseInt(e.target.value))}
+				/>
+			</Box>
+		</JuJiuCollapsible>
+	);
+}
+
+function ValumeControl() {
+	const t = useJuJiuT();
+	const [volume, setVolume] = useState(50);
+	return (
+		<JuJiuCollapsible label={t('设备音量')} value={volume}>
+			<Box border pad='small' gap='small'>
+				<RangeInput value={volume} onChange={(e) => setVolume(e.target.value)} />
+			</Box>
+		</JuJiuCollapsible>
+	);
+}
+
 export function DeviceSettings() {
 	const t = useJuJiuT();
-	const [openAvata, setOpenAvata] = useState(false);
-	const [openName, setOpenName] = useState(false);
-	const [volume, setVolume] = useState(50);
-	const [openVolume, setOpenVolume] = useState(false);
 
 	return (
 		<>
-			<JuJiuItemButton label={t('设备名称')} value='办3' onClick={() => setOpenAvata(!openAvata)} />
-			<JuJiuItemButton label={t('设备分组')} value='办公室' onClick={() => setOpenName(!openName)} />
-			{openAvata && (
-				<JuJiuLayer onClickOutside={() => setOpenAvata(false)}>
-					<Heading level={3} alignSelf='center' margin='none'>
-						{t('修改设备名称')}
-					</Heading>
-					<TextArea value='客3' />
-					<Button label={t('保存')} primary onClick={() => setOpenAvata(false)} />
-				</JuJiuLayer>
-			)}
-			{openName && (
-				<JuJiuLayer onClickOutside={() => setOpenName(false)}>
-					<Heading level={3} alignSelf='center' margin='none'>
-						{t('更改设备分组')}
-					</Heading>
-					<RadioButtonGroup name='deficegroup' options={['办公室', t('默认分组')]} value='办公室' />
-				</JuJiuLayer>
-			)}
+			<DeviceNameControl />
+			<DeviceGroupControl />
 			<JuJiuItem label={t('人形追踪')}>
 				<CheckBox toggle />
 			</JuJiuItem>
@@ -121,17 +131,7 @@ export function DeviceSettings() {
 			<JuJiuItem label={t('设备语音提示')}>
 				<CheckBox toggle />
 			</JuJiuItem>
-			<JuJiuItemButton label={t('设备音量')} value={volume} onClick={() => setOpenVolume(!openVolume)} />
-			{openVolume && (
-				<JuJiuLayer onClickOutside={() => setOpenVolume(false)}>
-					<Heading level={3} alignSelf='center' margin='none'>
-						{`${t('设备音量')} (${volume})`}
-					</Heading>
-					<Box pad='large'>
-						<RangeInput value={volume} onChange={(e) => setVolume(e.target.value)} />
-					</Box>
-				</JuJiuLayer>
-			)}
+			<ValumeControl />
 			<JuJiuItem label={t('设备状态灯')}>
 				<CheckBox toggle />
 			</JuJiuItem>

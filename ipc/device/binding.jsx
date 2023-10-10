@@ -4,14 +4,23 @@ import { Box, Form, FormField, TextInput } from 'grommet';
 import { Qr } from 'grommet-icons';
 import { JuJiuInformation } from '../../core/core-ui';
 import { useJuJiuT } from '@/state/translate';
+import { useState } from 'react';
 
-export function WiFiBinding() {
+function useFlexibleControlState(value, setValue, init) {
+	const localState = useState(init);
+	if (value === undefined && setValue === undefined) return localState;
+	return [value, setValue];
+}
+
+export function WiFiBinding({ value, setValue }) {
 	const t = useJuJiuT();
+	const [_value, _setValue] = useFlexibleControlState(value, setValue, {});
+
 	return (
 		<>
 			<Box flex={false} fill='horizontal'>
-				<Form>
-					<FormField label={t('WiFi名称(SSID)')} />
+				<Form value={_value} onChange={(nextValue) => _setValue(nextValue)}>
+					<FormField label={t('WiFi名称(SSID)')} name='ssid' />
 					<FormField label={t('密码')} name='password' htmlFor='password'>
 						<TextInput name='password' id='password' type='password' />
 					</FormField>
@@ -25,8 +34,9 @@ export function WiFiBinding() {
 	);
 }
 
-export function DeviceBinding() {
+export function DeviceBinding({ code = <Qr color='plain' size='xlarge' /> }) {
 	const t = useJuJiuT();
+
 	return (
 		<>
 			<Box
@@ -37,7 +47,7 @@ export function DeviceBinding() {
 				justify='center'
 				flex={false}
 			>
-				<Qr color='plain' size='xlarge' />
+				{code}
 			</Box>
 			<JuJiuInformation
 				size='large'
