@@ -1,6 +1,6 @@
 'use client';
 
-import { Heading, Button, Text, TextInput, Box } from 'grommet';
+import { Heading, Button, Text, TextInput, Box, Form, FormField } from 'grommet';
 import { JuJiuInformation } from '../../core/core-ui';
 import { InputFileUpload } from '../../core';
 import { useJuJiuT } from '@/state/translate';
@@ -22,29 +22,50 @@ export function ChangeAvatar({ uploadProps = {}, albumProps = {} }) {
 	);
 }
 
-export function ChangeNickname() {
+const nameCuc = '@/ ? * : |  < >';
+
+export const getNLAByT = (t) => `${t('请设置2-20个字符，不能使用')} ${nameCuc} ${t('等字符。')}`;
+
+export function ChangeNickname({ inputProps = {}, infoLabel = '', onSave = () => {} }) {
+	const t = useJuJiuT();
+
 	return (
 		<>
 			<Heading level={3} alignSelf='center' margin='none'>
-				修改昵称
+				{t('修改昵称')}
 			</Heading>
-			<TextInput placeholder='请填写昵称……' />
-			<JuJiuInformation label='请设置2-20个字符，不能使用@《等字符。' />
-			<Button label='保存' primary />
+			<TextInput placeholder={t('请填写昵称……')} maxLength={20} minLength={2} {...inputProps} />
+			<JuJiuInformation label={getNLAByT(t)} />
+			<Button label={t('保存')} primary onClick={onSave} />
 		</>
 	);
 }
 
-export function ChangePassword() {
+export function ChangePassword({ onSubmit = () => {} }) {
+	const t = useJuJiuT();
+
 	return (
-		<>
-			<Text>输入旧密码：</Text>
-			<TextInput type='password' />
-			<Text>输入新密码：</Text>
-			<TextInput type='password' />
-			<Text>再次输入新密码：</Text>
-			<TextInput type='password' />
-			<Button primary label='确定' />
-		</>
+		<Form messages={{ required: t('必填') }} onSubmit={onSubmit}>
+			<Text>{t('输入旧密码')}：</Text>
+			<TextInput type='password' style={{ display: 'none' }} />
+			<FormField name='oldPwd' required={true}>
+				<TextInput type='password' name='oldPwd' />
+			</FormField>
+			<Text>{t('输入新密码')}：</Text>
+			<FormField name='newPwd' required={true}>
+				<TextInput type='password' name='newPwd' />
+			</FormField>
+			<Text>{t('再次输入新密码')}：</Text>
+			<FormField
+				name='validateNewPwd'
+				required={true}
+				validate={(prop, { newPwd }) => {
+					if (prop !== newPwd) return t('新密码不一致');
+				}}
+			>
+				<TextInput type='password' name='validateNewPwd' />
+			</FormField>
+			<Button style={{ width: '100%' }} primary label={t('确定')} type='submit' />
+		</Form>
 	);
 }
