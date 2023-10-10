@@ -1,8 +1,10 @@
 'use client';
 
-import { CheckBox, Box, Text, RadioButtonGroup, RangeInput, Button, Collapsible, TextInput } from 'grommet';
+import { CheckBox, Box, Text, RadioButtonGroup, RangeInput, Button, TextInput } from 'grommet';
+import { Add, Trash } from 'grommet-icons';
 import { useState } from 'react';
 import { JuJiuItem, JuJiuCollapsible } from '../../core/core-item';
+import { JuJiuLayer } from '../../core/core-ui';
 import { useJuJiuT } from '@/state/translate';
 
 function LabeledCheckBox({ label }) {
@@ -28,7 +30,7 @@ function LabeledCheckBox({ label }) {
 function SleepSettings() {
 	const t = useJuJiuT();
 	const [sleep, setSleep] = useState(false);
-	const [duration, setDuration] = useState(false);
+	const [openSchedule, setOpenSchedule] = useState(false);
 
 	return (
 		<>
@@ -37,32 +39,73 @@ function SleepSettings() {
 			</JuJiuItem>
 			{!sleep && (
 				<>
-					<JuJiuItem label={t('休眠计划')}>
-						<CheckBox toggle checked={duration} onChange={(e) => setDuration(e.target.checked)} />
-					</JuJiuItem>
-					<Collapsible open={duration}>
+					<JuJiuCollapsible label={t('休眠计划')}>
 						<Box gap='medium'>
-							<JuJiuItem label={t('开始时间')}>
-								<Box>
-									<TextInput plain='full' placeholder='hh:mm' width='xsmall' size='small' textAlign='end' />
-								</Box>
+							<JuJiuItem
+								label={
+									<Box>
+										<Text>8:00 - 15:00</Text>
+										<Text size='small' color='text-xweak'>
+											{`${t('周一')} ${t('周二')} ${t('周三')}`}
+										</Text>
+									</Box>
+								}
+							>
+								<Button icon={<Trash />} />
 							</JuJiuItem>
-							<JuJiuItem label={t('结束时间')}>
-								<Box>
-									<TextInput plain='full' placeholder='hh:mm' width='xsmall' size='small' textAlign='end' />
-								</Box>
+							<JuJiuItem
+								label={
+									<Box>
+										<Text>00:00 - 05:00</Text>
+										<Text size='small' color='text-xweak'>
+											{`${t('周一')} ${t('周二')} ${t('周三')} ${t('周四')} ${t('周五')} ${t('周六')} ${t(
+												'周日'
+											)}`}
+										</Text>
+									</Box>
+								}
+							>
+								<Button icon={<Trash />} />
 							</JuJiuItem>
-							<JuJiuItem>
-								<LabeledCheckBox label={t('日')} />
-								<LabeledCheckBox label={t('一')} />
-								<LabeledCheckBox label={t('二')} />
-								<LabeledCheckBox label={t('三')} />
-								<LabeledCheckBox label={t('四')} />
-								<LabeledCheckBox label={t('五')} />
-								<LabeledCheckBox label={t('六')} />
-							</JuJiuItem>
+							<Button primary icon={<Add />} label={t('添加时间段')} onClick={() => setOpenSchedule(true)} />
+							{openSchedule && (
+								<JuJiuLayer onClickOutside={() => setOpenSchedule(false)}>
+									<JuJiuItem label={t('开始时间')}>
+										<Box>
+											<TextInput
+												plain='full'
+												placeholder='hh:mm'
+												width='xsmall'
+												size='small'
+												textAlign='end'
+											/>
+										</Box>
+									</JuJiuItem>
+									<JuJiuItem label={t('结束时间')}>
+										<Box>
+											<TextInput
+												plain='full'
+												placeholder='hh:mm'
+												width='xsmall'
+												size='small'
+												textAlign='end'
+											/>
+										</Box>
+									</JuJiuItem>
+									<JuJiuItem>
+										<LabeledCheckBox label={t('日')} />
+										<LabeledCheckBox label={t('一')} />
+										<LabeledCheckBox label={t('二')} />
+										<LabeledCheckBox label={t('三')} />
+										<LabeledCheckBox label={t('四')} />
+										<LabeledCheckBox label={t('五')} />
+										<LabeledCheckBox label={t('六')} />
+									</JuJiuItem>
+									<Button primary label={t('保存')} />
+								</JuJiuLayer>
+							)}
 						</Box>
-					</Collapsible>
+					</JuJiuCollapsible>
 				</>
 			)}
 		</>
