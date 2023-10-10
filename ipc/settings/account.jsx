@@ -1,16 +1,23 @@
 'use client';
 
-import { Heading, Button, Text, TextInput } from 'grommet';
+import { Heading, Button, Text, TextInput, Box } from 'grommet';
 import { JuJiuInformation } from '../../core/core-ui';
+import { InputFileUpload } from '../../core';
+import { useJuJiuT } from '@/state/translate';
 
-export function ChangeAvatar() {
+export function ChangeAvatar({ uploadProps = {}, albumProps = {} }) {
+	const t = useJuJiuT();
 	return (
 		<>
 			<Heading level={3} alignSelf='center' margin='none'>
-				更换头像
+				{t('更换头像')}
 			</Heading>
-			<Button label='拍照' />
-			<Button label='本地相册' />
+			{/* <Button label={t('拍照')} /> */}
+			<Box height='50px'>
+				<InputFileUpload {...uploadProps}>
+					<Button style={{ width: '100%' }} label={t('本地相册')} {...albumProps} />
+				</InputFileUpload>
+			</Box>
 		</>
 	);
 }
