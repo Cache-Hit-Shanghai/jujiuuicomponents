@@ -75,6 +75,7 @@ function DeviceNameControl() {
 	return (
 		<JuJiuCollapsible label={t('设备名称')} value={name}>
 			<TextInput value={name} onChange={(e) => setName(e.target.value)} />
+			<Button primary label={t('保存')} />
 		</JuJiuCollapsible>
 	);
 }
