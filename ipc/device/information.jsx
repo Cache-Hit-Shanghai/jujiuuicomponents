@@ -4,54 +4,87 @@ import { Text, Box, Button } from 'grommet';
 import { Wifi, ChatOption, Run, Pan, Copy } from 'grommet-icons';
 import { JuJiuItemText, JuJiuItemTextArray, JuJiuItem, JuJiuCollapsible } from '../../core/core-item';
 import { useJuJiuT } from '@/state/translate';
+import {
+	JJIconWifi,
+	JJIconChatOption,
+	JJIconRun,
+	JJIconPan,
+	JJIconWifiLow,
+	JJIconWifiMediem,
+} from '../icons';
 
-export function DeviceInformation() {
+function DeviceCapability({ name, icon }) {
+	return (
+		<Box align='center' flex={false}>
+			{icon}
+			<Text color={'text-xweak'} size='small'>
+				{name}
+			</Text>
+		</Box>
+	);
+}
+
+const DeviceCapabilities = ({ capabilities = {} }) => {
 	const t = useJuJiuT();
+	const { platform, zoom, resolution, wifi, twoWaySpeech, movingDetect } = capabilities;
+
+	return (
+		<JuJiuItem label={t('设备特性')}>
+			<Box wrap direction='row' gap='small' align='center' justify='end'>
+				{wifi && <DeviceCapability name={'WiFi'} icon={<JJIconWifi color='text-xweak' />} />}
+				{twoWaySpeech && (
+					<DeviceCapability name={t('双向语音')} icon={<JJIconChatOption color='text-xweak' />} />
+				)}
+				{movingDetect && <DeviceCapability name={t('移动侦测')} icon={<JJIconRun color='text-xweak' />} />}
+				{platform && <DeviceCapability name={t('云台')} icon={<JJIconPan color='text-xweak' />} />}
+			</Box>
+		</JuJiuItem>
+	);
+};
+
+const WifiIcon = ({ strength = -1, ...rest }) => {
+	const Icon = [JJIconWifiLow, JJIconWifiMediem, JJIconWifi][strength];
+	if (!Icon) return;
+	return <Icon {...rest} />;
+};
+
+function DeviceInformation({ usn, staticInfo = {}, dynamicInfo = {} }) {
+	const { type = '', sn = '', capabilities = {}, desc = '' } = staticInfo;
+	const {
+		firmwareVersion = '',
+		wifiName = '',
+		wifiStrength,
+		ipv4 = '',
+		ipv6 = [''],
+		mac = '',
+		upTime = '',
+	} = dynamicInfo;
+	const t = useJuJiuT();
+
 	return (
 		<>
-			<JuJiuItemText label={t('设备型号')} value='GC50' />
-			<JuJiuItemText label={t('序列号')} value='GF12345678' />
+			<JuJiuItemText label={t('设备型号')} value={type} />
+			<JuJiuItemText label={t('序列号')} value={sn} />
 			<JuJiuCollapsible label={t('设备统一SN')}>
 				<Box border pad='small' gap='small' direction='row'>
 					<Text size='small' wordBreak='break-all' textAlign='justify' color='text-xweak'>
-						jujiucloud.f7934b38-82ac-4059-9382-c70b38b15cdd.1689058115620.EKQF230ZsIk-fwmFkWyQ0
+						{usn}
 					</Text>
 					<Button pad='none' icon={<Copy />} />
 				</Box>
 			</JuJiuCollapsible>
-			<JuJiuItem label={t('设备特性')}>
-				<Box wrap direction='row' gap='small' align='center' justify='end'>
-					<Box align='center' flex={false}>
-						<Wifi color='text-xweak' />
-						<Text color='text-xweak' size='small'>
-							WiFi
-						</Text>
-					</Box>
-					<Box align='center' flex={false}>
-						<ChatOption color='text-xweak' />
-						<Text color='text-xweak' size='small'>
-							{t('双向语音')}
-						</Text>
-					</Box>
-					<Box align='center' flex={false}>
-						<Run color='text-xweak' />
-						<Text color='text-xweak' size='small'>
-							{t('移动侦测')}
-						</Text>
-					</Box>
-					<Box align='center' flex={false}>
-						<Pan color='text-xweak' />
-						<Text color='text-xweak' size='small'>
-							{t('云台')}
-						</Text>
-					</Box>
-				</Box>
-			</JuJiuItem>
-			<JuJiuItemText label={t('设备固件版本')} value='V1.0.3' />
-			<JuJiuItemText label={t('设备当前WiFi')} value='DX-OFFICE' icon={<Wifi color='text-xweak' />} />
-			<JuJiuItemTextArray label={t('IP地址')} value={['192.168.100.127', 'fe80::64a6:2309:8880:7903']} />
-			<JuJiuItemText label={t('MAC地址')} value='6c:f1:7e:9f:83:a2' />
-			<JuJiuItemText label={t('已开机')} value='158:12:05' />
+			<DeviceCapabilities {...{ capabilities }} />
+			<JuJiuItemText label={t('设备固件版本')} value={firmwareVersion} />
+			<JuJiuItemText
+				label={t('设备当前WiFi')}
+				value={wifiName}
+				icon={<WifiIcon strength={wifiStrength} color='text-xweak' />}
+			/>
+			<JuJiuItemTextArray label={t('IP地址')} value={[ipv4, ...ipv6]} />
+			<JuJiuItemText label={t('MAC地址')} value={mac} />
+			<JuJiuItemText label={t('已开机')} value={upTime} />
 		</>
 	);
 }
+
+export { DeviceInformation };
