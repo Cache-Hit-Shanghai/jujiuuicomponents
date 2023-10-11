@@ -74,7 +74,7 @@ function SleepAddSchedule({ target }) {
 	);
 }
 
-function SleepSettings({ target }) {
+function SleepSettings({ target, gap }) {
 	const t = useJuJiuT();
 	const [sleep, setSleep] = useState(false);
 	const [enableSchedule, setEnableSchedule] = useState(false);
@@ -96,7 +96,7 @@ function SleepSettings({ target }) {
 							/>
 						</Box>
 						<Collapsible open={enableSchedule} flex={false}>
-							<Box pad={{ top: 'small' }} gap='small'>
+							<Box pad={{ top: 'small' }} gap={gap}>
 								<JuJiuItem
 									label={
 										<Box>
@@ -177,7 +177,7 @@ function ValumeControl() {
 	);
 }
 
-export function DeviceSettings({ target }) {
+export function DeviceSettings({ target, gap }) {
 	const t = useJuJiuT();
 
 	return (
@@ -203,7 +203,7 @@ export function DeviceSettings({ target }) {
 			<JuJiuItem label={t('云台位置校准')}>
 				<Button primary size='small' label={t('校准')} />
 			</JuJiuItem>
-			<SleepSettings target={target} />
+			<SleepSettings target={target} gap={gap} />
 			<Button label={t('重启设备')} color='status-warning' />
 			<Button label={t('删除设备')} color='status-critical' />
 		</>
