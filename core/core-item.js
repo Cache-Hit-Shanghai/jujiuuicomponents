@@ -5,7 +5,7 @@ import { FormNext, FormDown, FormUp } from 'grommet-icons';
 import { useState } from 'react';
 import { JuJiuCard, ButtonLink } from './core-ui';
 
-function JuJiuRawItem({ onClick, children }) {
+export function JuJiuRawItem({ onClick, children }) {
 	return (
 		<JuJiuCard>
 			<CardBody onClick={onClick} focusIndicator={false}>
@@ -81,7 +81,7 @@ export function JuJiuItemRawButton({ label, onClick, children }) {
 
 export function JuJiuItemLink({ label, href }) {
 	return (
-		<JuJiuRawItem label={label}>
+		<JuJiuRawItem>
 			<ButtonLink href={href}>
 				<Box direction='row' align='center' justify='between'>
 					<Text>{label}</Text>
@@ -95,7 +95,7 @@ export function JuJiuItemLink({ label, href }) {
 export function JuJiuCollapsible({ label, value, children, ...props }) {
 	const [open, setOpen] = useState(false);
 	return (
-		<JuJiuRawItem label={label}>
+		<JuJiuRawItem>
 			<Box
 				direction='row'
 				align='center'
@@ -114,7 +114,7 @@ export function JuJiuCollapsible({ label, value, children, ...props }) {
 				</Box>
 			</Box>
 			<Collapsible open={open} {...props}>
-				<Box pad={{ top: 'small' }} gap='medium'>
+				<Box pad={{ top: 'small' }} gap='small'>
 					{children}
 				</Box>
 			</Collapsible>
