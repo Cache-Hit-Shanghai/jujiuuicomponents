@@ -2,7 +2,7 @@
 
 import { CheckBox, Box, Text, RadioButtonGroup, RangeInput, Button, TextInput, Heading } from 'grommet';
 import { Add, Trash } from 'grommet-icons';
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { JuJiuItem, JuJiuCollapsible } from '../../core/core-item';
 import { JuJiuLayer } from '../../core/core-ui';
 import { useJuJiuT } from '@/state/translate';
