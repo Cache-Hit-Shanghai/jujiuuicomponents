@@ -1,8 +1,8 @@
 'use client';
 
-import { CheckBox, Box, Text, RadioButtonGroup, RangeInput, Button, TextInput } from 'grommet';
+import { CheckBox, Box, Text, RadioButtonGroup, RangeInput, Button, TextInput, Heading } from 'grommet';
 import { Add, Trash } from 'grommet-icons';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { JuJiuItem, JuJiuCollapsible } from '../../core/core-item';
 import { JuJiuLayer } from '../../core/core-ui';
 import { useJuJiuT } from '@/state/translate';
@@ -28,6 +28,7 @@ function LabeledCheckBox({ label }) {
 }
 
 function SleepSettings() {
+	const ref = useRef();
 	const t = useJuJiuT();
 	const [sleep, setSleep] = useState(false);
 	const [openSchedule, setOpenSchedule] = useState(false);
@@ -39,7 +40,7 @@ function SleepSettings() {
 			</JuJiuItem>
 			{!sleep && (
 				<>
-					<JuJiuCollapsible label={t('休眠计划')}>
+					<JuJiuCollapsible label={t('休眠计划')} ref={ref}>
 						<Box gap='medium'>
 							<JuJiuItem
 								label={
@@ -69,7 +70,10 @@ function SleepSettings() {
 							</JuJiuItem>
 							<Button primary icon={<Add />} label={t('添加时间段')} onClick={() => setOpenSchedule(true)} />
 							{openSchedule && (
-								<JuJiuLayer onClickOutside={() => setOpenSchedule(false)}>
+								<JuJiuLayer onClickOutside={() => setOpenSchedule(false)} target={ref.current}>
+									<Heading level={3} margin='none' alignSelf='center'>
+										{t('添加时间段')}
+									</Heading>
 									<JuJiuItem label={t('开始时间')}>
 										<Box>
 											<TextInput
