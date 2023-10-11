@@ -188,51 +188,7 @@ function IpcCardMenu({ onSettings, onInformation }) {
 	);
 }
 
-function IpcCardRawV2({ label, imgurl, nextPageUrl, children }) {
-	return (
-		<Card>
-			<LinkOrNone url={nextPageUrl}>
-				<CardBody as='a' background='background-front'>
-					<Stack>
-						<Image fill src={imgurl} />
-						<Box direction='row' margin='medium' gap='small'>
-							<Box gap='small'>
-								<Box direction='row'>
-									<JuJiuTagDeviceOnline />
-								</Box>
-								<Box direction='row'>
-									<JuJiuTagDeviceOffline />
-								</Box>
-							</Box>
-							<Box gap='small'>
-								<Box direction='row'>
-									<JuJiuTagCloudStorageExpiring />
-								</Box>
-								<Box direction='row'>
-									<JuJiuTagCloudStorageExpired />
-								</Box>
-							</Box>
-						</Box>
-					</Stack>
-				</CardBody>
-			</LinkOrNone>
-			<CardFooter pad='small' align='center' justify='between' background='background-contrast'>
-				<Text>{label}</Text>
-				{children}
-			</CardFooter>
-		</Card>
-	);
-}
-
-function IpcCardRaw({
-	label,
-	imgurl,
-	nextPageUrl,
-	onSettings,
-	onInformation,
-	online = false,
-	cloudStorage = 'expiring',
-}) {
+function IpcCardRawV2({ label, imgurl, nextPageUrl, online = false, cloudStorage = 'expiring', children }) {
 	return (
 		<Card>
 			<LinkOrNone url={nextPageUrl}>
@@ -258,7 +214,7 @@ function IpcCardRaw({
 			</LinkOrNone>
 			<CardFooter pad='small' align='center' justify='between' background='background-contrast'>
 				<Text>{label}</Text>
-				<IpcCardMenu onSettings={onSettings} onInformation={onInformation} />
+				{children}
 			</CardFooter>
 		</Card>
 	);
@@ -272,10 +228,12 @@ export function IpcCard({ label, imgurl }) {
 	);
 }
 
-export function IpcCardSelectable({ onSelect, selected = false, ...passProps }) {
+export function IpcCardSelectable({ onSelect, selected = false, onSettings, onInformation, ...passProps }) {
 	return (
 		<Stack anchor='top-right'>
-			<IpcCardRaw {...passProps} />
+			<IpcCardRawV2 {...passProps}>
+				<IpcCardMenu onSettings={onSettings} onInformation={onInformation} />
+			</IpcCardRawV2>
 			<Box pad='small'>
 				<CheckBox checked={selected} onChange={(e) => onSelect?.(e.target.checked)} />
 			</Box>
