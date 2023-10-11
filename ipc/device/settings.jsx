@@ -133,11 +133,11 @@ function SleepSettings({ target, gap }) {
 	);
 }
 
-function DeviceNameControl() {
+function DeviceNameControl({ gap }) {
 	const t = useJuJiuT();
 	const [name, setName] = useState('办3');
 	return (
-		<JuJiuCollapsible label={t('设备名称')} value={name}>
+		<JuJiuCollapsible label={t('设备名称')} value={name} gap={gap}>
 			<TextInput value={name} onChange={(e) => setName(e.target.value)} />
 			<Button primary label={t('保存')} />
 		</JuJiuCollapsible>
@@ -182,7 +182,7 @@ export function DeviceSettings({ target, gap }) {
 
 	return (
 		<>
-			<DeviceNameControl />
+			<DeviceNameControl gap={gap} />
 			<DeviceGroupControl />
 			<JuJiuItem label={t('人形追踪')}>
 				<CheckBox toggle />

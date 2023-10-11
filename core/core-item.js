@@ -92,7 +92,7 @@ export function JuJiuItemLink({ label, href }) {
 	);
 }
 
-export function JuJiuCollapsible({ label, value, children, ...props }) {
+export function JuJiuCollapsible({ label, value, gap, children, ...props }) {
 	const [open, setOpen] = useState(false);
 	return (
 		<JuJiuRawItem>
@@ -114,7 +114,7 @@ export function JuJiuCollapsible({ label, value, children, ...props }) {
 				</Box>
 			</Box>
 			<Collapsible open={open} {...props}>
-				<Box pad={{ top: 'small' }} gap='small'>
+				<Box pad={{ top: 'small' }} gap={gap}>
 					{children}
 				</Box>
 			</Collapsible>
