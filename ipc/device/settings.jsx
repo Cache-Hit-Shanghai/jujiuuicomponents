@@ -27,8 +27,8 @@ function LabeledCheckBox({ label }) {
 	);
 }
 
-function SleepSettings() {
-	const ref = useRef();
+function SleepSettings({ target }) {
+	console.log(target);
 	const t = useJuJiuT();
 	const [sleep, setSleep] = useState(false);
 	const [openSchedule, setOpenSchedule] = useState(false);
@@ -40,7 +40,7 @@ function SleepSettings() {
 			</JuJiuItem>
 			{!sleep && (
 				<>
-					<JuJiuCollapsible label={t('休眠计划')} ref={ref}>
+					<JuJiuCollapsible label={t('休眠计划')}>
 						<Box gap='medium'>
 							<JuJiuItem
 								label={
@@ -70,7 +70,7 @@ function SleepSettings() {
 							</JuJiuItem>
 							<Button primary icon={<Add />} label={t('添加时间段')} onClick={() => setOpenSchedule(true)} />
 							{openSchedule && (
-								<JuJiuLayer onClickOutside={() => setOpenSchedule(false)} target={ref.current}>
+								<JuJiuLayer onClickOutside={() => setOpenSchedule(false)} target={target}>
 									<Heading level={3} margin='none' alignSelf='center'>
 										{t('添加时间段')}
 									</Heading>
@@ -160,7 +160,7 @@ function ValumeControl() {
 	);
 }
 
-export function DeviceSettings() {
+export function DeviceSettings({ target }) {
 	const t = useJuJiuT();
 
 	return (
@@ -186,7 +186,7 @@ export function DeviceSettings() {
 			<JuJiuItem label={t('云台位置校准')}>
 				<Button primary size='small' label={t('校准')} />
 			</JuJiuItem>
-			<SleepSettings />
+			<SleepSettings target={target} />
 			<Button label={t('重启设备')} color='status-warning' />
 			<Button label={t('删除设备')} color='status-critical' />
 		</>

@@ -31,12 +31,14 @@ function JuJiuLinkTag({ href, icon, label, background }) {
 	);
 }
 
-function JuJiuLayer({ onClickOutside, position, children, ...props }) {
+function JuJiuLayer({ onClickOutside, position, target, children, ...props }) {
 	return (
 		<Layer
 			position={position || 'bottom'}
 			full='horizontal'
 			responsive={false}
+			target={target?.current}
+			onEsc={onClickOutside}
 			onClickOutside={onClickOutside}
 		>
 			<Box fill round pad='medium' gap='medium' background='background-front' {...props}>
