@@ -104,7 +104,7 @@ export function JuJiuCollapsible({ label, value, gap, children, ...props }) {
 				onClick={() => setOpen(!open)}
 			>
 				<Text>{label}</Text>
-				<Box direction='row' gap='small'>
+				<Box direction='row' gap='small' align='center'>
 					{value && (
 						<Text size='small' color='text-xweak'>
 							{value}
