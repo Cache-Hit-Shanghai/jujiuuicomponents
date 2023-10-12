@@ -135,7 +135,7 @@ export function IpcCardRaw({
 				</CardBody>
 			</LinkOrNone>
 			<CardFooter pad='small' align='center' justify='between' background='background-contrast'>
-				<Text>{label}</Text>
+				{label}
 				{children}
 			</CardFooter>
 		</Card>
