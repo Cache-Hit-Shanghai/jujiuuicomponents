@@ -1,8 +1,10 @@
 'use client';
 
-import { Tag, Box, Text, Layer, Card, Button, Main, CardBody, List } from 'grommet';
+import { Tag, Box, Text, Layer, Card, Button, Main, CardBody, List, Spinner } from 'grommet';
+import { isValidElement } from 'react';
 import { CircleInformation, FormPrevious, FormNext } from 'grommet-icons';
 import Link, { useRouter } from '@/state/translate';
+import { useJuJiuT } from '@/state/translate';
 
 function JuJiuTag({ icon, label, background }) {
 	return (
@@ -47,6 +49,56 @@ function JuJiuLayer({ onClickOutside, position, target, children, ...props }) {
 		</Layer>
 	);
 }
+
+const ConfirmLayer = ({ value, setValue }) => {
+	const { isOpen, content, onConfirm, onCancel } = value;
+	const t = useJuJiuT();
+	const closeLayer = () => {
+		onCancel && onCancel();
+		setValue({ isOpen: false });
+	};
+
+	return (
+		isOpen && (
+			<Layer position='bottom' responsive={false} onClickOutside={closeLayer}>
+				<Box width='100vw' align='center' pad={{ vertical: 'large' }} gap='medium' justify='center'>
+					{typeof content === 'string' ? <Text>{content}</Text> : content}
+					<Box direction='row' gap='small'>
+						<Button label={t('取消')} onClick={closeLayer} />
+						<Button primary label={t('确认')} onClick={onConfirm} />
+					</Box>
+				</Box>
+			</Layer>
+		)
+	);
+};
+
+const LoadingLayer = ({
+	isOpen,
+	icon = <Spinner size='large' />,
+	content = '',
+	layerProps = {},
+	boxProps = {},
+}) => {
+	return (
+		isOpen && (
+			<Layer
+				responsive={false}
+				animation='fadeIn'
+				modal={true}
+				plain
+				background='transparent'
+				position='center'
+				{...layerProps}
+			>
+				<Box pad='large' round='medium' background='active' {...boxProps}>
+					{icon}
+					{content && (isValidElement(content) ? content : <Text>{content}</Text>)}
+				</Box>
+			</Layer>
+		)
+	);
+};
 
 function JuJiuMain({ children, ...props }) {
 	return (
@@ -203,6 +255,8 @@ export {
 	JuJiuTag,
 	JuJiuLinkTag,
 	JuJiuLayer,
+	LoadingLayer,
+	ConfirmLayer,
 	JuJiuMain,
 	JuJiuCard,
 	ButtonLink,

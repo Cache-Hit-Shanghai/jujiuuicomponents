@@ -12,7 +12,7 @@ import {
 	Collapsible,
 } from 'grommet';
 import { Add, Trash } from 'grommet-icons';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { JuJiuItem, JuJiuRawItem, JuJiuCollapsible } from '../../core/core-item';
 import { JuJiuLayer } from '../../core/core-ui';
 import { useJuJiuT } from '@/state/translate';
@@ -133,32 +133,65 @@ function SleepSettings({ target, gap }) {
 	);
 }
 
-function DeviceNameControl({ gap }) {
+function DeviceNameControl({ gap, desc = '', onSave = () => {} }) {
 	const t = useJuJiuT();
-	const [name, setName] = useState('办3');
+	const [name, setName] = useState(desc);
+
+	const onSaveClick = useCallback(() => {
+		onSave(name);
+	}, [name]);
+
 	return (
 		<JuJiuCollapsible label={t('设备名称')} value={name} gap={gap}>
 			<TextInput value={name} onChange={(e) => setName(e.target.value)} />
-			<Button primary label={t('保存')} />
+			<Button primary label={t('保存')} onClick={onSaveClick} />
 		</JuJiuCollapsible>
 	);
 }
 
-function DeviceGroupControl() {
+const defaultUserDeviceGroupName = '默认分组';
+
+function DeviceGroupControl({ Groups = [], Group = '', onChange = () => {} }) {
 	const t = useJuJiuT();
-	const Groups = [
-		{ value: 1, label: '办公室' },
-		{ value: 0, label: t('默认分组') },
-	];
-	const [group, setGroup] = useState(1);
+	const getTg = useCallback((g) => {
+		return g === defaultUserDeviceGroupName ? t(defaultUserDeviceGroupName) : g;
+	}, []);
+
+	const [group, setGroup] = useState(Group);
 	return (
-		<JuJiuCollapsible label={t('设备分组')} value={Groups.find((e) => e.value === group).label}>
+		<JuJiuCollapsible label={t('设备分组')} value={getTg(group)}>
 			<Box gap='small'>
 				<RadioButtonGroup
 					name='deficegroup'
-					options={Groups}
+					options={Groups.map(getTg)}
 					value={group}
-					onChange={(e) => setGroup(parseInt(e.target.value))}
+					onChange={(e) => {
+						const g = getTg(e.target.value);
+
+						setGroup(g);
+						const net =
+							g === t(defaultUserDeviceGroupName)
+								? {
+										handle: 'removeFromGroup',
+										config: {
+											query: {
+												name: encodeURIComponent(Group),
+											},
+										},
+										key: 'query',
+										message: '',
+								  }
+								: {
+										handle: 'addToGroup',
+										config: {
+											body: {
+												name: encodeURIComponent(g),
+											},
+										},
+										key: 'body',
+								  };
+						onChange(net);
+					}}
 				/>
 			</Box>
 		</JuJiuCollapsible>
@@ -177,35 +210,82 @@ function ValumeControl() {
 	);
 }
 
-export function DeviceSettings({ target, gap }) {
+const DevicesSettingList = [
+	{
+		ui: 'Toggle',
+		props: { label: '人形追踪', settingKey: 'humanoidTracking' },
+	},
+	{
+		ui: 'Toggle',
+		props: { label: '视频水印(OSD)', settingKey: 'videoWatermarkOsd' },
+	},
+	{
+		ui: 'Toggle',
+		props: { label: '画面翻转', settingKey: 'flipPicture' },
+	},
+	{
+		ui: 'Toggle',
+		props: { label: '设备语音提示', settingKey: 'voicePrompts' },
+	},
+	{
+		ui: 'RangeInputCollapsible',
+		props: { label: '设备音量', settingKey: 'volume' },
+	},
+	{
+		ui: 'Toggle',
+		props: { label: '设备状态灯', settingKey: 'statusLight' },
+	},
+	{
+		ui: 'CommandItemButton',
+		props: {
+			label: '云台位置校准',
+			commandKey: 'calibratePlatform',
+			command: 'calibrate_platform',
+			operLabel: '校准',
+		},
+	},
+	{
+		ui: 'Sleep',
+		props: {},
+	},
+	{
+		ui: 'CommandButton',
+		props: {
+			label: '重启设备',
+			commandKey: 'reboot',
+			command: 'reboot',
+			order: 99,
+		},
+	},
+];
+
+export function DeviceSettings({
+	target,
+	gap,
+	JuJiuUI = {},
+	nameProps = {},
+	groupProps = {},
+	onDeviceDelete = () => {},
+}) {
 	const t = useJuJiuT();
 
 	return (
 		<>
-			<DeviceNameControl gap={gap} />
-			<DeviceGroupControl />
-			<JuJiuItem label={t('人形追踪')}>
-				<CheckBox toggle />
-			</JuJiuItem>
-			<JuJiuItem label={t('视频水印(OSD)')}>
-				<CheckBox toggle />
-			</JuJiuItem>
-			<JuJiuItem label={t('画面翻转')}>
-				<CheckBox toggle />
-			</JuJiuItem>
-			<JuJiuItem label={t('设备语音提示')}>
-				<CheckBox toggle />
-			</JuJiuItem>
-			<ValumeControl />
-			<JuJiuItem label={t('设备状态灯')}>
-				<CheckBox toggle />
-			</JuJiuItem>
-			<JuJiuItem label={t('云台位置校准')}>
-				<Button primary size='small' label={t('校准')} />
-			</JuJiuItem>
-			<SleepSettings target={target} gap={gap} />
-			<Button label={t('重启设备')} color='status-warning' />
-			<Button label={t('删除设备')} color='status-critical' />
+			<DeviceNameControl gap={gap} {...nameProps} />
+			<DeviceGroupControl {...groupProps} />
+			{DevicesSettingList.map(({ props = {}, ui = '' }, index) => {
+				const Component = JuJiuUI[ui] || (() => null);
+
+				['label', 'operLabel'].map((key) => {
+					props[key] && Object.assign(props, { [key]: t(props[key]) });
+				});
+
+				return <Component key={index} {...props}></Component>;
+			})}
+
+			<Button style={{ order: 100 }} label={t('删除设备')} color='status-critical' onClick={onDeviceDelete} />
 		</>
 	);
 }
+
+export { defaultUserDeviceGroupName };
