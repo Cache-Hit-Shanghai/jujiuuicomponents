@@ -1,5 +1,6 @@
 {
   "Index": {
+    "必填": "Required",
     "看护区域有人移动": "Motion in monitoring zone",
     "画面人脸识别结果": "Face recognition result in video",
     "画面有人移动": "Motion in video",
