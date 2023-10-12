@@ -1,48 +1,13 @@
 'use client';
 
-import {
-	Text,
-	Box,
-	Card,
-	CardBody,
-	CardFooter,
-	Menu,
-	Image,
-	Button,
-	Layer,
-	Stack,
-	CheckBox,
-	ResponsiveContext,
-} from 'grommet';
-import {
-	Pan,
-	More,
-	Camera,
-	ZoomIn,
-	Volume,
-	Calendar,
-	Checkmark,
-	VolumeMute,
-	ContactInfo,
-	Transaction,
-	ShareRounded,
-	ClosedCaption,
-	CaretLeftFill,
-	CircleInformation,
-} from 'grommet-icons';
-import { useState, useContext } from 'react';
-import { SettingsOutline } from '@styled-icons/evaicons-outline/SettingsOutline';
-import { Call } from '@styled-icons/fluentui-system-regular/Call';
-import { CallDismiss } from '@styled-icons/fluentui-system-regular/CallDismiss';
-import { Record } from '@styled-icons/fluentui-system-regular/Record';
-import { RecordStop } from '@styled-icons/fluentui-system-regular/RecordStop';
+import { Box, Card, CardBody, CardFooter, Image, Stack } from 'grommet';
 import {
 	JuJiuTagDeviceOnline,
 	JuJiuTagDeviceOffline,
 	JuJiuTagCloudStorageExpiring,
 	JuJiuTagCloudStorageExpired,
 } from '../../core/core-tag';
-import Link, { useJuJiuT } from '@/state/translate';
+import Link from '@/state/translate';
 
 function LinkOrNone({ url, children }) {
 	if (url) {
@@ -54,53 +19,6 @@ function LinkOrNone({ url, children }) {
 	} else {
 		return <>{children}</>;
 	}
-}
-
-function IpcCardMenu({ onSettings, onInformation }) {
-	const t = useJuJiuT();
-	const labelDeviceSettings = t('设备设置');
-	const labelDeviceInformation = t('设备信息');
-	const settingsLabel = onSettings ? (
-		<Text>{labelDeviceSettings}</Text>
-	) : (
-		<Link href='/device/settings' passHref legacyBehavior>
-			<Text>{labelDeviceSettings}</Text>
-		</Link>
-	);
-	const informationsLabel = onInformation ? (
-		<Text>{labelDeviceInformation}</Text>
-	) : (
-		<Link href='/device/information' passHref legacyBehavior>
-			<Text>{labelDeviceInformation}</Text>
-		</Link>
-	);
-
-	return (
-		<Menu
-			dropProps={{ align: { top: 'bottom', right: 'right' } }}
-			icon={<More />}
-			items={[
-				{
-					label: settingsLabel,
-					icon: (
-						<Box margin={{ right: 'small' }}>
-							<SettingsOutline size='24' />
-						</Box>
-					),
-					onClick: onSettings,
-				},
-				{
-					label: informationsLabel,
-					icon: (
-						<Box margin={{ right: 'small' }}>
-							<CircleInformation />
-						</Box>
-					),
-					onClick: onInformation,
-				},
-			]}
-		/>
-	);
 }
 
 export function IpcCardRaw({
@@ -139,18 +57,5 @@ export function IpcCardRaw({
 				{children}
 			</CardFooter>
 		</Card>
-	);
-}
-
-export function IpcCardSelectable({ onSelect, selected = false, onSettings, onInformation, ...passProps }) {
-	return (
-		<Stack anchor='top-right'>
-			<IpcCardRaw {...passProps}>
-				<IpcCardMenu onSettings={onSettings} onInformation={onInformation} />
-			</IpcCardRaw>
-			<Box pad='small'>
-				<CheckBox checked={selected} onChange={(e) => onSelect?.(e.target.checked)} />
-			</Box>
-		</Stack>
 	);
 }
