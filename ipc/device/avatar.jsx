@@ -188,7 +188,14 @@ function IpcCardMenu({ onSettings, onInformation }) {
 	);
 }
 
-function IpcCardRaw({ label, imgurl, nextPageUrl, online = false, cloudStorage = 'expiring', children }) {
+export function IpcCardRaw({
+	label,
+	imgurl,
+	nextPageUrl,
+	online = false,
+	cloudStorage = 'expiring',
+	children,
+}) {
 	return (
 		<Card>
 			<LinkOrNone url={nextPageUrl}>
@@ -217,14 +224,6 @@ function IpcCardRaw({ label, imgurl, nextPageUrl, online = false, cloudStorage =
 				{children}
 			</CardFooter>
 		</Card>
-	);
-}
-
-export function IpcCard({ label, imgurl, type }) {
-	return (
-		<IpcCardRaw label={label} imgurl={imgurl} nextPageUrl='/device/streaming'>
-			<IpcCardMenuMobile type={type} />
-		</IpcCardRaw>
 	);
 }
 
