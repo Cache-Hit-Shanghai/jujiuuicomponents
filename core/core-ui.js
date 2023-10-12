@@ -96,7 +96,17 @@ function InfoGroup({ data }) {
 	return (
 		<JuJiuCard>
 			<CardBody>
-				<List pad={{ vertical: 'small' }} data={data} border={false} primaryKey='key' secondaryKey='value' />
+				<List
+					pad={{ vertical: 'small' }}
+					data={data}
+					border={false}
+					primaryKey='key'
+					secondaryKey={(item) => (
+						<Text key={item.key} size='small' color='text-xweak'>
+							{item.value}
+						</Text>
+					)}
+				/>
 			</CardBody>
 		</JuJiuCard>
 	);
