@@ -154,7 +154,7 @@ function InfoGroup({ data }) {
 					border={false}
 					primaryKey='key'
 					secondaryKey={(item) => (
-						<Text size='small' color='text-xweak'>
+						<Text key={item.key} size='small' color='text-xweak'>
 							{item.value}
 						</Text>
 					)}

@@ -43,8 +43,8 @@ export function JuJiuItemTextArray({ label, value }) {
 	return (
 		<JuJiuItem label={label}>
 			<Box align='end'>
-				{value.map((e) => (
-					<Text size='small' color='text-xweak'>
+				{value.map((e, i) => (
+					<Text key={e || i} size='small' color='text-xweak'>
 						{e}
 					</Text>
 				))}

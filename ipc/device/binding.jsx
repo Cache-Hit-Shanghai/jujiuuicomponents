@@ -1,7 +1,9 @@
 'use client';
 
-import { Box, Form, FormField, TextInput } from 'grommet';
+import { Box, Form, FormField, TextInput, Avatar, Button } from 'grommet';
 import { Qr } from 'grommet-icons';
+import { FlashlightOn } from '@styled-icons/material-rounded/FlashlightOn';
+import { FlashlightOff } from '@styled-icons/material-rounded/FlashlightOff';
 import { JuJiuInformation } from '../../core/core-ui';
 import { useJuJiuT } from '@/state/translate';
 import { useState } from 'react';
@@ -56,5 +58,14 @@ export function DeviceBinding({ code = <Qr color='plain' size='xlarge' /> }) {
 				)}
 			/>
 		</>
+	);
+}
+
+export function FlashLight() {
+	const [on, setOn] = useState(false);
+	return (
+		<Button primary onClick={() => setOn(!on)}>
+			<Avatar border>{on ? <FlashlightOff size='24' /> : <FlashlightOn size='24' />}</Avatar>
+		</Button>
 	);
 }
