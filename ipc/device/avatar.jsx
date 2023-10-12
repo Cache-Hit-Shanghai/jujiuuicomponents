@@ -31,9 +31,9 @@ export function IpcCardRaw({
 }) {
 	return (
 		<Card>
-			<LinkOrNone url={nextPageUrl}>
-				<CardBody as='a' background='background-front'>
-					<Stack>
+			<CardBody background='background-front'>
+				<LinkOrNone url={nextPageUrl}>
+					<Stack as='a'>
 						<Box height={'200px'}>{imgurl && <Image src={imgurl} fit='contain' alt='' />}</Box>
 						<Box direction='row' margin='medium' gap='small'>
 							<Box gap='small'>
@@ -50,8 +50,8 @@ export function IpcCardRaw({
 							</Box>
 						</Box>
 					</Stack>
-				</CardBody>
-			</LinkOrNone>
+				</LinkOrNone>
+			</CardBody>
 			<CardFooter pad='small' align='center' justify='between' background='background-contrast'>
 				{label}
 				{children}

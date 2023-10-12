@@ -259,7 +259,7 @@ export function ScreenCopyControl({ onClick, showTitle = true, disabled = false 
 	const title = t('截图');
 
 	return (
-		<Button tip={size !== 'small' && title} onClick={onClick} disabled={disabled}>
+		<Button tip={size === 'small' ? null : title} onClick={onClick} disabled={disabled}>
 			<Box pad='small' align='center'>
 				<Camera />
 				{showTitle && <Text size='small'>{title}</Text>}
@@ -274,7 +274,7 @@ export function ChatControl({ speaking = false, onClick, disabled = false, showT
 	const title = t(speaking ? '挂断' : '对讲');
 
 	return (
-		<Button tip={size !== 'small' && title} {...{ onClick, disabled }}>
+		<Button tip={size === 'small' ? null : title} {...{ onClick, disabled }}>
 			<Box pad='small' align='center'>
 				{speaking ? <CallDismiss size='24' /> : <Call size='24' />}
 				{showTitle && <Text size='small'>{title}</Text>}
@@ -289,7 +289,7 @@ export function MuteControl({ mute = true, onClick, showTitle = true, disabled =
 	const title = t(mute ? '恢复' : '静音');
 
 	return (
-		<Button tip={size !== 'small' && title} onClick={onClick} disabled={disabled}>
+		<Button tip={size === 'small' ? null : title} onClick={onClick} disabled={disabled}>
 			<Box pad='small' align='center'>
 				{mute ? <Volume /> : <VolumeMute />}
 				{showTitle && <Text size='small'>{title}</Text>}
@@ -304,7 +304,7 @@ export function RecordControl({ recording = false, onClick, showTitle = true, di
 	const title = t(recording ? '停止' : '录像');
 
 	return (
-		<Button tip={size !== 'small' && title} {...{ onClick, disabled }}>
+		<Button tip={size === 'small' ? null : title} {...{ onClick, disabled }}>
 			<Box pad='small' align='center'>
 				{recording ? <RecordStop size='24' /> : <Record size='24' />}
 				{showTitle && <Text size='small'>{title}</Text>}
@@ -335,7 +335,7 @@ export function ZoomControl({
 	return (
 		<Menu
 			plain
-			tip={size !== 'small' && title}
+			tip={size === 'small' ? null : title}
 			dropAlign={{ top: 'bottom' }}
 			items={items}
 			disabled={disabled}
@@ -356,7 +356,7 @@ export function ResolutionControl({ showTitle = true, disabled = false, items })
 	return (
 		<Menu
 			plain
-			tip={size !== 'small' && title}
+			tip={size === 'small' ? null : title}
 			dropAlign={{ top: 'bottom' }}
 			items={
 				items || [
@@ -448,7 +448,12 @@ export function PanLayer({ target }) {
 	const [show, setShow] = useState(false);
 	return (
 		<>
-			<Button plain tip={size !== 'small' && t('云台')} focusIndicator={false} onClick={() => setShow(!show)}>
+			<Button
+				plain
+				tip={size === 'small' ? null : t('云台')}
+				focusIndicator={false}
+				onClick={() => setShow(!show)}
+			>
 				<Box pad='small' align='center'>
 					<Pan />
 				</Box>
