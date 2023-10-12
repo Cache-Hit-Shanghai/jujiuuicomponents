@@ -1,5 +1,13 @@
 {
   "Index": {
+    "看护区域有人移动": "Motion in monitoring zone",
+    "画面人脸识别结果": "Face recognition result in video",
+    "画面有人移动": "Motion in video",
+    "公告": "Announcement",
+    "服务提醒": "Service notification",
+    "设备异常": "Device failure",
+    "设备状态": "Device status",
+    "设备访问": "Device access",
     "确定": "OK",
     "再次输入新密码": "Reenter password",
     "输入新密码": "New password",
