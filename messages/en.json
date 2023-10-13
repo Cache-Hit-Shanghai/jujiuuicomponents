@@ -1,5 +1,6 @@
 {
   "Index": {
+    "修改昵称提示": "Please enter 2-20 characters. Some special characters such as @/ ? * : | < > can't be used。",
     "必填": "Required",
     "看护区域有人移动": "Motion in monitoring zone",
     "画面人脸识别结果": "Face recognition result in video",

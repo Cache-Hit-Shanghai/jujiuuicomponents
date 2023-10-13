@@ -24,7 +24,7 @@ export function ChangeAvatar({ uploadProps = {}, albumProps = {} }) {
 
 const nameCuc = '@/ ? * : |  < >';
 
-export const getNLAByT = (t) => `${t('请设置2-20个字符，不能使用')} ${nameCuc} ${t('等字符。')}`;
+export const getNLAByT = (t) => t('修改昵称提示');
 
 export function ChangeNickname({ inputProps = {}, infoLabel = '', onSave = () => {} }) {
 	const t = useJuJiuT();
