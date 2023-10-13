@@ -12,7 +12,7 @@ import {
 	Collapsible,
 } from 'grommet';
 import { Add, Trash } from 'grommet-icons';
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { JuJiuItem, JuJiuRawItem, JuJiuCollapsible } from '../../core/core-item';
 import { JuJiuLayer } from '../../core/core-ui';
 import { useJuJiuT } from '@/state/translate';
@@ -157,9 +157,9 @@ function DeviceGroupControl({ Groups = [], Group = '', onChange = () => {} }) {
 		return g === defaultUserDeviceGroupName ? t(defaultUserDeviceGroupName) : g;
 	}, []);
 
-	const [group, setGroup] = useState(Group);
+	const [group, setGroup] = useState(getTg(Group));
 	return (
-		<JuJiuCollapsible label={t('设备分组')} value={getTg(group)}>
+		<JuJiuCollapsible label={t('设备分组')} value={group}>
 			<Box gap='small'>
 				<RadioButtonGroup
 					name='deficegroup'
@@ -213,35 +213,35 @@ function ValumeControl() {
 const DevicesSettingList = [
 	{
 		ui: 'Toggle',
-		props: { label: '人形追踪', settingKey: 'humanoidTracking' },
+		props: { labelKey: '人形追踪', settingKey: 'humanoidTracking' },
 	},
 	{
 		ui: 'Toggle',
-		props: { label: '视频水印(OSD)', settingKey: 'videoWatermarkOsd' },
+		props: { labelKey: '视频水印(OSD)', settingKey: 'videoWatermarkOsd' },
 	},
 	{
 		ui: 'Toggle',
-		props: { label: '画面翻转', settingKey: 'flipPicture' },
+		props: { labelKey: '画面翻转', settingKey: 'flipPicture' },
 	},
 	{
 		ui: 'Toggle',
-		props: { label: '设备语音提示', settingKey: 'voicePrompts' },
+		props: { labelKey: '设备语音提示', settingKey: 'voicePrompts' },
 	},
 	{
 		ui: 'RangeInputCollapsible',
-		props: { label: '设备音量', settingKey: 'volume' },
+		props: { labelKey: '设备音量', settingKey: 'volume' },
 	},
 	{
 		ui: 'Toggle',
-		props: { label: '设备状态灯', settingKey: 'statusLight' },
+		props: { labelKey: '设备状态灯', settingKey: 'statusLight' },
 	},
 	{
 		ui: 'CommandItemButton',
 		props: {
-			label: '云台位置校准',
+			labelKey: '云台位置校准',
 			commandKey: 'calibratePlatform',
 			command: 'calibrate_platform',
-			operLabel: '校准',
+			operLabelKey: '校准',
 		},
 	},
 	{
@@ -251,7 +251,7 @@ const DevicesSettingList = [
 	{
 		ui: 'CommandButton',
 		props: {
-			label: '重启设备',
+			labelKey: '重启设备',
 			commandKey: 'reboot',
 			command: 'reboot',
 			order: 99,
@@ -276,8 +276,11 @@ export function DeviceSettings({
 			{DevicesSettingList.map(({ props = {}, ui = '' }, index) => {
 				const Component = JuJiuUI[ui] || (() => null);
 
-				['label', 'operLabel'].map((key) => {
-					props[key] && Object.assign(props, { [key]: t(props[key]) });
+				[
+					{ tk: 'labelKey', k: 'label' },
+					{ tk: 'operLabelKey', k: 'operLabel' },
+				].map(({ tk, k }) => {
+					props[tk] && Object.assign(props, { [k]: t(props[tk]) });
 				});
 
 				return <Component key={index} {...props}></Component>;
