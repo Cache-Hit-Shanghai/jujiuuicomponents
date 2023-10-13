@@ -282,6 +282,7 @@ export function DeviceSettings({
 				].map(({ tk, k }) => {
 					props[tk] && Object.assign(props, { [k]: t(props[tk]) });
 				});
+				ui === 'Sleep' && (props.target = target);
 
 				return <Component key={index} {...props}></Component>;
 			})}
