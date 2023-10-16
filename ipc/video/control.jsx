@@ -380,7 +380,7 @@ export function ResolutionControl({ showTitle = true, disabled = false, items })
 	);
 }
 
-function SectorBox({ angle, onClick }) {
+function SectorBox({ angle, background, onClick }) {
 	return (
 		<Box
 			focusIndicator={false}
@@ -398,7 +398,7 @@ function SectorBox({ angle, onClick }) {
 				height='calc(100% - 1px)'
 				align='center'
 				justify='center'
-				background='dark-3'
+				background={background}
 				round={{ size: 'full', corner: 'top-left' }}
 				style={{
 					WebkitMaskImage: 'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)',
@@ -411,10 +411,10 @@ function SectorBox({ angle, onClick }) {
 	);
 }
 
-function Circle() {
+function Circle({ background }) {
 	return (
 		<Box
-			background='dark-3'
+			background={background}
 			round='full'
 			width='calc(40% - 3px)'
 			height='calc(40% - 3px)'
@@ -431,13 +431,18 @@ function Circle() {
 }
 
 export function PanControl({ size = 'small', ...props }) {
+	const background = {
+		color: 'dark-3',
+		opacity: 'medium',
+	};
+
 	return (
 		<Box flex={false} width={size} height={size} style={{ position: 'relative' }} {...props}>
-			<SectorBox angle={45} onClick={() => console.log('up')} />
-			<SectorBox angle={135} onClick={() => console.log('right')} />
-			<SectorBox angle={225} onClick={() => console.log('down')} />
-			<SectorBox angle={315} onClick={() => console.log('left')} />
-			<Circle />
+			<SectorBox background={background} angle={45} onClick={() => console.log('up')} />
+			<SectorBox background={background} angle={135} onClick={() => console.log('right')} />
+			<SectorBox background={background} angle={225} onClick={() => console.log('down')} />
+			<SectorBox background={background} angle={315} onClick={() => console.log('left')} />
+			<Circle background={background} />
 		</Box>
 	);
 }
