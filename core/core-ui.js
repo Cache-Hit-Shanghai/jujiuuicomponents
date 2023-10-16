@@ -227,9 +227,9 @@ function IconBack() {
 	return <Button icon={<FormPrevious color='control' />} onClick={() => router.back()} />;
 }
 
-function IconButton({ icon, label, onClick }) {
+function IconButton({ icon, label, onClick, disabled }) {
 	return (
-		<Button onClick={onClick}>
+		<Button onClick={onClick} disabled={disabled}>
 			<Box pad='small' align='center'>
 				{icon}
 				<Text size='small'>{label}</Text>
