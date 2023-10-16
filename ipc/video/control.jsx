@@ -433,7 +433,7 @@ function Circle({ background }) {
 export function PanControl({ size = 'small', ...props }) {
 	const background = {
 		color: 'dark-3',
-		opacity: 'medium',
+		opacity: 'strong',
 	};
 
 	return (
@@ -468,7 +468,7 @@ export function PanLayer({ target }) {
 					plain
 					animation='fadeIn'
 					target={target?.current}
-					position='bottom-left'
+					position='left'
 					responsive={false}
 					margin='small'
 					onClickOutside={() => setShow(false)}
