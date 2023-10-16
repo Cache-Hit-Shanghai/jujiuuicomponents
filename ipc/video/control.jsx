@@ -433,7 +433,7 @@ function Circle({ background }) {
 export function PanControl({ size = 'small', ...props }) {
 	const background = {
 		color: 'dark-3',
-		opacity: 'medium',
+		opacity: 'strong',
 	};
 
 	return (
