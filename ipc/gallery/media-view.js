@@ -1,3 +1,5 @@
+'use client';
+
 import { useJuJiuT } from '@/state/translate';
 import { Box, Stack, Spinner, Text, Image } from 'grommet';
 import { JJIconCircleInformation, JJIconShareRounded, JJIconTrash } from '../icons';
