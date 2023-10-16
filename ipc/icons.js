@@ -35,6 +35,7 @@ import {
 	WifiNone,
 	StatusCritical,
 	Update,
+	Gallery,
 } from 'grommet-icons';
 import { FlashlightOn, FlashlightOff } from 'styled-icons/material';
 import { Record } from '@styled-icons/fluentui-system-regular/Record';
@@ -97,3 +98,4 @@ export const JJIconStatusGoodSmall = StatusGoodSmall;
 export const JJIconPhoneLandscape = PhoneLandscape;
 export const JJIconStatusCritical = StatusCritical;
 export const JJIconUpdate = Update;
+export const JJIconGallery = Gallery;
