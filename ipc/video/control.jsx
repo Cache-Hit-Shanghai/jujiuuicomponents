@@ -468,7 +468,7 @@ export function PanLayer({ target }) {
 					plain
 					animation='fadeIn'
 					target={target?.current}
-					position='bottom-left'
+					position='left'
 					responsive={false}
 					margin='small'
 					onClickOutside={() => setShow(false)}
