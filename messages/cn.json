@@ -137,6 +137,7 @@
 		"云存储已过期": "云存储已过期",
 		"云存储即将过期": "云存储即将过期",
 		"已分享{count}人": "已分享{count}人",
-		"来自 {name}": "来自 {name}"
+		"来自 {name}": "来自 {name}",
+		"由 {username} 于 {createdAt} 创建": "由 {username} 于 {createdAt} 创建"
 	}
 }

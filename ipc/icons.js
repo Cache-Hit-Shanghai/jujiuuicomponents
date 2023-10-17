@@ -36,6 +36,7 @@ import {
 	StatusCritical,
 	Update,
 	Gallery,
+	Apps,
 } from 'grommet-icons';
 import { FlashlightOn, FlashlightOff } from 'styled-icons/material';
 import { Record } from '@styled-icons/fluentui-system-regular/Record';
@@ -99,3 +100,7 @@ export const JJIconPhoneLandscape = PhoneLandscape;
 export const JJIconStatusCritical = StatusCritical;
 export const JJIconUpdate = Update;
 export const JJIconGallery = Gallery;
+export const JJIconApps = Apps;
+export { Article as JJIconArticle } from '@styled-icons/remix-fill/Article';
+export { Chat as JJIconChat } from 'grommet-icons';
+export { Search as JJIconSearch } from 'grommet-icons';
