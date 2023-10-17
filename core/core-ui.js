@@ -50,7 +50,7 @@ function JuJiuLayer({ onClickOutside, position, target, children, ...props }) {
 	);
 }
 
-const ConfirmLayer = ({ value, setValue }) => {
+const ConfirmLayer = ({ target, value, setValue }) => {
 	const { isOpen, content, onConfirm, onCancel } = value;
 	const t = useJuJiuT();
 	const closeLayer = () => {
@@ -60,7 +60,7 @@ const ConfirmLayer = ({ value, setValue }) => {
 
 	return (
 		isOpen && (
-			<Layer position='bottom' responsive={false} onClickOutside={closeLayer}>
+			<Layer target={target?.current} position='bottom' responsive={false} onClickOutside={closeLayer}>
 				<Box width='100vw' align='center' pad={{ vertical: 'large' }} gap='medium' justify='center'>
 					{typeof content === 'string' ? <Text>{content}</Text> : content}
 					<Box direction='row' gap='small'>

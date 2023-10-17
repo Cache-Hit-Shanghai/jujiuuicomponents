@@ -3,7 +3,7 @@ import { Card, CardHeader, CardBody, Text, Grid } from 'grommet';
 
 function DateCard({ title, elWidth, children }) {
 	return (
-		<Card>
+		<Card flex={false}>
 			<CardHeader background='background-front' pad='small'>
 				<Text>{title}</Text>
 			</CardHeader>
