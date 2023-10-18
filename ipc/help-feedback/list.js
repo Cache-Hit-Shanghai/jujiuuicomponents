@@ -4,6 +4,7 @@ import { List, Box, Text, Tag } from 'grommet';
 import { JJIconArticle } from '../icons';
 import Link, { useJuJiuT } from '@/state/translate';
 import { TagColor } from '../../data/help-feedback';
+import { PostMeta } from './post';
 
 function HelpFeedbackList({ data = [], getUsername, getCreatedAt, basePath = '' }) {
 	const t = useJuJiuT();
@@ -26,12 +27,7 @@ function HelpFeedbackList({ data = [], getUsername, getCreatedAt, basePath = '' 
 								<Tag key={tag} border={false} background={TagColor[tag]} size='xsmall' value={t(tag)} />
 							))}
 						</Box>
-						<Text size='small' color='text-xweak'>
-							{t('由 {username} 于 {createdAt} 创建', {
-								username: getUsername(datum),
-								createdAt: getCreatedAt(datum),
-							})}
-						</Text>
+						<PostMeta username={getUsername(datum)} createdAt={getCreatedAt(datum)} />
 					</Box>
 				</Box>
 			)}

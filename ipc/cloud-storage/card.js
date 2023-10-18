@@ -29,9 +29,9 @@ function CloudStorageCard({ device, hasVip, expireAt, basePath = '' }) {
 							<Box align='end'>
 								<Text color='status-ok'>{t('正常使用中')}</Text>
 								<Text size='small' color='text-xweak'>
-									{t('将于')}
-									{JuJiuUtilV2.date.dateFormat(hasVip?.record.expiresTime, 'yyyy-MM-dd')}
-									{t('日到期')}
+									{t('将于 {expireAt} 日到期', {
+										expireAt: JuJiuUtilV2.date.dateFormat(hasVip?.record.expiresTime, 'yyyy-MM-dd'),
+									})}
 								</Text>
 							</Box>
 						</Box>

@@ -9,7 +9,7 @@ function CloudStorageHead() {
 	return (
 		<>
 			<Box flex={false}>
-				<CloudStorageTitle text={t('云存储')} />
+				<CloudStorageTitle text={t('云存储')} margin={{ bottom: 'none' }} />
 				<CloudStorageDesc text={t('不会丢失的录像文件存储。')} />
 			</Box>
 			<Card flex={false}>
@@ -30,9 +30,9 @@ function CloudStorageHead() {
 	);
 }
 
-function CloudStorageTitle({ text }) {
+function CloudStorageTitle({ text, ...props }) {
 	return (
-		<Heading level={2} margin='none'>
+		<Heading level={2} margin='none' {...props}>
 			{text}
 		</Heading>
 	);
