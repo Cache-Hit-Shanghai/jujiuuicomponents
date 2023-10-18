@@ -1,6 +1,6 @@
 {
-  "Index": {
-    "发现": "发现",
+	"Index": {
+		"发现": "发现",
 		"修改昵称提示": "请设置2-20个字符，不能使用 @/ ? * : | < > 等字符。",
 		"必填": "必填",
 		"看护区域有人移动": "看护区域有人移动",
@@ -139,6 +139,7 @@
 		"云存储即将过期": "云存储即将过期",
 		"已分享{count}人": "已分享{count}人",
 		"来自 {name}": "来自 {name}",
-		"由 {username} 于 {createdAt} 创建": "由 {username} 于 {createdAt} 创建"
+		"由 {username} 于 {createdAt} 创建": "由 {username} 于 {createdAt} 创建",
+		"将于 {expireAt} 日到期": "将于 {expireAt} 日到期"
 	}
 }
