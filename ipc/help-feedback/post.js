@@ -107,4 +107,4 @@ function PostMeta({ username, createdAt }) {
 	);
 }
 
-export { PostMeta, PostHead, PostBody };
+export { PostMeta, PostHead, PostBody, PostTags, PostTagController };
