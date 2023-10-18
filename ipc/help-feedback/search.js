@@ -15,6 +15,7 @@ function HelpFeedbackSearchBox({ value, onChange, onSearch }) {
 				plain
 				icon={<JJIconSearch />}
 				placeholder={t('搜索问题……')}
+				focusIndicator={false}
 			/>
 			<Box flex={false} margin='small'>
 				<Button primary onClick={onSearch} size='small' label={t('搜索')} />
