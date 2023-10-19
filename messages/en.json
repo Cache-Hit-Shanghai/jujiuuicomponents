@@ -1,5 +1,7 @@
 {
   "Index": {
+    "唤醒": "Awake",
+		"设备已休眠": "Device falls asleep",
     "发现": "Discovery",
     "修改昵称提示": "Please enter 2-20 characters. Some special characters such as @/ ? * : | < > can't be used。",
     "必填": "Required",
