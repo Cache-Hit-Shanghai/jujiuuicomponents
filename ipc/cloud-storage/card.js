@@ -4,7 +4,6 @@ import { ButtonLink } from '../../core';
 import { JJIconWebcam } from '../icons';
 import { useJuJiuT } from '@/state/translate';
 import { Card, CardBody, Box, Avatar, Text, Tag, CardFooter } from 'grommet';
-import { JuJiuUtilV2 } from 'jujiu_js_common/util';
 
 function CloudStorageCard({ device, hasVip, expireAt, basePath = '' }) {
 	const { desc, usn } = device;
@@ -29,9 +28,7 @@ function CloudStorageCard({ device, hasVip, expireAt, basePath = '' }) {
 							<Box align='end'>
 								<Text color='status-ok'>{t('正常使用中')}</Text>
 								<Text size='small' color='text-xweak'>
-									{t('将于 {expireAt} 日到期', {
-										expireAt: JuJiuUtilV2.date.dateFormat(hasVip?.record.expiresTime, 'yyyy-MM-dd'),
-									})}
+									{expireAt}
 								</Text>
 							</Box>
 						</Box>
