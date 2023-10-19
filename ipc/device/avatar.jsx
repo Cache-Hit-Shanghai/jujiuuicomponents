@@ -35,7 +35,7 @@ export function IpcCardRawRobot({
 			<CardBody background='background-front'>
 				<LinkOrNone url={nextPageUrl}>
 					<Stack as='a'>
-						<Box height={'200px'}>{imgurl && <Image src={imgurl} fit='contain' alt='' />}</Box>
+						<Box height={'200px'}>{imgurl && <Image src={imgurl} fit='cover' alt='' />}</Box>
 						<Box direction='row' margin='medium' align='center' justify='between'>
 							<Box direction='row' gap='small'>
 								<Box direction='row'>{online ? <JuJiuTagDeviceOnline /> : <JuJiuTagDeviceOffline />}</Box>
@@ -76,7 +76,7 @@ export function IpcCardRaw({
 			<CardBody background='background-front'>
 				<LinkOrNone url={nextPageUrl}>
 					<Stack as='a'>
-						<Box height={'200px'}>{imgurl && <Image src={imgurl} fit='contain' alt='' />}</Box>
+						<Box height={'200px'}>{imgurl && <Image src={imgurl} fit='cover' alt='' />}</Box>
 						<Box direction='row' margin='medium' gap='small'>
 							<Box gap='small'>
 								<Box direction='row'>{online ? <JuJiuTagDeviceOnline /> : <JuJiuTagDeviceOffline />}</Box>
