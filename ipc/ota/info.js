@@ -7,7 +7,7 @@ import { ButtonLink } from '../../core';
 
 function OtaUpgradeInfo({ device, info, basePath = '' }) {
 	const { currentVersion, upgradeVersion, updateLog = '' } = info;
-	const { desc, _id } = device;
+	const { desc, _id, usn } = device;
 	const updateLogInLines = updateLog.split(/[\n\r]+/).filter((v) => v);
 	const t = useJuJiuT();
 
@@ -32,7 +32,7 @@ function OtaUpgradeInfo({ device, info, basePath = '' }) {
 			</Box>
 			<Box direction='row' justify='center'>
 				<ButtonLink
-					href={{ pathname: basePath + '/ota/upgrade', query: { _id } }}
+					href={{ pathname: basePath + '/ota/upgrade', query: { _id, desc } }}
 					primary
 					label={t('现在升级')}
 				/>

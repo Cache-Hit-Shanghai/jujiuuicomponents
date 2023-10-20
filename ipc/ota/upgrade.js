@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { useJuJiuT } from '@/state/translate';
 import { Heading, Box, Avatar, Text, Meter } from 'grommet';
@@ -6,7 +6,7 @@ import { JJIconWebcam } from './../icons';
 import { JuJiuInformation } from '../../core';
 
 function OtaUpgradeView({ device, progress, maxProgress, children }) {
-	const { desc, usn } = device;
+	const { desc } = device;
 	const isUpgradeOver = progress === maxProgress;
 
 	const t = useJuJiuT();

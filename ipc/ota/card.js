@@ -6,8 +6,8 @@ import { useJuJiuT } from '@/state/translate';
 import { Card, CardBody, Box, Text } from 'grommet';
 
 function OtaDeviceCard({ device, otaInfo, parseSize = (v) => v, basePath = '' }) {
-	const { _id, desc, usn } = device;
-	const { currentVersion, upgradeVersion, upgradeSize, updateLog } = otaInfo;
+	const { _id, desc } = device;
+	const { currentVersion, upgradeVersion, upgradeSize = 0, updateLog } = otaInfo;
 
 	const t = useJuJiuT();
 
@@ -26,15 +26,19 @@ function OtaDeviceCard({ device, otaInfo, parseSize = (v) => v, basePath = '' })
 						</Text>
 					</Box>
 				</Box>
-				<ButtonLink
-					href={{
-						pathname: basePath + '/ota/upgrade-info',
-						query: { _id, currentVersion, upgradeVersion, updateLog },
-					}}
-					primary
-					size='small'
-					label={t('现在升级')}
-				/>
+				<Box width={'100px'}>
+					{upgradeVersion && (
+						<ButtonLink
+							href={{
+								pathname: basePath + '/ota/upgrade-info',
+								query: { _id, desc, currentVersion, upgradeVersion, updateLog },
+							}}
+							primary
+							size='small'
+							label={t('现在升级')}
+						/>
+					)}
+				</Box>
 			</CardBody>
 		</Card>
 	);
