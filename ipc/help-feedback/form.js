@@ -3,12 +3,14 @@
 import { useJuJiuT } from '@/state/translate';
 import { Form, TextArea, Button, Box } from 'grommet';
 
-function PostEditForm({ onSubmit }) {
+function PostEditForm({ onSubmit, onChange, value = {} }) {
 	const t = useJuJiuT();
 
 	return (
 		<Form
 			onSubmit={onSubmit}
+			onChange={onChange}
+			value={value}
 			style={{
 				flex: '1 1 auto',
 				display: 'flex',

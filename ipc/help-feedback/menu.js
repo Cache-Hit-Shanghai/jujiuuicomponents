@@ -13,7 +13,7 @@ function HelpFeedbackMenu({ basePath = '' }) {
 			dropAlign={{ top: 'bottom', right: 'right' }}
 			items={[
 				{ label: '新建问题', href: basePath + '/help-feedback/new', Icon: JJIconAdd },
-				{ label: '全部问题', href: '', Icon: JJIconApps },
+				{ label: '全部问题', href: '?from=all', Icon: JJIconApps },
 				{
 					label: '我的问题',
 					href: '?from=me',

@@ -45,7 +45,7 @@ function PostBody({ messages = [], parseTime }) {
 	);
 }
 
-function PostTags({ tagData, children }) {
+function PostTags({ tagData = {}, children }) {
 	const t = useJuJiuT();
 
 	return (
@@ -99,9 +99,11 @@ function PostMeta({ username, createdAt }) {
 
 	return (
 		<Text size='small' color='text-xweak'>
-			{t('由 {username} 于 {createdAt} 创建', {
-				username,
-				createdAt,
+			{t('由 {username} 于 {createdAt} 创建', undefined, {
+				values: {
+					username,
+					createdAt,
+				},
 			})}
 		</Text>
 	);
