@@ -32,7 +32,7 @@ function SharingDeviceList({ data = [], makeHref = emptyFn }) {
 			{({ desc, shareCount, _id }) => (
 				<ListElement
 					title={desc}
-					content={t('已分享{count}人', { count: shareCount })}
+					content={t('已分享{count}人', undefined, { values: { count: shareCount } })}
 					href={makeHref({ _id })}
 				/>
 			)}
@@ -46,7 +46,11 @@ function SharedDeviceList({ data = [], makeHref = emptyFn }) {
 	return (
 		<List data={data}>
 			{({ desc, sharedBy, usn }) => (
-				<ListElement title={desc} content={t('来自 {name}', { name: sharedBy })} href={makeHref({ usn })} />
+				<ListElement
+					title={desc}
+					content={t('来自 {name}', undefined, { values: { name: sharedBy } })}
+					href={makeHref({ usn })}
+				/>
 			)}
 		</List>
 	);
