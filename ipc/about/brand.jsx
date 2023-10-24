@@ -4,7 +4,7 @@ import { Text, Box, Tag } from 'grommet';
 import { CreativeCommons } from 'grommet-icons';
 import { useJuJiuT } from '@/state/translate';
 
-export function IpcLogo({ size = 'medium' }) {
+export function IpcLogo() {
 	const t = useJuJiuT();
 	return (
 		<Box direction='row' align='center' gap='small' focusIndicator={false}>
