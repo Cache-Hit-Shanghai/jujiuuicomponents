@@ -47,6 +47,7 @@ export function IpcCardRawRobot({
 									loop={true}
 									mute={true}
 									style={{ zIndex: 0 }}
+									playsInline={true}
 								/>
 							)}
 						</Box>
