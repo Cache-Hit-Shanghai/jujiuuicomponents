@@ -222,9 +222,17 @@ function LinkGroup({ data }) {
 	);
 }
 
-function IconBack() {
+function IconBack({ onClick }) {
 	const router = useRouter();
-	return <Button icon={<FormPrevious color='control' />} onClick={() => router.back()} />;
+	return (
+		<Button
+			icon={<FormPrevious color='control' />}
+			onClick={() => {
+				onClick && onClick();
+				router.back();
+			}}
+		/>
+	);
 }
 
 function IconButton({ icon, label, onClick, disabled }) {
