@@ -30,12 +30,13 @@ export function IpcCardRawRobot({
 	online = false,
 	cloudStorage = 'expiring',
 	children,
+	...props
 }) {
 	return (
 		<Card>
 			<CardBody background='background-front'>
 				<LinkOrNone url={nextPageUrl}>
-					<Stack as='a'>
+					<Stack as='a' {...props}>
 						<Box height={'200px'}>
 							{imgurl && <Image src={imgurl} fit='cover' alt='' />}
 							{videoUrl && (
@@ -53,9 +54,7 @@ export function IpcCardRawRobot({
 						</Box>
 						<Box direction='row' margin='medium' align='center' justify='between'>
 							<Box direction='row' gap='small'>
-								<Box direction='row'>
-									{online ? <JuJiuTagDeviceOnline /> : <JuJiuTagDeviceOffline />}
-								</Box>
+								<Box direction='row'>{online ? <JuJiuTagDeviceOnline /> : <JuJiuTagDeviceOffline />}</Box>
 								<Box direction='row'>
 									{
 										{
@@ -96,9 +95,7 @@ export function IpcCardRaw({
 						<Box height={'200px'}>{imgurl && <Image src={imgurl} fit='cover' alt='' />}</Box>
 						<Box direction='row' margin='medium' gap='small'>
 							<Box gap='small'>
-								<Box direction='row'>
-									{online ? <JuJiuTagDeviceOnline /> : <JuJiuTagDeviceOffline />}
-								</Box>
+								<Box direction='row'>{online ? <JuJiuTagDeviceOnline /> : <JuJiuTagDeviceOffline />}</Box>
 							</Box>
 							<Box gap='small'>
 								<Box direction='row'>
