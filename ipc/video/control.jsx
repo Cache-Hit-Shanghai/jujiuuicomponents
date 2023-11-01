@@ -470,7 +470,6 @@ export function PanLayer({ target }) {
 					target={target?.current}
 					position='left'
 					responsive={false}
-					margin='small'
 					onClickOutside={() => setShow(false)}
 				>
 					<PanControl />
