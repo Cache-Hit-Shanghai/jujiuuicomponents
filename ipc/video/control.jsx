@@ -1,19 +1,6 @@
 'use client';
 
-import {
-	Text,
-	Box,
-	Card,
-	CardBody,
-	CardFooter,
-	Menu,
-	Image,
-	Button,
-	Layer,
-	Stack,
-	CheckBox,
-	ResponsiveContext,
-} from 'grommet';
+import { Text, Box, Card, CardBody, CardFooter, Menu, Image, Button, Stack, CheckBox } from 'grommet';
 import {
 	Pan,
 	More,
@@ -30,7 +17,7 @@ import {
 	CaretLeftFill,
 	CircleInformation,
 } from 'grommet-icons';
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import { SettingsOutline } from '@styled-icons/evaicons-outline/SettingsOutline';
 import { Call } from '@styled-icons/fluentui-system-regular/Call';
 import { CallDismiss } from '@styled-icons/fluentui-system-regular/CallDismiss';
@@ -253,13 +240,12 @@ export function MoreControl({ onClick }) {
 	);
 }
 
-export function ScreenCopyControl({ onClick, showTitle = true, disabled = false }) {
-	const size = useContext(ResponsiveContext);
+export function ScreenCopyControl({ showTip = false, onClick, showTitle = true, disabled = false }) {
 	const t = useJuJiuT();
 	const title = t('截图');
 
 	return (
-		<Button tip={size === 'small' ? null : title} onClick={onClick} disabled={disabled}>
+		<Button tip={showTip ? null : title} onClick={onClick} disabled={disabled}>
 			<Box pad='small' align='center'>
 				<Camera />
 				{showTitle && <Text size='small'>{title}</Text>}
@@ -268,13 +254,18 @@ export function ScreenCopyControl({ onClick, showTitle = true, disabled = false 
 	);
 }
 
-export function ChatControl({ speaking = false, onClick, disabled = false, showTitle = true }) {
-	const size = useContext(ResponsiveContext);
+export function ChatControl({
+	showTip = false,
+	speaking = false,
+	onClick,
+	disabled = false,
+	showTitle = true,
+}) {
 	const t = useJuJiuT();
 	const title = t(speaking ? '挂断' : '对讲');
 
 	return (
-		<Button tip={size === 'small' ? null : title} {...{ onClick, disabled }}>
+		<Button tip={showTip ? null : title} {...{ onClick, disabled }}>
 			<Box pad='small' align='center'>
 				{speaking ? <CallDismiss size='24' /> : <Call size='24' />}
 				{showTitle && <Text size='small'>{title}</Text>}
@@ -283,13 +274,12 @@ export function ChatControl({ speaking = false, onClick, disabled = false, showT
 	);
 }
 
-export function MuteControl({ mute = true, onClick, showTitle = true, disabled = false }) {
-	const size = useContext(ResponsiveContext);
+export function MuteControl({ showTip = false, mute = true, onClick, showTitle = true, disabled = false }) {
 	const t = useJuJiuT();
 	const title = t(mute ? '恢复' : '静音');
 
 	return (
-		<Button tip={size === 'small' ? null : title} onClick={onClick} disabled={disabled}>
+		<Button tip={showTip ? null : title} onClick={onClick} disabled={disabled}>
 			<Box pad='small' align='center'>
 				{mute ? <Volume /> : <VolumeMute />}
 				{showTitle && <Text size='small'>{title}</Text>}
@@ -298,13 +288,18 @@ export function MuteControl({ mute = true, onClick, showTitle = true, disabled =
 	);
 }
 
-export function RecordControl({ recording = false, onClick, showTitle = true, disabled = false }) {
-	const size = useContext(ResponsiveContext);
+export function RecordControl({
+	showTip = false,
+	recording = false,
+	onClick,
+	showTitle = true,
+	disabled = false,
+}) {
 	const t = useJuJiuT();
 	const title = t(recording ? '停止' : '录像');
 
 	return (
-		<Button tip={size === 'small' ? null : title} {...{ onClick, disabled }}>
+		<Button tip={showTip ? null : title} {...{ onClick, disabled }}>
 			<Box pad='small' align='center'>
 				{recording ? <RecordStop size='24' /> : <Record size='24' />}
 				{showTitle && <Text size='small'>{title}</Text>}
@@ -314,6 +309,7 @@ export function RecordControl({ recording = false, onClick, showTitle = true, di
 }
 
 export function ZoomControl({
+	showTip = false,
 	showTitle = true,
 	items = [
 		{ label: '4X', onClick: () => {}, justify: 'end' },
@@ -328,18 +324,11 @@ export function ZoomControl({
 	],
 	disabled = false,
 }) {
-	const size = useContext(ResponsiveContext);
 	const t = useJuJiuT();
 	const title = t('变焦');
 
 	return (
-		<Menu
-			plain
-			tip={size === 'small' ? null : title}
-			dropAlign={{ bottom: 'top' }}
-			items={items}
-			disabled={disabled}
-		>
+		<Menu plain tip={showTip ? null : title} dropAlign={{ bottom: 'top' }} items={items} disabled={disabled}>
 			<Box pad='small' align='center'>
 				<ZoomIn />
 				{showTitle && <Text size='small'>{title}</Text>}
@@ -348,15 +337,14 @@ export function ZoomControl({
 	);
 }
 
-export function ResolutionControl({ showTitle = true, disabled = false, items }) {
-	const size = useContext(ResponsiveContext);
+export function ResolutionControl({ showTip = false, showTitle = true, disabled = false, items }) {
 	const t = useJuJiuT();
 	const title = t('清晰度');
 
 	return (
 		<Menu
 			plain
-			tip={size === 'small' ? null : title}
+			tip={showTip ? null : title}
 			dropAlign={{ bottom: 'top' }}
 			items={
 				items || [
@@ -447,18 +435,13 @@ export function PanControl({ size = 'small', ...props }) {
 	);
 }
 
-export function PanLayer() {
+export function PanLayer({ showTip = false }) {
 	const t = useJuJiuT();
-	const size = useContext(ResponsiveContext);
 	const [show, setShow] = useState(false);
+
 	return (
 		<>
-			<Button
-				plain
-				tip={size === 'small' ? null : t('云台')}
-				focusIndicator={false}
-				onClick={() => setShow(!show)}
-			>
+			<Button plain tip={showTip ? null : t('云台')} focusIndicator={false} onClick={() => setShow(!show)}>
 				<Box pad='small' align='center'>
 					<Pan />
 				</Box>
