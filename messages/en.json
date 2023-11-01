@@ -1,5 +1,10 @@
 {
   "Index": {
+    "相册": "Gallery",
+		"云存储": "Cloud Storage",
+		"固件升级": "OTA",
+		"我的分享": "My Sharing",
+		"帮助与反馈": "Help",
 		"回复": "Reply",
 		"录像截图存放到": "Record, snapshot storage",
 		"录像截图设置": "Record, snapshot settings",
