@@ -437,7 +437,7 @@ export function PanControl({ size = 'small', ...props }) {
 	};
 
 	return (
-		<Box flex={false} width={size} height={size} style={{ position: 'relative' }} {...props}>
+		<Box flex={false} width={size} height={size} style={{ position: 'relative' }} margin='small' {...props}>
 			<SectorBox background={background} angle={45} onClick={() => console.log('up')} />
 			<SectorBox background={background} angle={135} onClick={() => console.log('right')} />
 			<SectorBox background={background} angle={225} onClick={() => console.log('down')} />
