@@ -336,7 +336,7 @@ export function ZoomControl({
 		<Menu
 			plain
 			tip={size === 'small' ? null : title}
-			dropAlign={{ top: 'bottom' }}
+			dropAlign={{ bottom: 'top' }}
 			items={items}
 			disabled={disabled}
 		>
@@ -357,7 +357,7 @@ export function ResolutionControl({ showTitle = true, disabled = false, items })
 		<Menu
 			plain
 			tip={size === 'small' ? null : title}
-			dropAlign={{ top: 'bottom' }}
+			dropAlign={{ bottom: 'top' }}
 			items={
 				items || [
 					{ label: t('极清'), onClick: () => {}, justify: 'end' },
