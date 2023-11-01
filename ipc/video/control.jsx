@@ -447,7 +447,7 @@ export function PanControl({ size = 'small', ...props }) {
 	);
 }
 
-export function PanLayer({ target }) {
+export function PanLayer() {
 	const t = useJuJiuT();
 	const size = useContext(ResponsiveContext);
 	const [show, setShow] = useState(false);
@@ -463,18 +463,12 @@ export function PanLayer({ target }) {
 					<Pan />
 				</Box>
 			</Button>
-			{show && (
-				<Layer
-					plain
-					animation='fadeIn'
-					target={target?.current}
-					position='left'
-					responsive={false}
-					onClickOutside={() => setShow(false)}
-				>
-					<PanControl />
-				</Layer>
-			)}
+			<Box
+				justify='center'
+				style={{ position: 'fixed', left: 0, top: 0, bottom: 0, visibility: show ? 'visible' : 'hidden' }}
+			>
+				<PanControl />
+			</Box>
 		</>
 	);
 }
