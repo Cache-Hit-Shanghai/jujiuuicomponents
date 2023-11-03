@@ -245,7 +245,7 @@ export function ScreenCopyControl({ showTip = false, onClick, showTitle = true, 
 	const title = t('截图');
 
 	return (
-		<Button tip={showTip && title} onClick={onClick} disabled={disabled}>
+		<Button tip={showTip ? title : ''} onClick={onClick} disabled={disabled}>
 			<Box pad='small' align='center'>
 				<Camera />
 				{showTitle && <Text size='small'>{title}</Text>}
@@ -265,7 +265,7 @@ export function ChatControl({
 	const title = t(speaking ? '挂断' : '对讲');
 
 	return (
-		<Button tip={showTip && title} {...{ onClick, disabled }}>
+		<Button tip={showTip ? title : ''} {...{ onClick, disabled }}>
 			<Box pad='small' align='center'>
 				{speaking ? <CallDismiss size='24' /> : <Call size='24' />}
 				{showTitle && <Text size='small'>{title}</Text>}
@@ -279,7 +279,7 @@ export function MuteControl({ showTip = false, mute = true, onClick, showTitle =
 	const title = t(mute ? '恢复' : '静音');
 
 	return (
-		<Button tip={showTip && title} onClick={onClick} disabled={disabled}>
+		<Button tip={showTip ? title : ''} onClick={onClick} disabled={disabled}>
 			<Box pad='small' align='center'>
 				{mute ? <Volume /> : <VolumeMute />}
 				{showTitle && <Text size='small'>{title}</Text>}
@@ -299,7 +299,7 @@ export function RecordControl({
 	const title = t(recording ? '停止' : '录像');
 
 	return (
-		<Button tip={showTip && title} {...{ onClick, disabled }}>
+		<Button tip={showTip ? title : ''} {...{ onClick, disabled }}>
 			<Box pad='small' align='center'>
 				{recording ? <RecordStop size='24' /> : <Record size='24' />}
 				{showTitle && <Text size='small'>{title}</Text>}
@@ -328,7 +328,7 @@ export function ZoomControl({
 	const title = t('变焦');
 
 	return (
-		<Menu plain tip={showTip && title} dropAlign={{ bottom: 'top' }} items={items} disabled={disabled}>
+		<Menu plain tip={showTip ? title : ''} dropAlign={{ bottom: 'top' }} items={items} disabled={disabled}>
 			<Box pad='small' align='center'>
 				<ZoomIn />
 				{showTitle && <Text size='small'>{title}</Text>}
@@ -344,7 +344,7 @@ export function ResolutionControl({ showTip = false, showTitle = true, disabled 
 	return (
 		<Menu
 			plain
-			tip={showTip && title}
+			tip={showTip ? title : ''}
 			dropAlign={{ bottom: 'top' }}
 			items={
 				items || [
