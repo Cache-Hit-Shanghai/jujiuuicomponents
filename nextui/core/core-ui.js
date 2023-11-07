@@ -21,6 +21,15 @@ export function ButtonBack({ onClick }) {
 	);
 }
 
+export function NavbarBack({ label }) {
+  return (
+    <div className='flex items-center'>
+      <ButtonBack />
+      <p className='text-base'>{label}</p>
+    </div>
+  );
+}
+
 export function LinkGroup({ data }) {
 	return (
 		<Card>
@@ -28,7 +37,7 @@ export function LinkGroup({ data }) {
 				<Listbox aria-label='LinkGroup'>
           {data.map(datum => (
             <ListboxItem key={datum.label} textValue={datum.label} href={datum.url} endContent={<ChevronRightIcon className='h-6 w-6' />}>
-              {datum.label}
+              <p className='text-base'>{datum.label}</p>
             </ListboxItem>
           ))}
         </Listbox>
