@@ -16,9 +16,9 @@ export function AppLogo() {
 				</div>
 				<Spacer y={4} />
 				<div className='flex flex-col items-center'>
-					<p>{t('slogan')}</p>
+					<p className='text-lg'>{t('slogan')}</p>
 					<Spacer y={1} />
-					<p className='text-small'>
+					<p className='text-sm text-default-400'>
 						Powered by {t('光方云')}
 						<sup>&reg; </sup>
 					</p>
@@ -43,7 +43,7 @@ export function AppMark() {
 				<sup>&reg;</sup>
 			</p>
 			<Spacer y={1} />
-			<p className='text-tiny text-center text-default-400'>
+			<p className='text-xs text-center text-default-400'>
 				&copy;2021-2023 {t('上海光方迅视科技有限公司版权所有')}
 			</p>
 		</div>
