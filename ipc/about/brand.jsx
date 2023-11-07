@@ -1,16 +1,16 @@
 'use client';
 
 import { Text, Box, Tag } from 'grommet';
-import { CreativeCommons } from 'grommet-icons';
+import { Pets } from '@styled-icons/material-outlined/Pets';
 import { useJuJiuT } from '@/state/translate';
 
 export function IpcLogo() {
 	const t = useJuJiuT();
 	return (
 		<Box direction='row' align='center' gap='small' focusIndicator={false}>
-			<CreativeCommons size='large' color='text-strong' />
+			<Pets size='48' />
 			<Text size='xxlarge' weight='bold' color='text-strong'>
-				{t('雎鸠云视觉')}
+				{t('小皮部落')}
 			</Text>
 		</Box>
 	);
@@ -24,10 +24,10 @@ export function AppLogo() {
 				<IpcLogo />
 			</Box>
 			<Box align='center'>
-				<Text>{t('全球领先的Web视觉系统')}</Text>
+				<Text>{t('slogan')}</Text>
 				<Box direction='row' gap='small' align='center'>
 					<Text size='small'>
-						Powered by {t('雎鸠云')}
+						Powered by {t('光方云')}
 						<sup>&reg;</sup>
 					</Text>
 					<Tag value='IPv6' border={false} size='xsmall' background='accent-4' />
@@ -43,7 +43,7 @@ export function AppMark() {
 		<Box flex={false} align='center' margin='large'>
 			<Box direction='row' gap='small' align='center'>
 				<Text size='large'>
-					{t('雎鸠云视觉')}
+					{t('小皮部落')}
 					<sup>&reg;</sup>
 				</Text>
 			</Box>
