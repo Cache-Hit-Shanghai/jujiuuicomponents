@@ -1,7 +1,7 @@
 'use client';
 
 import { Button, Card, CardBody, Listbox, ListboxItem, Spacer } from '@nextui-org/react';
-import { useRouter } from '@/state/translate';
+import Link, { useRouter } from '@/state/translate';
 import { ArrowUturnLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid';
 
 export function ButtonBack({ onClick }) {
@@ -38,6 +38,7 @@ export function LinkGroup({ data }) {
 				<Listbox aria-label='LinkGroup'>
 					{data.map((datum) => (
 						<ListboxItem
+              as={Link}
 							key={datum.label}
 							textValue={datum.label}
 							href={datum.url}
@@ -50,4 +51,15 @@ export function LinkGroup({ data }) {
 			</CardBody>
 		</Card>
 	);
+}
+
+export function LinkButton({ href, icon, label }) {
+  return (
+    <Button variant='light' as={Link} href={href}>
+      <div className='flex flex-col items-center'>
+        {icon}
+        <p>{label}</p>
+      </div>
+    </Button>
+  );
 }
