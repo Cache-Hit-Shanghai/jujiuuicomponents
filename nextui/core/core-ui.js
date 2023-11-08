@@ -10,7 +10,7 @@ export function ButtonBack({ onClick }) {
 	return (
 		<Button
 			variant='light'
-			onPress={() => {
+			onClick={() => {
 				onClick && onClick();
 				router.back();
 			}}
