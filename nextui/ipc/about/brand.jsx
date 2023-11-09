@@ -3,9 +3,9 @@
 import { Card, CardBody, Spacer, Chip } from '@nextui-org/react';
 import { Pets } from '@styled-icons/material-outlined/Pets';
 import { useJuJiuT } from '@/state/translate';
-import { Chewy } from 'next/font/google';
+import { ZCOOL_KuaiLe } from 'next/font/google';
 
-const chewy = Chewy({
+const googleFont = ZCOOL_KuaiLe({
 	weight: '400',
 	subsets: ['latin'],
 	display: 'swap',
@@ -19,7 +19,7 @@ export function AppLogo() {
 			<CardBody className='px-0 py-6 relative'>
 				<div className='flex gap-2 items-center justify-center'>
 					<Pets size='48' />
-					<p className={`text-4xl ${chewy.className}`}>{t('小皮部落')}</p>
+					<p className={`text-4xl ${googleFont.className}`}>{t('小皮部落')}</p>
 				</div>
 				<Spacer y={4} />
 				<div className='flex flex-col items-center'>
