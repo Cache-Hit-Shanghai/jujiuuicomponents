@@ -92,7 +92,7 @@ export function NavTabs() {
 	return (
 		<Tabs fullWidth color='primary' variant='light' selectedKey={pathname}>
 			<Tab
-				key='/'
+				key='/device2/'
 				title={
 					<div className='flex flex-row items-center gap-2'>
 						<HomeModernIcon className='h-6 w-6' />
@@ -100,7 +100,7 @@ export function NavTabs() {
 					</div>
 				}
 				as={Link}
-				href='/'
+				href='/device2/'
 			/>
 			<Tab
 				key='/discovery/'

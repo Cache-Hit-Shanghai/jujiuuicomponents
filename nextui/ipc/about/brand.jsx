@@ -11,16 +11,24 @@ const googleFont = ZCOOL_KuaiLe({
 	display: 'swap',
 });
 
-export function AppLogo() {
+export function AppLogo({ size = 'sm' }) {
+	const t = useJuJiuT();
+
+	return (
+		<div className='flex gap-2 items-center justify-center'>
+			<Pets size={size === 'sm' ? 24 : 48} />
+			<p className={`${size === 'sm' ? 'text-lg' : 'text-4xl'} ${googleFont.className}`}>{t('小皮部落')}</p>
+		</div>
+	);
+}
+
+export function AppAbout() {
 	const t = useJuJiuT();
 
 	return (
 		<Card>
 			<CardBody className='px-0 py-6 relative'>
-				<div className='flex gap-2 items-center justify-center'>
-					<Pets size='48' />
-					<p className={`text-4xl ${googleFont.className}`}>{t('小皮部落')}</p>
-				</div>
+				<AppLogo size='lg' />
 				<Spacer y={4} />
 				<div className='flex flex-col items-center'>
 					<p className='text-lg'>{t('slogan')}</p>
