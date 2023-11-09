@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, Card, CardBody, Listbox, ListboxItem, Spacer } from '@nextui-org/react';
+import { Button, Card, CardBody, Listbox, ListboxItem } from '@nextui-org/react';
 import Link, { useRouter } from '@/state/translate';
 import { ArrowUturnLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid';
 
@@ -10,7 +10,7 @@ export function ButtonBack({ onClick }) {
 	return (
 		<Button
 			variant='light'
-			onClick={() => {
+			onPress={() => {
 				onClick && onClick();
 				router.back();
 			}}
@@ -33,18 +33,17 @@ export function LinkGroup({ data }) {
 	return (
 		<Card>
 			<CardBody>
-				<Listbox aria-label='LinkGroup'>
-					{data.map((datum) => (
+				<Listbox items={data} aria-label='LinkGroup'>
+					{(datum) => (
 						<ListboxItem
-              as={Link}
+							as={Link}
 							key={datum.label}
-							textValue={datum.label}
 							href={datum.url}
 							endContent={<ChevronRightIcon className='h-6 w-6' />}
 						>
-							<p className='text-base'>{datum.label}</p>
+							{datum.label}
 						</ListboxItem>
-					))}
+					)}
 				</Listbox>
 			</CardBody>
 		</Card>
@@ -52,12 +51,12 @@ export function LinkGroup({ data }) {
 }
 
 export function LinkButton({ href, icon, label }) {
-  return (
-    <Button variant='light' as={Link} href={href}>
-      <div className='flex flex-col items-center'>
-        {icon}
-        <p>{label}</p>
-      </div>
-    </Button>
-  );
+	return (
+		<Button variant='light' as={Link} href={href}>
+			<div className='flex flex-col items-center'>
+				{icon}
+				<p>{label}</p>
+			</div>
+		</Button>
+	);
 }
