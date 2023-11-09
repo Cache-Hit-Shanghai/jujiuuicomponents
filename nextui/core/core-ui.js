@@ -8,7 +8,7 @@ import {
 	MoonIcon,
 	UserCircleIcon,
 	HomeModernIcon,
-	ArrowUturnLeftIcon,
+	ChevronLeftIcon,
 	ChevronRightIcon,
 	MagnifyingGlassIcon,
 } from '@heroicons/react/24/solid';
@@ -39,7 +39,7 @@ export function ButtonBack({ onClick }) {
 				router.back();
 			}}
 		>
-			<ArrowUturnLeftIcon className='h-6 w-6' />
+			<ChevronLeftIcon className='h-6 w-6' />
 		</Button>
 	);
 }
