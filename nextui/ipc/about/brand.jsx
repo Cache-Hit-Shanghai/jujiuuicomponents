@@ -15,7 +15,7 @@ export function AppLogo({ size = 'sm' }) {
 	const t = useJuJiuT();
 
 	return (
-		<div className='flex gap-2 items-center justify-center'>
+		<div className='flex px-2 gap-2 items-center justify-center'>
 			<Pets size={size === 'sm' ? 24 : 48} />
 			<p className={`${size === 'sm' ? 'text-lg' : 'text-4xl'} ${googleFont.className}`}>{t('小皮部落')}</p>
 		</div>

@@ -1,16 +1,11 @@
 'use client';
 
-import { Button, Card, CardBody, Listbox, ListboxItem, Tabs, Chip } from '@nextui-org/react';
-import { useTheme } from 'next-themes';
-import Link, { useJuJiuT, useRouter, usePathname } from '@/state/translate';
+import { Chip } from '@nextui-org/react';
+import { useJuJiuT } from '@/state/translate';
 import {
 	ArrowTopRightOnSquareIcon,
 	CloudIcon,
 	ArrowLeftOnRectangleIcon,
-	Battery50Icon,
-	ArrowUturnLeftIcon,
-	ChevronRightIcon,
-	MagnifyingGlassIcon,
 } from '@heroicons/react/24/solid';
 
 export function ChipOnline() {
