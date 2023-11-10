@@ -33,6 +33,7 @@ export function ButtonBack({ onClick }) {
 
 	return (
 		<Button
+      isIconOnly
 			variant='light'
 			onPress={() => {
 				onClick && onClick();
@@ -46,9 +47,9 @@ export function ButtonBack({ onClick }) {
 
 export function NavbarBack({ label }) {
 	return (
-		<div className='flex items-center'>
+		<div className='p-2 gap-4 flex items-center'>
 			<ButtonBack />
-			<p className='text-base'>{label}</p>
+			<p className='self-center'>{label}</p>
 		</div>
 	);
 }
