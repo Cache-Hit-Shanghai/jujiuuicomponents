@@ -66,7 +66,7 @@ export function LinkGroup({ data }) {
 							href={datum.url}
 							endContent={<ChevronRightIcon className='h-6 w-6' />}
 						>
-							{datum.label}
+							<p className='text-base'>{datum.label}</p>
 						</ListboxItem>
 					)}
 				</Listbox>

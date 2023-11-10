@@ -31,7 +31,7 @@ export function AppAbout() {
 				<AppLogo size='lg' />
 				<Spacer y={4} />
 				<div className='flex flex-col items-center'>
-					<p className='text-lg'>{t('slogan')}</p>
+					<p>{t('slogan')}</p>
 					<Spacer y={1} />
 					<p className='text-sm text-default-400'>
 						Powered by {t('光方云')}
