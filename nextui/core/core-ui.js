@@ -74,9 +74,9 @@ export function LinkGroup({ data }) {
 	);
 }
 
-export function LinkButton({ href, icon, label }) {
+export function LinkButton({ href, icon, label, className }) {
 	return (
-		<Button variant='light' as={Link} href={href}>
+		<Button isIconOnly={!label} variant='light' as={Link} href={href} className={className}>
 			<div className='flex flex-col items-center'>
 				{icon}
 				<p>{label}</p>

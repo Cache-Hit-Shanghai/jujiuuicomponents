@@ -2,11 +2,8 @@
 
 import { Chip } from '@nextui-org/react';
 import { useJuJiuT } from '@/state/translate';
-import {
-	ArrowTopRightOnSquareIcon,
-	CloudIcon,
-	ArrowLeftOnRectangleIcon,
-} from '@heroicons/react/24/solid';
+import { ArrowTopRightOnSquareIcon, CloudIcon, ArrowLeftOnRectangleIcon } from '@heroicons/react/24/solid';
+import { Record } from '@styled-icons/fluentui-system-regular/Record';
 
 export function ChipOnline() {
 	const t = useJuJiuT();
@@ -60,6 +57,14 @@ export function ChipCloudStorageExpired() {
 	return (
 		<Chip color='danger' startContent={<CloudIcon className='h-5 w-5' />}>
 			{t('云存储已过期')}
+		</Chip>
+	);
+}
+
+export function ChipRecording({ label, ...props }) {
+	return (
+		<Chip color='danger' startContent={<Record size={18} />} {...props}>
+			{label}
 		</Chip>
 	);
 }
