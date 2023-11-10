@@ -90,7 +90,7 @@ export function NavTabs() {
 	const pathname = usePathname();
 
 	return (
-		<Tabs fullWidth size='lg' color='primary' variant='light' selectedKey={pathname}>
+		<Tabs fullWidth color='primary' variant='light' selectedKey={pathname} className='p-2'>
 			<Tab
 				key='/device2/'
 				title={
