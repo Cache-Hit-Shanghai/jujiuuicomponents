@@ -1,4 +1,4 @@
-import { ChevronUpIcon } from '@heroicons/react/24/solid';
+import { ChevronUpIcon } from '@heroicons/react/24/outline';
 
 function Circle() {
 	return (

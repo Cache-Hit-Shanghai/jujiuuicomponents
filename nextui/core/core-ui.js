@@ -11,7 +11,7 @@ import {
 	ChevronLeftIcon,
 	ChevronRightIcon,
 	MagnifyingGlassIcon,
-} from '@heroicons/react/24/solid';
+} from '@heroicons/react/24/outline';
 
 export function ThemeButton() {
 	const { theme, setTheme } = useTheme();

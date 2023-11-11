@@ -6,13 +6,13 @@ import {
 	ArrowTopRightOnSquareIcon,
 	Cog6ToothIcon,
 	ExclamationTriangleIcon,
-} from '@heroicons/react/24/solid';
+} from '@heroicons/react/24/outline';
 import { NavbarBack, LinkButton } from '@/jujiu-ui-components/nextui/core/core-ui';
 import { ChipRecording } from '@/jujiu-ui-components/nextui/core/core-chips';
 import { PanControl } from '@/jujiu-ui-components/nextui/ipc/video/panControl';
 import { AppLogo } from '@/jujiu-ui-components/nextui/ipc/about/brand';
 import Link from '@/state/translate';
-import { EnvelopeIcon } from '@heroicons/react/24/solid';
+import { EnvelopeIcon } from '@heroicons/react/24/outline';
 import { Orientation } from '@styled-icons/fluentui-system-filled/Orientation';
 import { useJuJiuT } from '@/state/translate';
 

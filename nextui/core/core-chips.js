@@ -2,7 +2,7 @@
 
 import { Chip } from '@nextui-org/react';
 import { useJuJiuT } from '@/state/translate';
-import { ArrowTopRightOnSquareIcon, CloudIcon, ArrowLeftOnRectangleIcon } from '@heroicons/react/24/solid';
+import { ArrowTopRightOnSquareIcon, CloudIcon, ArrowLeftOnRectangleIcon } from '@heroicons/react/24/outline';
 import { Record } from '@styled-icons/fluentui-system-regular/Record';
 
 export function ChipOnline() {
