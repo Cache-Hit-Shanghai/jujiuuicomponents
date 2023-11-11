@@ -1,9 +1,7 @@
 import { ChevronUpIcon } from '@heroicons/react/24/outline';
 
 function Circle() {
-	return (
-		<div className='w-[calc(40%-1px)] aspect-square rounded-full bg-default opacity-50 absolute inset-0 m-auto' />
-	);
+	return <div className='w-2/5 aspect-square rounded-full bg-default opacity-70 absolute inset-0 m-auto' />;
 }
 
 function Sectors({ onClickUp, onClickDown, onClickLeft, onClickRight }) {
