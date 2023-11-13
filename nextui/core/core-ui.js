@@ -33,7 +33,7 @@ export function ButtonBack({ onClick }) {
 
 	return (
 		<Button
-      isIconOnly
+			isIconOnly
 			variant='light'
 			onPress={() => {
 				onClick && onClick();
@@ -86,45 +86,31 @@ export function LinkButton({ href, icon, label, className }) {
 	);
 }
 
-export function NavTabs() {
+export function NavTabs({
+	tabs = [
+		{ path: '/device2/', title: '设备', icon: <HomeModernIcon className='h-6 w-6' /> },
+		{ path: '/discovery/', title: '发现', icon: <MagnifyingGlassIcon className='h-6 w-6' /> },
+		{ path: '/my2/', title: '我的', icon: <UserCircleIcon className='h-6 w-6' /> },
+	],
+}) {
 	const t = useJuJiuT();
 	const pathname = usePathname();
 
 	return (
 		<Tabs fullWidth color='primary' variant='light' selectedKey={pathname} className='p-2'>
-			<Tab
-				key='/device2/'
-				title={
-					<div className='flex flex-row items-center gap-2'>
-						<HomeModernIcon className='h-6 w-6' />
-						{t('设备')}
-					</div>
-				}
-				as={Link}
-				href='/device2/'
-			/>
-			<Tab
-				key='/discovery/'
-				title={
-					<div className='flex flex-row items-center gap-2'>
-						<MagnifyingGlassIcon className='h-6 w-6' />
-						{t('发现')}
-					</div>
-				}
-				as={Link}
-				href='/discovery/'
-			/>
-			<Tab
-				key='/my2/'
-				title={
-					<div className='flex flex-row items-center gap-2'>
-						<UserCircleIcon className='h-6 w-6' />
-						{t('我的')}
-					</div>
-				}
-				as={Link}
-				href='/my2/'
-			/>
+			{tabs.map(({ path, title, icon }) => (
+				<Tab
+					key={path}
+					title={
+						<div className='flex flex-row items-center gap-2'>
+							{icon}
+							{t(title)}
+						</div>
+					}
+					as={Link}
+					href={path}
+				/>
+			))}
 		</Tabs>
 	);
 }
