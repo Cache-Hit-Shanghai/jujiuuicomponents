@@ -87,7 +87,7 @@ export function LinkButton({ href, icon, label, className }) {
 	);
 }
 
-export function NavTabs({ data }) {
+export function NavTabs({ data = [] }) {
 	const t = useJuJiuT();
 	const pathname = usePathname();
 
