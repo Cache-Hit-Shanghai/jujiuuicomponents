@@ -2,11 +2,19 @@
 
 import { Button, Card, CardBody, Listbox, ListboxItem, Tabs, Tab } from '@nextui-org/react';
 import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
 import Link, { useJuJiuT, useRouter, usePathname } from '@/state/translate';
 import { SunIcon, MoonIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 
 export function ThemeButton() {
+	const [mounted, setMounted] = useState(false);
 	const { theme, setTheme } = useTheme();
+
+	useEffect(() => {
+		setMounted(true);
+	}, []);
+
+	if (!mounted) return null;
 
 	return (
 		<Button
