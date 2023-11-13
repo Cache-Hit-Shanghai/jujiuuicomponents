@@ -2,19 +2,19 @@
 
 import { Button, Card, CardBody, Listbox, ListboxItem, Tabs, Tab } from '@nextui-org/react';
 import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
 import Link, { useJuJiuT, useRouter, usePathname } from '@/state/translate';
-import {
-	SunIcon,
-	MoonIcon,
-	UserCircleIcon,
-	HomeModernIcon,
-	ChevronLeftIcon,
-	ChevronRightIcon,
-	MagnifyingGlassIcon,
-} from '@heroicons/react/24/outline';
+import { SunIcon, MoonIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 
 export function ThemeButton() {
+	const [mounted, setMounted] = useState(false);
 	const { theme, setTheme } = useTheme();
+
+	useEffect(() => {
+		setMounted(true);
+	}, []);
+
+	if (!mounted) return null;
 
 	return (
 		<Button
@@ -33,6 +33,7 @@ export function ButtonBack({ onClick }) {
 
 	return (
 		<Button
+			isIconOnly
 			isIconOnly
 			variant='light'
 			onPress={() => {
@@ -86,29 +87,23 @@ export function LinkButton({ href, icon, label, className }) {
 	);
 }
 
-export function NavTabs({
-	tabs = [
-		{ path: '/device2/', title: '设备', icon: <HomeModernIcon className='h-6 w-6' /> },
-		{ path: '/discovery/', title: '发现', icon: <MagnifyingGlassIcon className='h-6 w-6' /> },
-		{ path: '/my2/', title: '我的', icon: <UserCircleIcon className='h-6 w-6' /> },
-	],
-}) {
+export function NavTabs({ data }) {
 	const t = useJuJiuT();
 	const pathname = usePathname();
 
 	return (
 		<Tabs fullWidth color='primary' variant='light' selectedKey={pathname} className='p-2'>
-			{tabs.map(({ path, title, icon }) => (
+			{data.map((datum) => (
 				<Tab
-					key={path}
+					as={Link}
+					key={datum.href}
+					href={datum.href}
 					title={
 						<div className='flex flex-row items-center gap-2'>
-							{icon}
-							{t(title)}
+							{datum.icon}
+							{t(datum.label)}
 						</div>
 					}
-					as={Link}
-					href={path}
 				/>
 			))}
 		</Tabs>
