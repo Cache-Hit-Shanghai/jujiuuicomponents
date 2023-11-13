@@ -34,7 +34,6 @@ export function ButtonBack({ onClick }) {
 	return (
 		<Button
 			isIconOnly
-			isIconOnly
 			variant='light'
 			onPress={() => {
 				onClick && onClick();
