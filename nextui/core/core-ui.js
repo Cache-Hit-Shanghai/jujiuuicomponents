@@ -45,11 +45,12 @@ export function ButtonBack({ onClick }) {
 	);
 }
 
-export function NavbarBack({ label }) {
+export function NavbarBack({ label, children }) {
 	return (
 		<div className='p-2 gap-4 flex items-center'>
 			<ButtonBack />
 			<p className='self-center'>{label}</p>
+			{children}
 		</div>
 	);
 }
@@ -78,6 +79,17 @@ export function LinkGroup({ data }) {
 export function LinkButton({ href, icon, label, className }) {
 	return (
 		<Button isIconOnly={!label} variant='light' as={Link} href={href} className={className}>
+			<div className='flex flex-col items-center'>
+				{icon}
+				<p>{label}</p>
+			</div>
+		</Button>
+	);
+}
+
+export function IconButton({ icon, label, className, onClick = () => {}, ...props }) {
+	return (
+		<Button {...props} isIconOnly={!label} variant='light' onClick={onClick} className={className}>
 			<div className='flex flex-col items-center'>
 				{icon}
 				<p>{label}</p>
