@@ -65,7 +65,7 @@ export function LinkGroup({ data }) {
 							showDivider={!datum.last}
 							as={Link}
 							key={datum.label}
-							href={datum.url}
+							href={datum.href}
 							endContent={<ChevronRightIcon className='h-6 w-6' />}
 						>
 							<p className='text-base'>{datum.label}</p>
