@@ -57,10 +57,11 @@ export function NavbarBack({ label }) {
 export function LinkGroup({ data }) {
 	return (
 		<Card>
-			<CardBody>
+			<CardBody className='py-0'>
 				<Listbox items={data} aria-label='LinkGroup'>
 					{(datum) => (
 						<ListboxItem
+							showDivider={!datum.last}
 							as={Link}
 							key={datum.label}
 							href={datum.url}
