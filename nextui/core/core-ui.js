@@ -4,7 +4,13 @@ import { Button, Card, CardBody, Listbox, ListboxItem, Tabs, Tab } from '@nextui
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import Link, { useJuJiuT, useRouter, usePathname } from '@/state/translate';
-import { SunIcon, MoonIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
+import {
+	SunIcon,
+	MoonIcon,
+	ChevronLeftIcon,
+	ChevronRightIcon,
+	InformationCircleIcon,
+} from '@heroicons/react/24/outline';
 
 export function ThemeButton() {
 	const [mounted, setMounted] = useState(false);
@@ -121,3 +127,18 @@ export function NavTabs({ data = [] }) {
 		</Tabs>
 	);
 }
+
+const Information = ({ label = '' }) => {
+	return (
+		<div className='flex shrink-0 justify-center items-center gap-1'>
+			<InformationCircleIcon
+				className='stroke-amber-300 shrink-0'
+				width={'24px'}
+				height={'24px'}
+			></InformationCircleIcon>
+			<span className='text-xs text-amber-300'>{label}</span>
+		</div>
+	);
+};
+
+export { Information };
