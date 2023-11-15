@@ -47,7 +47,7 @@ export function ButtonBack({ onClick }) {
 
 export function NavbarBack({ label, children }) {
 	return (
-		<div className='p-2 gap-4 flex items-center'>
+		<div className={`p-2 gap-4 flex items-center sticky top-0 left-0 z-50 bg-white dark:bg-black`}>
 			<ButtonBack />
 			<p className='self-center'>{label}</p>
 			{children}
@@ -58,13 +58,14 @@ export function NavbarBack({ label, children }) {
 export function LinkGroup({ data }) {
 	return (
 		<Card>
-			<CardBody>
+			<CardBody className='py-0'>
 				<Listbox items={data} aria-label='LinkGroup'>
 					{(datum) => (
 						<ListboxItem
+							showDivider={!datum.last}
 							as={Link}
 							key={datum.label}
-							href={datum.url}
+							href={datum.href}
 							endContent={<ChevronRightIcon className='h-6 w-6' />}
 						>
 							<p className='text-base'>{datum.label}</p>
