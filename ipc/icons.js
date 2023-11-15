@@ -1,4 +1,7 @@
-import { Mic, MicOff, Image, Settings3 } from '@styled-icons/remix-fill';
+import { Mic } from '@styled-icons/remix-fill/Mic';
+import { MicOff } from '@styled-icons/remix-fill/MicOff';
+import { Image } from '@styled-icons/remix-fill/Image';
+import { Settings3 } from '@styled-icons/remix-fill/Settings3';
 import {
 	Volume,
 	VolumeMute,
@@ -38,7 +41,8 @@ import {
 	Gallery,
 	Apps,
 } from 'grommet-icons';
-import { FlashlightOn, FlashlightOff } from 'styled-icons/material';
+import { FlashlightOn } from '@styled-icons/material/FlashlightOn';
+import { FlashlightOff } from '@styled-icons/material/FlashlightOff';
 import { Record } from '@styled-icons/fluentui-system-regular/Record';
 import { RecordStop } from '@styled-icons/fluentui-system-regular/RecordStop';
 import { SettingsOutline } from '@styled-icons/evaicons-outline/SettingsOutline';
