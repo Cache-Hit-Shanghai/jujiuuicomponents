@@ -1,5 +1,9 @@
 {
   "Index": {
+		"直播": "Live",
+    "附近": "Nearby",
+		"关注": "Following",
+		"部落": "Tribe",
     "通用设置": "General settings",
 		"消息设置": "Message settings",
 		"设置": "settings",
@@ -26,7 +30,7 @@
 		"小皮部落": "Xiaopi Tribe",
     "唤醒": "Awake",
 		"设备已休眠": "Device falls asleep",
-    "发现": "Discovery",
+    "发现": "Explore",
     "修改昵称提示": "Please enter 2-20 characters. Some special characters such as @/ ? * : | < > can't be used。",
     "必填": "Required",
     "看护区域有人移动": "Motion in monitoring zone",
