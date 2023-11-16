@@ -94,21 +94,17 @@ export function LinkButton({ href, icon, label, className }) {
 
 const LabelButton = ({ label, children, onClick, ...props }) => {
 	return (
-		<div className='flex grow justify-between border-b py-1' onClick={onClick}>
-			<span>{label}</span>
-			<Button {...props} onClick={onClick} variant='light' endContent={<ChevronRight size={24} />}>
-				{children || <p className='w-10'></p>}
-			</Button>
-		</div>
+		<Button {...props} onClick={onClick} variant='light' endContent={<ChevronRight size={16} />}>
+			<div className='flex flex-row items-center grow justify-between py-1' onClick={onClick}>
+				<span>{label}</span>
+				{children || <p className='w-10' />}
+			</div>
+		</Button>
 	);
 };
 
 const LabelLink = ({ href, ...props }) => {
-	return (
-		<Link href={href} color='foreground'>
-			<LabelButton {...props}></LabelButton>
-		</Link>
-	);
+	return <LabelButton as={Link} href={href} {...props} />;
 };
 
 export function IconButton({ icon, label, className, onClick = () => {}, ...props }) {
