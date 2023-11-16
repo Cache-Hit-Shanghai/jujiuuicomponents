@@ -2,7 +2,7 @@
 
 import { useJuJiuT } from '@/state/translate';
 import { Box, Button, Text, Anchor, Nav, Stack, Card, CardBody, CheckBox, Tag } from 'grommet';
-import { Link } from '@/state/translate';
+import Link from '@/state/translate';
 import { cloudStorageData } from '../../data/cloud-storage';
 
 function CloudStorageAvailableSets({ priceList = [], selectedCombo, onSelect }) {
