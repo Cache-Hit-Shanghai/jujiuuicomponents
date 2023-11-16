@@ -165,4 +165,22 @@ const Information = ({ label = '' }) => {
 	);
 };
 
-export { Information, LabelButton, LabelLink };
+function InfoGroup({ data }) {
+	return (
+		<Card>
+			<CardBody>
+				<Listbox items={data} aria-label='InfoGroup'>
+					{(datum) => (
+						<ListboxItem
+							key={datum.key}
+							startContent={<p className='text-base'>{datum.key}</p>}
+							endContent={<p className='text-base'>{datum.value}</p>}
+						></ListboxItem>
+					)}
+				</Listbox>
+			</CardBody>
+		</Card>
+	);
+}
+
+export { Information, LabelButton, LabelLink, InfoGroup };
