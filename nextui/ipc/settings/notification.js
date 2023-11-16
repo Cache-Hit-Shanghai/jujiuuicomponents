@@ -1,6 +1,6 @@
 'use client';
 
-import { Switch } from '@nextui-org/react';
+import { Switch, Divider } from '@nextui-org/react';
 import { useJuJiuT } from '@/state/translate';
 
 const notiKeyList = [
@@ -21,15 +21,18 @@ const notiTypeKeyList = [
 export function ChangeNotification({ list = notiKeyList, data = {}, onChange = () => {} }) {
 	const t = useJuJiuT();
 
-	return list.map(({ title, key } = {}) => (
-		<Switch
-			data-key={key}
-			checked={data[key]}
-			onChange={onChange}
-			classNames={{ base: 'h-10 px-4 inline-flex flex-row-reverse w-full max-w-md justify-between' }}
-		>
-			{t(title)}
-		</Switch>
+	return list.map(({ title, key } = {}, i) => (
+		<>
+			<Switch
+				data-key={key}
+				checked={data[key]}
+				onChange={onChange}
+				classNames={{ base: 'h-10 px-4 inline-flex flex-row-reverse w-full max-w-md justify-between' }}
+			>
+				{t(title)}
+			</Switch>
+			{i < list.length - 1 && <Divider />}
+		</>
 	));
 }
 
