@@ -94,6 +94,30 @@ export function LinkButton({ href, icon, label, className }) {
 	);
 }
 
+const LabelButton = ({ label, children, onClick, ...props }) => {
+	return (
+		<div className='flex grow justify-between border-b py-1' onClick={onClick}>
+			<span>{label}</span>
+			<Button
+				{...props}
+				onClick={onClick}
+				variant='light'
+				endContent={<ChevronRightIcon width={'24px'} height={'24px'}></ChevronRightIcon>}
+			>
+				{children || <p className='w-10'></p>}
+			</Button>
+		</div>
+	);
+};
+
+const LabelLink = ({ href, ...props }) => {
+	return (
+		<Link href={href} color='foreground'>
+			<LabelButton {...props}></LabelButton>
+		</Link>
+	);
+};
+
 export function IconButton({ icon, label, className, onClick = () => {}, ...props }) {
 	return (
 		<Button {...props} isIconOnly={!label} variant='light' onClick={onClick} className={className}>
@@ -141,4 +165,4 @@ const Information = ({ label = '' }) => {
 	);
 };
 
-export { Information };
+export { Information, LabelButton, LabelLink };
