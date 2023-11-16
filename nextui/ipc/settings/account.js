@@ -7,14 +7,9 @@ export function ChangePassword({ onSubmit = () => {} }) {
 	return (
 		<form onSubmit={onSubmit}>
 			<div className='flex flex-col gap-4'>
-				<p>{t('输入旧密码')}：</p>
-				<Input type='password' className='hidden' />
-
-				<Input type='password' name='oldPwd' />
-				<p>{t('输入新密码')}：</p>
-
-				<Input type='password' name='newPwd' />
-				<p>{t('再次输入新密码')}：</p>
+				<Input label={t('输入旧密码') + ':'} type='password' className='oldPwd' />
+				<Input label={t('输入新密码') + ':'} type='password' name='newPwd' />
+				<Input label={t('再次输入新密码') + ':'} type='password' name='validateNewPwd' />
 				{/* <FormField
 				name='validateNewPwd'
 				required={true}
@@ -23,7 +18,6 @@ export function ChangePassword({ onSubmit = () => {} }) {
 				}}
 			>
 			</FormField> */}
-				<Input type='password' name='validateNewPwd' />
 				<Button type='submit' color='success'>
 					{t('确定')}
 				</Button>
