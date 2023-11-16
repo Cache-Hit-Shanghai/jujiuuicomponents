@@ -4,13 +4,11 @@ import { Button, Card, CardBody, Listbox, ListboxItem, Tabs, Tab } from '@nextui
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import Link, { useJuJiuT, useRouter, usePathname } from '@/state/translate';
-import {
-	SunIcon,
-	MoonIcon,
-	ChevronLeftIcon,
-	ChevronRightIcon,
-	InformationCircleIcon,
-} from '@heroicons/react/24/outline';
+import { Sun } from '@styled-icons/heroicons-outline/Sun';
+import { Moon } from '@styled-icons/heroicons-outline/Moon';
+import { ChevronLeft } from '@styled-icons/heroicons-outline/ChevronLeft';
+import { ChevronRight } from '@styled-icons/heroicons-outline/ChevronRight';
+import { InformationCircle } from '@styled-icons/heroicons-outline/InformationCircle';
 
 export function ThemeButton() {
 	const [mounted, setMounted] = useState(false);
@@ -29,7 +27,7 @@ export function ThemeButton() {
 			variant='light'
 			onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
 		>
-			{theme === 'light' ? <MoonIcon className='h-6 w-6' /> : <SunIcon className='h-6 w-6' />}
+			{theme === 'light' ? <Moon size={24} /> : <Sun size={24} />}
 		</Button>
 	);
 }
@@ -46,7 +44,7 @@ export function ButtonBack({ onClick }) {
 				router.back();
 			}}
 		>
-			<ChevronLeftIcon className='h-6 w-6' />
+			<ChevronLeft size={16} />
 		</Button>
 	);
 }
@@ -72,7 +70,7 @@ export function LinkGroup({ data }) {
 							as={Link}
 							key={datum.label}
 							href={datum.href}
-							endContent={<ChevronRightIcon className='h-6 w-6' />}
+							endContent={<ChevronRight size={16} />}
 						>
 							<p className='text-base'>{datum.label}</p>
 						</ListboxItem>
@@ -98,12 +96,7 @@ const LabelButton = ({ label, children, onClick, ...props }) => {
 	return (
 		<div className='flex grow justify-between border-b py-1' onClick={onClick}>
 			<span>{label}</span>
-			<Button
-				{...props}
-				onClick={onClick}
-				variant='light'
-				endContent={<ChevronRightIcon width={'24px'} height={'24px'}></ChevronRightIcon>}
-			>
+			<Button {...props} onClick={onClick} variant='light' endContent={<ChevronRight size={24} />}>
 				{children || <p className='w-10'></p>}
 			</Button>
 		</div>
@@ -155,12 +148,8 @@ export function NavTabs({ data = [] }) {
 const Information = ({ label = '' }) => {
 	return (
 		<div className='flex shrink-0 justify-center items-center gap-1'>
-			<InformationCircleIcon
-				className='stroke-amber-300 shrink-0'
-				width={'24px'}
-				height={'24px'}
-			></InformationCircleIcon>
-			<span className='text-xs text-amber-300'>{label}</span>
+			<InformationCircle className='text-warning' size={24} />
+			<span className='text-xs text-warning'>{label}</span>
 		</div>
 	);
 };
