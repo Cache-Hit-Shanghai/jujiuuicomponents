@@ -2,7 +2,6 @@
 
 import { Switch } from '@nextui-org/react';
 import { useJuJiuT } from '@/state/translate';
-import { useState, useCallback } from 'react';
 
 const notiKeyList = [
 	{ title: '设备访问', key: 'deviceAccess' },
@@ -23,10 +22,14 @@ export function ChangeNotification({ list = notiKeyList, data = {}, onChange = (
 	const t = useJuJiuT();
 
 	return list.map(({ title, key } = {}) => (
-		<div key={key} className='flex justify-between border-b py-2'>
-			<span>{t(title)}</span>
-			<Switch data-key={key} checked={data[key]} onChange={onChange} />
-		</div>
+		<Switch
+			data-key={key}
+			checked={data[key]}
+			onChange={onChange}
+			classNames={{ base: 'h-10 px-4 inline-flex flex-row-reverse w-full max-w-md justify-between' }}
+		>
+			{t(title)}
+		</Switch>
 	));
 }
 
