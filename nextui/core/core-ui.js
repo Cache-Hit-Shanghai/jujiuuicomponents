@@ -61,7 +61,7 @@ export function NavbarBack({ label, children }) {
 
 export function LinkGroup({ data }) {
 	return (
-		<Card>
+		<Card className='flex-none'>
 			<CardBody className='py-0'>
 				<Listbox items={data} aria-label='LinkGroup'>
 					{(datum) => (
