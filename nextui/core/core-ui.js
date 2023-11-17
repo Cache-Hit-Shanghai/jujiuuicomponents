@@ -143,8 +143,10 @@ export function NavTabs({ data = [] }) {
 
 const Information = ({ label = '' }) => {
 	return (
-		<div className='flex shrink-0 justify-center items-center gap-1'>
-			<InformationCircle className='text-warning' size={24} />
+		<div className='flex shrink-0 justify-center items-center gap-2'>
+			<div>
+				<InformationCircle className='text-warning' size={24} />
+			</div>
 			<span className='text-xs text-warning'>{label}</span>
 		</div>
 	);
