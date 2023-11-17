@@ -72,7 +72,10 @@ export function LinkGroup({ data }) {
 							href={datum.href}
 							endContent={<ChevronRight size={16} />}
 						>
-							<p className='text-base'>{datum.label}</p>
+							<div className='flex flex-row items-center gap-4'>
+								{datum.icon}
+								<p className='text-base'>{datum.label}</p>
+							</div>
 						</ListboxItem>
 					)}
 				</Listbox>
