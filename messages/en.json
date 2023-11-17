@@ -1,5 +1,8 @@
 {
   "Index": {
+		"剩余容量": "({space}GB available)",
+		"长按后选择“下载”可以下载图片或者视频。": "Long press the image and select \"download\", you can download the image.",
+		"删除": "Delete",
     "注册ID": "Registered ID",
 		"用户代理": "User agent",
 		"操作系统": "OS",
