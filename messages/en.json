@@ -1,5 +1,10 @@
 {
   "Index": {
+    "注册ID": "Registered ID",
+		"用户代理": "User agent",
+		"操作系统": "OS",
+		"App/小程序版本": "App/Mini program version",
+		"应用版本": "Webapp version",
 		"注销账号": "Delete account",
 		"直播": "Live",
     "附近": "Nearby",
