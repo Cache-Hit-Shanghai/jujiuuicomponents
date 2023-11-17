@@ -205,7 +205,7 @@ function LinkGroup({ data }) {
 			<CardBody>
 				<List pad={{ vertical: 'small' }} data={data} border={false}>
 					{(datum) => (
-						<Link href={datum.url} passHref legacyBehavior>
+						<Link href={datum.href} passHref legacyBehavior>
 							<Button
 								as='a'
 								icon={<FormNext color='control' />}
