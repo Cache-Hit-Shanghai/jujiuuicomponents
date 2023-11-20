@@ -32,7 +32,7 @@ export function ThemeButton() {
 	);
 }
 
-export function ButtonBack({ onClick }) {
+export function ButtonBack({ onClick, onPress, ...props }) {
 	const router = useRouter();
 
 	return (
@@ -41,18 +41,20 @@ export function ButtonBack({ onClick }) {
 			variant='light'
 			onPress={() => {
 				onClick && onClick();
+				onPress && onPress();
 				router.back();
 			}}
+			{...props}
 		>
 			<ChevronLeft size={16} />
 		</Button>
 	);
 }
 
-export function NavbarBack({ label, children }) {
+export function NavbarBack({ label, children, className, ...props }) {
 	return (
-		<div className={`p-2 gap-4 flex items-center sticky top-0 left-0 z-50`}>
-			<ButtonBack />
+		<div className={`p-2 gap-4 flex items-center top-0 left-0 z-50 ${className}`}>
+			<ButtonBack {...props} />
 			{label}
 			{children}
 		</div>
@@ -84,9 +86,9 @@ export function LinkGroup({ data }) {
 	);
 }
 
-export function LinkButton({ href, icon, label, className }) {
+export function LinkButton({ href, icon, label, className, ...props }) {
 	return (
-		<Button isIconOnly={!label} variant='light' as={Link} href={href} className={className}>
+		<Button isIconOnly={!label} variant='light' as={Link} href={href} className={className} {...props}>
 			<div className='flex flex-col items-center'>
 				{icon}
 				<p>{label}</p>
@@ -98,7 +100,7 @@ export function LinkButton({ href, icon, label, className }) {
 const LabelButton = ({ label, children, onClick, ...props }) => {
 	return (
 		<Button {...props} onClick={onClick} variant='light' endContent={<ChevronRight size={16} />}>
-			<div className='flex flex-row items-center grow justify-between py-1' onClick={onClick}>
+			<div className='flex flex-row items-center grow justify-between py-1'>
 				<span>{label}</span>
 				{children || <p className='w-10' />}
 			</div>
