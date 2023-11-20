@@ -53,7 +53,7 @@ export function ButtonBack({ onClick, onPress, ...props }) {
 
 export function NavbarBack({ label, children, className, ...props }) {
 	return (
-		<div className={`p-2 gap-4 flex items-center top-0 left-0 z-50 ${className}`}>
+		<div className={`p-2 gap-4 flex items-center top-0 left-0 z-50 ${className || ''}`}>
 			<ButtonBack {...props} />
 			{label}
 			{children}
