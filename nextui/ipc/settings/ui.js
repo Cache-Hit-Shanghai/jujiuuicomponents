@@ -37,7 +37,7 @@ export function ChangeUI({ langProps = {}, fontProps = {}, themeProps = {} }) {
 	];
 
 	return (
-		<div key={name} className='flex flex-col justify-between items-center gap-4'>
+		<div className='flex flex-col justify-between items-center gap-4'>
 			{data.map(({ label = '', name = '', items = [], props = {} }) => (
 				<Select label={label} fullWidth={false} key={name} items={items} {...props}>
 					{(item) => <SelectItem key={item.label}>{item.label}</SelectItem>}
