@@ -51,7 +51,7 @@ export function ButtonBack({ onClick }) {
 
 export function NavbarBack({ label, children }) {
 	return (
-		<div className={`p-2 gap-4 flex items-center sticky top-0 left-0 z-50 bg-background`}>
+		<div className={`p-2 gap-4 flex items-center sticky top-0 left-0 z-50`}>
 			<ButtonBack />
 			{label}
 			{children}
