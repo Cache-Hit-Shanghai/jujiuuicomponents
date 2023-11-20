@@ -1,29 +1,33 @@
 'use client';
 
-import { Button, Badge, Divider, Tabs, Tab, Spinner } from '@nextui-org/react';
-import {
-	CameraIcon,
-	ArrowTopRightOnSquareIcon,
-	Cog6ToothIcon,
-	ExclamationTriangleIcon,
-} from '@heroicons/react/24/outline';
-import { NavbarBack, LinkButton } from '@/jujiu-ui-components/nextui/core/core-ui';
-import { ChipRecording } from '@/jujiu-ui-components/nextui/core/core-chips';
-import { PanControl } from '@/jujiu-ui-components/nextui/ipc/video/panControl';
-import { AppLogo } from '@/jujiu-ui-components/nextui/ipc/about/brand';
-import Link from '@/state/translate';
-import { EnvelopeIcon } from '@heroicons/react/24/outline';
-import { Orientation } from '@styled-icons/fluentui-system-filled/Orientation';
+import { Button } from '@nextui-org/react';
+import { Camera } from '@styled-icons/heroicons-outline/Camera';
+import { Phone } from '@styled-icons/heroicons-outline/Phone';
+import { PhoneXMark } from '@styled-icons/heroicons-outline/PhoneXMark';
 import { useJuJiuT } from '@/state/translate';
 
-export function ScreenCopyControl() {
+export function ScreenCopyControl({ ...prop }) {
 	const t = useJuJiuT();
 	const label = t('截图');
 
 	return (
-		<Button isIconOnly variant='light'>
+		<Button isIconOnly variant='light' {...prop}>
 			<div className='flex flex-col items-center'>
-				<CameraIcon className='h-6 w-6' />
+				<Camera size={24} />
+				<p>{label}</p>
+			</div>
+		</Button>
+	);
+}
+
+export function ChatControl({ speaking, ...prop }) {
+	const t = useJuJiuT();
+	const label = t(speaking ? '挂断' : '对讲');
+
+	return (
+		<Button isIconOnly variant='light' {...prop}>
+			<div className='flex flex-col items-center'>
+				{speaking ? <PhoneXMark size={24} /> : <Phone size={24} />}
 				<p>{label}</p>
 			</div>
 		</Button>
