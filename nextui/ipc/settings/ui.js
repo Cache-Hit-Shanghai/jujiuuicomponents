@@ -5,8 +5,7 @@ import { useJuJiuT } from '@/state/translate';
 
 export function ChangeUI({ langProps = {}, fontProps = {}, themeProps = {} }) {
 	const t = useJuJiuT();
-
-	return [
+	const data = [
 		{
 			label: t('语言'),
 			items: [
@@ -35,12 +34,15 @@ export function ChangeUI({ langProps = {}, fontProps = {}, themeProps = {} }) {
 			name: 'theme-mode',
 			props: themeProps,
 		},
-	].map(({ label = '', name = '', items = [], props = {} }) => (
-		<div key={name} className='flex justify-between items-center border-b py-2'>
-			<p className='shrink-0 w-[150px]'>{label}</p>
-			<Select size='sm' fullWidth={false} name={name} items={items} {...props}>
-				{(item) => <SelectItem key={item.label}>{item.label}</SelectItem>}
-			</Select>
+	];
+
+	return (
+		<div key={name} className='flex flex-col justify-between items-center gap-4'>
+			{data.map(({ label = '', name = '', items = [], props = {} }) => (
+				<Select label={label} fullWidth={false} name={name} items={items} {...props}>
+					{(item) => <SelectItem key={item.label}>{item.label}</SelectItem>}
+				</Select>
+			))}
 		</div>
-	));
+	);
 }
