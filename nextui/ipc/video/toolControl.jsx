@@ -11,9 +11,10 @@ import { FiberManualRecord } from '@styled-icons/material/FiberManualRecord';
 import { StopCircle } from '@styled-icons/material/StopCircle';
 import { Hd } from '@styled-icons/material/Hd';
 import { IosShare } from '@styled-icons/material/IosShare';
-import { useJuJiuT } from '@/state/translate';
 import { Settings } from '@styled-icons/material/Settings';
 import { Cameraswitch } from '@styled-icons/material/Cameraswitch';
+import { Battery3Bar } from '@styled-icons/material/Battery3Bar';
+import { useJuJiuT } from '@/state/translate';
 import { LinkButton } from '../../core/core-ui';
 
 export function ScreenCopyControl({ showLabel, ...prop }) {
@@ -113,7 +114,6 @@ export function StreamingControlBar({ showLabel }) {
 			<RecordControl showLabel={showLabel} recording={recording} onPress={() => setRecording(!recording)} />
 			<ChatControl showLabel={showLabel} speaking={speaking} onPress={() => setSpeaking(!speaking)} />
 			<MuteControl showLabel={showLabel} mute={mute} onPress={() => setMute(!mute)} />
-			<ResolutionControl showLabel={showLabel} />
 		</>
 	);
 }
@@ -134,6 +134,35 @@ export function StreamingControlBar2() {
 				href='/device/settings'
 				icon={<Settings size={24} className='text-white' />}
 			/>
+		</>
+	);
+}
+
+export function StreamingControlBar3({ showLabel }) {
+	const [speaking, setSpeaking] = useState(false);
+	const [mute, setMute] = useState(true);
+	const [recording, setRecording] = useState(false);
+
+	return (
+		<>
+			<ScreenCopyControl showLabel={showLabel} />
+			<RecordControl showLabel={showLabel} recording={recording} onPress={() => setRecording(!recording)} />
+			<ChatControl showLabel={showLabel} speaking={speaking} onPress={() => setSpeaking(!speaking)} />
+			<MuteControl showLabel={showLabel} mute={mute} onPress={() => setMute(!mute)} />
+		</>
+	);
+}
+
+export function StreamingControlBar4() {
+	return (
+		<>
+			<ResolutionControl />
+			<Button isIconOnly variant='light'>
+				<Cameraswitch size={24} />
+			</Button>
+			<Button isIconOnly variant='light'>
+				<Battery3Bar size={24} />
+			</Button>
 		</>
 	);
 }
