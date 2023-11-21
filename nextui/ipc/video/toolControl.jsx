@@ -10,7 +10,11 @@ import { VolumeUp } from '@styled-icons/material/VolumeUp';
 import { FiberManualRecord } from '@styled-icons/material/FiberManualRecord';
 import { StopCircle } from '@styled-icons/material/StopCircle';
 import { Hd } from '@styled-icons/material/Hd';
+import { IosShare } from '@styled-icons/material/IosShare';
 import { useJuJiuT } from '@/state/translate';
+import { Settings } from '@styled-icons/material/Settings';
+import { Cameraswitch } from '@styled-icons/material/Cameraswitch';
+import { LinkButton } from '../../core/core-ui';
 
 export function ScreenCopyControl({ showLabel, ...prop }) {
 	const t = useJuJiuT();
@@ -110,6 +114,26 @@ export function StreamingControlBar({ showLabel }) {
 			<ChatControl showLabel={showLabel} speaking={speaking} onPress={() => setSpeaking(!speaking)} />
 			<MuteControl showLabel={showLabel} mute={mute} onPress={() => setMute(!mute)} />
 			<ResolutionControl showLabel={showLabel} />
+		</>
+	);
+}
+
+export function StreamingControlBar2() {
+	return (
+		<>
+			<Button isIconOnly variant='light'>
+				<Cameraswitch size={24} />
+			</Button>
+			<LinkButton
+				className='text-white'
+				href='/device/settings/sharing'
+				icon={<IosShare size={24} className='text-white' />}
+			/>
+			<LinkButton
+				className='text-white'
+				href='/device/settings'
+				icon={<Settings size={24} className='text-white' />}
+			/>
 		</>
 	);
 }
