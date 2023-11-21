@@ -1,7 +1,7 @@
 'use client';
 
 import { Card, CardBody, Spacer, Chip } from '@nextui-org/react';
-import { Pets } from '@styled-icons/material-outlined/Pets';
+import { Pets } from '@styled-icons/material/Pets';
 import { useJuJiuT } from '@/state/translate';
 import { ZCOOL_KuaiLe } from 'next/font/google';
 

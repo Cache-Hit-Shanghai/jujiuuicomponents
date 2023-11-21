@@ -1,4 +1,4 @@
-import { ChevronUpIcon } from '@heroicons/react/24/outline';
+import { ArrowDropUp } from '@styled-icons/material/ArrowDropUp';
 
 function Circle() {
 	return <div className='w-2/5 aspect-square rounded-full bg-default opacity-70 absolute inset-0 m-auto' />;
@@ -15,7 +15,7 @@ function Sectors({ onClickUp, onClickDown, onClickLeft, onClickRight }) {
 				}}
 				onClick={onClickUp}
 			>
-				<ChevronUpIcon className='h-6 w-6 -rotate-45 transform-gpu' />
+				<ArrowDropUp size={24} className='-rotate-45 transform-gpu' />
 			</div>
 			<div
 				className='absolute w-1/2 aspect-square rounded-tl-full origin-bottom-right rotate-[90deg] transform-gpu bg-default opacity-50 flex items-center justify-center'
@@ -25,7 +25,7 @@ function Sectors({ onClickUp, onClickDown, onClickLeft, onClickRight }) {
 				}}
 				onClick={onClickRight}
 			>
-				<ChevronUpIcon className='h-6 w-6 -rotate-45 transform-gpu' />
+				<ArrowDropUp size={24} className='-rotate-45 transform-gpu' />
 			</div>
 			<div
 				className='absolute w-1/2 aspect-square rounded-tl-full origin-bottom-right rotate-[180deg] transform-gpu bg-default opacity-50 flex items-center justify-center'
@@ -35,7 +35,7 @@ function Sectors({ onClickUp, onClickDown, onClickLeft, onClickRight }) {
 				}}
 				onClick={onClickDown}
 			>
-				<ChevronUpIcon className='h-6 w-6 -rotate-45 transform-gpu' />
+				<ArrowDropUp size={24} className='-rotate-45 transform-gpu' />
 			</div>
 			<div
 				className='absolute w-1/2 aspect-square rounded-tl-full origin-bottom-right rotate-[270deg] transform-gpu bg-default opacity-50 flex items-center justify-center'
@@ -45,7 +45,7 @@ function Sectors({ onClickUp, onClickDown, onClickLeft, onClickRight }) {
 				}}
 				onClick={onClickLeft}
 			>
-				<ChevronUpIcon className='h-6 w-6 -rotate-45 transform-gpu' />
+				<ArrowDropUp size={24} className='-rotate-45 transform-gpu' />
 			</div>
 		</>
 	);

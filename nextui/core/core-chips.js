@@ -2,10 +2,10 @@
 
 import { Chip } from '@nextui-org/react';
 import { useJuJiuT } from '@/state/translate';
-import { Cloud } from '@styled-icons/heroicons-outline/Cloud';
-import { ArrowTopRightOnSquare } from '@styled-icons/heroicons-outline/ArrowTopRightOnSquare';
-import { ArrowLeftOnRectangle } from '@styled-icons/heroicons-outline/ArrowLeftOnRectangle';
-import { RecordCircle } from '@styled-icons/remix-line/RecordCircle';
+import { Cloud } from '@styled-icons/material/Cloud';
+import { IosShare } from '@styled-icons/material/IosShare';
+import { Reply } from '@styled-icons/material/Reply';
+import { FiberManualRecord } from '@styled-icons/material/FiberManualRecord';
 
 export function ChipOnline() {
 	const t = useJuJiuT();
@@ -27,7 +27,7 @@ export function ChipFromFriends() {
 	const t = useJuJiuT();
 
 	return (
-		<Chip color='primary' startContent={<ArrowLeftOnRectangle size={20} />}>
+		<Chip color='primary' startContent={<Reply size={20} />}>
 			{t('来自分享')}
 		</Chip>
 	);
@@ -37,7 +37,7 @@ export function ChipShared() {
 	const t = useJuJiuT();
 
 	return (
-		<Chip color='secondary' startContent={<ArrowTopRightOnSquare size={20} />}>
+		<Chip color='secondary' startContent={<IosShare size={20} />}>
 			{t('分享中')}
 		</Chip>
 	);
@@ -65,7 +65,7 @@ export function ChipCloudStorageExpired() {
 
 export function ChipRecording({ label, ...props }) {
 	return (
-		<Chip color='danger' startContent={<RecordCircle size={18} />} {...props}>
+		<Chip color='danger' startContent={<FiberManualRecord size={18} />} {...props}>
 			{label}
 		</Chip>
 	);

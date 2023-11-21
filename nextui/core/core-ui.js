@@ -4,11 +4,11 @@ import { Button, Card, CardBody, Listbox, ListboxItem, Tabs, Tab } from '@nextui
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import Link, { useJuJiuT, useRouter, usePathname } from '@/state/translate';
-import { Sun } from '@styled-icons/heroicons-outline/Sun';
-import { Moon } from '@styled-icons/heroicons-outline/Moon';
-import { ChevronLeft } from '@styled-icons/heroicons-outline/ChevronLeft';
-import { ChevronRight } from '@styled-icons/heroicons-outline/ChevronRight';
-import { InformationCircle } from '@styled-icons/heroicons-outline/InformationCircle';
+import { LightMode } from '@styled-icons/material/LightMode';
+import { DarkMode } from '@styled-icons/material/DarkMode';
+import { ChevronLeft } from '@styled-icons/material/ChevronLeft';
+import { ChevronRight } from '@styled-icons/material/ChevronRight';
+import { Info } from '@styled-icons/material/Info';
 
 export function ThemeButton() {
 	const [mounted, setMounted] = useState(false);
@@ -27,7 +27,7 @@ export function ThemeButton() {
 			variant='light'
 			onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
 		>
-			{theme === 'light' ? <Moon size={24} /> : <Sun size={24} />}
+			{theme === 'light' ? <DarkMode size={24} /> : <LightMode size={24} />}
 		</Button>
 	);
 }
@@ -46,7 +46,7 @@ export function ButtonBack({ onClick, onPress, ...props }) {
 			}}
 			{...props}
 		>
-			<ChevronLeft size={16} />
+			<ChevronLeft size={24} />
 		</Button>
 	);
 }
@@ -72,7 +72,7 @@ export function LinkGroup({ data }) {
 							as={Link}
 							key={datum.label}
 							href={datum.href}
-							endContent={<ChevronRight size={16} />}
+							endContent={<ChevronRight size={24} />}
 						>
 							<div className='flex flex-row items-center gap-4'>
 								{datum.icon}
@@ -150,7 +150,7 @@ const Information = ({ label = '' }) => {
 	return (
 		<div className='flex shrink-0 justify-center items-center gap-2'>
 			<div>
-				<InformationCircle className='text-warning' size={24} />
+				<Info className='text-warning' size={24} />
 			</div>
 			<span className='text-xs text-warning'>{label}</span>
 		</div>
