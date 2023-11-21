@@ -90,9 +90,9 @@ export function ResolutionControl({ showLabel, items, ...prop }) {
 				selectionMode='single'
 				selectedKeys={['1080p']}
 			>
-				<DropdownItem key='2.5k'>超清</DropdownItem>
-				<DropdownItem key='1080p'>高清</DropdownItem>
-				<DropdownItem key='720p'>标清</DropdownItem>
+				<DropdownItem key='2.5k'>{t('超清')}</DropdownItem>
+				<DropdownItem key='1080p'>{t('高清')}</DropdownItem>
+				<DropdownItem key='720p'>{t('标清')}</DropdownItem>
 			</DropdownMenu>
 		</Dropdown>
 	);
