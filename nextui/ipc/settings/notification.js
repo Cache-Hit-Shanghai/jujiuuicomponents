@@ -1,8 +1,7 @@
 'use client';
 
-import { Switch, Divider } from '@nextui-org/react';
+import { Switch } from '@nextui-org/react';
 import { useJuJiuT } from '@/state/translate';
-import { Fragment } from 'react';
 
 const notiKeyList = [
 	{ title: '设备访问', key: 'deviceAccess' },
@@ -23,17 +22,15 @@ export function ChangeNotification({ list = notiKeyList, data = {}, onChange = (
 	const t = useJuJiuT();
 
 	return list.map(({ title, key } = {}, i) => (
-		<Fragment key={key}>
-			<Switch
-				data-key={key}
-				checked={data[key]}
-				onChange={onChange}
-				classNames={{ base: 'h-10 px-4 inline-flex flex-row-reverse w-full max-w-md justify-between' }}
-			>
-				{t(title)}
-			</Switch>
-			{i < list.length - 1 && <Divider />}
-		</Fragment>
+    <Switch
+      key={key}
+      data-key={key}
+      checked={data[key]}
+      onChange={onChange}
+      classNames={{ base: 'h-10 px-4 inline-flex flex-row-reverse w-full max-w-md justify-between' }}
+    >
+      {t(title)}
+    </Switch>
 	));
 }
 

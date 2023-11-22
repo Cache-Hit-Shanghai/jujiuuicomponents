@@ -1,14 +1,14 @@
 import { ArrowDropUp } from '@styled-icons/material/ArrowDropUp';
 
 function Circle() {
-	return <div className='w-2/5 aspect-square rounded-full bg-default opacity-70 absolute inset-0 m-auto' />;
+	return <div className='w-2/5 aspect-square rounded-full bg-default opacity-90 absolute inset-0 m-auto' />;
 }
 
 function Sectors({ onClickUp, onClickDown, onClickLeft, onClickRight }) {
 	return (
 		<>
 			<div
-				className='absolute w-1/2 aspect-square rounded-tl-full origin-bottom-right bg-default opacity-50 flex items-center justify-center'
+				className='absolute w-1/2 aspect-square rounded-tl-full origin-bottom-right bg-default opacity-70 flex items-center justify-center'
 				style={{
 					WebkitMaskImage: 'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)',
 					mask: 'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)',
@@ -18,7 +18,7 @@ function Sectors({ onClickUp, onClickDown, onClickLeft, onClickRight }) {
 				<ArrowDropUp size={24} className='-rotate-45 transform-gpu' />
 			</div>
 			<div
-				className='absolute w-1/2 aspect-square rounded-tl-full origin-bottom-right rotate-[90deg] transform-gpu bg-default opacity-50 flex items-center justify-center'
+				className='absolute w-1/2 aspect-square rounded-tl-full origin-bottom-right rotate-[90deg] transform-gpu bg-default opacity-70 flex items-center justify-center'
 				style={{
 					WebkitMaskImage: 'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)',
 					mask: 'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)',
@@ -28,7 +28,7 @@ function Sectors({ onClickUp, onClickDown, onClickLeft, onClickRight }) {
 				<ArrowDropUp size={24} className='-rotate-45 transform-gpu' />
 			</div>
 			<div
-				className='absolute w-1/2 aspect-square rounded-tl-full origin-bottom-right rotate-[180deg] transform-gpu bg-default opacity-50 flex items-center justify-center'
+				className='absolute w-1/2 aspect-square rounded-tl-full origin-bottom-right rotate-[180deg] transform-gpu bg-default opacity-70 flex items-center justify-center'
 				style={{
 					WebkitMaskImage: 'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)',
 					mask: 'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)',
@@ -38,7 +38,7 @@ function Sectors({ onClickUp, onClickDown, onClickLeft, onClickRight }) {
 				<ArrowDropUp size={24} className='-rotate-45 transform-gpu' />
 			</div>
 			<div
-				className='absolute w-1/2 aspect-square rounded-tl-full origin-bottom-right rotate-[270deg] transform-gpu bg-default opacity-50 flex items-center justify-center'
+				className='absolute w-1/2 aspect-square rounded-tl-full origin-bottom-right rotate-[270deg] transform-gpu bg-default opacity-70 flex items-center justify-center'
 				style={{
 					WebkitMaskImage: 'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)',
 					mask: 'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)',
