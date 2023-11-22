@@ -348,9 +348,9 @@ export function ResolutionControl({ showTip = false, showTitle = true, disabled 
 			dropAlign={{ bottom: 'top' }}
 			items={
 				items || [
-					{ label: t('极清'), onClick: () => {}, justify: 'end' },
+					{ label: t('超清'), onClick: () => {}, justify: 'end' },
 					{
-						label: t('超清'),
+						label: t('高清'),
 						onClick: () => {},
 						icon: <Checkmark />,
 						justify: 'end',
