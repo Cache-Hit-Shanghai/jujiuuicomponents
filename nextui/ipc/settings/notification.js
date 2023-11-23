@@ -27,7 +27,7 @@ export function ChangeNotification({ list = notiKeyList, data = {}, onChange = (
 			key={key}
 			data-key={key}
 			defaultSelected={data[key]}
-			onChange={({ target: { checked } }) => onChange({ key, checked })}
+			onValueChange={(checked) => onChange({ key, checked })}
 			classNames={{ base: 'h-10 inline-flex flex-row-reverse w-full max-w-md justify-between' }}
 		>
 			{t(title)}
