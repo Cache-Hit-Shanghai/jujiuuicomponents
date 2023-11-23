@@ -73,6 +73,7 @@ export function LinkGroup({ data }) {
 							key={datum.label}
 							href={datum.href}
 							endContent={<ChevronRight size={24} />}
+							textValue={datum.label}
 						>
 							<div className='flex flex-row items-center gap-4'>
 								{datum.icon}
