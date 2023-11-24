@@ -3,6 +3,19 @@
 import { Select, SelectItem } from '@nextui-org/react';
 import { useJuJiuT } from '@/state/translate';
 
+/**
+ * @typedef {import("@nextui-org/react").SelectProps} SelectProps
+ */
+
+/**
+ *
+ * @param {{
+ * langProps: SelectProps,
+ * fontProps: SelectProps,
+ * themeProps: SelectProps
+ * }} props
+ * @returns
+ */
 export function ChangeUI({ langProps = {}, fontProps = {}, themeProps = {} }) {
 	const t = useJuJiuT();
 	const data = [
@@ -40,7 +53,11 @@ export function ChangeUI({ langProps = {}, fontProps = {}, themeProps = {} }) {
 		<div className='flex flex-col gap-4'>
 			{data.map(({ label = '', name = '', items = [], props = {} }) => (
 				<Select label={label} fullWidth={false} key={name} items={items} {...props}>
-					{(item) => <SelectItem key={item.label}>{item.label}</SelectItem>}
+					{(item) => (
+						<SelectItem key={item.value} value={item.value}>
+							{item.label}
+						</SelectItem>
+					)}
 				</Select>
 			))}
 		</div>
