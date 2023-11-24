@@ -73,7 +73,29 @@ export function LinkGroup({ data }) {
 							key={datum.label}
 							href={datum.href}
 							endContent={<ChevronRight size={24} />}
-							textValue={datum.label}
+						>
+							<div className='flex flex-row items-center gap-4'>
+								{datum.icon}
+								<p className='text-base'>{datum.label}</p>
+							</div>
+						</ListboxItem>
+					)}
+				</Listbox>
+			</CardBody>
+		</Card>
+	);
+}
+
+export function TextGroup({ data }) {
+	return (
+		<Card className='flex-none'>
+			<CardBody className='py-0'>
+				<Listbox items={data} aria-label='LinkGroup'>
+					{(datum) => (
+						<ListboxItem
+							showDivider={!datum.last}
+							key={datum.label}
+							endContent={<p className='text-sm text-default-500'>{datum.text}</p>}
 						>
 							<div className='flex flex-row items-center gap-4'>
 								{datum.icon}
