@@ -2,7 +2,6 @@
 
 import { Switch } from '@nextui-org/react';
 import { useJuJiuT } from '@/state/translate';
-import { useCallback } from 'react';
 
 const notiKeyList = [
 	{ title: '设备访问', key: 'deviceAccess' },
