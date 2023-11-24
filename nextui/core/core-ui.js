@@ -231,9 +231,9 @@ export function TextGroup({ data }) {
 	);
 }
 
-export function LinkButton({ href, icon, label, className, ...props }) {
+export function LinkButton({ href, icon, label, className, variant, ...props }) {
 	return (
-		<Button isIconOnly={!label} variant='light' as={Link} href={href} className={className} {...props}>
+		<Button isIconOnly={!label} variant={variant || 'light'} as={Link} href={href} className={className} {...props}>
 			<div className='flex flex-col items-center'>
 				{icon}
 				<p>{label}</p>
