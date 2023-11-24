@@ -21,12 +21,20 @@ import { Wifi } from '@styled-icons/material/Wifi';
 import { OpenWith } from '@styled-icons/material/OpenWith';
 import { ChatBubble } from '@styled-icons/material/ChatBubble';
 
-export function MobileHeader({ children, className }) {
-	return <div className={twMerge('flex items-center p-2 justify-between', className)}>{children}</div>;
+export function MobileHeader({ children, className, ...props }) {
+	return (
+		<div className={twMerge('flex items-center p-2 justify-between', className)} {...props}>
+			{children}
+		</div>
+	);
 }
 
-export function MobileMain({ children }) {
-	return <div className='px-4 py-1 flex flex-col gap-4 flex-1 overflow-auto'>{children}</div>;
+export function MobileMain({ children, className, ...props }) {
+	return (
+		<div className={twMerge('px-4 py-1 flex flex-col gap-4 flex-1 overflow-auto', className)} {...props}>
+			{children}
+		</div>
+	);
 }
 
 export function ThemeButton() {
@@ -72,7 +80,7 @@ export function ButtonBack({ onClick, onPress, ...props }) {
 
 export function NavbarBack({ label, children, className, ...props }) {
 	return (
-		<div className={`p-2 gap-4 flex items-center top-0 left-0 z-50 ${className || ''}`}>
+		<div className={`gap-4 flex items-center top-0 left-0 z-50 ${className || ''}`}>
 			<ButtonBack {...props} />
 			{label}
 			{children}
