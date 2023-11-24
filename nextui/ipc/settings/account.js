@@ -11,7 +11,7 @@ export function ChangePassword({ onSubmit = () => {} }) {
 				<Input label={t('输入旧密码') + ':'} type='password' name='oldPwd' />
 				<Input label={t('输入新密码') + ':'} type='password' name='newPwd' />
 				<Input label={t('再次输入新密码') + ':'} type='password' name='validateNewPwd' />
-				<Button type='submit' color='success'>
+				<Button type='submit' color='primary'>
 					{t('确定')}
 				</Button>
 			</div>
