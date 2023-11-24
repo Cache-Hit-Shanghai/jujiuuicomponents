@@ -10,6 +10,15 @@ import { ChevronLeft } from '@styled-icons/material/ChevronLeft';
 import { ChevronRight } from '@styled-icons/material/ChevronRight';
 import { Info } from '@styled-icons/material/Info';
 import { ContentCopy } from '@styled-icons/material/ContentCopy';
+import { SignalWifi0Bar } from '@styled-icons/material/SignalWifi0Bar';
+import { NetworkWifi1Bar } from '@styled-icons/material/NetworkWifi1Bar';
+import { NetworkWifi2Bar } from '@styled-icons/material/NetworkWifi2Bar';
+import { NetworkWifi3Bar } from '@styled-icons/material/NetworkWifi3Bar';
+import { SignalWifi4Bar } from '@styled-icons/material/SignalWifi4Bar';
+import { DirectionsWalk } from '@styled-icons/material/DirectionsWalk';
+import { Wifi } from '@styled-icons/material/Wifi';
+import { OpenWith } from '@styled-icons/material/OpenWith';
+import { ChatBubble } from '@styled-icons/material/ChatBubble';
 
 export function ThemeButton() {
 	const [mounted, setMounted] = useState(false);
@@ -114,11 +123,61 @@ export function IpDisplay({ label, ips }) {
 	return (
 		<div className='p-2 flex flex-row justify-between items-center'>
 			<p>{label}</p>
-			<p className='text-sm text-default-500 flex flex-col'>
+			<div className='text-sm text-default-500 flex flex-col'>
 				{ips.map((ip) => (
-					<p className='text-right'>{ip}</p>
+					<p className='text-right' key={ip}>
+						{ip}
+					</p>
 				))}
-			</p>
+			</div>
+		</div>
+	);
+}
+
+const WiFiIcons = new Map([
+	[0, SignalWifi0Bar],
+	[1, NetworkWifi1Bar],
+	[2, NetworkWifi2Bar],
+	[3, NetworkWifi3Bar],
+	[4, SignalWifi4Bar],
+]);
+export function WiFiDisplay({ label, text, signal }) {
+	const Icon = WiFiIcons.get(signal) || SignalWifi4Bar;
+	return (
+		<div className='p-2 flex flex-row justify-between items-center'>
+			<p>{label}</p>
+			<div className='text-sm text-default-500 flex flex-row items-center'>
+				{<Icon size={24} />}
+				{text}
+			</div>
+		</div>
+	);
+}
+
+export function FeaturesDisplay({ label }) {
+	const t = useJuJiuT();
+
+	return (
+		<div className='p-2 flex flex-row justify-between items-center'>
+			<p>{label}</p>
+			<div className='text-sm text-default-500 gap-2 flex flex-row items-center flex-wrap justify-end'>
+				<div className='text-sm flex flex-col items-center'>
+					<ChatBubble size={24} />
+					<p>{t('双向语音')}</p>
+				</div>
+				<div className='text-sm flex flex-col items-center'>
+					<Wifi size={24} />
+					<p>WiFi</p>
+				</div>
+				<div className='text-sm flex flex-col items-center'>
+					<DirectionsWalk size={24} />
+					<p>{t('移动侦测')}</p>
+				</div>
+				<div className='text-sm flex flex-col items-center'>
+					<OpenWith size={24} />
+					<p>{t('云台')}</p>
+				</div>
+			</div>
 		</div>
 	);
 }
