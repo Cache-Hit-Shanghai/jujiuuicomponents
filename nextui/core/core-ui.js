@@ -9,6 +9,7 @@ import { DarkMode } from '@styled-icons/material/DarkMode';
 import { ChevronLeft } from '@styled-icons/material/ChevronLeft';
 import { ChevronRight } from '@styled-icons/material/ChevronRight';
 import { Info } from '@styled-icons/material/Info';
+import { ContentCopy } from '@styled-icons/material/ContentCopy';
 
 export function ThemeButton() {
 	const [mounted, setMounted] = useState(false);
@@ -83,6 +84,42 @@ export function LinkGroup({ data }) {
 				</Listbox>
 			</CardBody>
 		</Card>
+	);
+}
+
+export function TextDisplay({ label, text }) {
+	return (
+		<div className='p-2 flex flex-row justify-between items-center'>
+			<p>{label}</p>
+			<p className='text-sm text-default-500'>{text}</p>
+		</div>
+	);
+}
+
+export function UsnDisplay({ label, usn }) {
+	return (
+		<div className='p-2 '>
+			<div className='flex flex-row justify-between items-center'>
+				<p>{label}</p>
+				<Button isIconOnly>
+					<ContentCopy size={24} />
+				</Button>
+			</div>
+			<p className='text-sm text-default-500'>{usn}</p>
+		</div>
+	);
+}
+
+export function IpDisplay({ label, ips }) {
+	return (
+		<div className='p-2 flex flex-row justify-between items-center'>
+			<p>{label}</p>
+			<p className='text-sm text-default-500 flex flex-col'>
+				{ips.map((ip) => (
+					<p className='text-right'>{ip}</p>
+				))}
+			</p>
+		</div>
 	);
 }
 
