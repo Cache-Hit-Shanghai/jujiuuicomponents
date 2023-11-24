@@ -96,6 +96,15 @@ export function LinkGroup({ data }) {
 	);
 }
 
+export function LabeledControl({ label, children }) {
+	return (
+		<div className='p-2 flex flex-row justify-between items-center'>
+			<p>{label}</p>
+			{children}
+		</div>
+	);
+}
+
 export function TextDisplay({ label, text }) {
 	return (
 		<div className='p-2 flex flex-row justify-between items-center'>
