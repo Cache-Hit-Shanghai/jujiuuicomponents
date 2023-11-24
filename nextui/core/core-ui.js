@@ -3,6 +3,7 @@
 import { Button, Card, CardBody, Listbox, ListboxItem, Tabs, Tab } from '@nextui-org/react';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
+import { twMerge } from 'tailwind-merge';
 import Link, { useJuJiuT, useRouter, usePathname } from '@/state/translate';
 import { LightMode } from '@styled-icons/material/LightMode';
 import { DarkMode } from '@styled-icons/material/DarkMode';
@@ -19,6 +20,14 @@ import { DirectionsWalk } from '@styled-icons/material/DirectionsWalk';
 import { Wifi } from '@styled-icons/material/Wifi';
 import { OpenWith } from '@styled-icons/material/OpenWith';
 import { ChatBubble } from '@styled-icons/material/ChatBubble';
+
+export function MobileHeader({ children, className }) {
+	return <div className={twMerge('flex items-center p-2 justify-between', className)}>{children}</div>;
+}
+
+export function MobileMain({ children }) {
+	return <div className='px-4 py-1 flex flex-col gap-4 flex-1 overflow-auto'>{children}</div>;
+}
 
 export function ThemeButton() {
 	const [mounted, setMounted] = useState(false);
