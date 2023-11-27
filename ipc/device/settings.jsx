@@ -1,21 +1,21 @@
 'use client';
 
+import { useJuJiuT } from '@/state/translate';
 import {
-	CheckBox,
 	Box,
-	Text,
+	Button,
+	CheckBox,
+	Collapsible,
+	Heading,
 	RadioButtonGroup,
 	RangeInput,
-	Button,
+	Text,
 	TextInput,
-	Heading,
-	Collapsible,
 } from 'grommet';
 import { Add, Trash } from 'grommet-icons';
-import { useCallback, useMemo, useState } from 'react';
-import { JuJiuItem, JuJiuRawItem, JuJiuCollapsible } from '../../core/core-item';
+import { useCallback, useState } from 'react';
+import { JuJiuCollapsible, JuJiuItem, JuJiuRawItem } from '../../core/core-item';
 import { JuJiuLayer } from '../../core/core-ui';
-import { useJuJiuT } from '@/state/translate';
 
 function LabeledCheckBox({ label }) {
 	return (
@@ -50,12 +50,24 @@ function SleepAddSchedule({ target }) {
 					</Heading>
 					<JuJiuItem label={t('开始时间')}>
 						<Box>
-							<TextInput plain='full' placeholder='hh:mm' width='xsmall' size='small' textAlign='end' />
+							<TextInput
+								plain='full'
+								placeholder='hh:mm'
+								width='xsmall'
+								size='small'
+								textAlign='end'
+							/>
 						</Box>
 					</JuJiuItem>
 					<JuJiuItem label={t('结束时间')}>
 						<Box>
-							<TextInput plain='full' placeholder='hh:mm' width='xsmall' size='small' textAlign='end' />
+							<TextInput
+								plain='full'
+								placeholder='hh:mm'
+								width='xsmall'
+								size='small'
+								textAlign='end'
+							/>
 						</Box>
 					</JuJiuItem>
 					<JuJiuItem>
@@ -114,9 +126,9 @@ function SleepSettings({ target, gap }) {
 										<Box>
 											<Text>00:00 - 05:00</Text>
 											<Text size='small' color='text-xweak'>
-												{`${t('周一')} ${t('周二')} ${t('周三')} ${t('周四')} ${t('周五')} ${t('周六')} ${t(
-													'周日'
-												)}`}
+												{`${t('周一')} ${t('周二')} ${t('周三')} ${t('周四')} ${t(
+													'周五',
+												)} ${t('周六')} ${t('周日')}`}
 											</Text>
 										</Box>
 									}
@@ -287,7 +299,12 @@ export function DeviceSettings({
 				return <Component key={index} {...props}></Component>;
 			})}
 
-			<Button style={{ order: 100 }} label={t('删除设备')} color='status-critical' onClick={onDeviceDelete} />
+			<Button
+				style={{ order: 100 }}
+				label={t('删除设备')}
+				color='status-critical'
+				onClick={onDeviceDelete}
+			/>
 		</>
 	);
 }
