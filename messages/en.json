@@ -191,6 +191,8 @@
     "分享中": "Sharing",
     "来自分享": "From friends",
     "云存储已过期": "Cloud storage expires",
-    "云存储即将过期": "Cloud storage is expiring"
+    "云存储即将过期": "Cloud storage is expiring",
+    "分享给 {name}": "Share to {name}",
+		"来自 {name}": "From {name}"
   }
 }

@@ -96,7 +96,7 @@ export function LinkGroup({ data }) {
 					<LinkButton
 						key={datum.href}
 						href={datum.href}
-						label={datum.label}
+						label={<div className='flex flex-row items-center gap-2'>{datum.icon}{datum.label}</div>}
 						endContent={<ChevronRight size={24} />}
 						radius='none'
 						className='justify-between px-0'
