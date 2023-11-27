@@ -91,23 +91,17 @@ export function NavbarBack({ label, children, className, ...props }) {
 export function LinkGroup({ data }) {
 	return (
 		<Card className='flex-none'>
-			<CardBody className='py-0'>
-				<Listbox items={data} aria-label='LinkGroup'>
-					{(datum) => (
-						<ListboxItem
-							showDivider={!datum.last}
-							as={Link}
-							key={datum.label}
-							href={datum.href}
-							endContent={<ChevronRight size={24} />}
-						>
-							<div className='flex flex-row items-center gap-4'>
-								{datum.icon}
-								<p className='text-base'>{datum.label}</p>
-							</div>
-						</ListboxItem>
-					)}
-				</Listbox>
+			<CardBody className='py-0 divide-y divide-divider'>
+				{data.map((datum) => (
+					<LinkButton
+						key={datum.href}
+						href={datum.href}
+						label={datum.label}
+						endContent={<ChevronRight size={24} />}
+						radius='none'
+						className='justify-between px-0'
+					/>
+				))}
 			</CardBody>
 		</Card>
 	);
