@@ -31,7 +31,7 @@ export function MobileHeader({ children, className, ...props }) {
 
 export function MobileMain({ children, className, ...props }) {
 	return (
-		<div className={twMerge('px-4 py-1 flex flex-col gap-4 flex-1 overflow-auto', className)} {...props}>
+		<div className={twMerge('px-4 py-px flex flex-col gap-4 flex-1 overflow-auto', className)} {...props}>
 			{children}
 		</div>
 	);
