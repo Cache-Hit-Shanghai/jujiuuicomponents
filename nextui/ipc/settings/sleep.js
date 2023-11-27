@@ -1,4 +1,5 @@
 import {
+	Input,
 	Modal,
 	ModalContent,
 	ModalHeader,
@@ -12,7 +13,6 @@ import {
 	VisuallyHidden,
 	useSwitch,
 } from '@nextui-org/react';
-import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { useState } from 'react';
 import { useJuJiuT } from '@/state/translate';
 import { DeleteOutline } from '@styled-icons/material/DeleteOutline';
@@ -96,8 +96,8 @@ export function Sleep() {
 										<>
 											<ModalHeader className='flex flex-col gap-1'>{t('添加时间段')}</ModalHeader>
 											<ModalBody>
-												<TimePicker label={t('开始时间')} />
-												<TimePicker label={t('结束时间')} />
+												<Input type='time' label={t('开始时间')} />
+												<Input type='time' label={t('结束时间')} />
 												<div className='flex flex-row justify-evenly'>
 													<DaySwitch>{t('日')}</DaySwitch>
 													<DaySwitch>{t('一')}</DaySwitch>
