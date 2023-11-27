@@ -169,11 +169,12 @@ const WiFiIcons = new Map([
 ]);
 export function WiFiDisplay({ label, text, signal }) {
 	const Icon = WiFiIcons.get(signal) || SignalWifi4Bar;
+
 	return (
 		<div className='p-2 flex flex-row justify-between items-center'>
 			<p>{label}</p>
 			<div className='text-sm text-default-500 flex flex-row items-center'>
-				{<Icon size={24} />}
+				<Icon size={24} />
 				{text}
 			</div>
 		</div>
@@ -233,7 +234,14 @@ export function TextGroup({ data }) {
 
 export function LinkButton({ href, icon, label, className, variant, ...props }) {
 	return (
-		<Button isIconOnly={!label} variant={variant || 'light'} as={Link} href={href} className={className} {...props}>
+		<Button
+			isIconOnly={!label}
+			variant={variant || 'light'}
+			as={Link}
+			href={href}
+			className={className}
+			{...props}
+		>
 			<div className='flex flex-col items-center'>
 				{icon}
 				<p>{label}</p>
