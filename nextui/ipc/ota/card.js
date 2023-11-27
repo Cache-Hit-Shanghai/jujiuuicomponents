@@ -15,7 +15,7 @@ function OtaDeviceCard({ device, otaInfo, parseSize = (v) => v, basePath = '' })
 	return (
 		<Card>
 			<CardBody>
-				<div className='flex  border-b justify-between items-center gap-2'>
+				<div className='flex  justify-between items-center gap-2'>
 					<div className='flex  items-center gap-2'>
 						<NestCamWiredStand size={48} />
 						<div>
@@ -39,7 +39,6 @@ function OtaDeviceCard({ device, otaInfo, parseSize = (v) => v, basePath = '' })
 								query: { _id, currentVersion, upgradeVersion, updateLog },
 							}}
 							label='现在升级'
-							className={'rounded-full bg-success h-[36px]'}
 						></LinkButton>
 					</div>
 				</div>
