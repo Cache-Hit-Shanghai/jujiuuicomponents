@@ -96,7 +96,12 @@ export function LinkGroup({ data }) {
 					<LinkButton
 						key={datum.href}
 						href={datum.href}
-						label={<div className='flex flex-row items-center gap-2'>{datum.icon}{datum.label}</div>}
+						label={
+							<div className='flex flex-row items-center gap-2'>
+								{datum.icon}
+								{datum.label}
+							</div>
+						}
 						endContent={<ChevronRight size={24} />}
 						radius='none'
 						className='justify-between px-0'
@@ -238,7 +243,7 @@ export function LinkButton({ href, icon, label, className, variant, ...props }) 
 		>
 			<div className='flex flex-col items-center'>
 				{icon}
-				<p>{label}</p>
+				{typeof label === 'string' ? <p>{label}</p> : label}
 			</div>
 		</Button>
 	);
