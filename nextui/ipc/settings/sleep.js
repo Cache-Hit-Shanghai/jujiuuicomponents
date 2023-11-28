@@ -19,7 +19,12 @@ import { DeleteOutline } from '@styled-icons/material/DeleteOutline';
 import { Schedule } from '@styled-icons/material/Schedule';
 import { LabeledControl } from '../../core/core-ui';
 
-const DaySwitch = (props) => {
+/**
+ *
+ * @param {Parameters<typeof useSwitch>[0]} props
+ * @returns
+ */
+export const DaySwitch = (props) => {
 	const { Component, slots, children, getBaseProps, getInputProps, getWrapperProps } = useSwitch(props);
 
 	return (
@@ -45,19 +50,21 @@ const DaySwitch = (props) => {
 	);
 };
 
-function SleepPlanCard() {
+function SleepPlanCard({ start = '9:00', end = '19:00', daysStr = '每天', onClick, onDel }) {
 	return (
 		<Card className='bg-default'>
-			<CardBody className='p-1'>
+			<CardBody className='p-1' onClick={onClick}>
 				<div className='flex flex-row items-center justify-between'>
 					<div className='flex flex-row gap-2 items-center'>
 						<Schedule size={48} />
 						<div>
-							<p>9:00 - 19:00</p>
-							<p className='text-sm text-default-500'>每天</p>
+							<p>
+								{start} - {end}
+							</p>
+							<p className='text-sm text-default-500'>{daysStr}</p>
 						</div>
 					</div>
-					<Button isIconOnly variant='light'>
+					<Button isIconOnly variant='light' onPress={onDel}>
 						<DeleteOutline size={24} />
 					</Button>
 				</div>
@@ -94,7 +101,9 @@ export function Sleep() {
 								<ModalContent>
 									{(onClose) => (
 										<>
-											<ModalHeader className='flex flex-col gap-1'>{t('添加时间段')}</ModalHeader>
+											<ModalHeader className='flex flex-col gap-1'>
+												{t('添加时间段')}
+											</ModalHeader>
 											<ModalBody>
 												<Input type='time' label={t('开始时间')} />
 												<Input type='time' label={t('结束时间')} />
@@ -127,3 +136,5 @@ export function Sleep() {
 		</>
 	);
 }
+
+export { SleepPlanCard as DormantPlanCard };
