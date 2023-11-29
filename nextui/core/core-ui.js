@@ -251,7 +251,14 @@ export function LinkButton({ href, icon, label, className, variant, ...props }) 
 
 const LabelButton = ({ label, children, onClick, ...props }) => {
 	return (
-		<Button {...props} onClick={onClick} variant='light' endContent={<ChevronRight size={16} />}>
+		<Button
+			{...props}
+			onClick={onClick}
+			variant='light'
+			radius='none'
+			endContent={<ChevronRight size={24} />}
+			className='px-0'
+		>
 			<div className='flex flex-row items-center grow justify-between py-1'>
 				<span>{label}</span>
 				{children || <p className='w-10' />}

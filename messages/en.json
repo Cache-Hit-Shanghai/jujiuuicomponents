@@ -1,5 +1,7 @@
 {
   "Index": {
+		"微信分享": "Share by wechat",
+		"二维码分享": "Share by qrcode",
 		"取消所有分享": "Stop sharing",
 		"分享好友": "Share to friends",
     "是": "Yes",
