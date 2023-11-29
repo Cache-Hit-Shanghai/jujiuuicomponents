@@ -39,4 +39,4 @@ export function Confirm({ title, message, isOpen, onClose, onConfirm, onCancel }
 	);
 }
 
-export { Confirm as ConfirmLayer };
+export { Confirm as NextuiConfirmLayer };
