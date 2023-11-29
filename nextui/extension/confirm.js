@@ -1,7 +1,7 @@
 import { Button, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter } from '@nextui-org/react';
 import { useJuJiuT } from '@/state/translate';
 
-export function Confirm({ title, message, isOpen, onClose }) {
+export function Confirm({ title, message, isOpen, onClose, onConfirm, onCancel }) {
 	const t = useJuJiuT();
 
 	return (
@@ -12,10 +12,23 @@ export function Confirm({ title, message, isOpen, onClose }) {
 						<ModalHeader className='flex flex-col gap-1'>{title}</ModalHeader>
 						<ModalBody>{message}</ModalBody>
 						<ModalFooter>
-							<Button color='danger' variant='light' onPress={onClose}>
+							<Button
+								color='danger'
+								variant='light'
+								onPress={() => {
+									onCancel?.();
+									onClose();
+								}}
+							>
 								{t('否')}
 							</Button>
-							<Button color='primary' onPress={onClose}>
+							<Button
+								color='primary'
+								onPress={() => {
+									onConfirm?.();
+									onClose();
+								}}
+							>
 								{t('是')}
 							</Button>
 						</ModalFooter>
@@ -25,3 +38,5 @@ export function Confirm({ title, message, isOpen, onClose }) {
 		</Modal>
 	);
 }
+
+export { Confirm as ConfirmLayer };
