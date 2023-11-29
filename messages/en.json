@@ -1,5 +1,7 @@
 {
   "Index": {
+		"取消所有分享": "Stop sharing",
+		"分享好友": "Share to friends",
     "是": "Yes",
 		"否": "No",
 		"设备状态提醒": "The state of the device is changed",
