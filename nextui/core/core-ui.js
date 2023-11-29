@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, Card, CardBody, Listbox, ListboxItem, Tabs, Tab } from '@nextui-org/react';
+import { Button, Card, CardBody, Tabs, Tab } from '@nextui-org/react';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
