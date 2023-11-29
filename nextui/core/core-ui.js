@@ -208,29 +208,6 @@ export function FeaturesDisplay({ label }) {
 	);
 }
 
-export function TextGroup({ data }) {
-	return (
-		<Card className='flex-none'>
-			<CardBody className='py-0'>
-				<Listbox items={data} aria-label='LinkGroup'>
-					{(datum) => (
-						<ListboxItem
-							showDivider={!datum.last}
-							key={datum.label}
-							endContent={<p className='text-sm text-default-500'>{datum.text}</p>}
-						>
-							<div className='flex flex-row items-center gap-4'>
-								{datum.icon}
-								<p className='text-base'>{datum.label}</p>
-							</div>
-						</ListboxItem>
-					)}
-				</Listbox>
-			</CardBody>
-		</Card>
-	);
-}
-
 export function LinkButton({ href, icon, label, className, variant, ...props }) {
 	return (
 		<Button
@@ -319,16 +296,11 @@ const Information = ({ label = '' }) => {
 function InfoGroup({ data }) {
 	return (
 		<Card>
-			<CardBody>
-				<Listbox items={data} aria-label='InfoGroup'>
-					{(datum) => (
-						<ListboxItem
-							key={datum.key}
-							startContent={<p className='text-base'>{datum.key}</p>}
-							endContent={<p className='text-base'>{datum.value}</p>}
-						></ListboxItem>
-					)}
-				</Listbox>
+			<CardBody className='py-0 divide-y divide-divider'>
+				{data.map(({ key, value }) => (<div key={key} className='py-2 flex flex-row justify-between'>
+          <p className='whitespace-nowrap'>{key}</p>
+          <p className='text-sm text-default-500 max-w-[50%]'>{value}</p>
+        </div>))}
 			</CardBody>
 		</Card>
 	);
