@@ -1,5 +1,6 @@
 {
   "Index": {
+		"使用App扫一扫上面的二维码图案，接受转移的设备。": "Scan the qrcode to transfer the device",
 		"是否取消分享给{name}？": "Do you want to revoke the sharing to {name}?",
 		"是否取消该设备的所有分享？": "Do you want to revoke all of the sharings of the device?",
 		"使用App扫一扫上面的二维码图案，接受分享的设备。": "Scan the qrcode to accept the shared device.",
