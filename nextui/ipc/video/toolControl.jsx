@@ -14,8 +14,23 @@ import { IosShare } from '@styled-icons/material/IosShare';
 import { Settings } from '@styled-icons/material/Settings';
 import { Cameraswitch } from '@styled-icons/material/Cameraswitch';
 import { Battery3Bar } from '@styled-icons/material/Battery3Bar';
+import { Download } from '@styled-icons/material/Download';
 import { useJuJiuT } from '@/state/translate';
 import { LinkButton } from '../../core/core-ui';
+
+export function DownloadControl({ showLabel, ...prop }) {
+	const t = useJuJiuT();
+	const label = t('下载');
+
+	return (
+		<Button isIconOnly={!showLabel} variant='light' {...prop}>
+			<div className='flex flex-col items-center'>
+				<Download size={24} />
+				{showLabel && label}
+			</div>
+		</Button>
+	);
+}
 
 export function ScreenCopyControl({ showLabel, ...prop }) {
 	const t = useJuJiuT();
