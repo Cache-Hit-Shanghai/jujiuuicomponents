@@ -1,8 +1,8 @@
-import { twMerge } from 'tailwind-merge';
-import { useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@nextui-org/react';
 import { Close } from '@styled-icons/material/Close';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useEffect } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 const PositionMap = new Map([
 	['top', 'top-0'],
@@ -11,10 +11,12 @@ const PositionMap = new Map([
 ]);
 
 export function Toast({ isOpen, onClose, message, startContent, position = 'bottom', duration = 5000 }) {
-	let timerId;
 	useEffect(() => {
-		timerId = isOpen && setTimeout(onClose, duration);
-	}, [isOpen]);
+		if (isOpen && duration) {
+			const tid = setTimeout(onClose, duration);
+			return () => clearTimeout(tid);
+		}
+	}, [isOpen, duration]);
 
 	return (
 		<AnimatePresence>
@@ -25,23 +27,14 @@ export function Toast({ isOpen, onClose, message, startContent, position = 'bott
 					exit={{ y: '200%' }}
 					className={twMerge(
 						'absolute z-50 rounded-medium inset-x-0 bg-default p-3 m-2 text-sm flex flex-row items-center gap-2',
-						PositionMap.get(position)
+						PositionMap.get(position),
 					)}
 				>
 					{startContent}
 					<div className='flex-1'>{message}</div>
-					{
-						<Button
-							isIconOnly
-							variant='light'
-							onPress={() => {
-								clearTimeout(timerId);
-								onClose();
-							}}
-						>
-							<Close size={24} />
-						</Button>
-					}
+					<Button isIconOnly variant='light' onPress={onClose}>
+						<Close size={24} />
+					</Button>
 				</motion.div>
 			)}
 		</AnimatePresence>
