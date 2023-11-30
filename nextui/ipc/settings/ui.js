@@ -52,7 +52,7 @@ export function ChangeUI({ langProps = {}, fontProps = {}, themeProps = {} }) {
 	return (
 		<div className='flex flex-col gap-4'>
 			{data.map(({ label = '', name = '', items = [], props = {} }) => (
-				<Select label={label} fullWidth={false} key={name} items={items} {...props}>
+				<Select size='sm' label={label} fullWidth={false} key={name} items={items} {...props}>
 					{(item) => (
 						<SelectItem key={item.value} value={item.value}>
 							{item.label}
