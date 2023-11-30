@@ -1,5 +1,12 @@
 {
   "Index": {
+		"物联4G": "IoT SIM Card",
+		"时光相册": "Photo album",
+		"画面巡检": "Frame inspect",
+		"语音助手": "Voice assistant",
+		"智能识别": "AI recognition",
+		"电话提醒": "Alarm call",
+		"通用服务": "General services",
 		"请选择日期": "Please pick a date",
 		"使用App扫一扫上面的二维码图案，接受转移的设备。": "Scan the qrcode to transfer the device",
 		"是否取消分享给{name}？": "Do you want to revoke the sharing to {name}?",

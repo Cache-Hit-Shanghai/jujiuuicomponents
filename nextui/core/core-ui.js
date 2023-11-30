@@ -219,7 +219,7 @@ export function LinkButton({ href, icon, label, className, variant, ...props }) 
 		>
 			<div className='flex flex-col items-center'>
 				{icon}
-				{typeof label === 'string' ? <p>{label}</p> : label}
+				{typeof label === 'string' ? <p className='text-xs'>{label}</p> : label}
 			</div>
 		</Button>
 	);
