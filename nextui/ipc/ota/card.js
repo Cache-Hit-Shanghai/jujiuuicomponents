@@ -4,9 +4,9 @@ import { useJuJiuT } from '@/state/translate';
 import { Card, CardBody } from '@nextui-org/react';
 import { LinkButton } from '@/jujiu-ui-components/nextui/core/core-ui';
 import { NestCamWiredStand } from '@styled-icons/material/NestCamWiredStand';
-import { JuJiuUtilV2 } from '@/jujiu_js_common/util';
+import { Update } from '@styled-icons/material/Update';
 
-function OtaDeviceCard({ device, otaInfo, parseSize = (v) => v, basePath = '' }) {
+function OtaDeviceCard({ device, otaInfo, parseSize = (v) => v, basePath = '.', href = '/otainfo' }) {
 	const { _id, desc } = device;
 	const { currentVersion, upgradeVersion, upgradeSize = 0, updateLog } = otaInfo;
 
@@ -20,9 +20,7 @@ function OtaDeviceCard({ device, otaInfo, parseSize = (v) => v, basePath = '' })
 						<NestCamWiredStand size={48} />
 						<div>
 							<p>{desc}</p>
-							<p className='text-xs text-default-500'>
-								{JuJiuUtilV2.parse.parseSize(upgradeSize)}
-							</p>
+							<p className='text-xs text-default-500'>{parseSize(upgradeSize)}</p>
 							<p className='text-xs text-default-500'>
 								{currentVersion} ~ {upgradeVersion}
 							</p>
@@ -30,16 +28,13 @@ function OtaDeviceCard({ device, otaInfo, parseSize = (v) => v, basePath = '' })
 					</div>
 					<div>
 						<LinkButton
-							// href='./otainfo'
 							size='sm'
 							variant='solid'
 							color='primary'
-							href={{
-								pathname: './ota/ota-info',
-								query: { _id, currentVersion, upgradeVersion, updateLog },
-							}}
-							label='现在升级'
-						></LinkButton>
+							href={basePath + href}
+							label={t('现在升级')}
+							startContent={<Update size={24} />}
+						/>
 					</div>
 				</div>
 			</CardBody>
