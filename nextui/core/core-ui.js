@@ -78,12 +78,11 @@ export function ButtonBack({ onClick, onPress, ...props }) {
 	);
 }
 
-export function NavbarBack({ label, children, className, ...props }) {
+export function NavbarBack({ label, className, ...props }) {
 	return (
 		<div className={twMerge('gap-4 flex items-center top-0 left-0 z-50', className)}>
 			<ButtonBack {...props} />
 			{label}
-			{children}
 		</div>
 	);
 }
@@ -297,10 +296,12 @@ function InfoGroup({ data }) {
 	return (
 		<Card>
 			<CardBody className='py-0 divide-y divide-divider'>
-				{data.map(({ key, value }) => (<div key={key} className='py-2 flex flex-row justify-between'>
-          <p className='whitespace-nowrap'>{key}</p>
-          <p className='text-sm text-default-500 max-w-[50%]'>{value}</p>
-        </div>))}
+				{data.map(({ key, value }) => (
+					<div key={key} className='py-2 flex flex-row justify-between'>
+						<p className='whitespace-nowrap'>{key}</p>
+						<p className='text-sm text-default-500 max-w-[50%]'>{value}</p>
+					</div>
+				))}
 			</CardBody>
 		</Card>
 	);
