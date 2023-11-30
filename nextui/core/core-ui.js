@@ -129,12 +129,12 @@ export function TextDisplay({ label, text }) {
 	);
 }
 
-export function UsnDisplay({ label, usn }) {
+export function UsnDisplay({ label, usn, btnProps = {} }) {
 	return (
 		<div className='p-2 '>
 			<div className='flex flex-row justify-between items-center'>
 				<p>{label}</p>
-				<Button isIconOnly>
+				<Button isIconOnly {...btnProps}>
 					<ContentCopy size={24} />
 				</Button>
 			</div>
