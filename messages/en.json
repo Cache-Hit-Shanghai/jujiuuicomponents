@@ -1,5 +1,11 @@
 {
   "Index": {
+		"安全中心": "Security center",
+		"产品试用": "Product trial",
+		"人脸管理": "Face library",
+		"我的收藏": "Favorites",
+		"常用工具": "Utilities",
+		"服务中心": "Support center",
 		"会员服务": "VIP services",
 		"离岗检测": "Leave pose",
 		"在线值守": "AI monitoring",
