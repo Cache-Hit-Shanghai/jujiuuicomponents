@@ -165,14 +165,18 @@ const WiFiIcons = new Map([
 	[3, NetworkWifi3Bar],
 	[4, SignalWifi4Bar],
 ]);
-export function WiFiDisplay({ label, text, signal }) {
-	const Icon = WiFiIcons.get(signal) || SignalWifi4Bar;
 
+export function WiFiIcon({ signal, ...passProps }) {
+	const Icon = WiFiIcons.get(signal) || SignalWifi4Bar;
+	return <Icon {...passProps} />;
+}
+
+export function WiFiDisplay({ label, text, signal }) {
 	return (
 		<div className='p-2 flex flex-row justify-between items-center'>
 			<p>{label}</p>
 			<div className='text-sm text-default-500 flex flex-row items-center'>
-				<Icon size={24} />
+				<WiFiIcon size={24} signal={signal} />
 				{text}
 			</div>
 		</div>

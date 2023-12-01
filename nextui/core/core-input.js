@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 
-const Form = ({ children, onSubmit = () => {} }) => {
-	const onFormSubmit = useCallback(async (e) => {
+const Form = ({ children, onSubmit = () => {}, ...passProps }) => {
+	const onFormSubmit = useCallback((e) => {
 		e.preventDefault();
 		const form = e.target;
 		const value = {};
@@ -11,7 +11,11 @@ const Form = ({ children, onSubmit = () => {} }) => {
 		onSubmit(value);
 	}, []);
 
-	return <form onSubmit={onFormSubmit}>{children}</form>;
+	return (
+		<form onSubmit={onFormSubmit} {...passProps}>
+			{children}
+		</form>
+	);
 };
 
 export { Form };
