@@ -18,6 +18,15 @@ import { Download } from '@styled-icons/material/Download';
 import { useJuJiuT } from '@/state/translate';
 import { LinkButton } from '../../core/core-ui';
 
+/**
+ * @typedef {import("@nextui-org/react").ButtonProps} ButtonProps
+ */
+
+/**
+ *
+ * @param {ButtonProps & {showLabel: boolean}} props
+ * @returns
+ */
 export function DownloadControl({ showLabel, ...prop }) {
 	const t = useJuJiuT();
 	const label = t('下载');
@@ -32,6 +41,11 @@ export function DownloadControl({ showLabel, ...prop }) {
 	);
 }
 
+/**
+ *
+ * @param {ButtonProps & {showLabel: boolean}} props
+ * @returns
+ */
 export function ScreenCopyControl({ showLabel, ...prop }) {
 	const t = useJuJiuT();
 	const label = t('截图');
@@ -126,7 +140,11 @@ export function StreamingControlBar({ showLabel }) {
 	return (
 		<>
 			<ScreenCopyControl showLabel={showLabel} />
-			<RecordControl showLabel={showLabel} recording={recording} onPress={() => setRecording(!recording)} />
+			<RecordControl
+				showLabel={showLabel}
+				recording={recording}
+				onPress={() => setRecording(!recording)}
+			/>
 			<ChatControl showLabel={showLabel} speaking={speaking} onPress={() => setSpeaking(!speaking)} />
 			<MuteControl showLabel={showLabel} mute={mute} onPress={() => setMute(!mute)} />
 		</>
@@ -161,7 +179,11 @@ export function StreamingControlBar3({ showLabel }) {
 	return (
 		<>
 			<ScreenCopyControl showLabel={showLabel} />
-			<RecordControl showLabel={showLabel} recording={recording} onPress={() => setRecording(!recording)} />
+			<RecordControl
+				showLabel={showLabel}
+				recording={recording}
+				onPress={() => setRecording(!recording)}
+			/>
 			<ChatControl showLabel={showLabel} speaking={speaking} onPress={() => setSpeaking(!speaking)} />
 			<MuteControl showLabel={showLabel} mute={mute} onPress={() => setMute(!mute)} />
 		</>
