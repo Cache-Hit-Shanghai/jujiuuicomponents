@@ -41,7 +41,7 @@ function ToastRegion({ state, ...props }) {
 		<motion.div
 			{...regionProps}
 			ref={ref}
-			className='fixed flex flex-col bottom-0 inset-x-0 p-2 gap-2 z-50'
+			className='fixed flex flex-col bottom-0 inset-x-0 p-2 gap-2 z-50 outline-none'
 			layout
 		>
 			<AnimatePresence>
