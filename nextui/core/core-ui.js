@@ -301,9 +301,9 @@ function InfoGroup({ data }) {
 		<Card>
 			<CardBody className='py-0 divide-y divide-divider'>
 				{data.map(({ key, value }) => (
-					<div key={key} className='py-2 flex flex-row justify-between'>
+					<div key={key} className='py-2 flex flex-row justify-between gap-4'>
 						<p className='whitespace-nowrap'>{key}</p>
-						<p className='text-sm text-default-500 max-w-[50%]'>{value}</p>
+						<p className='text-sm text-default-500'>{value}</p>
 					</div>
 				))}
 			</CardBody>
