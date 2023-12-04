@@ -1,26 +1,23 @@
+import { motion, AnimatePresence } from 'framer-motion';
 import { Button, Card, CardBody } from '@nextui-org/react';
 import { Close } from '@styled-icons/material/Close';
 import { useRef } from 'react';
 import { useToast } from '@react-aria/toast';
 import { useToastRegion } from '@react-aria/toast';
 import { useToastState } from '@react-stately/toast';
-import './index.css';
 
 function Toast({ state, ...props }) {
 	const ref = useRef(null);
 	const { toastProps, titleProps, closeButtonProps } = useToast(props, state, ref);
 
 	return (
-		<div
+		<motion.div
 			{...toastProps}
 			ref={ref}
-			className='toast'
-			data-animation={props.toast.animation}
-			onAnimationEnd={() => {
-				if (props.toast.animation === 'exiting') {
-					state.remove(props.toast.key);
-				}
-			}}
+			layout
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			exit={{ opacity: 0 }}
 		>
 			<Card>
 				<CardBody className='flex flex-row items-center justify-between'>
@@ -32,7 +29,7 @@ function Toast({ state, ...props }) {
 					</Button>
 				</CardBody>
 			</Card>
-		</div>
+		</motion.div>
 	);
 }
 
@@ -41,18 +38,24 @@ function ToastRegion({ state, ...props }) {
 	const { regionProps } = useToastRegion(props, state, ref);
 
 	return (
-		<div {...regionProps} ref={ref} className='fixed flex flex-col bottom-0 inset-x-0 p-2 gap-2 z-50'>
-			{state.visibleToasts.map((toast) => (
-				<Toast key={toast.key} toast={toast} state={state} />
-			))}
-		</div>
+		<motion.div
+			{...regionProps}
+			ref={ref}
+			className='fixed flex flex-col bottom-0 inset-x-0 p-2 gap-2 z-50'
+			layout
+		>
+			<AnimatePresence>
+				{state.visibleToasts.map((toast) => (
+					<Toast key={toast.key} toast={toast} state={state} />
+				))}
+			</AnimatePresence>
+		</motion.div>
 	);
 }
 
 export function ToastProvider({ children, ...props }) {
 	const state = useToastState({
 		maxVisibleToasts: 5,
-		// hasExitAnimation: true,
 	});
 
 	return (
