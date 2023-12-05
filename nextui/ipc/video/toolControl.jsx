@@ -93,14 +93,12 @@ export function RecordControl({ showLabel, recording, ...prop }) {
 	const label = t(recording ? '停止' : '录像');
 
 	return (
-		<>
-			<Button isIconOnly={!showLabel} variant='light' {...prop}>
-				<div className='flex flex-col items-center'>
-					{recording ? <StopCircle size={24} /> : <FiberManualRecord size={24} />}
-					{showLabel && label}
-				</div>
-			</Button>
-		</>
+		<Button isIconOnly={!showLabel} variant='light' {...prop}>
+			<div className='flex flex-col items-center'>
+				{recording ? <StopCircle size={24} /> : <FiberManualRecord size={24} />}
+				{showLabel && label}
+			</div>
+		</Button>
 	);
 }
 
