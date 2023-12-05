@@ -267,7 +267,7 @@ export function NavTabs({ data = [] }) {
 	const pathname = usePathname();
 
 	return (
-		<Tabs fullWidth color='primary' variant='light' selectedKey={pathname} className='p-2'>
+		<Tabs fullWidth size='sm' color='primary' variant='light' selectedKey={pathname} className='p-2'>
 			{data.map((datum) => (
 				<Tab
 					as={Link}
