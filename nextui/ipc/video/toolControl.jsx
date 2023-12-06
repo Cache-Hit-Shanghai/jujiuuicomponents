@@ -51,10 +51,10 @@ export function ScreenCopyControl({ showLabel, ...prop }) {
 	const label = t('截图');
 
 	return (
-		<Button isIconOnly={!showLabel} variant='light' {...prop}>
+		<Button className='p-0 min-w-fit' isIconOnly={!showLabel} variant='light' radius='none' {...prop}>
 			<div className='flex flex-col items-center'>
 				<PhotoCamera size={24} />
-				{showLabel && label}
+				{showLabel && <p className='text-xs'>{label}</p>}
 			</div>
 		</Button>
 	);
@@ -65,10 +65,10 @@ export function ChatControl({ showLabel, speaking, ...prop }) {
 	const label = t(speaking ? '挂断' : '对讲');
 
 	return (
-		<Button isIconOnly={!showLabel} variant='light' {...prop}>
+		<Button className='p-0 min-w-fit' isIconOnly={!showLabel} variant='light' radius='none' {...prop}>
 			<div className='flex flex-col items-center'>
 				{speaking ? <CallEnd size={24} /> : <Phone size={24} />}
-				{showLabel && label}
+				{showLabel && <p className='text-xs'>{label}</p>}
 			</div>
 		</Button>
 	);
@@ -79,10 +79,10 @@ export function MuteControl({ showLabel, mute = true, ...prop }) {
 	const label = t(mute ? '恢复' : '静音');
 
 	return (
-		<Button isIconOnly={!showLabel} variant='light' {...prop}>
+		<Button className='p-0 min-w-fit' isIconOnly={!showLabel} variant='light' radius='none' {...prop}>
 			<div className='flex flex-col items-center'>
 				{mute ? <VolumeUp size={24} /> : <VolumeOff size={24} />}
-				{showLabel && label}
+				{showLabel && <p className='text-xs'>{label}</p>}
 			</div>
 		</Button>
 	);
@@ -93,10 +93,10 @@ export function RecordControl({ showLabel, recording, ...prop }) {
 	const label = t(recording ? '停止' : '录像');
 
 	return (
-		<Button isIconOnly={!showLabel} variant='light' {...prop}>
+		<Button className='p-0 min-w-fit' isIconOnly={!showLabel} variant='light' radius='none' {...prop}>
 			<div className='flex flex-col items-center'>
 				{recording ? <StopCircle size={24} /> : <FiberManualRecord size={24} />}
-				{showLabel && label}
+				{showLabel && <p className='text-xs'>{label}</p>}
 			</div>
 		</Button>
 	);
@@ -109,10 +109,10 @@ export function ResolutionControl({ showLabel, items, ...prop }) {
 	return (
 		<Dropdown>
 			<DropdownTrigger>
-				<Button isIconOnly={!showLabel} variant='light'>
+				<Button className='p-0 min-w-fit' isIconOnly={!showLabel} variant='light' radius='none' {...prop}>
 					<div className='flex flex-col items-center'>
 						<Hd size={24} />
-						{showLabel && label}
+						{showLabel && <p className='text-xs'>{label}</p>}
 					</div>
 				</Button>
 			</DropdownTrigger>
@@ -138,13 +138,10 @@ export function StreamingControlBar({ showLabel }) {
 	return (
 		<>
 			<ScreenCopyControl showLabel={showLabel} />
-			<RecordControl
-				showLabel={showLabel}
-				recording={recording}
-				onPress={() => setRecording(!recording)}
-			/>
+			<RecordControl showLabel={showLabel} recording={recording} onPress={() => setRecording(!recording)} />
 			<ChatControl showLabel={showLabel} speaking={speaking} onPress={() => setSpeaking(!speaking)} />
 			<MuteControl showLabel={showLabel} mute={mute} onPress={() => setMute(!mute)} />
+			<ResolutionControl showLabel={showLabel} />
 		</>
 	);
 }
@@ -177,11 +174,7 @@ export function StreamingControlBar3({ showLabel }) {
 	return (
 		<>
 			<ScreenCopyControl showLabel={showLabel} />
-			<RecordControl
-				showLabel={showLabel}
-				recording={recording}
-				onPress={() => setRecording(!recording)}
-			/>
+			<RecordControl showLabel={showLabel} recording={recording} onPress={() => setRecording(!recording)} />
 			<ChatControl showLabel={showLabel} speaking={speaking} onPress={() => setSpeaking(!speaking)} />
 			<MuteControl showLabel={showLabel} mute={mute} onPress={() => setMute(!mute)} />
 		</>
