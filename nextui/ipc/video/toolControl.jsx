@@ -1,19 +1,14 @@
 'use client';
 
 import {
-	Dropdown,
-	DropdownTrigger,
-	DropdownMenu,
 	Divider,
 	Button,
 	Modal,
 	ModalContent,
 	ModalHeader,
 	ModalBody,
-	ModalFooter,
 	useDisclosure,
 	Listbox,
-	ListboxSection,
 	ListboxItem,
 } from '@nextui-org/react';
 import { useState } from 'react';
@@ -32,7 +27,6 @@ import { Battery3Bar } from '@styled-icons/material/Battery3Bar';
 import { Download } from '@styled-icons/material/Download';
 import { useJuJiuT } from '@/state/translate';
 import { LinkButton } from '../../core/core-ui';
-import { ActionSheet } from '../../extension/actionsheet';
 
 /**
  * @typedef {import("@nextui-org/react").ButtonProps} ButtonProps
