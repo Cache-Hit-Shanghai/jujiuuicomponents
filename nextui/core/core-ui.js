@@ -267,14 +267,23 @@ export function NavTabs({ data = [] }) {
 	const pathname = usePathname();
 
 	return (
-		<Tabs fullWidth size='sm' color='primary' variant='light' selectedKey={pathname} className='p-2'>
+		<Tabs
+			fullWidth
+			size='sm'
+			color='primary'
+			variant='light'
+			selectedKey={pathname}
+			classNames={{
+				tab: 'h-fit',
+			}}
+		>
 			{data.map((datum) => (
 				<Tab
 					as={Link}
 					key={datum.href}
 					href={datum.href}
 					title={
-						<div className='flex flex-row items-center gap-2'>
+						<div className='flex flex-col items-center'>
 							{datum.icon}
 							{t(datum.label)}
 						</div>
