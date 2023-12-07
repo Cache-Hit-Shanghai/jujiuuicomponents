@@ -59,7 +59,7 @@ export function ThemeButton() {
 	);
 }
 
-export function ButtonBack({ onClick, onPress, ...props }) {
+export function ButtonBack({ onClick, onPress, goBack = true, ...props }) {
 	const router = useRouter();
 
 	return (
@@ -69,7 +69,7 @@ export function ButtonBack({ onClick, onPress, ...props }) {
 			onPress={() => {
 				onClick && onClick();
 				onPress && onPress();
-				router.back();
+				goBack && router.back();
 			}}
 			{...props}
 		>

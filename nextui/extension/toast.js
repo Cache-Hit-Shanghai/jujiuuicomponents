@@ -26,8 +26,8 @@ export function Toast({ isOpen, onClose, message, startContent, position = 'bott
 					animate={{ y: 0 }}
 					exit={{ y: '150%' }}
 					className={twMerge(
-						'fixed z-50 rounded-medium inset-x-0 bg-default p-3 m-2 text-sm flex flex-row items-center gap-2',
-						PositionMap.get(position)
+						'fixed z-[1000] rounded-medium inset-x-0 bg-default p-3 m-2 text-sm flex flex-row items-center gap-2',
+						PositionMap.get(position),
 					)}
 				>
 					{startContent}
