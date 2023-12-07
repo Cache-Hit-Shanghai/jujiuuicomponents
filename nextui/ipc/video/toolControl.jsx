@@ -112,11 +112,33 @@ export function RecordControl({ showLabel, recording, ...prop }) {
 	);
 }
 
-export function ResolutionControl({ showLabel, items, ...prop }) {
+function useConrollableState({ value, setValue, initValue }) {
+	const [state, setState] = useState(initValue);
+	if (setValue) return [value, setValue];
+	return [state, setState];
+}
+
+export function ResolutionControl({
+	showLabel,
+	items,
+	options = [
+		{ key: '2.5k', label: '超清' },
+		{ key: '1080p', label: '高清' },
+		{ key: '720p', label: '标清' },
+	],
+	current,
+	init = '2.5k',
+	onSelect,
+	...prop
+}) {
 	const t = useJuJiuT();
 	const label = t('清晰度');
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
-	const [selectedKeys, setSelectedKeys] = useState(new Set(['2.5k']));
+	const [selectedKeys, setSelectedKeys] = useConrollableState({
+		initValue: new Set([init]),
+		value: new Set([current]),
+		setValue: onSelect && ((newValue) => onSelect([...newValue][0])),
+	});
 
 	return (
 		<>
@@ -151,9 +173,9 @@ export function ResolutionControl({ showLabel, items, ...prop }) {
 										onClose();
 									}}
 								>
-									<ListboxItem key='2.5k'>{t('超清')}</ListboxItem>
-									<ListboxItem key='1080p'>{t('高清')}</ListboxItem>
-									<ListboxItem key='720p'>{t('标清')}</ListboxItem>
+									{options.map(({ key, label }) => (
+										<ListboxItem key={key}>{label}</ListboxItem>
+									))}
 								</Listbox>
 							</ModalBody>
 						</>
