@@ -19,12 +19,15 @@ import { VolumeOff } from '@styled-icons/material/VolumeOff';
 import { VolumeUp } from '@styled-icons/material/VolumeUp';
 import { FiberManualRecord } from '@styled-icons/material/FiberManualRecord';
 import { StopCircle } from '@styled-icons/material/StopCircle';
-import { Hd } from '@styled-icons/material/Hd';
+import { Hd as Resolution } from '@styled-icons/material/Hd';
 import { IosShare } from '@styled-icons/material/IosShare';
 import { Settings } from '@styled-icons/material/Settings';
 import { Cameraswitch } from '@styled-icons/material/Cameraswitch';
 import { Battery3Bar } from '@styled-icons/material/Battery3Bar';
 import { Download } from '@styled-icons/material/Download';
+import { Hd } from '@/jujiu-ui-components/icons/hd';
+import { FullHd } from '@/jujiu-ui-components/icons/fullhd';
+import { R2kPlus } from '@/jujiu-ui-components/icons/2kplus';
 import { useJuJiuT } from '@/state/translate';
 import { LinkButton } from '../../core/core-ui';
 
@@ -122,9 +125,9 @@ export function ResolutionControl({
 	showLabel,
 	items,
 	options = [
-		{ key: '2.5k', label: '超清' },
-		{ key: '1080p', label: '高清' },
-		{ key: '720p', label: '标清' },
+		{ key: '2.5k', label: '超清', icon: <R2kPlus size={24} /> },
+		{ key: '1080p', label: '高清', icon: <FullHd size={24} /> },
+		{ key: '720p', label: '标清', icon: <Hd size={24} /> },
 	],
 	current,
 	init = '2.5k',
@@ -151,7 +154,7 @@ export function ResolutionControl({
 				{...prop}
 			>
 				<div className='flex flex-col items-center'>
-					<Hd size={24} />
+					<Resolution size={24} />
 					{showLabel && <p className='text-xs'>{label}</p>}
 				</div>
 			</Button>
@@ -173,8 +176,10 @@ export function ResolutionControl({
 										onClose();
 									}}
 								>
-									{options.map(({ key, label }) => (
-										<ListboxItem key={key}>{label}</ListboxItem>
+									{options.map(({ key, label, icon }) => (
+										<ListboxItem key={key} startContent={icon}>
+											{label}
+										</ListboxItem>
 									))}
 								</Listbox>
 							</ModalBody>

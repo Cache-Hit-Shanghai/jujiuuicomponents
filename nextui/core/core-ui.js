@@ -18,7 +18,7 @@ import { NetworkWifi3Bar } from '@styled-icons/material/NetworkWifi3Bar';
 import { SignalWifi4Bar } from '@styled-icons/material/SignalWifi4Bar';
 import { DirectionsWalk } from '@styled-icons/material/DirectionsWalk';
 import { Wifi } from '@styled-icons/material/Wifi';
-import { OpenWith } from '@styled-icons/material/OpenWith';
+import { ControlCamera } from '@styled-icons/material/ControlCamera';
 import { ChatBubble } from '@styled-icons/material/ChatBubble';
 
 export function MobileHeader({ children, className, ...props }) {
@@ -134,7 +134,7 @@ export function UsnDisplay({ label, usn, btnProps = {} }) {
 		<div className='p-2 '>
 			<div className='flex flex-row justify-between items-center'>
 				<p>{label}</p>
-				<Button isIconOnly {...btnProps}>
+				<Button size='sm' isIconOnly {...btnProps}>
 					<ContentCopy size={24} />
 				</Button>
 			</div>
@@ -203,7 +203,7 @@ export function FeaturesDisplay({ label }) {
 					<p>{t('移动侦测')}</p>
 				</div>
 				<div className='text-sm flex flex-col items-center'>
-					<OpenWith size={24} />
+					<ControlCamera size={24} />
 					<p>{t('云台')}</p>
 				</div>
 			</div>
