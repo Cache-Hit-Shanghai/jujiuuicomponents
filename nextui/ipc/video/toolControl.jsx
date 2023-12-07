@@ -27,6 +27,7 @@ import { Battery3Bar } from '@styled-icons/material/Battery3Bar';
 import { Download } from '@styled-icons/material/Download';
 import { useJuJiuT } from '@/state/translate';
 import { LinkButton } from '../../core/core-ui';
+import { twMerge } from 'tailwind-merge';
 
 /**
  * @typedef {import("@nextui-org/react").ButtonProps} ButtonProps
@@ -129,6 +130,7 @@ export function ResolutionControl({
 	current,
 	init = '2.5k',
 	onSelect,
+	isForceLandscape = false,
 	...prop
 }) {
 	const t = useJuJiuT();
@@ -139,6 +141,8 @@ export function ResolutionControl({
 		value: new Set([current]),
 		setValue: onSelect && ((newValue) => onSelect([...newValue][0])),
 	});
+
+	const forceLandscapeStyle = isForceLandscape ? 'w-[100max] h-[100vmin]' : '';
 
 	return (
 		<>
@@ -155,7 +159,15 @@ export function ResolutionControl({
 					{showLabel && <p className='text-xs'>{label}</p>}
 				</div>
 			</Button>
-			<Modal hideCloseButton isOpen={isOpen} onOpenChange={onOpenChange}>
+			<Modal
+				classNames={{
+					wrapper: twMerge('z-[500]', forceLandscapeStyle),
+					backdrop: twMerge('z-[500]', forceLandscapeStyle),
+				}}
+				hideCloseButton
+				isOpen={isOpen}
+				onOpenChange={onOpenChange}
+			>
 				<ModalContent>
 					{(onClose) => (
 						<>
@@ -173,7 +185,7 @@ export function ResolutionControl({
 										onClose();
 									}}
 								>
-									{options.map(({ key, label }) => (
+									{options.map(({ key, label = key }) => (
 										<ListboxItem key={key}>{label}</ListboxItem>
 									))}
 								</Listbox>
@@ -194,7 +206,11 @@ export function StreamingControlBar({ showLabel }) {
 	return (
 		<>
 			<ScreenCopyControl showLabel={showLabel} />
-			<RecordControl showLabel={showLabel} recording={recording} onPress={() => setRecording(!recording)} />
+			<RecordControl
+				showLabel={showLabel}
+				recording={recording}
+				onPress={() => setRecording(!recording)}
+			/>
 			<ChatControl showLabel={showLabel} speaking={speaking} onPress={() => setSpeaking(!speaking)} />
 			<MuteControl showLabel={showLabel} mute={mute} onPress={() => setMute(!mute)} />
 			<ResolutionControl showLabel={showLabel} />
@@ -230,7 +246,11 @@ export function StreamingControlBar3({ showLabel }) {
 	return (
 		<>
 			<ScreenCopyControl showLabel={showLabel} />
-			<RecordControl showLabel={showLabel} recording={recording} onPress={() => setRecording(!recording)} />
+			<RecordControl
+				showLabel={showLabel}
+				recording={recording}
+				onPress={() => setRecording(!recording)}
+			/>
 			<ChatControl showLabel={showLabel} speaking={speaking} onPress={() => setSpeaking(!speaking)} />
 			<MuteControl showLabel={showLabel} mute={mute} onPress={() => setMute(!mute)} />
 		</>
