@@ -276,7 +276,7 @@ export function ChatControl({
 
 export function MuteControl({ showTip = false, mute = true, onClick, showTitle = true, disabled = false }) {
 	const t = useJuJiuT();
-	const title = t(mute ? '恢复' : '静音');
+	const title = t(mute ? '解除静音' : '静音');
 
 	return (
 		<Button tip={showTip ? title : ''} onClick={onClick} disabled={disabled}>
