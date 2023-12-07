@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/Cache-Hit-Shanghai/jujiuuicomponents/issues"
   },
-  "homepage": "https://github.com/Cache-Hit-Shanghai/jujiuuicomponents#readme"
+  "homepage": "https://github.com/Cache-Hit-Shanghai/jujiuuicomponents#readme",
+  "dependencies": {
+    "tailwind-merge": "^2.1.0"
+  }
 }
