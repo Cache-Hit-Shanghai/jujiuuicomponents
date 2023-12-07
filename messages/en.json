@@ -1,5 +1,15 @@
 {
   "Index": {
+    "我的回复": "My replies",
+		"我的问题": "My questions",
+		"新建问题": "New question",
+		"建议": "suggestion",
+		"问题": "question",
+		"功能": "enhancement",
+		"文档": "documentation",
+		"缺陷": "bug",
+		"搜索问题": "Search questions",
+		"搜索": "Search",
     "开宝箱": "Redeem",
 		"光豆": "Beans",
 		"隐藏": "Hide",
@@ -235,6 +245,7 @@
     "云存储即将过期": "Cloud storage is expiring",
 		"已分享{count}人": "Shared to {count} friend(s)",
     "分享给 {name}": "Share to {name}",
-		"来自 {name}": "From {name}"
+		"来自 {name}": "From {name}",
+		"由 {username} 于 {createdAt} 创建": "created by {username} on {createdAt}"
   }
 }
