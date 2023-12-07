@@ -29,7 +29,7 @@ export function ChangeNotification({ list = notiKeyList, data = {}, onChange = (
 			onValueChange={(checked) => onChange({ key, checked })}
 			classNames={{ base: 'h-10 inline-flex flex-row-reverse w-full max-w-md justify-between' }}
 		>
-			{t(title)}
+			<p className='text-sm'>{t(title)}</p>
 		</Switch>
 	));
 }
