@@ -213,11 +213,7 @@ export function StreamingControlBar({ showLabel }) {
 	return (
 		<>
 			<ScreenCopyControl showLabel={showLabel} />
-			<RecordControl
-				showLabel={showLabel}
-				recording={recording}
-				onPress={() => setRecording(!recording)}
-			/>
+			<RecordControl showLabel={showLabel} recording={recording} onPress={() => setRecording(!recording)} />
 			<ChatControl showLabel={showLabel} speaking={speaking} onPress={() => setSpeaking(!speaking)} />
 			<MuteControl showLabel={showLabel} mute={mute} onPress={() => setMute(!mute)} />
 			<ResolutionControl showLabel={showLabel} />
@@ -231,16 +227,8 @@ export function StreamingControlBar2() {
 			<Button isIconOnly variant='light'>
 				<Cameraswitch size={24} />
 			</Button>
-			<LinkButton
-				className='text-white'
-				href='/device/settings/sharing'
-				icon={<IosShare size={24} className='text-white' />}
-			/>
-			<LinkButton
-				className='text-white'
-				href='/device/settings'
-				icon={<Settings size={24} className='text-white' />}
-			/>
+			<LinkButton href='/device/settings/sharing' icon={<IosShare size={24} />} />
+			<LinkButton href='/device/settings' icon={<Settings size={24} />} />
 		</>
 	);
 }
@@ -253,11 +241,7 @@ export function StreamingControlBar3({ showLabel }) {
 	return (
 		<>
 			<ScreenCopyControl showLabel={showLabel} />
-			<RecordControl
-				showLabel={showLabel}
-				recording={recording}
-				onPress={() => setRecording(!recording)}
-			/>
+			<RecordControl showLabel={showLabel} recording={recording} onPress={() => setRecording(!recording)} />
 			<ChatControl showLabel={showLabel} speaking={speaking} onPress={() => setSpeaking(!speaking)} />
 			<MuteControl showLabel={showLabel} mute={mute} onPress={() => setMute(!mute)} />
 		</>
