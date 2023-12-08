@@ -1,5 +1,10 @@
 {
   "Index": {
+		"密码登录": "Use password",
+		"微信": "Wechat",
+		"服务协议": "Terms",
+		"使用当前手机号": "Use current phone number",
+		"已阅读并同意": "I have read and agreed to ",
 		"您是否确定退出登录？": "Are you sure to logout?",
 		"添加描述": "Add your description here...",
 		"标题": "Title",
