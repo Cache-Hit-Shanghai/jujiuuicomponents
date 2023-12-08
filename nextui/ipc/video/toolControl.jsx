@@ -1,5 +1,7 @@
 'use client';
 
+// FIXME: filename
+
 import {
 	Divider,
 	Button,
@@ -211,7 +213,11 @@ export function StreamingControlBar({ showLabel }) {
 	return (
 		<>
 			<ScreenCopyControl showLabel={showLabel} />
-			<RecordControl showLabel={showLabel} recording={recording} onPress={() => setRecording(!recording)} />
+			<RecordControl
+				showLabel={showLabel}
+				recording={recording}
+				onPress={() => setRecording(!recording)}
+			/>
 			<ChatControl showLabel={showLabel} speaking={speaking} onPress={() => setSpeaking(!speaking)} />
 			<MuteControl showLabel={showLabel} mute={mute} onPress={() => setMute(!mute)} />
 			<ResolutionControl showLabel={showLabel} />
@@ -247,7 +253,11 @@ export function StreamingControlBar3({ showLabel }) {
 	return (
 		<>
 			<ScreenCopyControl showLabel={showLabel} />
-			<RecordControl showLabel={showLabel} recording={recording} onPress={() => setRecording(!recording)} />
+			<RecordControl
+				showLabel={showLabel}
+				recording={recording}
+				onPress={() => setRecording(!recording)}
+			/>
 			<ChatControl showLabel={showLabel} speaking={speaking} onPress={() => setSpeaking(!speaking)} />
 			<MuteControl showLabel={showLabel} mute={mute} onPress={() => setMute(!mute)} />
 		</>
