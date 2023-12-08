@@ -90,7 +90,7 @@ export function ChatControl({ showLabel, speaking, ...prop }) {
 
 export function MuteControl({ showLabel, mute = true, ...prop }) {
 	const t = useJuJiuT();
-	const label = t(mute ? '恢复' : '静音');
+	const label = t(mute ? '解除静音' : '静音');
 
 	return (
 		<Button className='p-0 min-w-fit' isIconOnly={!showLabel} variant='light' radius='none' {...prop}>
@@ -211,11 +211,7 @@ export function StreamingControlBar({ showLabel }) {
 	return (
 		<>
 			<ScreenCopyControl showLabel={showLabel} />
-			<RecordControl
-				showLabel={showLabel}
-				recording={recording}
-				onPress={() => setRecording(!recording)}
-			/>
+			<RecordControl showLabel={showLabel} recording={recording} onPress={() => setRecording(!recording)} />
 			<ChatControl showLabel={showLabel} speaking={speaking} onPress={() => setSpeaking(!speaking)} />
 			<MuteControl showLabel={showLabel} mute={mute} onPress={() => setMute(!mute)} />
 			<ResolutionControl showLabel={showLabel} />
@@ -251,11 +247,7 @@ export function StreamingControlBar3({ showLabel }) {
 	return (
 		<>
 			<ScreenCopyControl showLabel={showLabel} />
-			<RecordControl
-				showLabel={showLabel}
-				recording={recording}
-				onPress={() => setRecording(!recording)}
-			/>
+			<RecordControl showLabel={showLabel} recording={recording} onPress={() => setRecording(!recording)} />
 			<ChatControl showLabel={showLabel} speaking={speaking} onPress={() => setSpeaking(!speaking)} />
 			<MuteControl showLabel={showLabel} mute={mute} onPress={() => setMute(!mute)} />
 		</>
