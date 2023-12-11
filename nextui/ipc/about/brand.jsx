@@ -1,13 +1,23 @@
 'use client';
 
 import { Card, CardBody, Spacer, Chip } from '@nextui-org/react';
-import { Pets } from '@styled-icons/material/Pets';
 import { Paw } from '../../../icons/paw';
 import { useJuJiuT } from '@/state/translate';
-import { ZCOOL_KuaiLe } from 'next/font/google';
+import {
+	ZCOOL_KuaiLe,
+	ZCOOL_XiaoWei,
+	ZCOOL_QingKe_HuangYou,
+	Ma_Shan_Zheng,
+	Zhi_Mang_Xing,
+	Long_Cang,
+	Liu_Jian_Mao_Cao,
+	Zen_Maru_Gothic,
+	Sniglet,
+	Chewy,
+} from 'next/font/google';
 
-const googleFont = ZCOOL_KuaiLe({
-	weight: '400',
+const googleFont = Zen_Maru_Gothic({
+	weight: '900',
 	subsets: ['latin'],
 	display: 'swap',
 });
