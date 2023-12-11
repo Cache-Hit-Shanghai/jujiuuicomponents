@@ -2,6 +2,7 @@
 
 import { Card, CardBody, Spacer, Chip } from '@nextui-org/react';
 import { Pets } from '@styled-icons/material/Pets';
+import { Paw } from '../../../icons/paw';
 import { useJuJiuT } from '@/state/translate';
 import { ZCOOL_KuaiLe } from 'next/font/google';
 
@@ -16,7 +17,7 @@ export function AppLogo({ size = 'sm' }) {
 
 	return (
 		<div className='flex px-2 gap-2 items-center justify-center'>
-			<Pets size={size === 'sm' ? 24 : 48} />
+			<Paw size={size === 'sm' ? 24 : 48} />
 			<p className={`${size === 'sm' ? 'text-lg' : 'text-4xl'} ${googleFont.className}`}>{t('小皮部落')}</p>
 		</div>
 	);
@@ -33,7 +34,7 @@ export function AppAbout() {
 				<div className='flex flex-col items-center'>
 					<p>{t('slogan')}</p>
 					<Spacer y={1} />
-					<p className='text-sm text-default-500'>
+					<p className='text-xs text-default-500'>
 						Powered by {t('光方云')}
 						<sup>&reg; </sup>
 					</p>
