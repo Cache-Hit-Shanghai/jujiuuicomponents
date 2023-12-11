@@ -1,5 +1,8 @@
 {
   "Index": {
+    "未读": "Unread",
+		"已读": "Read",
+		"全部": "All",
 		"密码登录": "Use password",
 		"微信": "Wechat",
 		"服务协议": "Terms",
