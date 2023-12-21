@@ -1,7 +1,6 @@
 {
   "Index": {
 		"我的粉丝({number})": "Followers({number})",
-		"关注(名词)": "Following",
 		"发私信": "Go chat",
 		"最多不超过12个字": "Up to 24 characters",
 		"修改备注": "Edit remark",
@@ -12,8 +11,7 @@
 		"{number}篇笔记未看": "{number} unread notes",
 		"我的关注({number})": "Following({number})",
 		"搜索已关注的人": "search people you follow",
-		"{number}位朋友": "{number} friends",
-		"朋友": "Friends",
+		"{number}位好友": "{number} friends",
 		"我的点赞": "Likes",
     "未读": "Unread",
 		"已读": "Read",
