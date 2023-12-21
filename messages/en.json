@@ -1,5 +1,7 @@
 {
   "Index": {
+		"最多不超过12个字": "Up to 24 characters",
+		"修改备注": "Edit remark",
 		"确认不再关注？": "Are you sure to unfollow?",
     "在关注列表中置顶": "Pin",
 		"设置备注名": "Add remark",
