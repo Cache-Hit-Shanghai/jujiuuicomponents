@@ -23,7 +23,10 @@ import { ChatBubble } from '@styled-icons/material/ChatBubble';
 
 export function MobileHeader({ children, className, ...props }) {
 	return (
-		<div className={twMerge('flex items-center p-2 justify-between', className)} {...props}>
+		<div
+			className={twMerge('flex items-center p-2 justify-between', className)}
+			{...props}
+		>
 			{children}
 		</div>
 	);
@@ -31,7 +34,13 @@ export function MobileHeader({ children, className, ...props }) {
 
 export function MobileMain({ children, className, ...props }) {
 	return (
-		<div className={twMerge('px-4 py-px flex flex-col gap-4 flex-1 overflow-auto', className)} {...props}>
+		<div
+			className={twMerge(
+				'px-4 py-px flex flex-col gap-4 flex-1 overflow-auto',
+				className
+			)}
+			{...props}
+		>
 			{children}
 		</div>
 	);
@@ -80,7 +89,12 @@ export function ButtonBack({ onClick, onPress, goBack = true, ...props }) {
 
 export function NavbarBack({ label, className, ...props }) {
 	return (
-		<div className={twMerge('gap-4 flex items-center top-0 left-0 z-50', className)}>
+		<div
+			className={twMerge(
+				'gap-4 flex items-center top-0 left-0 z-50',
+				className
+			)}
+		>
 			<ButtonBack {...props} />
 			{label}
 		</div>
@@ -211,7 +225,14 @@ export function FeaturesDisplay({ label }) {
 	);
 }
 
-export function LinkButton({ href, icon, label, className, variant, ...props }) {
+export function LinkButton({
+	href,
+	icon,
+	label,
+	className,
+	variant,
+	...props
+}) {
 	return (
 		<Button
 			isIconOnly={!label}
@@ -229,7 +250,7 @@ export function LinkButton({ href, icon, label, className, variant, ...props }) 
 	);
 }
 
-const LabelButton = ({ label, children, onClick, ...props }) => {
+export function LabelButton({ label, children, onClick, ...props }) {
 	return (
 		<Button
 			{...props}
@@ -245,15 +266,27 @@ const LabelButton = ({ label, children, onClick, ...props }) => {
 			</div>
 		</Button>
 	);
-};
+}
 
-const LabelLink = ({ href, ...props }) => {
+export function LabelLink({ href, ...props }) {
 	return <LabelButton as={Link} href={href} {...props} />;
-};
+}
 
-export function IconButton({ icon, label, className, onClick = () => {}, ...props }) {
+export function IconButton({
+	icon,
+	label,
+	className,
+	onClick = () => {},
+	...props
+}) {
 	return (
-		<Button {...props} isIconOnly={!label} variant='light' onClick={onClick} className={className}>
+		<Button
+			{...props}
+			isIconOnly={!label}
+			variant='light'
+			onClick={onClick}
+			className={className}
+		>
 			<div className='flex flex-col items-center'>
 				{icon}
 				<p>{label}</p>
@@ -294,7 +327,7 @@ export function NavTabs({ data = [] }) {
 	);
 }
 
-const Information = ({ label = '' }) => {
+export function Information({ label = '' }) {
 	return (
 		<div className='flex shrink-0 justify-center items-center gap-2'>
 			<div>
@@ -303,9 +336,9 @@ const Information = ({ label = '' }) => {
 			<span className='text-xs text-warning'>{label}</span>
 		</div>
 	);
-};
+}
 
-function InfoGroup({ data }) {
+export function InfoGroup({ data }) {
 	return (
 		<Card>
 			<CardBody className='py-0 divide-y divide-divider'>
@@ -319,5 +352,3 @@ function InfoGroup({ data }) {
 		</Card>
 	);
 }
-
-export { Information, LabelButton, LabelLink, InfoGroup };

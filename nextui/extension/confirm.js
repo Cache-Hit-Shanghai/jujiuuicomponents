@@ -1,11 +1,31 @@
-import { Button, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter } from '@nextui-org/react';
+import {
+	Button,
+	Modal,
+	ModalContent,
+	ModalHeader,
+	ModalBody,
+	ModalFooter,
+} from '@nextui-org/react';
 import { useJuJiuT } from '@/state/translate';
 
-export function Confirm({ title, message, isOpen, onClose, onConfirm, onCancel }) {
+export function Confirm({
+	title,
+	message,
+	isOpen,
+	onClose,
+	onConfirm,
+	onCancel,
+}) {
 	const t = useJuJiuT();
 
 	return (
-		<Modal backdrop='blur' placement='center' isOpen={isOpen} onClose={onClose}>
+		<Modal
+			hideCloseButton
+			backdrop='blur'
+			placement='center'
+			isOpen={isOpen}
+			onClose={onClose}
+		>
 			<ModalContent>
 				{(onClose) => (
 					<>
