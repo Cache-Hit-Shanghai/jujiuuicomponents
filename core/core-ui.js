@@ -1,6 +1,17 @@
 'use client';
 
-import { Tag, Box, Text, Layer, Card, Button, Main, CardBody, List, Spinner } from 'grommet';
+import {
+	Tag,
+	Box,
+	Text,
+	Layer,
+	Card,
+	Button,
+	Main,
+	CardBody,
+	List,
+	Spinner,
+} from 'grommet';
 import { isValidElement } from 'react';
 import { CircleInformation, FormPrevious, FormNext } from 'grommet-icons';
 import Link, { useRouter } from '@/state/translate';
@@ -43,7 +54,14 @@ function JuJiuLayer({ onClickOutside, position, target, children, ...props }) {
 			onEsc={onClickOutside}
 			onClickOutside={onClickOutside}
 		>
-			<Box fill round pad='medium' gap='medium' background='background-front' {...props}>
+			<Box
+				fill
+				round
+				pad='medium'
+				gap='medium'
+				background='background-front'
+				{...props}
+			>
 				{children}
 			</Box>
 		</Layer>
@@ -60,8 +78,19 @@ const ConfirmLayer = ({ target, value, setValue }) => {
 
 	return (
 		isOpen && (
-			<Layer target={target?.current} position='bottom' responsive={false} onClickOutside={closeLayer}>
-				<Box width='100vw' align='center' pad={{ vertical: 'large' }} gap='medium' justify='center'>
+			<Layer
+				target={target?.current}
+				position='bottom'
+				responsive={false}
+				onClickOutside={closeLayer}
+			>
+				<Box
+					width='100vw'
+					align='center'
+					pad={{ vertical: 'large' }}
+					gap='medium'
+					justify='center'
+				>
 					{typeof content === 'string' ? <Text>{content}</Text> : content}
 					<Box direction='row' gap='small'>
 						<Button label={t('取消')} onClick={closeLayer} />
@@ -85,7 +114,7 @@ const LoadingLayer = ({
 			<Layer
 				responsive={false}
 				animation='fadeIn'
-				modal={true}
+				modal
 				plain
 				background='transparent'
 				position='center'
@@ -93,7 +122,8 @@ const LoadingLayer = ({
 			>
 				<Box pad='large' round='medium' background='active' {...boxProps}>
 					{icon}
-					{content && (isValidElement(content) ? content : <Text>{content}</Text>)}
+					{content &&
+						(isValidElement(content) ? content : <Text>{content}</Text>)}
 				</Box>
 			</Layer>
 		)
@@ -102,7 +132,13 @@ const LoadingLayer = ({
 
 function JuJiuMain({ children, ...props }) {
 	return (
-		<Main flex={{ grow: 1, shrink: 1 }} overflow='auto' gap='medium' pad='small' {...props}>
+		<Main
+			flex={{ grow: 1, shrink: 1 }}
+			overflow='auto'
+			gap='medium'
+			pad='small'
+			{...props}
+		>
 			{children}
 		</Main>
 	);
@@ -135,7 +171,14 @@ function ButtonLink({ href, children, ...props }) {
 
 function JuJiuInformation({ label, size, ...props }) {
 	return (
-		<Box direction='row' gap='small' align='center' flex={false} margin={{ horizontal: 'small' }} {...props}>
+		<Box
+			direction='row'
+			gap='small'
+			align='center'
+			flex={false}
+			margin={{ horizontal: 'small' }}
+			{...props}
+		>
 			<CircleInformation size={size} color='accent-4' />
 			<Text size='small' color='accent-4' textAlign='justify'>
 				{label}

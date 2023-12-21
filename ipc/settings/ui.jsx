@@ -40,7 +40,7 @@ export function ChangeUI({ langProps = {}, fontProps = {}, themeProps = {} }) {
 							{ label: t('小字体'), value: 'small' },
 							{ label: t('大字体'), value: 'large' },
 						]}
-						disabled={true}
+						disabled
 						{...fontProps}
 					/>
 				</Box>

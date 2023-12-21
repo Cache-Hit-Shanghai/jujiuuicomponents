@@ -7,7 +7,7 @@ import { Main } from 'grommet';
  */
 function IpcMain({ children, ...props }) {
 	return (
-		<Main flex={true} background='background' pad='medium' {...props}>
+		<Main flex background='background' pad='medium' {...props}>
 			{children}
 		</Main>
 	);

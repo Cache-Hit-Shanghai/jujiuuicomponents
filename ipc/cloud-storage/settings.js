@@ -31,7 +31,7 @@ function CloudStorageSets({ list }) {
 			<List data={list} margin={{ vertical: 'small' }}>
 				{(datum, index) => (
 					<Box direction='row' gap='small' align='center' justify='between'>
-						<Box direction='row' align='center' gap='small' wrap={true}>
+						<Box direction='row' align='center' gap='small' wrap>
 							<Text>
 								{datum.title?.day}
 								{t('天')}
@@ -39,7 +39,12 @@ function CloudStorageSets({ list }) {
 								{t('套餐')}
 							</Text>
 							{index === 0 && (
-								<Tag size='xsmall' background='status-ok' border={false} value={t('当前套餐')} />
+								<Tag
+									size='xsmall'
+									background='status-ok'
+									border={false}
+									value={t('当前套餐')}
+								/>
 							)}
 						</Box>
 						<Box flex={false}>

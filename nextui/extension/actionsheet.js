@@ -1,4 +1,12 @@
-import { Modal, ModalContent, Link, Divider, Card, CardHeader, CardBody } from '@nextui-org/react';
+import {
+	Modal,
+	ModalContent,
+	Link,
+	Divider,
+	Card,
+	CardHeader,
+	CardBody,
+} from '@nextui-org/react';
 import { useJuJiuT } from '@/state/translate';
 
 export function ActionSheet({ isOpen, onOpenChange, title, buttons }) {
@@ -8,7 +16,7 @@ export function ActionSheet({ isOpen, onOpenChange, title, buttons }) {
 		<Modal
 			backdrop='blur'
 			placement='bottom'
-			hideCloseButton={true}
+			hideCloseButton
 			isOpen={isOpen}
 			onOpenChange={onOpenChange}
 			className='bg-transparent'
@@ -17,7 +25,9 @@ export function ActionSheet({ isOpen, onOpenChange, title, buttons }) {
 				{(onClose) => (
 					<>
 						<Card>
-							<CardHeader className='justify-center text-default-500'>{title}</CardHeader>
+							<CardHeader className='justify-center text-default-500'>
+								{title}
+							</CardHeader>
 							<Divider />
 							<CardBody className='gap-2'>
 								{buttons.map(({ label, key, ...props }) => (

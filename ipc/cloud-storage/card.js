@@ -10,7 +10,12 @@ function CloudStorageCard({ device, hasVip, expireAt, basePath = '' }) {
 	const t = useJuJiuT();
 
 	return (
-		<Card pad='medium' gap='medium' background='background-contrast' flex={false}>
+		<Card
+			pad='medium'
+			gap='medium'
+			background='background-contrast'
+			flex={false}
+		>
 			<CardBody>
 				<Box direction='row' justify='between' align='center'>
 					<Box align='center' gap='small'>
@@ -21,9 +26,17 @@ function CloudStorageCard({ device, hasVip, expireAt, basePath = '' }) {
 					</Box>
 					{hasVip && (
 						<Box gap='medium'>
-							<Box gap='small' direction='row' wrap={true} justify='end'>
-								<Tag size='small' background='graph-4' value={t('7天循环存储')} />
-								<Tag size='small' background='graph-4' value={t('24小时录像')} />
+							<Box gap='small' direction='row' wrap justify='end'>
+								<Tag
+									size='small'
+									background='graph-4'
+									value={t('7天循环存储')}
+								/>
+								<Tag
+									size='small'
+									background='graph-4'
+									value={t('24小时录像')}
+								/>
 							</Box>
 							<Box align='end'>
 								<Text color='status-ok'>{t('正常使用中')}</Text>
@@ -36,7 +49,12 @@ function CloudStorageCard({ device, hasVip, expireAt, basePath = '' }) {
 				</Box>
 			</CardBody>
 			<CardFooter justify='center'>
-				{hasVip && <ButtonLink href={`${basePath}/cloud-storage/settings?usn=${usn}`} label={t('设置')} />}
+				{hasVip && (
+					<ButtonLink
+						href={`${basePath}/cloud-storage/settings?usn=${usn}`}
+						label={t('设置')}
+					/>
+				)}
 				<ButtonLink
 					primary
 					href={`${basePath}/cloud-storage/pay?usn=${usn}`}

@@ -19,8 +19,8 @@ function PostEditForm({ onSubmit, onChange, value = {} }) {
 				padding: '10px',
 			}}
 		>
-			<TextArea rows={3} name='title' required={true} placeholder={t('标题')} />
-			<TextArea fill name='text' required={true} placeholder={t('问题描述')} />
+			<TextArea rows={3} name='title' required placeholder={t('标题')} />
+			<TextArea fill name='text' required placeholder={t('问题描述')} />
 			<Box pad='small' direction='row' flex={false} justify='end'>
 				<Button type='submit' label={t('提交')} />
 			</Box>
