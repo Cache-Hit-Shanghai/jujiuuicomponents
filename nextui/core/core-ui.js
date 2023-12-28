@@ -34,15 +34,15 @@ export function MobileHeader({ children, className, ...props }) {
 
 export function MobileMain({ children, className, ...props }) {
 	return (
-		<div
+		<main
 			className={twMerge(
 				'px-4 py-px flex flex-col gap-4 flex-1 overflow-auto',
-				className
+				className,
 			)}
 			{...props}
 		>
 			{children}
-		</div>
+		</main>
 	);
 }
 
@@ -92,7 +92,7 @@ export function NavbarBack({ label, className, ...props }) {
 		<div
 			className={twMerge(
 				'gap-4 flex items-center top-0 left-0 z-50',
-				className
+				className,
 			)}
 		>
 			<ButtonBack {...props} />
