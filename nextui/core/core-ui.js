@@ -32,9 +32,11 @@ export function MobileHeader({ children, className, ...props }) {
 	);
 }
 
-export function MobileMain({ children, className, ...props }) {
+export function MobileMain({ children, className, as = 'main', ...props }) {
+	const Component = as;
+
 	return (
-		<main
+		<Component
 			className={twMerge(
 				'px-4 py-px flex flex-col gap-4 flex-1 overflow-auto',
 				className,
@@ -42,7 +44,7 @@ export function MobileMain({ children, className, ...props }) {
 			{...props}
 		>
 			{children}
-		</main>
+		</Component>
 	);
 }
 
