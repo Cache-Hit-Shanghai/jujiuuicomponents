@@ -8,7 +8,11 @@ import { useToastState } from '@react-stately/toast';
 
 function Toast({ state, ...props }) {
 	const ref = useRef(null);
-	const { toastProps, titleProps, closeButtonProps } = useToast(props, state, ref);
+	const { toastProps, titleProps, closeButtonProps } = useToast(
+		props,
+		state,
+		ref,
+	);
 
 	return (
 		<motion.div
@@ -24,7 +28,12 @@ function Toast({ state, ...props }) {
 					<div className='text-sm' {...titleProps}>
 						{props.toast.content}
 					</div>
-					<Button isIconOnly variant='light' radius='none' {...closeButtonProps}>
+					<Button
+						isIconOnly
+						variant='light'
+						radius='none'
+						{...closeButtonProps}
+					>
 						<Close size={24} />
 					</Button>
 				</CardBody>
@@ -41,7 +50,7 @@ function ToastRegion({ state, ...props }) {
 		<motion.div
 			{...regionProps}
 			ref={ref}
-			className='fixed flex flex-col bottom-0 inset-x-0 p-2 gap-2 z-50 outline-none'
+			className='fixed flex flex-col bottom-0 inset-x-0 p-2 gap-2 z-[1000] outline-none'
 			layout
 		>
 			<AnimatePresence>
@@ -61,7 +70,9 @@ export function ToastProvider({ children, ...props }) {
 	return (
 		<>
 			{children(state)}
-			{state.visibleToasts.length > 0 && <ToastRegion {...props} state={state} />}
+			{state.visibleToasts.length > 0 && (
+				<ToastRegion {...props} state={state} />
+			)}
 		</>
 	);
 }
