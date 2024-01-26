@@ -33,7 +33,7 @@ function DeviceMenu() {
 				<DropdownItem
 					key='records'
 					as={Link}
-					href='./record'
+					href='/device/record'
 					startContent={<VideoLibrary size={24} />}
 				>
 					{t('录像查看')}
@@ -41,7 +41,7 @@ function DeviceMenu() {
 				<DropdownItem
 					key='deviceSettings'
 					as={Link}
-					href='./settings'
+					href='/device/settings'
 					startContent={<Settings size={24} />}
 				>
 					{t('设备设置')}
