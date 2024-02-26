@@ -1,6 +1,7 @@
 'use client';
 
 import {
+	Switch,
 	Button,
 	Dropdown,
 	DropdownTrigger,
@@ -13,11 +14,13 @@ import {
 } from '@nextui-org/react';
 import Link, { useJuJiuT } from '@/state/translate';
 import { Settings } from '@styled-icons/material/Settings';
-import { VideoLibrary } from '@styled-icons/material/VideoLibrary';
 import { MoreHoriz } from '@styled-icons/material/MoreHoriz';
 import { NestCamWiredStand } from '@styled-icons/material/NestCamWiredStand';
 import { Pets } from '@styled-icons/material/Pets';
 import { BatteryChargingFull } from '@styled-icons/material/BatteryChargingFull';
+import { Cached } from '@styled-icons/material/Cached';
+import { CloudUpload } from '@styled-icons/material/CloudUpload';
+import { OpenInNew } from '@styled-icons/material/OpenInNew';
 
 function DeviceMenu() {
 	const t = useJuJiuT();
@@ -29,14 +32,31 @@ function DeviceMenu() {
 					<MoreHoriz size={24} />
 				</Button>
 			</DropdownTrigger>
-			<DropdownMenu aria-label='Static Actions'>
+			<DropdownMenu
+				aria-label='Static Actions'
+				classNames={{ list: 'grid grid-cols-3' }}
+			>
+				<DropdownItem key='notification'>
+					<Switch size='sm'>{t('检测提醒')}</Switch>
+				</DropdownItem>
+				<DropdownItem key='refresh' startContent={<Cached size={24} />}>
+					{t('刷新封面')}
+				</DropdownItem>
 				<DropdownItem
 					key='records'
 					as={Link}
-					href='/device/record'
-					startContent={<VideoLibrary size={24} />}
+					href='/device/settings/sharing'
+					startContent={<OpenInNew size={24} />}
 				>
-					{t('录像查看')}
+					{t('设备分享')}
+				</DropdownItem>
+				<DropdownItem
+					key='records'
+					as={Link}
+					href='../my/cloudstorage'
+					startContent={<CloudUpload size={24} />}
+				>
+					{t('云存储')}
 				</DropdownItem>
 				<DropdownItem
 					key='deviceSettings'
@@ -44,7 +64,7 @@ function DeviceMenu() {
 					href='/device/settings'
 					startContent={<Settings size={24} />}
 				>
-					{t('设备设置')}
+					{t('设置')}
 				</DropdownItem>
 			</DropdownMenu>
 		</Dropdown>
