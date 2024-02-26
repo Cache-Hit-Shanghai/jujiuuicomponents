@@ -13,6 +13,7 @@ import {
 	Image,
 } from '@nextui-org/react';
 import Link, { useJuJiuT } from '@/state/translate';
+import { useRouter } from 'next/navigation';
 import { Settings } from '@styled-icons/material/Settings';
 import { MoreHoriz } from '@styled-icons/material/MoreHoriz';
 import { NestCamWiredStand } from '@styled-icons/material/NestCamWiredStand';
@@ -24,6 +25,7 @@ import { OpenInNew } from '@styled-icons/material/OpenInNew';
 
 function DeviceMenu() {
 	const t = useJuJiuT();
+	const router = useRouter();
 
 	return (
 		<Dropdown backdrop='blur'>
@@ -34,37 +36,37 @@ function DeviceMenu() {
 			</DropdownTrigger>
 			<DropdownMenu
 				aria-label='Static Actions'
-				classNames={{ list: 'grid grid-cols-3' }}
+				classNames={{ list: 'grid grid-cols-3 place-items-center gap-4' }}
 			>
 				<DropdownItem key='notification'>
-					<Switch size='sm'>{t('检测提醒')}</Switch>
+					<div className='flex flex-col items-center'>
+						<Switch size='sm' />
+						{t('检测提醒')}
+					</div>
 				</DropdownItem>
-				<DropdownItem key='refresh' startContent={<Cached size={24} />}>
-					{t('刷新封面')}
+				<DropdownItem key='refresh' onPress={() => router.refresh()}>
+					<div className='flex flex-col items-center'>
+						<Cached size={24} />
+						{t('刷新封面')}
+					</div>
 				</DropdownItem>
-				<DropdownItem
-					key='records'
-					as={Link}
-					href='/device/settings/sharing'
-					startContent={<OpenInNew size={24} />}
-				>
-					{t('设备分享')}
+				<DropdownItem key='sharing' as={Link} href='/device/settings/sharing'>
+					<div className='flex flex-col items-center'>
+						<OpenInNew size={24} />
+						{t('设备分享')}
+					</div>
 				</DropdownItem>
-				<DropdownItem
-					key='records'
-					as={Link}
-					href='../my/cloudstorage'
-					startContent={<CloudUpload size={24} />}
-				>
-					{t('云存储')}
+				<DropdownItem key='cloudstorage' as={Link} href='../my/cloudstorage'>
+					<div className='flex flex-col items-center'>
+						<CloudUpload size={24} />
+						{t('云存储')}
+					</div>
 				</DropdownItem>
-				<DropdownItem
-					key='deviceSettings'
-					as={Link}
-					href='/device/settings'
-					startContent={<Settings size={24} />}
-				>
-					{t('设置')}
+				<DropdownItem key='deviceSettings' as={Link} href='/device/settings'>
+					<div className='flex flex-col items-center'>
+						<Settings size={24} />
+						{t('设置')}
+					</div>
 				</DropdownItem>
 			</DropdownMenu>
 		</Dropdown>
