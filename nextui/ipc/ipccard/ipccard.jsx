@@ -13,7 +13,6 @@ import {
 	Image,
 } from '@nextui-org/react';
 import Link, { useJuJiuT } from '@/state/translate';
-import { useRouter } from 'next/navigation';
 import { Settings } from '@styled-icons/material/Settings';
 import { MoreHoriz } from '@styled-icons/material/MoreHoriz';
 import { NestCamWiredStand } from '@styled-icons/material/NestCamWiredStand';
@@ -25,7 +24,6 @@ import { OpenInNew } from '@styled-icons/material/OpenInNew';
 
 function DeviceMenu() {
 	const t = useJuJiuT();
-	const router = useRouter();
 
 	return (
 		<Dropdown backdrop='blur'>
@@ -44,7 +42,7 @@ function DeviceMenu() {
 						{t('检测提醒')}
 					</div>
 				</DropdownItem>
-				<DropdownItem key='refresh' onPress={() => router.refresh()}>
+				<DropdownItem key='refresh' onPress={() => location.reload()}>
 					<div className='flex flex-col items-center'>
 						<Cached size={24} />
 						{t('刷新封面')}
