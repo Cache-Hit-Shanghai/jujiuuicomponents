@@ -1,5 +1,8 @@
 {
 	"Index": {
+		"进入云盘": "Go to Cloud Drive",
+		"云盘": "Cloud Drive",
+		"正在为你长期保存文件": "Saving files for you for a long time",
 		"刷新封面": "Refresh Homepage",
 		"检测提醒": "AI Notification",
 		"搜索设备": "Search device ...",
@@ -281,7 +284,6 @@
 		"来自 {name}": "From {name}",
 		"由 {username} 于 {createdAt} 创建": "created by {username} on {createdAt}",
 		"页面不存在": "The page does not exist",
-    "您访问的页面有可能被移到了其它位置，页面名称发生了改变，或者暂时不可访问。": "The page you visited may have been moved to a different location, the page name changed, or it may be temporarily inaccessible."
-  }
+		"您访问的页面有可能被移到了其它位置，页面名称发生了改变，或者暂时不可访问。": "The page you visited may have been moved to a different location, the page name changed, or it may be temporarily inaccessible."
+	}
 }
-
