@@ -279,12 +279,14 @@ export function IconButton({
 	label,
 	className,
 	onClick = () => {},
+	isDisabled,
 	...props
 }) {
 	return (
 		<Button
 			{...props}
 			isIconOnly={!label}
+			isDisabled={isDisabled}
 			variant='light'
 			onClick={onClick}
 			className={className}
