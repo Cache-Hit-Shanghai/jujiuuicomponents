@@ -1,24 +1,21 @@
 {
-  "name": "jujiu-ui-components",
-  "version": "1.0.0",
-  "private": true,
-  "main": "index.js",
-  "type": "module",
-  "description": "",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/Cache-Hit-Shanghai/jujiuuicomponents.git"
-  },
-  "author": "cache-hit",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Cache-Hit-Shanghai/jujiuuicomponents/issues"
-  },
-  "homepage": "https://github.com/Cache-Hit-Shanghai/jujiuuicomponents#readme",
-  "dependencies": {
-    "tailwind-merge": "^2.1.0"
-  }
+	"name": "jujiu-ui-components",
+	"version": "1.0.0",
+	"private": true,
+	"main": "index.js",
+	"type": "module",
+	"description": "",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+ssh://git@github.com/Cache-Hit-Shanghai/jujiuuicomponents.git"
+	},
+	"author": "cache-hit",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Cache-Hit-Shanghai/jujiuuicomponents/issues"
+	},
+	"homepage": "https://github.com/Cache-Hit-Shanghai/jujiuuicomponents#readme"
 }
