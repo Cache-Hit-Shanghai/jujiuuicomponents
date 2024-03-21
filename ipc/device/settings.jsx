@@ -249,7 +249,7 @@ function ValumeControl() {
 const DevicesSettingList = [
 	{
 		ui: 'Toggle',
-		props: { labelKey: '宠物追踪', settingKey: 'humanoidTracking' },
+		props: { labelKey: '宠物追踪', settingKey: 'petTracking' },
 	},
 	{
 		ui: 'Toggle',
