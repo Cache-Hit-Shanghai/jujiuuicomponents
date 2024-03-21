@@ -14,7 +14,11 @@ import {
 } from 'grommet';
 import { Add, Trash } from 'grommet-icons';
 import { useCallback, useState } from 'react';
-import { JuJiuCollapsible, JuJiuItem, JuJiuRawItem } from '../../core/core-item';
+import {
+	JuJiuCollapsible,
+	JuJiuItem,
+	JuJiuRawItem,
+} from '../../core/core-item';
 import { JuJiuLayer } from '../../core/core-ui';
 
 function LabeledCheckBox({ label }) {
@@ -42,9 +46,17 @@ function SleepAddSchedule({ target }) {
 	const [openSchedule, setOpenSchedule] = useState(false);
 	return (
 		<>
-			<Button primary icon={<Add />} label={t('添加时间段')} onClick={() => setOpenSchedule(true)} />
+			<Button
+				primary
+				icon={<Add />}
+				label={t('添加时间段')}
+				onClick={() => setOpenSchedule(true)}
+			/>
 			{openSchedule && (
-				<JuJiuLayer onClickOutside={() => setOpenSchedule(false)} target={target}>
+				<JuJiuLayer
+					onClickOutside={() => setOpenSchedule(false)}
+					target={target}
+				>
 					<Heading level={3} margin='none' alignSelf='center'>
 						{t('添加时间段')}
 					</Heading>
@@ -94,12 +106,21 @@ function SleepSettings({ target, gap }) {
 	return (
 		<>
 			<JuJiuItem label={t('休眠')}>
-				<CheckBox toggle checked={sleep} onChange={(e) => setSleep(e.target.checked)} />
+				<CheckBox
+					toggle
+					checked={sleep}
+					onChange={(e) => setSleep(e.target.checked)}
+				/>
 			</JuJiuItem>
 			{!sleep && (
 				<>
 					<JuJiuRawItem>
-						<Box direction='row' align='center' justify='between' focusIndicator={false}>
+						<Box
+							direction='row'
+							align='center'
+							justify='between'
+							focusIndicator={false}
+						>
 							<Text>{t('休眠计划')}</Text>
 							<CheckBox
 								toggle
@@ -192,7 +213,7 @@ function DeviceGroupControl({ Groups = [], Group = '', onChange = () => {} }) {
 										},
 										key: 'query',
 										message: '',
-								  }
+									}
 								: {
 										handle: 'addToGroup',
 										config: {
@@ -201,7 +222,7 @@ function DeviceGroupControl({ Groups = [], Group = '', onChange = () => {} }) {
 											},
 										},
 										key: 'body',
-								  };
+									};
 						onChange(net);
 					}}
 				/>
@@ -216,7 +237,10 @@ function ValumeControl() {
 	return (
 		<JuJiuCollapsible label={t('设备音量')} value={volume}>
 			<Box border pad='small' gap='small'>
-				<RangeInput value={volume} onChange={(e) => setVolume(e.target.value)} />
+				<RangeInput
+					value={volume}
+					onChange={(e) => setVolume(e.target.value)}
+				/>
 			</Box>
 		</JuJiuCollapsible>
 	);
@@ -225,7 +249,7 @@ function ValumeControl() {
 const DevicesSettingList = [
 	{
 		ui: 'Toggle',
-		props: { labelKey: '人形追踪', settingKey: 'humanoidTracking' },
+		props: { labelKey: '宠物追踪', settingKey: 'humanoidTracking' },
 	},
 	{
 		ui: 'Toggle',
