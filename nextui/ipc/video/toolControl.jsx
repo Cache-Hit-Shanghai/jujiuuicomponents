@@ -67,7 +67,13 @@ export function ScreenCopyControl({ showLabel, ...prop }) {
 	const label = t('截图');
 
 	return (
-		<Button className='p-0 min-w-fit' isIconOnly={!showLabel} variant='light' radius='none' {...prop}>
+		<Button
+			className='p-0 min-w-fit text-inherit'
+			isIconOnly={!showLabel}
+			variant='light'
+			radius='none'
+			{...prop}
+		>
 			<div className='flex flex-col items-center'>
 				<PhotoCamera size={24} />
 				{showLabel && <p className='text-xs'>{label}</p>}
@@ -81,7 +87,13 @@ export function ChatControl({ showLabel, speaking, ...prop }) {
 	const label = t(speaking ? '挂断' : '对讲');
 
 	return (
-		<Button className='p-0 min-w-fit' isIconOnly={!showLabel} variant='light' radius='none' {...prop}>
+		<Button
+			className='p-0 min-w-fit text-inherit'
+			isIconOnly={!showLabel}
+			variant='light'
+			radius='none'
+			{...prop}
+		>
 			<div className='flex flex-col items-center'>
 				{speaking ? <CallEnd size={24} /> : <Phone size={24} />}
 				{showLabel && <p className='text-xs'>{label}</p>}
@@ -95,7 +107,13 @@ export function MuteControl({ showLabel, mute = true, ...prop }) {
 	const label = t(mute ? '解除静音' : '静音');
 
 	return (
-		<Button className='p-0 min-w-fit' isIconOnly={!showLabel} variant='light' radius='none' {...prop}>
+		<Button
+			className='p-0 min-w-fit text-inherit'
+			isIconOnly={!showLabel}
+			variant='light'
+			radius='none'
+			{...prop}
+		>
 			<div className='flex flex-col items-center'>
 				{mute ? <VolumeUp size={24} /> : <VolumeOff size={24} />}
 				{showLabel && <p className='text-xs'>{label}</p>}
@@ -109,7 +127,13 @@ export function RecordControl({ showLabel, recording, ...prop }) {
 	const label = t(recording ? '停止' : '录像');
 
 	return (
-		<Button className='p-0 min-w-fit' isIconOnly={!showLabel} variant='light' radius='none' {...prop}>
+		<Button
+			className='p-0 min-w-fit text-inherit'
+			isIconOnly={!showLabel}
+			variant='light'
+			radius='none'
+			{...prop}
+		>
 			<div className='flex flex-col items-center'>
 				{recording ? <StopCircle size={24} /> : <FiberManualRecord size={24} />}
 				{showLabel && <p className='text-xs'>{label}</p>}
@@ -152,7 +176,7 @@ export function ResolutionControl({
 	return (
 		<>
 			<Button
-				className='p-0 min-w-fit'
+				className='p-0 min-w-fit text-inherit'
 				isIconOnly={!showLabel}
 				onPress={onOpen}
 				variant='light'
@@ -176,7 +200,9 @@ export function ResolutionControl({
 				<ModalContent>
 					{(onClose) => (
 						<>
-							<ModalHeader className='flex flex-col items-center'>{label}</ModalHeader>
+							<ModalHeader className='flex flex-col items-center'>
+								{label}
+							</ModalHeader>
 							<Divider />
 							<ModalBody>
 								<Listbox
@@ -213,9 +239,21 @@ export function StreamingControlBar({ showLabel }) {
 	return (
 		<>
 			<ScreenCopyControl showLabel={showLabel} />
-			<RecordControl showLabel={showLabel} recording={recording} onPress={() => setRecording(!recording)} />
-			<ChatControl showLabel={showLabel} speaking={speaking} onPress={() => setSpeaking(!speaking)} />
-			<MuteControl showLabel={showLabel} mute={mute} onPress={() => setMute(!mute)} />
+			<RecordControl
+				showLabel={showLabel}
+				recording={recording}
+				onPress={() => setRecording(!recording)}
+			/>
+			<ChatControl
+				showLabel={showLabel}
+				speaking={speaking}
+				onPress={() => setSpeaking(!speaking)}
+			/>
+			<MuteControl
+				showLabel={showLabel}
+				mute={mute}
+				onPress={() => setMute(!mute)}
+			/>
 			<ResolutionControl showLabel={showLabel} />
 		</>
 	);
@@ -227,7 +265,10 @@ export function StreamingControlBar2() {
 			<Button isIconOnly variant='light'>
 				<Cameraswitch size={24} />
 			</Button>
-			<LinkButton href='/device/settings/sharing' icon={<IosShare size={24} />} />
+			<LinkButton
+				href='/device/settings/sharing'
+				icon={<IosShare size={24} />}
+			/>
 			<LinkButton href='/device/settings' icon={<Settings size={24} />} />
 		</>
 	);
@@ -241,9 +282,21 @@ export function StreamingControlBar3({ showLabel }) {
 	return (
 		<>
 			<ScreenCopyControl showLabel={showLabel} />
-			<RecordControl showLabel={showLabel} recording={recording} onPress={() => setRecording(!recording)} />
-			<ChatControl showLabel={showLabel} speaking={speaking} onPress={() => setSpeaking(!speaking)} />
-			<MuteControl showLabel={showLabel} mute={mute} onPress={() => setMute(!mute)} />
+			<RecordControl
+				showLabel={showLabel}
+				recording={recording}
+				onPress={() => setRecording(!recording)}
+			/>
+			<ChatControl
+				showLabel={showLabel}
+				speaking={speaking}
+				onPress={() => setSpeaking(!speaking)}
+			/>
+			<MuteControl
+				showLabel={showLabel}
+				mute={mute}
+				onPress={() => setMute(!mute)}
+			/>
 		</>
 	);
 }
