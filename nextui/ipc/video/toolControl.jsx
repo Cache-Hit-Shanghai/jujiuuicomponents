@@ -62,7 +62,7 @@ export function DownloadControl({ showLabel, ...prop }) {
  * @param {ButtonProps & {showLabel: boolean}} props
  * @returns
  */
-export function ScreenCopyControl({ showLabel, ...prop }) {
+export function ScreenCopyControl({ showLabel, icon, ...prop }) {
 	const t = useJuJiuT();
 	const label = t('截图');
 
@@ -75,17 +75,26 @@ export function ScreenCopyControl({ showLabel, ...prop }) {
 			{...prop}
 		>
 			<div className='flex flex-col items-center'>
-				<PhotoCamera size={24} />
+				{icon || <PhotoCamera size={24} />}
 				{showLabel && <p className='text-xs'>{label}</p>}
 			</div>
 		</Button>
 	);
 }
 
-export function ChatControl({ showLabel, speaking, ...prop }) {
+export function ChatControl({
+	showLabel,
+	speaking,
+	callIcon,
+	hangupIcon,
+	...prop
+}) {
 	const t = useJuJiuT();
 	const label = t(speaking ? '挂断' : '对讲');
 
+	const callIconApplied = callIcon || <Phone size={24} />;
+	const hangupIconApplied = hangupIcon || <CallEnd size={24} />;
+
 	return (
 		<Button
 			className='p-0 min-w-fit text-inherit'
@@ -95,17 +104,26 @@ export function ChatControl({ showLabel, speaking, ...prop }) {
 			{...prop}
 		>
 			<div className='flex flex-col items-center'>
-				{speaking ? <CallEnd size={24} /> : <Phone size={24} />}
+				{speaking ? hangupIconApplied : callIconApplied}
 				{showLabel && <p className='text-xs'>{label}</p>}
 			</div>
 		</Button>
 	);
 }
 
-export function MuteControl({ showLabel, mute = true, ...prop }) {
+export function MuteControl({
+	showLabel,
+	mute = true,
+	muteIcon,
+	unmuteIcon,
+	...prop
+}) {
 	const t = useJuJiuT();
 	const label = t(mute ? '解除静音' : '静音');
 
+	const muteIconApplied = muteIcon || <VolumeUp size={24} />;
+	const unmuteIconApplied = unmuteIcon || <VolumeOff size={24} />;
+
 	return (
 		<Button
 			className='p-0 min-w-fit text-inherit'
@@ -115,16 +133,25 @@ export function MuteControl({ showLabel, mute = true, ...prop }) {
 			{...prop}
 		>
 			<div className='flex flex-col items-center'>
-				{mute ? <VolumeUp size={24} /> : <VolumeOff size={24} />}
+				{mute ? unmuteIconApplied : muteIconApplied}
 				{showLabel && <p className='text-xs'>{label}</p>}
 			</div>
 		</Button>
 	);
 }
 
-export function RecordControl({ showLabel, recording, ...prop }) {
+export function RecordControl({
+	showLabel,
+	recording,
+	recordIcon,
+	recordingIcon,
+	...prop
+}) {
 	const t = useJuJiuT();
 	const label = t(recording ? '停止' : '录像');
+
+	const recordIconApplied = recordIcon || <FiberManualRecord size={24} />;
+	const recordingIconApplied = recordingIcon || <StopCircle size={24} />;
 
 	return (
 		<Button
@@ -135,7 +162,7 @@ export function RecordControl({ showLabel, recording, ...prop }) {
 			{...prop}
 		>
 			<div className='flex flex-col items-center'>
-				{recording ? <StopCircle size={24} /> : <FiberManualRecord size={24} />}
+				{recording ? recordingIconApplied : recordIconApplied}
 				{showLabel && <p className='text-xs'>{label}</p>}
 			</div>
 		</Button>
@@ -160,6 +187,7 @@ export function ResolutionControl({
 	init = '2.5k',
 	onSelect,
 	isForceLandscape = false,
+	icon,
 	...prop
 }) {
 	const t = useJuJiuT();
@@ -184,7 +212,7 @@ export function ResolutionControl({
 				{...prop}
 			>
 				<div className='flex flex-col items-center'>
-					<Resolution size={24} />
+					{icon || <Resolution size={24} />}
 					{showLabel && <p className='text-xs'>{label}</p>}
 				</div>
 			</Button>
