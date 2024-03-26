@@ -1,5 +1,5 @@
 // FIXME: filename
-
+import { twMerge } from 'tailwind-merge';
 import { ArrowDropUp } from '@styled-icons/material/ArrowDropUp';
 
 function Circle() {
@@ -63,9 +63,15 @@ export function PanControl2({
 	onClickDown,
 	onClickLeft,
 	onClickRight,
+	className,
 }) {
 	return (
-		<div className='rounded-full w-full h-full aspect-square relative rotate-[45deg] transform-gpu bg-[#333333] text-[#707070]'>
+		<div
+			className={twMerge(
+				'rounded-full w-full h-full aspect-square relative rotate-[45deg] transform-gpu bg-[#000000CC] text-[#C0C0C0]',
+				className,
+			)}
+		>
 			<Sectors
 				onClickUp={onClickUp}
 				onClickDown={onClickDown}

@@ -62,13 +62,17 @@ export function DownloadControl({ showLabel, ...prop }) {
  * @param {ButtonProps & {showLabel: boolean}} props
  * @returns
  */
-export function ScreenCopyControl({ showLabel, icon, ...prop }) {
+export function ScreenCopyControl({ showLabel, icon, hasBorder, ...prop }) {
 	const t = useJuJiuT();
 	const label = t('截图');
 
 	return (
 		<Button
-			className='p-0 min-w-fit text-inherit'
+			className={
+				hasBorder
+					? 'p-0 min-w-fit text-inherit w-14 h-14 rounded-full flex items-center justify-center bg-[#000000B3]'
+					: 'p-0 min-w-fit text-inherit'
+			}
 			isIconOnly={!showLabel}
 			variant='light'
 			radius='none'
@@ -87,6 +91,7 @@ export function ChatControl({
 	speaking,
 	callIcon,
 	hangupIcon,
+	hasBorder,
 	...prop
 }) {
 	const t = useJuJiuT();
@@ -97,7 +102,11 @@ export function ChatControl({
 
 	return (
 		<Button
-			className='p-0 min-w-fit text-inherit'
+			className={
+				hasBorder
+					? 'p-0 min-w-fit text-inherit w-14 h-14 rounded-full flex items-center justify-center bg-[#000000B3]'
+					: 'p-0 min-w-fit text-inherit'
+			}
 			isIconOnly={!showLabel}
 			variant='light'
 			radius='none'
@@ -145,6 +154,7 @@ export function RecordControl({
 	recording,
 	recordIcon,
 	recordingIcon,
+	hasBorder,
 	...prop
 }) {
 	const t = useJuJiuT();
@@ -155,7 +165,11 @@ export function RecordControl({
 
 	return (
 		<Button
-			className='p-0 min-w-fit text-inherit'
+			className={
+				hasBorder
+					? 'p-0 min-w-fit text-inherit w-14 h-14 rounded-full flex items-center justify-center bg-[#000000B3]'
+					: 'p-0 min-w-fit text-inherit'
+			}
 			isIconOnly={!showLabel}
 			variant='light'
 			radius='none'
