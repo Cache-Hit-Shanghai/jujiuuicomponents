@@ -222,10 +222,8 @@ const ChargingBatteryIcons = new Map([
 ]);
 
 export function BatteryIcon({ batteryLevel, isCharging, ...props }) {
-	console.log('lvltype: ', typeof batteryLevel);
-	console.log('gettest num: ', BatteryIcons.get(1));
-	console.log('gettest str: ', BatteryIcons.get('1'));
-	const Icon = isCharging
+	const boolIsCharging = isCharging === 1;
+	const Icon = boolIsCharging
 		? ChargingBatteryIcons.get(parseInt(batteryLevel))
 		: BatteryIcons.get(parseInt(batteryLevel)) || Battery0Icon;
 	return <Icon {...props} />;
