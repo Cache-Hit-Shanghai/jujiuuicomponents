@@ -5,6 +5,7 @@ import { Battery100Icon } from '@/jujiu-ui-components/icons/Battery100';
 import { Battery25Icon } from '@/jujiu-ui-components/icons/Battery25';
 import { Battery50Icon } from '@/jujiu-ui-components/icons/Battery50';
 import { Battery75Icon } from '@/jujiu-ui-components/icons/Battery75';
+import { BatteryChargingIcon } from '@/jujiu-ui-components/icons/BatteryCharging';
 import Link, { useJuJiuT, usePathname, useRouter } from '@/state/translate';
 import { Button, Card, CardBody, Tab, Tabs } from '@nextui-org/react';
 import { ChatBubble } from '@styled-icons/material/ChatBubble';
@@ -214,15 +215,15 @@ const BatteryIcons = new Map([
 ]);
 
 const ChargingBatteryIcons = new Map([
-	// [0, ChargingBattery0Icon],
-	// [1, ChargingBattery25Icon],
-	// [2, ChargingBattery50Icon],
-	// [3, ChargingBattery75Icon],
-	// [4, ChargingBattery100Icon],
+	[0, BatteryChargingIcon],
+	[1, BatteryChargingIcon],
+	[2, BatteryChargingIcon],
+	[3, BatteryChargingIcon],
+	[4, BatteryChargingIcon],
 ]);
 
 export function BatteryIcon({ batteryLevel, isCharging, ...props }) {
-	const boolIsCharging = isCharging === 1;
+	const boolIsCharging = parseInt(isCharging) === 1;
 	const Icon = boolIsCharging
 		? ChargingBatteryIcons.get(parseInt(batteryLevel))
 		: BatteryIcons.get(parseInt(batteryLevel)) || Battery0Icon;
