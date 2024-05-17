@@ -1,25 +1,30 @@
 'use client';
 
-import { Button, Card, CardBody, Tabs, Tab } from '@nextui-org/react';
-import { useTheme } from 'next-themes';
-import { useEffect, useState } from 'react';
-import { twMerge } from 'tailwind-merge';
-import Link, { useJuJiuT, useRouter, usePathname } from '@/state/translate';
-import { LightMode } from '@styled-icons/material/LightMode';
-import { DarkMode } from '@styled-icons/material/DarkMode';
+import { Battery0Icon } from '@/jujiu-ui-components/icons/Battery0';
+import { Battery100Icon } from '@/jujiu-ui-components/icons/Battery100';
+import { Battery25Icon } from '@/jujiu-ui-components/icons/Battery25';
+import { Battery50Icon } from '@/jujiu-ui-components/icons/Battery50';
+import { Battery75Icon } from '@/jujiu-ui-components/icons/Battery75';
+import Link, { useJuJiuT, usePathname, useRouter } from '@/state/translate';
+import { Button, Card, CardBody, Tab, Tabs } from '@nextui-org/react';
+import { ChatBubble } from '@styled-icons/material/ChatBubble';
 import { ChevronLeft } from '@styled-icons/material/ChevronLeft';
 import { ChevronRight } from '@styled-icons/material/ChevronRight';
-import { Info } from '@styled-icons/material/Info';
 import { ContentCopy } from '@styled-icons/material/ContentCopy';
-import { SignalWifi0Bar } from '@styled-icons/material/SignalWifi0Bar';
+import { ControlCamera } from '@styled-icons/material/ControlCamera';
+import { DarkMode } from '@styled-icons/material/DarkMode';
+import { DirectionsWalk } from '@styled-icons/material/DirectionsWalk';
+import { Info } from '@styled-icons/material/Info';
+import { LightMode } from '@styled-icons/material/LightMode';
 import { NetworkWifi1Bar } from '@styled-icons/material/NetworkWifi1Bar';
 import { NetworkWifi2Bar } from '@styled-icons/material/NetworkWifi2Bar';
 import { NetworkWifi3Bar } from '@styled-icons/material/NetworkWifi3Bar';
+import { SignalWifi0Bar } from '@styled-icons/material/SignalWifi0Bar';
 import { SignalWifi4Bar } from '@styled-icons/material/SignalWifi4Bar';
-import { DirectionsWalk } from '@styled-icons/material/DirectionsWalk';
 import { Wifi } from '@styled-icons/material/Wifi';
-import { ControlCamera } from '@styled-icons/material/ControlCamera';
-import { ChatBubble } from '@styled-icons/material/ChatBubble';
+import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 export function MobileHeader({ children, className, ...props }) {
 	return (
@@ -195,6 +200,43 @@ export function WiFiDisplay({ label, text, signal }) {
 			<div className='text-sm text-default-500 flex flex-row items-center'>
 				<WiFiIcon size={24} signal={signal} />
 				{text}
+			</div>
+		</div>
+	);
+}
+
+const BatteryIcons = new Map([
+	[0, Battery0Icon],
+	[1, Battery25Icon],
+	[2, Battery50Icon],
+	[3, Battery75Icon],
+	[4, Battery100Icon],
+]);
+
+const ChargingBatteryIcons = new Map([
+	// [0, ChargingBattery0Icon],
+	// [1, ChargingBattery25Icon],
+	// [2, ChargingBattery50Icon],
+	// [3, ChargingBattery75Icon],
+	// [4, ChargingBattery100Icon],
+]);
+
+export function BatteryIcon({ batteryLevel, isCharging, ...props }) {
+	console.log('lvltype: ', typeof batteryLevel);
+	console.log('gettest num: ', BatteryIcons.get(1));
+	console.log('gettest str: ', BatteryIcons.get('1'));
+	const Icon = isCharging
+		? ChargingBatteryIcons.get(parseInt(batteryLevel))
+		: BatteryIcons.get(parseInt(batteryLevel)) || Battery0Icon;
+	return <Icon {...props} />;
+}
+
+export function BatteryDisplay({ label, level, isCharging }) {
+	return (
+		<div className='p-2 flex flex-row justify-between items-center'>
+			<p>{label}</p>
+			<div className='text-sm text-default-500 flex flex-row items-center'>
+				<BatteryIcon size={24} batteryLevel={level} isCharging={isCharging} />
 			</div>
 		</div>
 	);
