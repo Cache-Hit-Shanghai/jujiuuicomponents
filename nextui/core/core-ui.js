@@ -5,7 +5,7 @@ import { Battery100Icon } from '@/jujiu-ui-components/icons/Battery100';
 import { Battery25Icon } from '@/jujiu-ui-components/icons/Battery25';
 import { Battery50Icon } from '@/jujiu-ui-components/icons/Battery50';
 import { Battery75Icon } from '@/jujiu-ui-components/icons/Battery75';
-import { BatteryChargingIcon } from '@/jujiu-ui-components/icons/BatteryCharging';
+import { Lightning } from '@/jujiu-ui-components/icons/Lightning';
 import Link, { useJuJiuT, usePathname, useRouter } from '@/state/translate';
 import { Button, Card, CardBody, Tab, Tabs } from '@nextui-org/react';
 import { ChatBubble } from '@styled-icons/material/ChatBubble';
@@ -214,20 +214,20 @@ const BatteryIcons = new Map([
 	[4, Battery100Icon],
 ]);
 
-const ChargingBatteryIcons = new Map([
-	[0, BatteryChargingIcon],
-	[1, BatteryChargingIcon],
-	[2, BatteryChargingIcon],
-	[3, BatteryChargingIcon],
-	[4, BatteryChargingIcon],
-]);
-
 export function BatteryIcon({ batteryLevel, isCharging, ...props }) {
 	const boolIsCharging = parseInt(isCharging) === 1;
-	const Icon = boolIsCharging
-		? ChargingBatteryIcons.get(parseInt(batteryLevel))
-		: BatteryIcons.get(parseInt(batteryLevel)) || Battery0Icon;
-	return <Icon {...props} />;
+	const BatteryIconComponent =
+		BatteryIcons.get(parseInt(batteryLevel)) || Battery0Icon;
+	return (
+		<div className='flex flex-row'>
+			<BatteryIconComponent {...props} />
+			{boolIsCharging && (
+				<div className='mt-2'>
+					<Lightning />
+				</div>
+			)}
+		</div>
+	);
 }
 
 export function BatteryDisplay({ label, level, isCharging }) {
