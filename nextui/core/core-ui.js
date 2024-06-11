@@ -8,9 +8,9 @@ import { Battery75Icon } from '@/jujiu-ui-components/icons/Battery75';
 import { Lightning } from '@/jujiu-ui-components/icons/Lightning';
 import Link, { useJuJiuT, usePathname, useRouter } from '@/state/translate';
 import { Button, Card, CardBody, Tab, Tabs } from '@nextui-org/react';
-import { Wifi as Wifi4 } from '@styled-icons/bootstrap/Wifi';
-import { Wifi1 as Wifi0 } from '@styled-icons/bootstrap/Wifi1';
-import { Wifi2 } from '@styled-icons/bootstrap/Wifi2';
+import { Wifi0 } from '@styled-icons/boxicons-regular/Wifi0';
+import { Wifi1 as Wifi2 } from '@styled-icons/boxicons-regular/Wifi1';
+import { Wifi2 as Wifi4 } from '@styled-icons/boxicons-regular/Wifi2';
 import { ChatBubble } from '@styled-icons/material/ChatBubble';
 import { ChevronLeft } from '@styled-icons/material/ChevronLeft';
 import { ChevronRight } from '@styled-icons/material/ChevronRight';
@@ -20,8 +20,6 @@ import { DarkMode } from '@styled-icons/material/DarkMode';
 import { DirectionsWalk } from '@styled-icons/material/DirectionsWalk';
 import { Info } from '@styled-icons/material/Info';
 import { LightMode } from '@styled-icons/material/LightMode';
-import { NetworkWifi1Bar } from '@styled-icons/material/NetworkWifi1Bar';
-import { NetworkWifi3Bar } from '@styled-icons/material/NetworkWifi3Bar';
 import { SignalWifi4Bar } from '@styled-icons/material/SignalWifi4Bar';
 import { Wifi } from '@styled-icons/material/Wifi';
 import { useTheme } from 'next-themes';
@@ -184,9 +182,7 @@ export function IpDisplay({ label, ips }) {
 
 const WiFiIcons = new Map([
 	[0, Wifi0],
-	[1, NetworkWifi1Bar],
 	[2, Wifi2],
-	[3, NetworkWifi3Bar],
 	[4, Wifi4],
 ]);
 
