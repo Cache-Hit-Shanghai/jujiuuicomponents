@@ -7,7 +7,17 @@ import { Battery50Icon } from '@/jujiu-ui-components/icons/Battery50';
 import { Battery75Icon } from '@/jujiu-ui-components/icons/Battery75';
 import { Lightning } from '@/jujiu-ui-components/icons/Lightning';
 import Link, { useJuJiuT, usePathname, useRouter } from '@/state/translate';
-import { Button, Card, CardBody, Tab, Tabs } from '@nextui-org/react';
+import {
+	Button,
+	Card,
+	CardBody,
+	Modal,
+	ModalBody,
+	ModalContent,
+	Tab,
+	Tabs,
+	useDisclosure,
+} from '@nextui-org/react';
 import { Wifi0 } from '@styled-icons/boxicons-regular/Wifi0';
 import { Wifi1 as Wifi2 } from '@styled-icons/boxicons-regular/Wifi1';
 import { Wifi2 as Wifi4 } from '@styled-icons/boxicons-regular/Wifi2';
@@ -92,6 +102,25 @@ export function ButtonBack({ onClick, onPress, goBack = true, ...props }) {
 		>
 			<ChevronLeft size={24} />
 		</Button>
+	);
+}
+
+export function PermissionInstruction({ instruction }) {
+	const { isOpen, onOpen, onOpenChange } = useDisclosure();
+	useEffect(() => {
+		onOpen();
+	}, []);
+
+	return (
+		<>
+			<Modal placement='top' isOpen={isOpen} onOpenChange={onOpenChange}>
+				<ModalContent>
+					<ModalBody>
+						<p>{instruction}</p>
+					</ModalBody>
+				</ModalContent>
+			</Modal>
+		</>
 	);
 }
 
