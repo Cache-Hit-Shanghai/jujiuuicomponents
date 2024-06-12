@@ -14,6 +14,7 @@ import {
 	Modal,
 	ModalBody,
 	ModalContent,
+	ModalHeader,
 	Tab,
 	Tabs,
 	useDisclosure,
@@ -105,22 +106,31 @@ export function ButtonBack({ onClick, onPress, goBack = true, ...props }) {
 	);
 }
 
-export function PermissionInstruction({ instruction }) {
+export function PermissionInstruction({ header, instruction }) {
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
 	useEffect(() => {
 		onOpen();
 	}, []);
 
 	return (
-		<>
-			<Modal placement='top' isOpen={isOpen} onOpenChange={onOpenChange}>
-				<ModalContent>
-					<ModalBody>
-						<p>{instruction}</p>
-					</ModalBody>
-				</ModalContent>
-			</Modal>
-		</>
+		<Modal
+			className=''
+			placement='top'
+			style={{
+				marginTop: '44px',
+			}}
+			isOpen={isOpen}
+			onOpenChange={onOpenChange}
+		>
+			<ModalContent>
+				<ModalHeader>
+					<p>{header}</p>
+				</ModalHeader>
+				<ModalBody>
+					<p>{instruction}</p>
+				</ModalBody>
+			</ModalContent>
+		</Modal>
 	);
 }
 
