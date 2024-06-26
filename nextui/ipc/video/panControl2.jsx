@@ -25,25 +25,25 @@ function Sector({
 			onLongPressStart();
 			setIsLongPressStart(true);
 		}, 500);
-	}, [onLongPressStart]);
+	});
 
 	const handlePressEnd = useCallback(() => {
+		clearTimeout(pressTimer);
 		if (isLongPressStart) {
-			clearTimeout(pressTimer);
 			console.log('long press end');
 			onLongPressEnd();
 			setIsLongPressStart(false);
 		}
-	}, [isLongPressStart, onLongPressEnd]);
+	});
 
 	const handlePress = useCallback(() => {
+		clearTimeout(pressTimer);
 		if (!isLongPressStart) {
 			console.log('short press');
 			onClick();
 		}
-		clearTimeout(pressTimer);
 		setIsLongPressStart(false);
-	}, [isLongPressStart, onClick]);
+	});
 
 	return (
 		<div
