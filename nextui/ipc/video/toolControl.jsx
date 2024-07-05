@@ -70,7 +70,7 @@ export function ScreenCopyControl({ showLabel, icon, hasBorder, ...prop }) {
 		<Button
 			className={
 				hasBorder
-					? 'p-0 min-w-fit text-inherit w-14 h-14 rounded-full flex items-center justify-center bg-[#000000B3]'
+					? 'p-0 min-w-fit text-inherit w-10 h-10 rounded-full flex items-center justify-center bg-[#000000B3]'
 					: 'p-0 min-w-fit text-inherit'
 			}
 			isIconOnly={!showLabel}
@@ -104,7 +104,7 @@ export function ChatControl({
 		<Button
 			className={
 				hasBorder
-					? 'p-0 min-w-fit text-inherit w-14 h-14 rounded-full flex items-center justify-center bg-[#000000B3]'
+					? 'p-0 min-w-fit text-inherit w-10 h-10 rounded-full flex items-center justify-center bg-[#000000B3]'
 					: 'p-0 min-w-fit text-inherit'
 			}
 			isIconOnly={!showLabel}
@@ -167,7 +167,7 @@ export function RecordControl({
 		<Button
 			className={
 				hasBorder
-					? 'p-0 min-w-fit text-inherit w-14 h-14 rounded-full flex items-center justify-center bg-[#000000B3]'
+					? 'p-0 min-w-fit text-inherit w-10 h-10 rounded-full flex items-center justify-center bg-[#000000B3]'
 					: 'p-0 min-w-fit text-inherit'
 			}
 			isIconOnly={!showLabel}
