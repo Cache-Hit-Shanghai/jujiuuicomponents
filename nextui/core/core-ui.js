@@ -6,6 +6,9 @@ import { Battery25Icon } from '@/jujiu-ui-components/icons/Battery25';
 import { Battery50Icon } from '@/jujiu-ui-components/icons/Battery50';
 import { Battery75Icon } from '@/jujiu-ui-components/icons/Battery75';
 import { Lightning } from '@/jujiu-ui-components/icons/Lightning';
+import { Wifi2 } from '@/jujiu-ui-components/icons/Wifi2';
+import { Wifi3 } from '@/jujiu-ui-components/icons/Wifi3';
+import { Wifi4 } from '@/jujiu-ui-components/icons/Wifi4';
 import Link, { useJuJiuT, usePathname, useRouter } from '@/state/translate';
 import {
 	Button,
@@ -19,9 +22,6 @@ import {
 	Tabs,
 	useDisclosure,
 } from '@nextui-org/react';
-import { Wifi0 } from '@styled-icons/boxicons-regular/Wifi0';
-import { Wifi1 as Wifi2 } from '@styled-icons/boxicons-regular/Wifi1';
-import { Wifi2 as Wifi4 } from '@styled-icons/boxicons-regular/Wifi2';
 import { ChatBubble } from '@styled-icons/material/ChatBubble';
 import { ChevronLeft } from '@styled-icons/material/ChevronLeft';
 import { ChevronRight } from '@styled-icons/material/ChevronRight';
@@ -220,8 +220,8 @@ export function IpDisplay({ label, ips }) {
 }
 
 const WiFiIcons = new Map([
-	[0, Wifi0],
-	[2, Wifi2],
+	[0, Wifi2],
+	[2, Wifi3],
 	[4, Wifi4],
 ]);
 
