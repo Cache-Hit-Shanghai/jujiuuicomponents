@@ -96,7 +96,7 @@ export function ButtonBack({ onClick, onPress, goBack = true, ...props }) {
 			onPress={() => {
 				onClick && onClick();
 				onPress && onPress();
-				goBack && router.back();
+				goBack && (router.back(), router.back()); // fix next.js cache issue, see https://github.com/vercel/next.js/discussions/54075#discussioncomment-10080929
 			}}
 			className='text-inherit'
 			{...props}
@@ -143,29 +143,6 @@ export function NavbarBack({ label, className, ...props }) {
 			)}
 		>
 			<ButtonBack {...props} />
-			{label}
-		</div>
-	);
-}
-
-export function NavbarBackNoCache({ label, className, href, ...props }) {
-	return (
-		<div
-			className={twMerge(
-				'gap-4 flex items-center top-0 left-0 z-50',
-				className,
-			)}
-		>
-			<Button
-				isIconOnly
-				variant='light'
-				className='text-inherit'
-				as={Link}
-				href={href}
-				{...props}
-			>
-				<ChevronLeft size={24} />
-			</Button>
 			{label}
 		</div>
 	);
