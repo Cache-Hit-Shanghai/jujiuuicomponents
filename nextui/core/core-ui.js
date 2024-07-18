@@ -148,6 +148,29 @@ export function NavbarBack({ label, className, ...props }) {
 	);
 }
 
+export function NavbarBackNoCache({ label, className, href, ...props }) {
+	return (
+		<div
+			className={twMerge(
+				'gap-4 flex items-center top-0 left-0 z-50',
+				className,
+			)}
+		>
+			<Button
+				isIconOnly
+				variant='light'
+				className='text-inherit'
+				as={Link}
+				href={href}
+				{...props}
+			>
+				<ChevronLeft size={24} />
+			</Button>
+			{label}
+		</div>
+	);
+}
+
 export function LinkGroup({ data }) {
 	return (
 		<Card className='flex-none'>
