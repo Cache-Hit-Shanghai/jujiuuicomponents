@@ -96,7 +96,7 @@ export function ButtonBack({ onClick, onPress, goBack = true, ...props }) {
 			onPress={() => {
 				onClick && onClick();
 				onPress && onPress();
-				goBack && (router.back(), router.back()); // fix next.js cache issue, see https://github.com/vercel/next.js/discussions/54075#discussioncomment-10080929
+				goBack && router.back();
 			}}
 			className='text-inherit'
 			{...props}
