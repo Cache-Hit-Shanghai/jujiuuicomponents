@@ -33,6 +33,7 @@ import { Info } from '@styled-icons/material/Info';
 import { LightMode } from '@styled-icons/material/LightMode';
 import { SignalWifi4Bar } from '@styled-icons/material/SignalWifi4Bar';
 import { Wifi } from '@styled-icons/material/Wifi';
+import { Home } from '@styled-icons/material/Home';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
@@ -320,6 +321,22 @@ export function FeaturesDisplay({ label }) {
 				</div>
 			</div>
 		</div>
+	);
+}
+
+export function HomeButton() {
+	const t = useJuJiuT();
+	return (
+		<a href='/'>
+			<Button
+				radius='lg'
+				variant='solid'
+				startContent={<Home size={24} />}
+				className='bg-[#FD9240] text-white'
+			>
+				{t('回到主页')}
+			</Button>
+		</a>
 	);
 }
 
