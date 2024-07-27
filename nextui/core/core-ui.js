@@ -352,8 +352,7 @@ export function HomeButton() {
 			<Button
 				radius='lg'
 				variant='solid'
-				startContent={<Home size={24} />}
-				className='bg-[#FD9240] text-white'
+				className='bg-[#FD9240] text-white w-full h-12'
 			>
 				{t('回到主页')}
 			</Button>
@@ -381,7 +380,13 @@ export function LinkButton({
 		>
 			<div className='flex flex-col items-center'>
 				{icon}
-				{typeof label === 'string' ? <p className={`${labelClassName ? labelClassName : 'text-xs'}`}>{label}</p> : label}
+				{typeof label === 'string' ? (
+					<p className={`${labelClassName ? labelClassName : 'text-xs'}`}>
+						{label}
+					</p>
+				) : (
+					label
+				)}
 			</div>
 		</Button>
 	);
