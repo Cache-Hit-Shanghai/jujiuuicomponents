@@ -357,8 +357,7 @@ export function HomeButton() {
 			<Button
 				radius='lg'
 				variant='solid'
-				startContent={<Home size={24} />}
-				className='bg-[#FD9240] text-white'
+				className='bg-[#FD9240] text-white w-full h-12'
 			>
 				{t('回到主页')}
 			</Button>
