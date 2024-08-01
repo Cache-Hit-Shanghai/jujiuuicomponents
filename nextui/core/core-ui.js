@@ -149,7 +149,12 @@ export function NavbarBack({ label, className, ...props }) {
 	);
 }
 
-export function NavbarBackCenter({ label, className, ...props }) {
+export function NavbarBackCenter({
+	label,
+	className,
+	labelClassName,
+	...props
+}) {
 	return (
 		<div
 			className={twMerge(
@@ -159,7 +164,7 @@ export function NavbarBackCenter({ label, className, ...props }) {
 		>
 			<ButtonBack {...props} />
 			<div
-				className='absolute font-semibold left-2/4'
+				className={twMerge('absolute font-semibold left-2/4', labelClassName)}
 				style={{
 					transform: 'translateX(-50%)',
 				}}
@@ -381,7 +386,13 @@ export function LinkButton({
 		>
 			<div className='flex flex-col items-center'>
 				{icon}
-				{typeof label === 'string' ? <p className={`${labelClassName ? labelClassName : 'text-xs'}`}>{label}</p> : label}
+				{typeof label === 'string' ? (
+					<p className={`${labelClassName ? labelClassName : 'text-xs'}`}>
+						{label}
+					</p>
+				) : (
+					label
+				)}
 			</div>
 		</Button>
 	);
