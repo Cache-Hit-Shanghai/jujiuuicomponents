@@ -21,24 +21,24 @@ export const Wifi3 = ({
 				stroke='black'
 				stroke-opacity='0.2'
 				stroke-width='2'
-				stroke-linecap='round'
-				stroke-linejoin='round'
+				strokeLinecap='round'
+				strokeLinejoin='round'
 			/>
 			<path
 				id='Vector_2'
 				d='M19 12.8995C15.134 9.0335 8.866 9.0335 5 12.8995'
 				stroke='black'
 				stroke-width='2'
-				stroke-linecap='round'
-				stroke-linejoin='round'
+				strokeLinecap='round'
+				strokeLinejoin='round'
 			/>
 			<path
 				id='Vector_3'
 				d='M16 16.1569C13.7908 13.9477 10.2092 13.9477 8 16.1569'
 				stroke='black'
 				stroke-width='2'
-				stroke-linecap='round'
-				stroke-linejoin='round'
+				strokeLinecap='round'
+				strokeLinejoin='round'
 			/>
 			<path
 				id='Vector_4'
