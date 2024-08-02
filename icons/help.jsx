@@ -12,7 +12,7 @@ export const HelpIcon = (props) => (
 					id='Ellipse 772'
 					d='M21.75 11.9504C21.75 6.56548 17.3848 2.20013 12 2.20013C6.61522 2.20013 2.25 6.56548 2.25 11.9504'
 					stroke='#FD9240'
-					stroke-width='2'
+					strokeWidth='2'
 					strokeLinecap='round'
 					strokeLinejoin='round'
 				/>
@@ -29,7 +29,7 @@ export const HelpIcon = (props) => (
 					height='7.58354'
 					rx='2.16667'
 					stroke='#FD9240'
-					stroke-width='2'
+					strokeWidth='2'
 					strokeLinejoin='round'
 				/>
 				<path
@@ -45,7 +45,7 @@ export const HelpIcon = (props) => (
 					height='7.58354'
 					rx='2.16667'
 					stroke='#FD9240'
-					stroke-width='2'
+					strokeWidth='2'
 					strokeLinejoin='round'
 				/>
 			</g>

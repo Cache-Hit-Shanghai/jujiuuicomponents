@@ -20,7 +20,7 @@ export const Wifi2 = ({
 				d='M2 9.48265C2.2944 9.20365 2.59761 8.9393 2.9087 8.6896C8.51855 4.18711 16.6911 4.45146 22 9.48265'
 				stroke='black'
 				stroke-opacity='0.2'
-				stroke-width='2'
+				strokeWidth='2'
 				strokeLinecap='round'
 				strokeLinejoin='round'
 			/>
@@ -29,7 +29,7 @@ export const Wifi2 = ({
 				d='M19 12.8995C15.134 9.0335 8.866 9.0335 5 12.8995'
 				stroke='black'
 				stroke-opacity='0.2'
-				stroke-width='2'
+				strokeWidth='2'
 				strokeLinecap='round'
 				strokeLinejoin='round'
 			/>
@@ -37,7 +37,7 @@ export const Wifi2 = ({
 				id='Vector_3'
 				d='M16 16.1569C13.7908 13.9477 10.2092 13.9477 8 16.1569'
 				stroke='black'
-				stroke-width='2'
+				strokeWidth='2'
 				strokeLinecap='round'
 				strokeLinejoin='round'
 			/>
