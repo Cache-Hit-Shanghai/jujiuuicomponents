@@ -9,6 +9,11 @@ import { Lightning } from '@/jujiu-ui-components/icons/Lightning';
 import { Wifi2 } from '@/jujiu-ui-components/icons/Wifi2';
 import { Wifi3 } from '@/jujiu-ui-components/icons/Wifi3';
 import { Wifi4 } from '@/jujiu-ui-components/icons/Wifi4';
+import {
+	DeviceCard,
+	DeviceSettingWrapper,
+	SubDeviceInfo,
+} from '@/nextui-components/ui/device-settingsv2';
 import Link, { useJuJiuT, usePathname, useRouter } from '@/state/translate';
 import {
 	Button,
@@ -33,7 +38,6 @@ import { Info } from '@styled-icons/material/Info';
 import { LightMode } from '@styled-icons/material/LightMode';
 import { SignalWifi4Bar } from '@styled-icons/material/SignalWifi4Bar';
 import { Wifi } from '@styled-icons/material/Wifi';
-import { Home } from '@styled-icons/material/Home';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
@@ -489,15 +493,12 @@ export function Information({ label = '' }) {
 
 export function InfoGroup({ data }) {
 	return (
-		<Card>
-			<CardBody className='py-0 divide-y divide-divider'>
-				{data.map(({ key, value }) => (
-					<div key={key} className='py-2 flex flex-row justify-between gap-4'>
-						<p className='text-sm whitespace-nowrap'>{key}</p>
-						<p className='text-xs text-default-500'>{value}</p>
-					</div>
-				))}
-			</CardBody>
-		</Card>
+		<DeviceCard>
+			{data.map(({ key, value }, index) => (
+				<DeviceSettingWrapper hasBorder={index < data.length - 1} label={key}>
+					<SubDeviceInfo>{value}</SubDeviceInfo>
+				</DeviceSettingWrapper>
+			))}
+		</DeviceCard>
 	);
 }

@@ -3,18 +3,8 @@
 import { Card, CardBody, Spacer, Chip } from '@nextui-org/react';
 import { Paw } from '../../../icons/paw';
 import { useJuJiuT } from '@/state/translate';
-import {
-	ZCOOL_KuaiLe,
-	ZCOOL_XiaoWei,
-	ZCOOL_QingKe_HuangYou,
-	Ma_Shan_Zheng,
-	Zhi_Mang_Xing,
-	Long_Cang,
-	Liu_Jian_Mao_Cao,
-	Zen_Maru_Gothic,
-	Sniglet,
-	Chewy,
-} from 'next/font/google';
+import { Zen_Maru_Gothic } from 'next/font/google';
+import { FirstPageImg } from '@/app/[locale]/(auth)/pixelbot/icons/FirstPageImg';
 
 const googleFont = Zen_Maru_Gothic({
 	weight: '900',
@@ -28,7 +18,11 @@ export function AppLogo({ size = 'sm' }) {
 	return (
 		<div className='flex px-2 gap-2 items-center justify-center'>
 			<Paw size={size === 'sm' ? 24 : 48} />
-			<p className={`${size === 'sm' ? 'text-lg' : 'text-4xl'} ${googleFont.className}`}>{t('小皮部落')}</p>
+			<p
+				className={`${size === 'sm' ? 'text-lg' : 'text-4xl'} ${googleFont.className}`}
+			>
+				{t('小皮部落')}
+			</p>
 		</div>
 	);
 }
@@ -72,6 +66,19 @@ export function AppMark() {
 			<p className='text-xs text-center text-default-500'>
 				&copy;2021-2023 {t('上海光方迅视科技有限公司版权所有')}
 			</p>
+		</div>
+	);
+}
+
+export function AppMarkV2() {
+	return (
+		<div className='flex flex-col gap-8 items-center'>
+			<div className='w-32 h-32 mt-10'>
+				<FirstPageImg />
+			</div>
+			<div className='text-[#333333] font-semibold'>
+				一家好认真的宠物机器人公司
+			</div>
 		</div>
 	);
 }

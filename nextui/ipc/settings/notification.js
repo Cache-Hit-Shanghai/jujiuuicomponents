@@ -1,6 +1,6 @@
 'use client';
 
-import { Switch } from '@nextui-org/react';
+import { Divider, Switch } from '@nextui-org/react';
 import { useJuJiuT } from '@/state/translate';
 
 const notiKeyList = [
@@ -18,19 +18,35 @@ const notiTypeKeyList = [
 	{ key: 'nursePeopleMove', title: '看护区域有人移动' },
 ];
 
-export function ChangeNotification({ list = notiKeyList, data = {}, onChange = () => {} }) {
+export function ChangeNotification({
+	list = notiKeyList,
+	data = {},
+	onChange = () => {},
+}) {
 	const t = useJuJiuT();
 
 	return list.map(({ title, key } = {}, i) => (
-		<Switch
-			key={key}
-			data-key={key}
-			defaultSelected={data[key]}
-			onValueChange={(checked) => onChange({ key, checked })}
-			classNames={{ base: 'h-10 inline-flex flex-row-reverse w-full max-w-md justify-between' }}
-		>
-			<p className='text-sm'>{t(title)}</p>
-		</Switch>
+		<>
+			<Switch
+				key={key}
+				data-key={key}
+				defaultSelected={data[key]}
+				onValueChange={(checked) => onChange({ key, checked })}
+				classNames={{
+					base: 'h-[54px] inline-flex  flex-row-reverse w-full max-w-full justify-between text-base font-semibold',
+				}}
+			>
+				{t(title)}
+			</Switch>
+			{i < list.length - 1 && (
+				<Divider
+					className='bg-[#858585] w-full'
+					style={{
+						opacity: 0.15,
+					}}
+				/>
+			)}
+		</>
 	));
 }
 
