@@ -179,6 +179,37 @@ export function NavbarBackCenter({
 	);
 }
 
+export function NavbarBackNoCacheCenter({
+	label,
+	className,
+	href,
+	labelClassName,
+	...props
+}) {
+	return (
+		<div
+			className={twMerge(
+				'w-full gap-4 flex items-center top-0 left-0 z-50 relative',
+				className,
+			)}
+		>
+			<a href={href}>
+				<Button isIconOnly variant='light' className='text-inherit' {...props}>
+					<ChevronLeft size={24} />
+				</Button>
+			</a>
+			<div
+				className={twMerge('absolute font-semibold left-2/4', labelClassName)}
+				style={{
+					transform: 'translateX(-50%)',
+				}}
+			>
+				{label}
+			</div>
+		</div>
+	);
+}
+
 export function NavbarBackNoCache({ label, className, href, ...props }) {
 	return (
 		<div
