@@ -1,5 +1,6 @@
 'use client';
 
+import { Fragment } from 'react';
 import { Divider, Switch } from '@nextui-org/react';
 import { useJuJiuT } from '@/state/translate';
 
@@ -26,7 +27,7 @@ export function ChangeNotification({
 	const t = useJuJiuT();
 
 	return list.map(({ title, key } = {}, i) => (
-		<>
+		<Fragment key={key}>
 			<Switch
 				key={key}
 				data-key={key}
@@ -46,7 +47,7 @@ export function ChangeNotification({
 					}}
 				/>
 			)}
-		</>
+		</Fragment>
 	));
 }
 

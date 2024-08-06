@@ -495,7 +495,11 @@ export function InfoGroup({ data }) {
 	return (
 		<DeviceCard>
 			{data.map(({ key, value }, index) => (
-				<DeviceSettingWrapper hasBorder={index < data.length - 1} label={key}>
+				<DeviceSettingWrapper
+					hasBorder={index < data.length - 1}
+					label={key}
+					key={key}
+				>
 					<SubDeviceInfo>{value}</SubDeviceInfo>
 				</DeviceSettingWrapper>
 			))}
