@@ -98,7 +98,7 @@ export function ButtonBack({ onClick, onPress, goBack = true, ...props }) {
 		<Button
 			isIconOnly
 			variant='light'
-			onPress={() => {
+			onClick={() => {
 				onClick && onClick();
 				onPress && onPress();
 				goBack && router.back();
