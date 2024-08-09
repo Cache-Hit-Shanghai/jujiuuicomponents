@@ -157,6 +157,7 @@ export function NavbarBackCenter({
 	label,
 	className,
 	labelClassName,
+	endContent,
 	...props
 }) {
 	return (
@@ -175,6 +176,7 @@ export function NavbarBackCenter({
 			>
 				{label}
 			</div>
+			{endContent && <span className='absolute right-2'>{endContent}</span>}
 		</div>
 	);
 }
