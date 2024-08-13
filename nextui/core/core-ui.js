@@ -517,9 +517,9 @@ export function Information({ label = '' }) {
 	return (
 		<div className='flex shrink-0 justify-center items-center gap-2'>
 			<div>
-				<Info className='text-warning' size={24} />
+				<Info className='text-[#FD9240]' size={24} />
 			</div>
-			<span className='text-xs text-warning'>{label}</span>
+			<span className='text-xs text-[#FD9240]'>{label}</span>
 		</div>
 	);
 }
