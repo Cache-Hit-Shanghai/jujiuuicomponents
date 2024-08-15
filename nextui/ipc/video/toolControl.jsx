@@ -3,13 +3,7 @@
 // FIXME: filename
 
 import {
-	Divider,
 	Button,
-	Modal,
-	ModalContent,
-	ModalHeader,
-	ModalBody,
-	useDisclosure,
 	Listbox,
 	ListboxItem,
 } from '@nextui-org/react';
@@ -32,7 +26,9 @@ import { FullHd } from '@/jujiu-ui-components/icons/fullhd';
 import { R2kPlus } from '@/jujiu-ui-components/icons/2kplus';
 import { useJuJiuT } from '@/state/translate';
 import { LinkButton } from '../../core/core-ui';
-import { twMerge } from 'tailwind-merge';
+import Drawer from 'react-modern-drawer';
+
+import 'react-modern-drawer/dist/index.css';
 
 /**
  * @typedef {import("@nextui-org/react").ButtonProps} ButtonProps
@@ -202,25 +198,37 @@ export function ResolutionControl({
 	onSelect,
 	isForceLandscape = false,
 	icon,
+	direction,
 	...prop
 }) {
-	const t = useJuJiuT();
-	const label = t('清晰度');
-	const { isOpen, onOpen, onOpenChange } = useDisclosure();
+	const [isOpen, setIsOpen] = useState(false);
+	const toggleIsOpen = () => {
+		setIsOpen(!isOpen);
+	};
+
 	const [selectedKeys, setSelectedKeys] = useConrollableState({
 		initValue: new Set([init]),
-		value: new Set([current]),
+		value: new Set([current ?? init]),
 		setValue: onSelect && ((newValue) => onSelect([...newValue][0])),
 	});
 
-	const forceLandscapeStyle = isForceLandscape ? 'w-[100max] h-[100vmin]' : '';
+	const getBorderStyle = () => {
+		switch (direction) {
+			case 'right':
+				return 'rounded-l-3xl';
+			case 'bottom':
+				return 'rounded-t-3xl';
+			default:
+				return '';
+		}
+	};
 
 	return (
 		<>
 			<Button
 				className='p-0 min-w-fit text-inherit'
 				isIconOnly={!showLabel}
-				onPress={onOpen}
+				onClick={toggleIsOpen}
 				variant='light'
 				radius='none'
 				{...prop}
@@ -230,45 +238,43 @@ export function ResolutionControl({
 					{showLabel && <p className='text-xs'>{label}</p>}
 				</div>
 			</Button>
-			<Modal
-				classNames={{
-					wrapper: twMerge('z-[500]', forceLandscapeStyle),
-					backdrop: twMerge('z-[500]', forceLandscapeStyle),
-				}}
-				hideCloseButton
-				isOpen={isOpen}
-				onOpenChange={onOpenChange}
+			<Drawer
+				open={isOpen}
+				onClose={toggleIsOpen}
+				direction={direction}
+				className={getBorderStyle()}
 			>
-				<ModalContent>
-					{(onClose) => (
-						<>
-							<ModalHeader className='flex flex-col items-center'>
+				<div className='w-full'>
+					<div className='text-[#000000] w-full text-lg text-center h-16 py-5 font-semibold'>
+						画质选择
+					</div>
+					<Listbox
+						aria-label='resolution'
+						variant='light'
+						selectionMode='single'
+						se1lectedKeys={selectedKeys}
+						onSelectionChange={(e) => {
+							setSelectedKeys(e);
+							toggleIsOpen();
+						}}
+						color='primary'
+						shouldHighlightOnFocus
+						defaultSelectedKeys={Array.from(selectedKeys)}
+					>
+						{options.map(({ key, label = key, icon }) => (
+							<ListboxItem
+								key={key}
+								startContent={icon}
+								className={`ps-5 h-14 text-[#000000] text-base ${selectedKeys.has(key) ? 'bg-[#FD9240]/[0.1] text-[#FD9240]' : ''}`}
+								shouldHighlightOnFocus
+								hideSelectedIcon={false}
+							>
 								{label}
-							</ModalHeader>
-							<Divider />
-							<ModalBody>
-								<Listbox
-									aria-label='resolution'
-									variant='flat'
-									disallowEmptySelection
-									selectionMode='single'
-									selectedKeys={selectedKeys}
-									onSelectionChange={(e) => {
-										setSelectedKeys(e);
-										onClose();
-									}}
-								>
-									{options.map(({ key, label = key, icon }) => (
-										<ListboxItem key={key} startContent={icon}>
-											{label}
-										</ListboxItem>
-									))}
-								</Listbox>
-							</ModalBody>
-						</>
-					)}
-				</ModalContent>
-			</Modal>
+							</ListboxItem>
+						))}
+					</Listbox>
+				</div>
+			</Drawer>
 		</>
 	);
 }

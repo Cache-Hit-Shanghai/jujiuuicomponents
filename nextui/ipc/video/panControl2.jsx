@@ -15,6 +15,7 @@ function Sector({
 	onLongPressEnd,
 	maskStyle,
 	rotateClass,
+	arrowClass,
 }) {
 	let pressTimer;
 	const [isLongPressStart, setIsLongPressStart] = useState(false);
@@ -56,7 +57,10 @@ function Sector({
 			onTouchStart={handlePressStart}
 			onTouchEnd={handlePressEnd}
 		>
-			<ArrowDropUp size={24} className='-rotate-45 transform-gpu' />
+			<ArrowDropUp
+				size={24}
+				className={twMerge('-rotate-45 transform-gpu', arrowClass)}
+			/>
 		</div>
 	);
 }
@@ -75,44 +79,56 @@ export function PanControl2({
 	onLongPressRightStart,
 	onLongPressRightEnd,
 	className,
+	pointStyle,
+	arrowClass,
 }) {
 	const mastStyle =
 		'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)';
 	return (
-		<div
-			className={twMerge(
-				'rounded-full w-full h-full aspect-square relative rotate-[45deg] transform-gpu bg-[#000000CC] text-[#C0C0C0]',
-				className,
-			)}
-		>
-			<Sector
-				onClick={onClickUp}
-				onLongPressStart={onLongPressUpStart}
-				onLongPressEnd={onLongPressUpEnd}
-				maskStyle={mastStyle}
-				rotateClass=''
+		<>
+			<div
+				className={twMerge(
+					'rounded-full w-full h-full aspect-square relative rotate-[45deg] transform-gpu bg-[#000000CC] text-[#C0C0C0]',
+					className,
+				)}
+			>
+				<Sector
+					onClick={onClickUp}
+					onLongPressStart={onLongPressUpStart}
+					onLongPressEnd={onLongPressUpEnd}
+					maskStyle={mastStyle}
+					rotateClass=''
+					arrowClass={arrowClass}
+				/>
+				<Sector
+					onClick={onClickRight}
+					onLongPressStart={onLongPressRightStart}
+					onLongPressEnd={onLongPressRightEnd}
+					maskStyle={mastStyle}
+					rotateClass='rotate-[90deg] transform-gpu'
+					arrowClass={arrowClass}
+				/>
+				<Sector
+					onClick={onClickDown}
+					onLongPressStart={onLongPressDownStart}
+					onLongPressEnd={onLongPressDownEnd}
+					maskStyle={mastStyle}
+					rotateClass='rotate-[180deg] transform-gpu'
+					arrowClass={arrowClass}
+				/>
+				<Sector
+					onClick={onClickLeft}
+					onLongPressStart={onLongPressLeftStart}
+					onLongPressEnd={onLongPressLeftEnd}
+					maskStyle={mastStyle}
+					rotateClass='rotate-[270deg] transform-gpu'
+					arrowClass={arrowClass}
+				/>
+			</div>
+			<div
+				className='bg-[#C0C0C0] rounded-full absolute'
+				style={pointStyle}
 			/>
-			<Sector
-				onClick={onClickRight}
-				onLongPressStart={onLongPressRightStart}
-				onLongPressEnd={onLongPressRightEnd}
-				maskStyle={mastStyle}
-				rotateClass='rotate-[90deg] transform-gpu'
-			/>
-			<Sector
-				onClick={onClickDown}
-				onLongPressStart={onLongPressDownStart}
-				onLongPressEnd={onLongPressDownEnd}
-				maskStyle={mastStyle}
-				rotateClass='rotate-[180deg] transform-gpu'
-			/>
-			<Sector
-				onClick={onClickLeft}
-				onLongPressStart={onLongPressLeftStart}
-				onLongPressEnd={onLongPressLeftEnd}
-				maskStyle={mastStyle}
-				rotateClass='rotate-[270deg] transform-gpu'
-			/>
-		</div>
+		</>
 	);
 }
