@@ -5,6 +5,7 @@ import { Paw } from '../../../icons/paw';
 import { useJuJiuT } from '@/state/translate';
 import { Zen_Maru_Gothic } from 'next/font/google';
 import { FirstPageImg } from '@/app/[locale]/(auth)/pixelbot/icons/FirstPageImg';
+import { twMerge } from 'tailwind-merge';
 
 const googleFont = Zen_Maru_Gothic({
 	weight: '900',
@@ -70,13 +71,13 @@ export function AppMark() {
 	);
 }
 
-export function AppMarkV2() {
+export function AppMarkV2({ textClass, ...props }) {
 	return (
-		<div className='flex flex-col gap-8 items-center'>
-			<div className='w-32 h-32 mt-10'>
-				<FirstPageImg />
+		<div className='flex flex-col items-center'>
+			<div className='w-40 w-40 mt-10'>
+				<FirstPageImg {...props} />
 			</div>
-			<div className='text-[#333333] font-semibold'>
+			<div className={twMerge('text-[#333333] mt-8 font-semibold', textClass)}>
 				一家好认真的宠物机器人公司
 			</div>
 		</div>
