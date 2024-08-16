@@ -43,8 +43,8 @@ export const Wifi2 = ({
 			/>
 			<path
 				id='Vector_4'
-				fill-rule='evenodd'
-				clip-rule='evenodd'
+				fillRule='evenodd'
+				clipRule='evenodd'
 				d='M12 20C12.6904 20 13.25 19.4404 13.25 18.75C13.25 18.0597 12.6904 17.5 12 17.5C11.3097 17.5 10.75 18.0597 10.75 18.75C10.75 19.4404 11.3097 20 12 20Z'
 				fill='black'
 			/>
