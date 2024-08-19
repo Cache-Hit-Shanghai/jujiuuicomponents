@@ -131,7 +131,7 @@ export function MuteControl({
 
 	return (
 		<Button
-			className='p-0 min-w-fit text-inherit'
+			className='p-0 min-w-fit text-inherit bg-[#000000]/[0.3] rounded-full w-10 h-10'
 			isIconOnly={!showLabel}
 			variant='light'
 			radius='none'
@@ -226,7 +226,7 @@ export function ResolutionControl({
 	return (
 		<>
 			<Button
-				className='p-0 min-w-fit text-inherit'
+				className='p-0 min-w-fit text-inherit bg-[#000000]/[0.3] rounded-full w-10 h-10'
 				isIconOnly={!showLabel}
 				onClick={toggleIsOpen}
 				variant='light'
