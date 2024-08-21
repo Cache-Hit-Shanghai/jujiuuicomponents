@@ -24,8 +24,15 @@ function formatDateTime(isoString) {
 	};
 }
 
-const ViewImg = ({ open, onClose, selectedItem, footer = <></>, inApp }) => {
-	const { name, lastModified } = selectedItem || {};
+const ViewImg = ({
+	open,
+	onClose,
+	selectedItem,
+	footer = <></>,
+	inApp,
+	content,
+}) => {
+	const { lastModified } = selectedItem || {};
 	const zoomPanPinchRef = useRef();
 
 	const dateStr = formatDateTime(lastModified);
@@ -90,11 +97,7 @@ const ViewImg = ({ open, onClose, selectedItem, footer = <></>, inApp }) => {
 										height: '100%',
 									}}
 								>
-									<Image
-										radius='none'
-										src={`https://jujiu-prod.oss-accelerate.aliyuncs.com/${name}`}
-										className='w-fit h-fit'
-									/>
+									{content}
 								</TransformComponent>
 							</TransformWrapper>
 						</div>
