@@ -71,11 +71,11 @@ export function AppMark() {
 	);
 }
 
-export function AppMarkV2({ textClass, ...props }) {
+export function AppMarkV2({ textClass, imgClass}) {
 	return (
 		<div className='flex flex-col items-center'>
-			<div className='w-40 w-40 mt-10'>
-				<FirstPageImg {...props} />
+			<div className={twMerge('w-40 w-40 mt-10 flex items-center', imgClass)}>
+				<FirstPageImg />
 			</div>
 			<div className={twMerge('text-[#333333] mt-8 font-semibold', textClass)}>
 				一家好认真的宠物机器人公司
