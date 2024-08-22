@@ -97,7 +97,7 @@ const ViewImg = ({
 										height: '100%',
 									}}
 								>
-									{content}
+									<div className='max-w-full max-h-full'>{content}</div>
 								</TransformComponent>
 							</TransformWrapper>
 						</div>
