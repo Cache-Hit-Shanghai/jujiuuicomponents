@@ -2,11 +2,7 @@
 
 // FIXME: filename
 
-import {
-	Button,
-	Listbox,
-	ListboxItem,
-} from '@nextui-org/react';
+import { Button, Listbox, ListboxItem } from '@nextui-org/react';
 import { useState } from 'react';
 import { PhotoCamera } from '@styled-icons/material/PhotoCamera';
 import { Phone } from '@styled-icons/material/Phone';
@@ -242,7 +238,7 @@ export function ResolutionControl({
 				open={isOpen}
 				onClose={toggleIsOpen}
 				direction={direction}
-				className={getBorderStyle()}
+				className={`z-[999] ${getBorderStyle()}`}
 			>
 				<div className='w-full'>
 					<div className='text-[#000000] w-full text-lg text-center h-16 py-5 font-semibold'>
