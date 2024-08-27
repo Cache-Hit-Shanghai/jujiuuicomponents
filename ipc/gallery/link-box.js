@@ -4,6 +4,7 @@ import { JJIconCirclePlay } from '../icons';
 import { Link } from '@/state/translate';
 import { PlayCircleOutline } from 'styled-icons/material';
 import { useCachedCloudStorageUrl } from '@/hook/cloudstorage';
+import { useCachedGalleryUrl } from '@/hook/gallery';
 
 const DEFAULT_IMAGE = '';
 const MEDIA_ELEMENT_WIDTH_PX = 108;
@@ -37,26 +38,67 @@ function LinkBoxVideo({ url, onClick }) {
 	);
 }
 
-const LinkBoxVideoV2 = ({ obj }) => {
+export const LinkBoxImageV2 = ({
+	obj,
+	width = MEDIA_ELEMENT_WIDTH_PX,
+	height = 70,
+}) => {
 	const { name } = obj;
 
-	const url = useCachedCloudStorageUrl({
+	const url = useCachedGalleryUrl({
 		name,
-		signOpts: {
-			process: `video/snapshot,t_1000,f_jpg,m_fast,w_${MEDIA_ELEMENT_WIDTH_PX * 2},h_0`,
-		},
+		signOpts: { process: `image/resize,w_${width * 2}` },
 	});
 
 	return (
 		<Link
-			href={{ pathname: './streaming/record', query: { type: 'video', name } }}
+			href={{
+				pathname: '/pixelbot/my/gallery/detail',
+				query: { name, type: 'image' },
+			}}
 			passHref
 			legacyBehavior
 		>
 			<div
 				style={{
 					backgroundImage: `url(${url})`,
-					height: '70px',
+					height,
+					width,
+				}}
+				className={`w-full h-full  bg-no-repeat bg-center bg-cover rounded cursor-pointer`}
+			/>
+		</Link>
+	);
+};
+
+const LinkBoxVideoV2 = ({
+	obj,
+	width = MEDIA_ELEMENT_WIDTH_PX,
+	height = 70,
+}) => {
+	const { name } = obj;
+
+	const url = useCachedCloudStorageUrl({
+		name,
+		signOpts: {
+			process: `video/snapshot,t_1000,f_jpg,m_fast,w_${width * 2},h_0`,
+		},
+	});
+
+	return (
+		<Link
+			href={{
+				pathname: '/pixelbot/device/streaming/record',
+				query: { type: 'video', name },
+			}}
+			passHref
+			legacyBehavior
+		>
+			<div
+				style={{
+					backgroundImage: `url(${url})`,
+					height,
+					width,
 				}}
 				className={`relative w-full h-full flex flex-col justify-center items-center  rounded cursor-pointer`}
 			>
