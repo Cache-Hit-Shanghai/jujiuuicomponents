@@ -1,0 +1,17 @@
+.yarl__slide {
+	display: flex;
+	flex-direction: column;
+	padding: 0;
+}
+.yarl__no_scroll
+.yarl__root {
+	// height: calc(100% - 220px) !important;
+}
+.yarl__root {
+	position: absolute;
+	// top: 80px;
+}
+
+.yarl__toolbar {
+	display: none;
+}

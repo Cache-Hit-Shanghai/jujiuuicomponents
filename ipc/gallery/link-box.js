@@ -88,7 +88,7 @@ const LinkBoxVideoV2 = ({
 	return (
 		<Link
 			href={{
-				pathname: '/pixelbot/device/streaming/record',
+				pathname: 'pixelbot/device/streaming/record',
 				query: { type: 'video', name },
 			}}
 			passHref
