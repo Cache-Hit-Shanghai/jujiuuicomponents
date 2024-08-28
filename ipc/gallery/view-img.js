@@ -24,14 +24,13 @@ const CommonLightbox = ({
 			slides={slides}
 			render={render}
 			on={{ view: updateIndex }}
-			controller={{ closeOnPullDown: true, closeOnBackdropClick: false }}
+			controller={{ closeOnPullDown: false, closeOnBackdropClick: false }}
 			video={{
 				autoPlay: false,
 			}}
 			styles={{
 				root: {
 					backgroundColor: '#f6f6f6',
-					pointerEvents: 'auto',
 				},
 				container: {
 					backgroundColor: '#f6f6f6',
@@ -43,7 +42,7 @@ const CommonLightbox = ({
 				swipe: 0,
 				navigation: 0,
 				easing: { fade: 'ease', swipe: 'linear', navigation: 'linear' },
-				zoom: 500,
+				zoom: 0,
 			}}
 			portal={document.getElementById('gallery-wrapper') ?? 'root'}
 			noScroll={false}
