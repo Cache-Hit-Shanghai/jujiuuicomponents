@@ -1,6 +1,6 @@
 import Drawer from 'react-modern-drawer';
 import Fullscreen from 'yet-another-react-lightbox/plugins/fullscreen';
-import Lightbox from 'yet-another-react-lightbox';
+import Lightbox, { EventsProvider } from 'yet-another-react-lightbox';
 import Video from 'yet-another-react-lightbox/plugins/video';
 import Zoom from 'yet-another-react-lightbox/plugins/zoom';
 import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
@@ -85,8 +85,8 @@ const CommonLightbox = ({
 			}}
 			noScroll={false}
 			zoom={{
-				maxZoomPixelRatio: 1,
-				zoomInMultiplier: 2,
+				maxZoomPixelRatio: 2,
+				zoomInMultiplier: 5,
 				doubleTapDelay: 300,
 				doubleClickDelay: 500,
 				doubleClickMaxStops: 2,
@@ -102,7 +102,7 @@ const CommonLightbox = ({
 	);
 };
 
-function ConfirmDrawer({ open, onClose, content, height }) {
+function ConfirmDrawer({ open, onClose, content, height, bottom = '0px' }) {
 	return (
 		<>
 			<Drawer
@@ -112,14 +112,16 @@ function ConfirmDrawer({ open, onClose, content, height }) {
 				direction={'bottom'}
 				overlayColor='#000000'
 				duration='0'
-				enableOverlay
-				className='z-[2000] w-screen rounded-t-lg'
+				enableOverlay={false}
+				className='w-screen rounded-t-lg'
 				style={{
 					width: '100vw',
+					position: 'absolute',
+					bottom,
 				}}
 				overlayOpacity='0'
 			>
-				<div className='w-full h-full flex flex-col p-5 justify-around'>
+				<div className='w-full h-full flex flex-col p-5 justify-around z-[99999]'>
 					{content}
 				</div>
 			</Drawer>
