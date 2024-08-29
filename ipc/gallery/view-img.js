@@ -95,6 +95,9 @@ const CommonLightbox = ({
 				pinchZoomDistanceFactor: 100,
 				scrollToZoom: true,
 			}}
+			toolbar={{
+				buttons: [],
+			}}
 		/>
 	);
 };
