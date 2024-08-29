@@ -28,8 +28,6 @@ function ConfirmModal({
 				wrapper: 'z-[999]',
 			}}
 			hideCloseButton
-			id="hahahah"
-			portalContainer={document.querySelector("yarl__root")}
 		>
 			<ModalContent className='z-[999]'>
 				{(onClose) => {
