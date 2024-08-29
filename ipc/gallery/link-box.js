@@ -65,7 +65,7 @@ export const LinkBoxImageV2 = ({
 					height,
 					width,
 				}}
-				className={`w-full h-full  bg-no-repeat bg-center bg-cover rounded cursor-pointer`}
+				className='w-full h-full bg-no-repeat bg-center bg-cover rounded cursor-pointer'
 			/>
 		</Link>
 	);
@@ -101,7 +101,7 @@ const LinkBoxVideoV2 = ({
 					height,
 					width,
 				}}
-				className={`relative w-full h-full flex flex-col justify-center items-center  rounded cursor-pointer`}
+				className='relative w-full h-full flex flex-col justify-center items-center bg-cover rounded cursor-pointer'
 			>
 				<PlayCircleOutline className='absolute' size={24} />
 			</div>
