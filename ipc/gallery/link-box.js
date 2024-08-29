@@ -75,6 +75,7 @@ const LinkBoxVideoV2 = ({
 	obj,
 	width = MEDIA_ELEMENT_WIDTH_PX,
 	height = 70,
+	pathname = 'pixelbot/device/streaming/record',
 }) => {
 	const { name } = obj;
 
@@ -88,7 +89,7 @@ const LinkBoxVideoV2 = ({
 	return (
 		<Link
 			href={{
-				pathname: 'pixelbot/device/streaming/record',
+				pathname,
 				query: { type: 'video', name },
 			}}
 			passHref
