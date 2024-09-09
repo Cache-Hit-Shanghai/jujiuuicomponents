@@ -133,6 +133,7 @@ export function PanControl2({
 }
 
 export function PanControl3({
+	fullscreen,
 	onLongPressUpStart,
 	onClickUp,
 	onLongPressUpEnd,
@@ -184,7 +185,7 @@ export function PanControl3({
 				options={{
 					mode: 'static',
 					threshold: 0.7,
-					size: 130,
+					size: fullscreen ? 50 : 130,
 				}}
 				onDir={(event, data) => {
 					switch (data?.direction?.angle) {
