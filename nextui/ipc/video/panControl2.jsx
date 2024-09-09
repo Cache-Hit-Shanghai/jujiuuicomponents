@@ -133,12 +133,15 @@ export function PanControl2({
 }
 
 export function PanControl3({
+	onLongPressUpStart,
 	onClickUp,
+	onLongPressUpEnd,
+	onLongPressDownStart,
 	onClickDown,
+	onLongPressLeftStart,
 	onClickLeft,
+	onLongPressRightStart,
 	onClickRight,
-	onDir,
-	onEnd,
 	className,
 	arrowClass,
 }) {
@@ -180,10 +183,28 @@ export function PanControl3({
 			<ReactNipple
 				options={{
 					mode: 'static',
+					threshold: 0.7,
 					size: 130,
 				}}
-				onDir={(evt, data) => console.log(evt, data)}
-				onEnd={() => console.log('end')}
+				onDir={(event, data) => {
+					switch (data?.direction?.angle) {
+						case 'up':
+							onLongPressUpStart();
+							break;
+						case 'down':
+							onLongPressDownStart();
+							break;
+						case 'left':
+							onLongPressLeftStart();
+							break;
+						case 'right':
+							onLongPressRightStart();
+							break;
+						default:
+							return;
+					}
+				}}
+				onEnd={onLongPressUpEnd}
 				style={{ position: 'absolute', top: '50%', left: '50%' }}
 			/>
 		</>
