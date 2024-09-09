@@ -56,24 +56,18 @@ export function DownloadControl({ showLabel, ...prop }) {
  */
 export function ScreenCopyControl({ showLabel, icon, hasBorder, ...prop }) {
 	const t = useJuJiuT();
-	const label = t('截图');
+	const label = t('拍照');
 
 	return (
 		<Button
-			className={
-				hasBorder
-					? 'p-0 min-w-fit text-inherit w-10 h-10 rounded-full flex items-center justify-center bg-[#000000B3]'
-					: 'p-0 min-w-fit text-inherit'
-			}
+			className={`p-0 min-w-fit text-inherit flex flex-col items-center justify-center ${hasBorder ? 'w-10 h-10 rounded-full bg-[#000000B3]' : ''} ${label ? 'w-14 h-14' : ''}`}
 			isIconOnly={!showLabel}
 			variant='light'
 			radius='none'
 			{...prop}
 		>
-			<div className='flex flex-col items-center'>
-				{icon || <PhotoCamera size={24} />}
-				{showLabel && <p className='text-xs'>{label}</p>}
-			</div>
+			{icon || <PhotoCamera size={24} />}
+			{showLabel && <p>{label}</p>}
 		</Button>
 	);
 }
@@ -87,27 +81,21 @@ export function ChatControl({
 	...prop
 }) {
 	const t = useJuJiuT();
-	const label = t(speaking ? '挂断' : '对讲');
+	const label = t('语音');
 
 	const callIconApplied = callIcon || <Phone size={24} />;
 	const hangupIconApplied = hangupIcon || <CallEnd size={24} />;
 
 	return (
 		<Button
-			className={
-				hasBorder
-					? 'p-0 min-w-fit text-inherit w-10 h-10 rounded-full flex items-center justify-center bg-[#000000B3]'
-					: 'p-0 min-w-fit text-inherit'
-			}
+			className={`p-0 min-w-fit text-inherit flex flex-col items-center justify-center ${hasBorder ? 'w-10 h-10 rounded-full bg-[#000000B3]' : ''} ${label ? 'w-14 h-14' : ''} ${speaking ? 'text-[ text-[#FD9240]' : ''}`}
 			isIconOnly={!showLabel}
 			variant='light'
 			radius='none'
 			{...prop}
 		>
-			<div className='flex flex-col items-center'>
-				{speaking ? hangupIconApplied : callIconApplied}
-				{showLabel && <p className='text-xs'>{label}</p>}
-			</div>
+			{speaking ? hangupIconApplied : callIconApplied}
+			{showLabel && <div className=''>{label}</div>}
 		</Button>
 	);
 }
@@ -157,20 +145,14 @@ export function RecordControl({
 
 	return (
 		<Button
-			className={
-				hasBorder
-					? 'p-0 min-w-fit text-inherit w-10 h-10 rounded-full flex items-center justify-center bg-[#000000B3]'
-					: 'p-0 min-w-fit text-inherit'
-			}
+			className={`p-0 min-w-fit text-inherit flex flex-col items-center justify-center ${hasBorder ? 'w-10 h-10 rounded-full bg-[#000000B3]' : ''} ${label ? 'w-14 h-14' : ''}`}
 			isIconOnly={!showLabel}
 			variant='light'
 			radius='none'
 			{...prop}
 		>
-			<div className='flex flex-col items-center'>
-				{recording ? recordingIconApplied : recordIconApplied}
-				{showLabel && <p className='text-xs'>{label}</p>}
-			</div>
+			{recording ? recordingIconApplied : recordIconApplied}
+			{showLabel && <p>{label}</p>}
 		</Button>
 	);
 }
