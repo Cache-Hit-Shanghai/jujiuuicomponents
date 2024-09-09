@@ -2,6 +2,8 @@
 import { ArrowDropUp } from '@styled-icons/material/ArrowDropUp';
 import { useCallback, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
+import dynamic from 'next/dynamic';
+const ReactNipple = dynamic(() => import('react-nipple'), { ssr: false });
 
 function Circle() {
 	return (
@@ -125,9 +127,64 @@ export function PanControl2({
 					arrowClass={arrowClass}
 				/>
 			</div>
+			<div className='bg-[#C0C0C0] rounded-full absolute' style={pointStyle} />
+		</>
+	);
+}
+
+export function PanControl3({
+	onClickUp,
+	onClickDown,
+	onClickLeft,
+	onClickRight,
+	onDir,
+	onEnd,
+	className,
+	arrowClass,
+}) {
+	const mastStyle =
+		'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)';
+	return (
+		<>
 			<div
-				className='bg-[#C0C0C0] rounded-full absolute'
-				style={pointStyle}
+				className={twMerge(
+					'rounded-full w-full h-full aspect-square relative rotate-[45deg] transform-gpu bg-[#000000CC] text-[#C0C0C0]',
+					className,
+				)}
+			>
+				<Sector
+					onClick={onClickUp}
+					maskStyle={mastStyle}
+					rotateClass=''
+					arrowClass={arrowClass}
+				/>
+				<Sector
+					onClick={onClickRight}
+					maskStyle={mastStyle}
+					rotateClass='rotate-[90deg] transform-gpu'
+					arrowClass={arrowClass}
+				/>
+				<Sector
+					onClick={onClickDown}
+					maskStyle={mastStyle}
+					rotateClass='rotate-[180deg] transform-gpu'
+					arrowClass={arrowClass}
+				/>
+				<Sector
+					onClick={onClickLeft}
+					maskStyle={mastStyle}
+					rotateClass='rotate-[270deg] transform-gpu'
+					arrowClass={arrowClass}
+				/>
+			</div>
+			<ReactNipple
+				options={{
+					mode: 'static',
+					size: 130,
+				}}
+				onDir={(evt, data) => console.log(evt, data)}
+				onEnd={() => console.log('end')}
+				style={{ position: 'absolute', top: '50%', left: '50%' }}
 			/>
 		</>
 	);
