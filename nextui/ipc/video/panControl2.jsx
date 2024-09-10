@@ -2,6 +2,9 @@
 import { ArrowDropUp } from '@styled-icons/material/ArrowDropUp';
 import { useCallback, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
+import './panControl2.css';
+import dynamic from 'next/dynamic';
+const ReactNipple = dynamic(() => import('react-nipple'), { ssr: false });
 
 function Circle() {
 	return (
@@ -125,9 +128,86 @@ export function PanControl2({
 					arrowClass={arrowClass}
 				/>
 			</div>
+			<div className='bg-[#C0C0C0] rounded-full absolute' style={pointStyle} />
+		</>
+	);
+}
+
+export function PanControl3({
+	fullscreen,
+	onLongPressUpStart,
+	onClickUp,
+	onLongPressUpEnd,
+	onLongPressDownStart,
+	onClickDown,
+	onLongPressLeftStart,
+	onClickLeft,
+	onLongPressRightStart,
+	onClickRight,
+	className,
+	arrowClass,
+}) {
+	const mastStyle =
+		'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)';
+	return (
+		<>
 			<div
-				className='bg-[#C0C0C0] rounded-full absolute'
-				style={pointStyle}
+				className={twMerge(
+					'rounded-full w-full h-full aspect-square relative rotate-[45deg] transform-gpu bg-[#000000CC] text-[#C0C0C0]',
+					className,
+				)}
+			>
+				<Sector
+					onClick={onClickUp}
+					maskStyle={mastStyle}
+					rotateClass=''
+					arrowClass={arrowClass}
+				/>
+				<Sector
+					onClick={onClickRight}
+					maskStyle={mastStyle}
+					rotateClass='rotate-[90deg] transform-gpu'
+					arrowClass={arrowClass}
+				/>
+				<Sector
+					onClick={onClickDown}
+					maskStyle={mastStyle}
+					rotateClass='rotate-[180deg] transform-gpu'
+					arrowClass={arrowClass}
+				/>
+				<Sector
+					onClick={onClickLeft}
+					maskStyle={mastStyle}
+					rotateClass='rotate-[270deg] transform-gpu'
+					arrowClass={arrowClass}
+				/>
+			</div>
+			<ReactNipple
+				options={{
+					mode: 'static',
+					threshold: 0.7,
+					size: fullscreen ? 50 : 130,
+				}}
+				onDir={(event, data) => {
+					switch (data?.direction?.angle) {
+						case 'up':
+							onLongPressUpStart();
+							break;
+						case 'down':
+							onLongPressDownStart();
+							break;
+						case 'left':
+							onLongPressLeftStart();
+							break;
+						case 'right':
+							onLongPressRightStart();
+							break;
+						default:
+							return;
+					}
+				}}
+				onEnd={onLongPressUpEnd}
+				style={{ position: 'absolute', top: '50%', left: '50%' }}
 			/>
 		</>
 	);
