@@ -187,6 +187,7 @@ export function PanControl3({
 					mode: 'static',
 					threshold: 0.7,
 					size: fullscreen ? 50 : 130,
+					position: { top: '50%', left: '50%' },
 				}}
 				onDir={(event, data) => {
 					switch (data?.direction?.angle) {
