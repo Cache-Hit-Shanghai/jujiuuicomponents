@@ -190,25 +190,50 @@ export function PanControl3({
 					position: { top: '50%', left: '50%' },
 				}}
 				onDir={(event, data) => {
-					switch (data?.direction?.angle) {
-						case 'up':
-							onLongPressUpStart();
-							break;
-						case 'down':
-							onLongPressDownStart();
-							break;
-						case 'left':
-							onLongPressLeftStart();
-							break;
-						case 'right':
-							onLongPressRightStart();
-							break;
-						default:
-							return;
+					if (fullscreen) {
+						// process rotation 90deg
+						switch (data?.direction?.angle) {
+							case 'up':
+								onLongPressLeftStart();
+								break;
+							case 'down':
+								onLongPressRightStart();
+								break;
+							case 'left':
+								onLongPressDownStart();
+								break;
+							case 'right':
+								onLongPressUpStart();
+								break;
+							default:
+								return;
+						}
+					} else {
+						switch (data?.direction?.angle) {
+							case 'up':
+								onLongPressUpStart();
+								break;
+							case 'down':
+								onLongPressDownStart();
+								break;
+							case 'left':
+								onLongPressLeftStart();
+								break;
+							case 'right':
+								onLongPressRightStart();
+								break;
+							default:
+								return;
+						}
 					}
 				}}
 				onEnd={onLongPressUpEnd}
-				style={{ position: 'absolute', top: '50%', left: '50%' }}
+				style={{
+					position: 'absolute',
+					top: '50%',
+					left: '50%',
+					transform: fullscreen ? 'rotate(-90deg)' : '',
+				}}
 			/>
 		</>
 	);
