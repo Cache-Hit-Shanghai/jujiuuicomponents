@@ -97,7 +97,7 @@ const LinkBoxVideoV2 = ({
 		>
 			<div
 				style={{
-					backgroundImage: `url(${url})`,
+					backgroundImage: `url(${url ?? ''})`,
 					height,
 					width,
 				}}
