@@ -35,7 +35,7 @@ function ConfirmModal({
 						<ModalHeader className='z-[999]'>{title}</ModalHeader>,
 						<ModalBody className='py-4 z-[999]'>{children}</ModalBody>,
 						<ModalFooter className='z-[999]'>
-							<Button color='danger' variant='light' onPress={onClose}>
+							<Button color='danger' variant='light' onClick={onClose}>
 								取消
 							</Button>
 							<Button color='primary' onPress={onConfirm}>
