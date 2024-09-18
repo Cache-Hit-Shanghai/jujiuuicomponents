@@ -32,6 +32,7 @@ function Toast({ state, ...props }) {
 						isIconOnly
 						variant='light'
 						radius='none'
+						className="text-[#F6F6F6]"
 						{...closeButtonProps}
 					>
 						<Close size={24} />
