@@ -325,20 +325,50 @@ export function WiFiDisplay({ label, text, signal }) {
 }
 
 const BatteryIcons = new Map([
-	[0, Battery0Icon],
-	[1, Battery25Icon],
-	[2, Battery50Icon],
-	[3, Battery75Icon],
-	[4, Battery100Icon],
+	[
+		0,
+		{
+			Icon: Battery0Icon,
+			className: 'text-[#F84343]',
+		},
+	],
+	[
+		1,
+		{
+			Icon: Battery25Icon,
+			className: 'text-[#FD9240]',
+		},
+	],
+	[
+		2,
+		{
+			Icon: Battery50Icon,
+			className: 'text-[#FD9240]',
+		},
+	],
+	[
+		3,
+		{
+			Icon: Battery75Icon,
+			className: 'text-[#52D369]',
+		},
+	],
+	[
+		4,
+		{
+			Icon: Battery100Icon,
+			className: 'text-[#52D369]',
+		},
+	],
 ]);
 
-export function BatteryIcon({ batteryLevel, isCharging, ...props }) {
+export function BatteryIcon({ batteryLevel, isCharging }) {
 	const boolIsCharging = parseInt(isCharging) === 1;
-	const BatteryIconComponent =
-		BatteryIcons.get(parseInt(batteryLevel)) || Battery0Icon;
+	const { Icon, className } =
+		BatteryIcons.get(parseInt(batteryLevel)) ?? BatteryIcons.get(0);
 	return (
 		<div className='flex flex-row'>
-			<BatteryIconComponent {...props} />
+			<Icon className={className} />
 			{boolIsCharging && (
 				<div className='mt-2'>
 					<Lightning />
