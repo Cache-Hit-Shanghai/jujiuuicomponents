@@ -23,7 +23,7 @@ function Toast({ state, ...props }) {
 			animate={{ opacity: 1 }}
 			exit={{ opacity: 0 }}
 		>
-			<Card>
+			<Card className="mb-4">
 				<CardBody className='flex flex-row items-center justify-between'>
 					<div className='text-sm' {...titleProps}>
 						{props.toast.content}
