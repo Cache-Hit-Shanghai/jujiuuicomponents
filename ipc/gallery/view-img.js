@@ -121,7 +121,7 @@ function ConfirmDrawer({ open, onClose, content, height, bottom = '0px' }) {
 				}}
 				overlayOpacity='0'
 			>
-				<div className='w-full h-full flex flex-col p-5 justify-around z-[99999]'>
+				<div className='w-full h-full flex flex-col justify-around z-[99999]'>
 					{content}
 				</div>
 			</Drawer>
