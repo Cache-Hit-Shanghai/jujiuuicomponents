@@ -51,6 +51,7 @@ const CommonLightbox = ({
 	updateIndex,
 	index,
 	render,
+	className,
 }) => {
 	return (
 		<Lightbox
@@ -99,6 +100,7 @@ const CommonLightbox = ({
 			toolbar={{
 				buttons: [],
 			}}
+			className={className}
 		/>
 	);
 };

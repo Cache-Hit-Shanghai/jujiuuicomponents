@@ -38,6 +38,7 @@ import { Info } from '@styled-icons/material/Info';
 import { LightMode } from '@styled-icons/material/LightMode';
 import { SignalWifi4Bar } from '@styled-icons/material/SignalWifi4Bar';
 import { Wifi } from '@styled-icons/material/Wifi';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
@@ -567,5 +568,22 @@ export function InfoGroup({ data }) {
 				</DeviceSettingWrapper>
 			))}
 		</DeviceCard>
+	);
+}
+
+export function FadeAnimation({ show, children }) {
+	return (
+		<AnimatePresence>
+			{show && (
+				<motion.div
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
+					exit={{ opacity: 0 }}
+					transition={{ ease: 'linear', duration: 0.1 }}
+				>
+					{children}
+				</motion.div>
+			)}
+		</AnimatePresence>
 	);
 }
