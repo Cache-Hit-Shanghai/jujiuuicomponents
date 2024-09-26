@@ -75,7 +75,7 @@ const LinkBoxVideoV2 = ({
 	obj,
 	width = MEDIA_ELEMENT_WIDTH_PX,
 	height = 70,
-	pathname = 'pixelbot/device/streaming/record',
+	pathname = 'pixelbot/device/record/detail',
 }) => {
 	const { name } = obj;
 

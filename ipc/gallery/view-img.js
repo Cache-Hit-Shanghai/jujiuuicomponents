@@ -5,6 +5,7 @@ import Video from 'yet-another-react-lightbox/plugins/video';
 import Zoom from 'yet-another-react-lightbox/plugins/zoom';
 import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
 import { useRef } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 import 'yet-another-react-lightbox/styles.css';
 import 'react-modern-drawer/dist/index.css';
@@ -50,6 +51,7 @@ const CommonLightbox = ({
 	updateIndex,
 	index,
 	render,
+	className,
 }) => {
 	return (
 		<Lightbox
@@ -98,11 +100,19 @@ const CommonLightbox = ({
 			toolbar={{
 				buttons: [],
 			}}
+			className={className}
 		/>
 	);
 };
 
-function ConfirmDrawer({ open, onClose, content, height, bottom = '0px' }) {
+function ConfirmDrawer({
+	open,
+	onClose,
+	content,
+	height,
+	bottom = '0px',
+	wrapperClass,
+}) {
 	return (
 		<>
 			<Drawer
@@ -110,18 +120,24 @@ function ConfirmDrawer({ open, onClose, content, height, bottom = '0px' }) {
 				onClose={onClose}
 				size={height}
 				direction={'bottom'}
-				overlayColor='#000000'
 				duration='0'
 				enableOverlay={false}
-				className='w-screen rounded-t-lg'
 				style={{
 					width: '100vw',
 					position: 'absolute',
 					bottom,
+					boxShadow: 'none',
+					borderRadius: '0px',
+					background: 'transparent',
 				}}
 				overlayOpacity='0'
 			>
-				<div className='w-full h-full flex flex-col justify-around z-[99999]'>
+				<div
+					className={twMerge(
+						'w-full h-full flex flex-col justify-around z-[99999]',
+						wrapperClass,
+					)}
+				>
 					{content}
 				</div>
 			</Drawer>

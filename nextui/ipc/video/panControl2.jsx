@@ -2,7 +2,7 @@
 import { ArrowDropUp } from '@styled-icons/material/ArrowDropUp';
 import { useCallback, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
-import './panControl2.css';
+import './panControl2.scss';
 import dynamic from 'next/dynamic';
 const ReactNipple = dynamic(() => import('react-nipple'), { ssr: false });
 
