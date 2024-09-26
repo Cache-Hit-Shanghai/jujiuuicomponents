@@ -2,7 +2,9 @@ import { useState } from 'react';
 import { useIdleTimer } from 'react-idle-timer';
 import { FadeAnimation, NavbarBack } from '../../core/core-ui';
 import { DocumentLandscapeStyle } from '@/components';
+import { ChevronLeft } from 'styled-icons/material';
 import { twMerge } from 'tailwind-merge';
+import { Button } from '@nextui-org/react';
 
 export const VideoPlayerWrapper = ({
 	fullscreen,
@@ -38,15 +40,17 @@ export const VideoPlayerWrapper = ({
 		>
 			{fullscreen && isMouseHover && (
 				<FadeAnimation show={showOverlayUtils}>
-					<div className='absolute left-0 top-0 text-white z-[9999]'>
-						<NavbarBack
-							className='font-semibold text-with-shadow'
+					<div className='absolute left-0 top-0 text-white z-[10010]'>
+						<Button
 							onClick={fullscreenToggle}
-							goBack={false}
-							label={
-								<span className='text-sm ml-[-24px]'>{fullscreenLabel}</span>
-							}
-						/>
+							variant='light'
+							className='text-white'
+						>
+							<span className='font-semibold text-with-shadow '>
+								<ChevronLeft size={24} />
+							</span>
+							<span className='text-sm'>{fullscreenLabel}</span>
+						</Button>
 					</div>
 				</FadeAnimation>
 			)}
