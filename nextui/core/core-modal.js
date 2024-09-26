@@ -15,6 +15,7 @@ function ConfirmModal({
 	title,
 	position,
 	children,
+	disabledConfirm = false,
 	...props
 }) {
 	return (
@@ -23,20 +24,18 @@ function ConfirmModal({
 			placement={position || 'bottom'}
 			onClose={onClose}
 			onOpenChange={onOpenChange}
-			className='m-0 z-[999]'
+			className='m-0 z-[10000]'
 			classNames={{
-				wrapper: 'z-[999]',
+				wrapper: 'z-[10000]',
 			}}
 			hideCloseButton
 		>
-			<ModalContent className='z-[999]'>
+			<ModalContent className='z-[10000]'>
 				{(onClose) => {
 					return [
-						<ModalHeader className='z-[999]'>{title}</ModalHeader>,
-						<ModalBody className='py-4 z-[999] text-center'>
-							{children}
-						</ModalBody>,
-						<ModalFooter className='z-[999] justify-between'>
+						<ModalHeader>{title}</ModalHeader>,
+						<ModalBody className='py-4 text-center'>{children}</ModalBody>,
+						<ModalFooter className='justify-between'>
 							<Button
 								className='text-[#FD9240]'
 								variant='light'
@@ -44,7 +43,11 @@ function ConfirmModal({
 							>
 								取消
 							</Button>
-							<Button color='primary' onPress={onConfirm}>
+							<Button
+								color='primary'
+								onPress={onConfirm}
+								isDisabled={disabledConfirm}
+							>
 								确定
 							</Button>
 						</ModalFooter>,

@@ -23,7 +23,7 @@ function Toast({ state, ...props }) {
 			animate={{ opacity: 1 }}
 			exit={{ opacity: 0 }}
 		>
-			<Card className="mb-4">
+			<Card className='mb-4'>
 				<CardBody className='flex flex-row items-center justify-between'>
 					<div className='text-sm' {...titleProps}>
 						{props.toast.content}
@@ -32,7 +32,7 @@ function Toast({ state, ...props }) {
 						isIconOnly
 						variant='light'
 						radius='none'
-						className="text-[#F6F6F6]"
+						className='text-[#F6F6F6]'
 						{...closeButtonProps}
 					>
 						<Close size={24} />
@@ -51,7 +51,7 @@ function ToastRegion({ state, ...props }) {
 		<motion.div
 			{...regionProps}
 			ref={ref}
-			className='fixed flex flex-col bottom-0 inset-x-0 p-2 gap-2 z-[1000] outline-none'
+			className='fixed flex flex-col bottom-0 inset-x-0 p-2 gap-2 z-[10000] outline-none'
 			layout
 		>
 			<AnimatePresence>
