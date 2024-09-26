@@ -40,7 +40,7 @@ export const VideoPlayerWrapper = ({
 		>
 			{fullscreen && isMouseHover && (
 				<FadeAnimation show={showOverlayUtils}>
-					<div className='absolute left-0 top-0 text-white z-[10010]'>
+					<div className='absolute left-0 top-0 text-white z-[11000]'>
 						<Button
 							onClick={fullscreenToggle}
 							variant='light'
