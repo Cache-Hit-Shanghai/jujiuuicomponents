@@ -368,13 +368,9 @@ export function BatteryIcon({ batteryLevel, isCharging }) {
 	const { Icon, className } =
 		BatteryIcons.get(parseInt(batteryLevel)) ?? BatteryIcons.get(0);
 	return (
-		<div className='flex flex-row'>
+		<div className='flex items-center'>
 			<Icon className={className} />
-			{boolIsCharging && (
-				<div className='mt-2'>
-					<Lightning width={10} height={10} />
-				</div>
-			)}
+			{boolIsCharging && <Lightning width={10} height={10} />}
 		</div>
 	);
 }
