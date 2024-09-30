@@ -186,7 +186,7 @@ export function PanControl3({
 				options={{
 					mode: 'static',
 					threshold: 0.7,
-					size: 130,
+					size: 120,
 					position: { top: '50%', left: '50%' },
 				}}
 				onDir={(event, data) => {
