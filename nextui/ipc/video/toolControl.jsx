@@ -101,6 +101,7 @@ export function ChatControl({
 }
 
 export function MuteControl({
+	isVideoFullscreen,
 	showLabel,
 	mute = true,
 	muteIcon,
@@ -115,7 +116,10 @@ export function MuteControl({
 
 	return (
 		<Button
-			className='p-0 min-w-fit text-inherit bg-[#000000]/[0.3] rounded-full w-10 h-10'
+			className={
+				'p-0 min-w-fit text-inherit bg-[#000000]/[0.3] rounded-full w-10 h-10' +
+				(isVideoFullscreen ? ' w-14 h-14' : '')
+			}
 			isIconOnly={!showLabel}
 			variant='light'
 			radius='none'
@@ -164,6 +168,7 @@ function useConrollableState({ value, setValue, initValue }) {
 }
 
 export function ResolutionControl({
+	isVideoFullscreen,
 	showLabel,
 	items,
 	options = [
@@ -204,7 +209,10 @@ export function ResolutionControl({
 	return (
 		<>
 			<Button
-				className='p-0 min-w-fit text-inherit bg-[#000000]/[0.3] rounded-full w-10 h-10'
+				className={
+					'p-0 min-w-fit text-inherit bg-[#000000]/[0.3] rounded-full w-10 h-10' +
+					(isVideoFullscreen ? ' w-14 h-14' : '')
+				}
 				isIconOnly={!showLabel}
 				onClick={toggleIsOpen}
 				variant='light'
