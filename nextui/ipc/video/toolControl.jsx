@@ -2,8 +2,8 @@
 
 // FIXME: filename
 
-import { Button, Listbox, ListboxItem } from '@nextui-org/react';
-import { useState } from 'react';
+import { Button, Listbox, ListboxItem, Spinner } from '@nextui-org/react';
+import { useEffect, useState } from 'react';
 import { PhotoCamera } from '@styled-icons/material/PhotoCamera';
 import { Phone } from '@styled-icons/material/Phone';
 import { CallEnd } from '@styled-icons/material/CallEnd';
@@ -177,11 +177,11 @@ export function ResolutionControl({
 		{ key: '720p', label: '标清', icon: <Hd size={24} /> },
 	],
 	current,
-	init = '2.5k',
 	onSelect,
 	isForceLandscape = false,
 	icon,
 	direction,
+	label,
 	...prop
 }) {
 	const [isOpen, setIsOpen] = useState(false);
@@ -189,11 +189,18 @@ export function ResolutionControl({
 		setIsOpen(!isOpen);
 	};
 
-	const [selectedKeys, setSelectedKeys] = useConrollableState({
-		initValue: new Set([init]),
-		value: new Set([current ?? init]),
-		setValue: onSelect && ((newValue) => onSelect([...newValue][0])),
-	});
+	const [selectedKeys, setSelectedKeys] = useState(new Set([current]));
+
+	useEffect(() => {
+		if (!current) return;
+		setSelectedKeys(new Set([current]));
+	}, [current]);
+
+	const onChangeSelected = (newValue) => {
+		const curSelectedKey = [...newValue][0];
+		setSelectedKeys(new Set([curSelectedKey]));
+		onSelect?.(curSelectedKey);
+	};
 
 	const getBorderStyle = () => {
 		switch (direction) {
@@ -234,31 +241,37 @@ export function ResolutionControl({
 					<div className='text-[#000000] w-full text-lg text-center h-16 py-5 font-semibold'>
 						画质选择
 					</div>
-					<Listbox
-						aria-label='resolution'
-						variant='light'
-						selectionMode='single'
-						se1lectedKeys={selectedKeys}
-						onSelectionChange={(e) => {
-							setSelectedKeys(e);
-							toggleIsOpen();
-						}}
-						color='primary'
-						shouldHighlightOnFocus
-						defaultSelectedKeys={Array.from(selectedKeys)}
-					>
-						{options.map(({ key, label = key, icon }) => (
-							<ListboxItem
-								key={key}
-								startContent={icon}
-								className={`ps-5 h-14 text-[#000000] text-base ${selectedKeys.has(key) ? 'bg-[#FD9240]/[0.1] text-[#FD9240]' : ''}`}
-								shouldHighlightOnFocus
-								hideSelectedIcon={false}
-							>
-								{label}
-							</ListboxItem>
-						))}
-					</Listbox>
+					{current ? (
+						<Listbox
+							aria-label='resolution'
+							variant='light'
+							selectionMode='single'
+							selectedKeys={selectedKeys}
+							onSelectionChange={(e) => {
+								onChangeSelected(e);
+								toggleIsOpen();
+							}}
+							color='primary'
+							shouldHighlightOnFocus
+							defaultSelectedKeys={Array.from(selectedKeys)}
+							disallowEmptySelection
+						>
+							{options.map(({ key, label = key, icon }) => (
+								<ListboxItem
+									key={key}
+									startContent={icon}
+									className={`ps-5 h-14 text-[#000000] text-base ${selectedKeys.has(key) ? 'bg-[#FD9240]/[0.1] text-[#FD9240]' : ''}`}
+									shouldHighlightOnFocus
+								>
+									{label}
+								</ListboxItem>
+							))}
+						</Listbox>
+					) : (
+						<div className='w-full mt-10 flex justify-center'>
+							<Spinner size='large' />
+						</div>
+					)}
 				</div>
 			</Drawer>
 		</>
