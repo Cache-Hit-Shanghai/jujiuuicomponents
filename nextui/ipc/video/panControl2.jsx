@@ -229,6 +229,7 @@ export function PanControl3({
 				}}
 				onEnd={onLongPressUpEnd}
 				style={{
+					zIndex: 0,
 					position: 'absolute',
 					top: '50%',
 					left: '50%',
