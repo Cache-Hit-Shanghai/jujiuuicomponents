@@ -104,7 +104,7 @@ export function ButtonBack({ onClick, onPress, goBack = true, ...props }) {
 				onPress && onPress();
 				goBack && router.back();
 			}}
-			className='text-inherit'
+			className='w-20 px-2 justify-start text-inherit'
 			{...props}
 		>
 			<ChevronLeft size={24} />
