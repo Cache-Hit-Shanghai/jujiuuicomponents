@@ -186,7 +186,7 @@ export function PanControl3({
 				options={{
 					mode: 'static',
 					threshold: 0.7,
-					size: fullscreen ? 75 : 130,
+					size: 120,
 					position: { top: '50%', left: '50%' },
 				}}
 				onDir={(event, data) => {
@@ -229,6 +229,7 @@ export function PanControl3({
 				}}
 				onEnd={onLongPressUpEnd}
 				style={{
+					zIndex: 0,
 					position: 'absolute',
 					top: '50%',
 					left: '50%',

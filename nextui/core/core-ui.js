@@ -104,7 +104,7 @@ export function ButtonBack({ onClick, onPress, goBack = true, ...props }) {
 				onPress && onPress();
 				goBack && router.back();
 			}}
-			className='text-inherit'
+			className='w-20 px-2 justify-start text-inherit'
 			{...props}
 		>
 			<ChevronLeft size={24} />
@@ -368,13 +368,9 @@ export function BatteryIcon({ batteryLevel, isCharging }) {
 	const { Icon, className } =
 		BatteryIcons.get(parseInt(batteryLevel)) ?? BatteryIcons.get(0);
 	return (
-		<div className='flex flex-row'>
+		<div className='flex items-center'>
 			<Icon className={className} />
-			{boolIsCharging && (
-				<div className='mt-2'>
-					<Lightning />
-				</div>
-			)}
+			{boolIsCharging && <Lightning width={10} height={10} />}
 		</div>
 	);
 }
@@ -384,7 +380,7 @@ export function BatteryDisplay({ label, level, isCharging }) {
 		<div className='p-2 flex flex-row justify-between items-center'>
 			{label && <p>{label}</p>}
 			<div className='text-sm text-default-500 flex flex-row items-center'>
-				<BatteryIcon size={24} batteryLevel={level} isCharging={isCharging} />
+				<BatteryIcon batteryLevel={level} isCharging={isCharging} />
 			</div>
 		</div>
 	);
