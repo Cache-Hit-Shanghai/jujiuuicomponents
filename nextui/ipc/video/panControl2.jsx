@@ -144,6 +144,7 @@ export function PanControl3({
 	onClickLeft,
 	onLongPressRightStart,
 	onClickRight,
+	onMove,
 	className,
 	arrowClass,
 }) {
@@ -188,6 +189,15 @@ export function PanControl3({
 					threshold: 0.7,
 					size: 120,
 					position: { top: '50%', left: '50%' },
+				}}
+				onMove={(event, data) => {
+					if (fullscreen) {
+						const degree = (360 - data.angle.degree) % 360;
+						onMove?.(data.force, degree);
+					} else {
+						const degree = (450 - data.angle.degree) % 360;
+						onMove?.(data.force, degree);
+					}
 				}}
 				onDir={(event, data) => {
 					if (fullscreen) {
