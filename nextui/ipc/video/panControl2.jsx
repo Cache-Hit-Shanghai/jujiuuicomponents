@@ -144,6 +144,7 @@ export function PanControl3({
 	onClickLeft,
 	onLongPressRightStart,
 	onClickRight,
+	onMove,
 	className,
 	arrowClass,
 	isDisabled,
@@ -159,31 +160,47 @@ export function PanControl3({
 				)}
 			>
 				<Sector
-					onClick={()=>{if(!isDisabled){onClickUp()}}}
+					onClick={() => {
+						if (!isDisabled) {
+							onClickUp();
+						}
+					}}
 					maskStyle={mastStyle}
 					rotateClass=''
 					arrowClass={arrowClass}
 				/>
 				<Sector
-					onClick={()=>{if(!isDisabled){onClickRight()}}}
+					onClick={() => {
+						if (!isDisabled) {
+							onClickRight();
+						}
+					}}
 					maskStyle={mastStyle}
 					rotateClass='rotate-[90deg] transform-gpu'
 					arrowClass={arrowClass}
 				/>
 				<Sector
-					onClick={()=>{if(!isDisabled){onClickDown()}}}
+					onClick={() => {
+						if (!isDisabled) {
+							onClickDown();
+						}
+					}}
 					maskStyle={mastStyle}
 					rotateClass='rotate-[180deg] transform-gpu'
 					arrowClass={arrowClass}
 				/>
 				<Sector
-					onClick={()=>{if(!isDisabled){onClickLeft()}}}
+					onClick={() => {
+						if (!isDisabled) {
+							onClickLeft();
+						}
+					}}
 					maskStyle={mastStyle}
 					rotateClass='rotate-[270deg] transform-gpu'
 					arrowClass={arrowClass}
 				/>
 			</div>
-			<div className={isDisabled?"disabled_pan-control":""} >
+			<div className={isDisabled ? 'disabled_pan-control' : ''}>
 				<ReactNipple
 					options={{
 						mode: 'static',
@@ -191,8 +208,17 @@ export function PanControl3({
 						size: 120,
 						position: { top: '50%', left: '50%' },
 					}}
+					onMove={(event, data) => {
+						if (fullscreen) {
+							const degree = (360 - data.angle.degree) % 360;
+							onMove?.(data.force, degree);
+						} else {
+							const degree = (450 - data.angle.degree) % 360;
+							onMove?.(data.force, degree);
+						}
+					}}
 					onDir={(event, data) => {
-						if(isDisabled){
+						if (isDisabled) {
 							return;
 						}
 						if (fullscreen) {
@@ -232,7 +258,11 @@ export function PanControl3({
 							}
 						}
 					}}
-					onEnd={()=>{if(!isDisabled){onLongPressUpEnd()}}}
+					onEnd={() => {
+						if (!isDisabled) {
+							onLongPressUpEnd();
+						}
+					}}
 					style={{
 						zIndex: 0,
 						position: 'absolute',
