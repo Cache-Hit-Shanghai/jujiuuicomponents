@@ -147,6 +147,7 @@ export function PanControl3({
 	onMove,
 	className,
 	arrowClass,
+	isDisabled,
 }) {
 	const mastStyle =
 		'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)';
@@ -159,93 +160,118 @@ export function PanControl3({
 				)}
 			>
 				<Sector
-					onClick={onClickUp}
+					onClick={() => {
+						if (!isDisabled) {
+							onClickUp();
+						}
+					}}
 					maskStyle={mastStyle}
 					rotateClass=''
 					arrowClass={arrowClass}
 				/>
 				<Sector
-					onClick={onClickRight}
+					onClick={() => {
+						if (!isDisabled) {
+							onClickRight();
+						}
+					}}
 					maskStyle={mastStyle}
 					rotateClass='rotate-[90deg] transform-gpu'
 					arrowClass={arrowClass}
 				/>
 				<Sector
-					onClick={onClickDown}
+					onClick={() => {
+						if (!isDisabled) {
+							onClickDown();
+						}
+					}}
 					maskStyle={mastStyle}
 					rotateClass='rotate-[180deg] transform-gpu'
 					arrowClass={arrowClass}
 				/>
 				<Sector
-					onClick={onClickLeft}
+					onClick={() => {
+						if (!isDisabled) {
+							onClickLeft();
+						}
+					}}
 					maskStyle={mastStyle}
 					rotateClass='rotate-[270deg] transform-gpu'
 					arrowClass={arrowClass}
 				/>
 			</div>
-			<ReactNipple
-				options={{
-					mode: 'static',
-					threshold: 0.7,
-					size: 120,
-					position: { top: '50%', left: '50%' },
-				}}
-				onMove={(event, data) => {
-					if (fullscreen) {
-						const degree = (360 - data.angle.degree) % 360;
-						onMove?.(data.force, degree);
-					} else {
-						const degree = (450 - data.angle.degree) % 360;
-						onMove?.(data.force, degree);
-					}
-				}}
-				onDir={(event, data) => {
-					if (fullscreen) {
-						// process rotation 90deg
-						switch (data?.direction?.angle) {
-							case 'up':
-								onLongPressLeftStart();
-								break;
-							case 'down':
-								onLongPressRightStart();
-								break;
-							case 'left':
-								onLongPressDownStart();
-								break;
-							case 'right':
-								onLongPressUpStart();
-								break;
-							default:
-								return;
+			<div className={isDisabled ? 'disabled_pan-control' : ''}>
+				<ReactNipple
+					options={{
+						mode: 'static',
+						threshold: 0.7,
+						size: 120,
+						position: { top: '50%', left: '50%' },
+					}}
+					onMove={(event, data) => {
+						if (fullscreen) {
+							const degree = (360 - data.angle.degree) % 360;
+							onMove?.(data.force, degree);
+						} else {
+							const degree = (450 - data.angle.degree) % 360;
+							onMove?.(data.force, degree);
 						}
-					} else {
-						switch (data?.direction?.angle) {
-							case 'up':
-								onLongPressUpStart();
-								break;
-							case 'down':
-								onLongPressDownStart();
-								break;
-							case 'left':
-								onLongPressLeftStart();
-								break;
-							case 'right':
-								onLongPressRightStart();
-								break;
-							default:
-								return;
+					}}
+					onDir={(event, data) => {
+						if (isDisabled) {
+							return;
 						}
-					}
-				}}
-				onEnd={onLongPressUpEnd}
-				style={{
-					zIndex: 0,
-					position: 'absolute',
-					top: '50%',
-					left: '50%',
-					transform: fullscreen ? 'rotate(-90deg)' : '',
-				}}
-			/>
+						if (fullscreen) {
+							// process rotation 90deg
+							switch (data?.direction?.angle) {
+								case 'up':
+									onLongPressLeftStart();
+									break;
+								case 'down':
+									onLongPressRightStart();
+									break;
+								case 'left':
+									onLongPressDownStart();
+									break;
+								case 'right':
+									onLongPressUpStart();
+									break;
+								default:
+									return;
+							}
+						} else {
+							switch (data?.direction?.angle) {
+								case 'up':
+									onLongPressUpStart();
+									break;
+								case 'down':
+									onLongPressDownStart();
+									break;
+								case 'left':
+									onLongPressLeftStart();
+									break;
+								case 'right':
+									onLongPressRightStart();
+									break;
+								default:
+									return;
+							}
+						}
+					}}
+					onEnd={() => {
+						if (!isDisabled) {
+							onLongPressUpEnd();
+						}
+					}}
+					style={{
+						zIndex: 0,
+						position: 'absolute',
+						top: '50%',
+						left: '50%',
+						transform: fullscreen ? 'rotate(-90deg)' : '',
+					}}
+				/>
+			</div>
 		</>
 	);
 }
