@@ -71,6 +71,37 @@ export const LinkBoxImageV2 = ({
 	);
 };
 
+const BoxVideoBtn = ({
+	obj,
+	width = MEDIA_ELEMENT_WIDTH_PX,
+	height = 70,
+	handleClick,
+}) => {
+	const { name } = obj;
+
+	const url = useCachedCloudStorageUrl({
+		name,
+		signOpts: {
+			process: `video/snapshot,t_1000,f_jpg,m_fast,w_${width * 2},h_0`,
+		},
+	});
+
+	return (
+		<div onClick={handleClick}>
+			<div
+				style={{
+					backgroundImage: `url(${url ?? ''})`,
+					height,
+					width,
+				}}
+				className='relative w-full h-full flex flex-col justify-center items-center bg-cover rounded cursor-pointer'
+			>
+				<PlayCircleOutline className='absolute' size={24} />
+			</div>
+		</div>
+	);
+};
+
 const LinkBoxVideoV2 = ({
 	obj,
 	width = MEDIA_ELEMENT_WIDTH_PX,
@@ -109,4 +140,4 @@ const LinkBoxVideoV2 = ({
 	);
 };
 
-export { LinkBoxImage, LinkBoxVideo, LinkBoxVideoV2 };
+export { LinkBoxImage, LinkBoxVideo, LinkBoxVideoV2, BoxVideoBtn };
