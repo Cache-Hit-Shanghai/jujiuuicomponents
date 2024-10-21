@@ -25,6 +25,7 @@ import { LinkButton } from '../../core/core-ui';
 import Drawer from 'react-modern-drawer';
 
 import 'react-modern-drawer/dist/index.css';
+import { SelectorModal } from '@/nextui-components/ui/pet-setting';
 
 /**
  * @typedef {import("@nextui-org/react").ButtonProps} ButtonProps
@@ -213,6 +214,45 @@ export function ResolutionControl({
 		}
 	};
 
+	const content = (
+		<div className='w-full'>
+			<div className='text-[#000000] w-full text-lg text-center h-16 py-5 font-semibold'>
+				画质选择
+			</div>
+			{current ? (
+				<Listbox
+					aria-label='resolution'
+					variant='light'
+					selectionMode='single'
+					selectedKeys={selectedKeys}
+					onSelectionChange={(e) => {
+						onChangeSelected(e);
+						toggleIsOpen();
+					}}
+					color='primary'
+					shouldHighlightOnFocus
+					defaultSelectedKeys={Array.from(selectedKeys)}
+					disallowEmptySelection
+				>
+					{options.map(({ key, label = key, icon }) => (
+						<ListboxItem
+							key={key}
+							startContent={icon}
+							className={`ps-5 h-14 text-[#000000] text-base ${selectedKeys.has(key) ? 'bg-[#FD9240]/[0.1] text-[#FD9240]' : ''}`}
+							shouldHighlightOnFocus
+						>
+							{label}
+						</ListboxItem>
+					))}
+				</Listbox>
+			) : (
+				<div className='w-full mt-10 flex justify-center'>
+					<Spinner size='large' />
+				</div>
+			)}
+		</div>
+	);
+
 	return (
 		<>
 			<Button
@@ -231,49 +271,26 @@ export function ResolutionControl({
 					{showLabel && <p className='text-xs'>{label}</p>}
 				</div>
 			</Button>
-			<Drawer
-				open={isOpen}
-				onClose={toggleIsOpen}
-				direction={direction}
-				className={`z-[999] ${getBorderStyle()}`}
-			>
-				<div className='w-full'>
-					<div className='text-[#000000] w-full text-lg text-center h-16 py-5 font-semibold'>
-						画质选择
-					</div>
-					{current ? (
-						<Listbox
-							aria-label='resolution'
-							variant='light'
-							selectionMode='single'
-							selectedKeys={selectedKeys}
-							onSelectionChange={(e) => {
-								onChangeSelected(e);
-								toggleIsOpen();
-							}}
-							color='primary'
-							shouldHighlightOnFocus
-							defaultSelectedKeys={Array.from(selectedKeys)}
-							disallowEmptySelection
-						>
-							{options.map(({ key, label = key, icon }) => (
-								<ListboxItem
-									key={key}
-									startContent={icon}
-									className={`ps-5 h-14 text-[#000000] text-base ${selectedKeys.has(key) ? 'bg-[#FD9240]/[0.1] text-[#FD9240]' : ''}`}
-									shouldHighlightOnFocus
-								>
-									{label}
-								</ListboxItem>
-							))}
-						</Listbox>
-					) : (
-						<div className='w-full mt-10 flex justify-center'>
-							<Spinner size='large' />
-						</div>
-					)}
-				</div>
-			</Drawer>
+			{!isVideoFullscreen ? (
+				<SelectorModal
+					isOpen={isOpen}
+					onOpenChange={toggleIsOpen}
+					displayHeader={false}
+				>
+					{content}
+				</SelectorModal>
+			) : (
+				<Drawer
+					open={isOpen}
+					onClose={toggleIsOpen}
+					direction={direction}
+					className={`z-[99999] ${getBorderStyle()}`}
+					zIndex={99999}
+					duration='0'
+				>
+					{content}
+				</Drawer>
+			)}
 		</>
 	);
 }
