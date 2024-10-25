@@ -4,6 +4,7 @@ import { twMerge } from 'tailwind-merge';
 import { Button } from '@nextui-org/react';
 import { useRef } from 'react';
 import { documentFullscreen } from '@/util/document';
+import { isIos } from '@/util/platform';
 
 export const VideoPlayerWrapper = ({
 	fullscreen,
@@ -14,6 +15,7 @@ export const VideoPlayerWrapper = ({
 }) => {
 	const toggleScreenRef = useRef(null);
 	const onReady = (player) => {
+		if(isIos()) return;
 		const customFullscreenToggle = player
 			.getChild('ControlBar')
 			.addChild('button', {
