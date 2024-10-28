@@ -3,8 +3,16 @@ import React from 'react';
 import { JJIconCirclePlay } from '../icons';
 import { Link } from '@/state/translate';
 import { PlayCircleOutline } from 'styled-icons/material';
-import { useCachedCloudStorageUrl } from '@/hook/cloudstorage';
+import {
+	getCloudStorageUrlByName,
+	useCachedCloudStorageUrl,
+} from '@/hook/cloudstorage';
 import { useCachedGalleryUrl } from '@/hook/gallery';
+import { Router } from 'next/router';
+import { isVersionBelowTarget, sendRecordVideoUrl } from '@/config/device';
+import { useCannotPlayVideo } from '@/hook/webView';
+import { useRouter } from 'next/navigation';
+import { getShellVersion } from '@/util/shell';
 
 const DEFAULT_IMAGE = '';
 const MEDIA_ELEMENT_WIDTH_PX = 108;
@@ -85,15 +93,36 @@ const LinkBoxVideoV2 = ({
 			process: `video/snapshot,t_1000,f_jpg,m_fast,w_${width * 2},h_0`,
 		},
 	});
+	const router = useRouter();
 
+	const cannotPlayVideo = useCannotPlayVideo();
+	const handleClick = () => {
+		if (cannotPlayVideo) {
+			const version = getShellVersion();
+
+			const isBelow = isVersionBelowTarget({
+				version,
+				targetVersion: '1.0.9',
+			});
+			if (isBelow) return;
+			getCloudStorageUrlByName({
+				name,
+			}).then((url) => {
+				sendRecordVideoUrl(url);
+			});
+			return;
+		}
+		router.push(`${pathname}?type=video&name=${name}`);
+	};
 	return (
-		<Link
+		<div
 			href={{
 				pathname,
 				query: { type: 'video', name },
 			}}
 			passHref
 			legacyBehavior
+			onClick={handleClick}
 		>
 			<div
 				style={{
@@ -105,7 +134,7 @@ const LinkBoxVideoV2 = ({
 			>
 				<PlayCircleOutline className='absolute' size={24} />
 			</div>
-		</Link>
+		</div>
 	);
 };
 
