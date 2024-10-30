@@ -119,7 +119,7 @@ export function MuteControl({
 		<Button
 			className={
 				'p-0 min-w-fit text-inherit bg-[#000000]/[0.3] rounded-full w-10 h-10' +
-				(isVideoFullscreen ? ' w-14 h-14' : '')
+				(isVideoFullscreen ? ' w-14 h-14' : showLabel?'w-12 h-12': '')
 			}
 			isIconOnly={!showLabel}
 			variant='light'
@@ -128,7 +128,7 @@ export function MuteControl({
 		>
 			<div className='flex flex-col items-center'>
 				{mute ? unmuteIconApplied : muteIconApplied}
-				{showLabel && <p className='text-xs'>{label}</p>}
+				{showLabel && <p style={{fontSize: '9px',lineHeight:1}}>{label}</p>}
 			</div>
 		</Button>
 	);
@@ -182,9 +182,9 @@ export function ResolutionControl({
 	isForceLandscape = false,
 	icon,
 	direction,
-	label,
 	...prop
 }) {
+	const label="分辨率";
 	const [isOpen, setIsOpen] = useState(false);
 	const toggleIsOpen = () => {
 		setIsOpen(!isOpen);
@@ -268,7 +268,7 @@ export function ResolutionControl({
 			>
 				<div className='flex flex-col items-center'>
 					{icon || <Resolution size={24} />}
-					{showLabel && <p className='text-xs'>{label}</p>}
+					{showLabel && <p style={{fontSize: '9px',lineHeight:1}} className='m-0 p-0' >{label}</p>}
 				</div>
 			</Button>
 			{!isVideoFullscreen ? (
