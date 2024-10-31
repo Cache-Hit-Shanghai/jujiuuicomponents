@@ -1,16 +1,17 @@
 'use client';
 
-import { Fragment } from 'react';
-import { Divider, Switch } from '@nextui-org/react';
 import { useJuJiuT } from '@/state/translate';
+import { Divider, Switch } from '@nextui-org/react';
+import { Fragment } from 'react';
 
 const notiKeyList = [
 	// { title: '设备访问', key: 'deviceAccess' },
-	{ title: '设备提醒', key: 'deviceState' },
+	// { title: '设备提醒', key: 'deviceState' },
 	// { title: '设备异常', key: 'deviceDeviant' },
 	// { title: '设备分享', key: 'friendsShare' },
-	{ title: '服务提醒', key: 'serviceAlert' },
-	{ title: '公告', key: 'notice' },
+	// { title: '服务提醒', key: 'serviceAlert' },
+	// { title: '公告', key: 'notice' },
+	{ title: '设备电量提醒', key: 'batteryEvent' },
 ];
 
 const notiTypeKeyList = [
