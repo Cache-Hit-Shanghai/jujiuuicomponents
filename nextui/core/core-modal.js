@@ -1,10 +1,10 @@
 import {
-	Modal,
-	ModalContent,
-	ModalHeader,
-	ModalBody,
-	ModalFooter,
 	Button,
+	Modal,
+	ModalBody,
+	ModalContent,
+	ModalFooter,
+	ModalHeader,
 } from '@nextui-org/react';
 
 function ConfirmModal({
@@ -21,7 +21,7 @@ function ConfirmModal({
 	return (
 		<Modal
 			isOpen={isOpen}
-			placement={position || 'bottom'}
+			placement={position || 'center'}
 			onClose={onClose}
 			onOpenChange={onOpenChange}
 			className='m-0 z-[10000]'
