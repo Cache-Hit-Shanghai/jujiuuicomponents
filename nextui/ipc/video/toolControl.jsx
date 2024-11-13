@@ -26,6 +26,7 @@ import Drawer from 'react-modern-drawer';
 
 import 'react-modern-drawer/dist/index.css';
 import { SelectorModal } from '@/nextui-components/ui/pet-setting';
+import { trackEvent } from 'jujiu_js_common/util/umami';
 
 /**
  * @typedef {import("@nextui-org/react").ButtonProps} ButtonProps
@@ -228,6 +229,7 @@ export function ResolutionControl({
 					onSelectionChange={(e) => {
 						onChangeSelected(e);
 						toggleIsOpen();
+						trackEvent('change-resolution',{newValue:e[0]});
 					}}
 					color='primary'
 					shouldHighlightOnFocus
