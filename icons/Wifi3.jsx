@@ -5,6 +5,7 @@ export const Wifi3 = ({
 	height,
 	width,
 	label,
+	needShadow,
 	...props
 }) => (
 	<svg
@@ -13,7 +14,21 @@ export const Wifi3 = ({
 		viewBox='0 0 24 24'
 		fill='none'
 		xmlns='http://www.w3.org/2000/svg'
+		style={needShadow ? { filter: 'url(#shadow)' } : {}}
 	>
+		{needShadow && (
+			<defs>
+				<filter id='shadow' x='-50%' y='-50%' width='200%' height='200%'>
+					<feDropShadow
+						dx='3'
+						dy='3'
+						stdDeviation='3'
+						flood-color='black'
+						flood-opacity='0.5'
+					/>
+				</filter>
+			</defs>
+		)}
 		<g id='Wifi (&#230;&#151;&#160;&#231;&#186;&#191;&#231;&#189;&#145;&#231;&#187;&#156;)'>
 			<path
 				id='Vector'
