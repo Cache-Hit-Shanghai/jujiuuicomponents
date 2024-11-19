@@ -1,5 +1,6 @@
 'use client';
 
+import { backViewForIOS } from '@/api/device/wkWebView';
 import { Battery0Icon } from '@/jujiu-ui-components/icons/Battery0';
 import { Battery100Icon } from '@/jujiu-ui-components/icons/Battery100';
 import { Battery25Icon } from '@/jujiu-ui-components/icons/Battery25';
@@ -227,6 +228,72 @@ export function NavbarBackNoCache({ label, className, href, ...props }) {
 				</Button>
 			</a>
 			{label}
+		</div>
+	);
+}
+export function ButtonBackNative({
+	onClick,
+	onPress,
+	goBack = true,
+	...props
+}) {
+	const router = useRouter();
+	const pathname = usePathname();
+	const isNativeBack =
+		isIos() && window?.webkit?.messageHandlers?.backViewController;
+
+	const goBackNative = () => {
+		const params = WEB_BACK_TO_APP_URL_MAP[pathname];
+		if (params) {
+			backViewForIOS(params);
+		}
+	};
+
+	return (
+		<Button
+			isIconOnly
+			variant='light'
+			onClick={() => {
+				if (isNativeBack) {
+					goBackNative();
+				} else {
+					onClick && onClick();
+					onPress && onPress();
+					goBack && router.back();
+				}
+			}}
+			className='w-20 px-2 justify-start text-inherit'
+			{...props}
+		>
+			<ChevronLeft size={24} />
+		</Button>
+	);
+}
+
+export function NavbarBackCenterForNative({
+	label,
+	className,
+	labelClassName,
+	endContent,
+	...props
+}) {
+	return (
+		<div
+			className={twMerge(
+				'w-full gap-4 flex items-center top-0 left-0 z-50 relative',
+				className,
+			)}
+		>
+			<ButtonBackNative {...props} />
+			<div
+				className={twMerge('absolute font-semibold left-2/4', labelClassName)}
+				style={{
+					transform: 'translateX(-50%)',
+				}}
+			>
+				{label}
+			</div>
+			{endContent && <span className='absolute right-2'>{endContent}</span>}
 		</div>
 	);
 }
