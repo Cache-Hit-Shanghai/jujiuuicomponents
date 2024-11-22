@@ -245,7 +245,6 @@ export function ButtonBackNative({
 		isIos() && window?.webkit?.messageHandlers?.backViewController;
 
 	const goBackNative = () => {
-		console.log('pathname:>>', pathname);
 		const params = WEB_BACK_TO_APP_URL_MAP[pathname];
 		if (params) {
 			backViewForIOS(params);
@@ -257,6 +256,11 @@ export function ButtonBackNative({
 			isIconOnly
 			variant='light'
 			onClick={() => {
+				console.log('goBackNative:>>', {
+					isIos: isIos(),
+					function: window?.webkit?.messageHandlers?.backViewController,
+					pathname,
+				});
 				if (isNativeBack) {
 					goBackNative();
 				} else {
