@@ -1,6 +1,7 @@
 'use client';
 
 import { redirectByLocationHref } from '@/helper/redirect';
+import { WEB_BACK_TO_APP_URL_MAP } from '@/jujiu-ui-components/data/native';
 import { Battery0Icon } from '@/jujiu-ui-components/icons/Battery0';
 import { Battery100Icon } from '@/jujiu-ui-components/icons/Battery100';
 import { Battery25Icon } from '@/jujiu-ui-components/icons/Battery25';
@@ -244,6 +245,7 @@ export function ButtonBackNative({
 		isIos() && window?.webkit?.messageHandlers?.backViewController;
 
 	const goBackNative = () => {
+		console.log('pathname:>>', pathname);
 		const params = WEB_BACK_TO_APP_URL_MAP[pathname];
 		if (params) {
 			backViewForIOS(params);
