@@ -1,5 +1,6 @@
 'use client';
 
+import { backViewForIOS } from '@/api/device/wkWebView';
 import { redirectByLocationHref } from '@/helper/redirect';
 import { WEB_BACK_TO_APP_URL_MAP } from '@/jujiu-ui-components/data/native';
 import { Battery0Icon } from '@/jujiu-ui-components/icons/Battery0';
