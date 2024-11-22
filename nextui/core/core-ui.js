@@ -16,6 +16,7 @@ import {
 	SubDeviceInfo,
 } from '@/nextui-components/ui/device-settingsv2';
 import Link, { useJuJiuT, usePathname, useRouter } from '@/state/translate';
+import { isIos } from '@/util/platform';
 import {
 	Button,
 	Card,
