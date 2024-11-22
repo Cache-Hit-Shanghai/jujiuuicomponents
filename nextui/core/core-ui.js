@@ -1,6 +1,6 @@
 'use client';
 
-import { backViewForIOS } from '@/api/device/wkWebView';
+import { redirectByLocationHref } from '@/helper/redirect';
 import { Battery0Icon } from '@/jujiu-ui-components/icons/Battery0';
 import { Battery100Icon } from '@/jujiu-ui-components/icons/Battery100';
 import { Battery25Icon } from '@/jujiu-ui-components/icons/Battery25';
@@ -484,15 +484,14 @@ export function FeaturesDisplay({ label }) {
 export function HomeButton() {
 	const t = useJuJiuT();
 	return (
-		<a href='/'>
-			<Button
-				radius='lg'
-				variant='solid'
-				className='bg-[#FD9240] text-white w-full h-12'
-			>
-				{t('回到主页')}
-			</Button>
-		</a>
+		<Button
+			radius='lg'
+			variant='solid'
+			className='bg-[#FD9240] text-white w-full h-12'
+			onClick={() => redirectByLocationHref()}
+		>
+			{t('回到主页')}
+		</Button>
 	);
 }
 
