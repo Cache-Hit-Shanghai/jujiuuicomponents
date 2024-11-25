@@ -1,7 +1,5 @@
 'use client';
 
-import { backViewForIOS } from '@/api/device/wkWebView';
-import { redirectByLocationHref } from '@/helper/redirect';
 import { WEB_BACK_TO_APP_URL_MAP } from '@/jujiu-ui-components/data/native';
 import { Battery0Icon } from '@/jujiu-ui-components/icons/Battery0';
 import { Battery100Icon } from '@/jujiu-ui-components/icons/Battery100';
@@ -12,6 +10,8 @@ import { Lightning } from '@/jujiu-ui-components/icons/Lightning';
 import { Wifi2 } from '@/jujiu-ui-components/icons/Wifi2';
 import { Wifi3 } from '@/jujiu-ui-components/icons/Wifi3';
 import { Wifi4 } from '@/jujiu-ui-components/icons/Wifi4';
+import { redirectByLocationHref } from '@/jujiu_react_common/helper/redirect';
+import { backViewForIOS } from '@/jujiu_react_common/helper/wkWebView';
 import {
 	DeviceCard,
 	DeviceSettingWrapper,
