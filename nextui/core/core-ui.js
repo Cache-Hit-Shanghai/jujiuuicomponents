@@ -246,6 +246,7 @@ export function ButtonBackNative({
 		isIos() && window?.webkit?.messageHandlers?.backViewController;
 
 	const goBackNative = () => {
+		console.log('pathname:>>', pathname);
 		const params = WEB_BACK_TO_APP_URL_MAP[pathname];
 		if (params) {
 			backViewForIOS(params);
