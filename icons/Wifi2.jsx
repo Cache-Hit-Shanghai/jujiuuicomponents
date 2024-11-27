@@ -23,7 +23,7 @@ export const Wifi2 = ({
 						dx='3'
 						dy='3'
 						stdDeviation='3'
-						flood-color='black'
+						floodColor='black'
 						flood-opacity='0.5'
 					/>
 				</filter>
