@@ -151,6 +151,31 @@ export function PanControl3({
 }) {
 	const mastStyle =
 		'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)';
+	let previousForce = null;
+	let previousDegree = null;
+
+	const onMoveHandler = (event, data) => {
+		let degree;
+		if (fullscreen) {
+			degree = (360 - data.angle.degree) % 360;
+		} else {
+			degree = (450 - data.angle.degree) % 360;
+		}
+		const force = Math.min(1, Number(data?.force?.toFixed(3) || 0));
+		degree = Number(degree.toFixed(1));
+
+		if (
+			previousForce === null ||
+			previousDegree === null ||
+			Math.abs(previousForce - force) >= 0.1 ||
+			Math.abs(previousDegree - degree) >= 5
+		) {
+			onMove?.(force, degree);
+			previousForce = force;
+			previousDegree = degree;
+		}
+	};
+
 	return (
 		<>
 			<div
@@ -208,15 +233,7 @@ export function PanControl3({
 						size: 120,
 						position: { top: '50%', left: '50%' },
 					}}
-					onMove={(event, data) => {
-						if (fullscreen) {
-							const degree = (360 - data.angle.degree) % 360;
-							onMove?.(data.force, degree);
-						} else {
-							const degree = (450 - data.angle.degree) % 360;
-							onMove?.(data.force, degree);
-						}
-					}}
+					onMove={onMoveHandler}
 					onDir={(event, data) => {
 						if (isDisabled) {
 							return;
