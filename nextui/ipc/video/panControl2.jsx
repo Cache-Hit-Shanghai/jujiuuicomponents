@@ -155,7 +155,7 @@ export function PanControl3({
 		<>
 			<div
 				className={twMerge(
-					'rounded-full w-full h-full aspect-square relative rotate-[45deg] transform-gpu bg-[#000000CC] text-[#C0C0C0]',
+					'rounded-full w-full h-full aspect-square relative rotate-[315deg] transform-gpu bg-[#000000CC] text-[#C0C0C0]',
 					className,
 				)}
 			>
