@@ -1,7 +1,10 @@
 'use client';
 
-import { redirectByLocationHref } from '@/helper/redirect';
-import { WEB_BACK_TO_APP_URL_MAP } from '@/jujiu-ui-components/data/native';
+import {
+	redirectByLocationHref,
+	redirectRootAndRefresh,
+} from '@/helper/redirect';
+import { useIsUpdatedInfo } from '@/hook/native';
 import { Battery0Icon } from '@/jujiu-ui-components/icons/Battery0';
 import { Battery100Icon } from '@/jujiu-ui-components/icons/Battery100';
 import { Battery25Icon } from '@/jujiu-ui-components/icons/Battery25';
@@ -240,25 +243,19 @@ export function ButtonBackNative({
 	...props
 }) {
 	const router = useRouter();
-	const pathname = usePathname();
-	const isNativeBack =
-		isIos() && window?.webkit?.messageHandlers?.backViewController;
-
-	const goBackNative = () => {
-		console.log('pathname:>>', pathname);
-		const params = WEB_BACK_TO_APP_URL_MAP[pathname];
-		if (params) {
-			backViewForIOS(params);
-		}
-	};
-
+	const isNativeBack = isIos() && window?.webkit?.messageHandlers;
+	const { handleBackNative } = useIsUpdatedInfo();
 	return (
 		<Button
 			isIconOnly
 			variant='light'
 			onClick={() => {
+				console.log('goBackNative:>>', {
+					isIos: isIos(),
+					function: window?.webkit?.messageHandlers?.backViewController,
+				});
 				if (isNativeBack) {
-					goBackNative();
+					handleBackNative?.();
 				} else {
 					onClick && onClick();
 					onPress && onPress();
@@ -484,14 +481,20 @@ export function FeaturesDisplay({ label }) {
 	);
 }
 
-export function HomeButton() {
+export function HomeButton({ needRefresh = false }) {
 	const t = useJuJiuT();
 	return (
 		<Button
 			radius='lg'
 			variant='solid'
 			className='bg-[#FD9240] text-white w-full h-12'
-			onClick={() => redirectByLocationHref()}
+			onClick={() => {
+				if (needRefresh) {
+					redirectRootAndRefresh();
+				} else {
+					redirectByLocationHref();
+				}
+			}}
 		>
 			{t('回到主页')}
 		</Button>
