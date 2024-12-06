@@ -18,7 +18,6 @@ import {
 	SubDeviceInfo,
 } from '@/nextui-components/ui/device-settingsv2';
 import Link, { useJuJiuT, usePathname, useRouter } from '@/state/translate';
-import { isIos } from '@/util/platform';
 import {
 	Button,
 	Card,
@@ -242,8 +241,7 @@ export function ButtonBackNative({
 }) {
 	const router = useRouter();
 	const pathname = usePathname();
-	const isNativeBack =
-		isIos() && window?.webkit?.messageHandlers?.backViewController;
+	const isNativeBack = window?.webkit?.messageHandlers?.backViewController;
 
 	const goBackNative = () => {
 		console.log('pathname:>>', pathname);
@@ -259,7 +257,6 @@ export function ButtonBackNative({
 			variant='light'
 			onClick={() => {
 				console.log('goBackNative:>>', {
-					isIos: isIos(),
 					function: window?.webkit?.messageHandlers?.backViewController,
 					pathname,
 				});
