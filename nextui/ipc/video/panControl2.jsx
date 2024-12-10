@@ -1,10 +1,11 @@
 // FIXME: filename
 import { ArrowDropUp } from '@styled-icons/material/ArrowDropUp';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 import './panControl2.scss';
 import dynamic from 'next/dynamic';
 const ReactNipple = dynamic(() => import('react-nipple'), { ssr: false });
+import { v4 as uuid } from 'uuid';
 
 function Circle() {
 	return (
@@ -151,7 +152,13 @@ export function PanControl3({
 }) {
 	const mastStyle =
 		'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)';
-	let previousForce = null;
+	const [nippleKey, setNippleKey] = useState(0);
+
+	useEffect(() => {
+		setNippleKey((pre) => pre + 1);
+	}, [isDisabled]);
+
+	let previousDistance = null;
 	let previousDegree = null;
 
 	const onMoveHandler = (event, data) => {
@@ -161,17 +168,17 @@ export function PanControl3({
 		} else {
 			degree = (450 - data.angle.degree) % 360;
 		}
-		const force = Math.min(1, Number(data?.force?.toFixed(3) || 0));
+		const force = data?.force;
+		const distance = data?.distance % 80;
 		degree = Number(degree.toFixed(1));
-
 		if (
-			previousForce === null ||
+			previousDistance === null ||
 			previousDegree === null ||
-			Math.abs(previousForce - force) >= 0.1 ||
-			Math.abs(previousDegree - degree) >= 5
+			Math.abs(previousDegree - degree) >= 5 ||
+			Math.abs(previousDistance - distance) >= 0.2
 		) {
-			onMove?.(force, degree);
-			previousForce = force;
+			onMove?.(force, degree, distance);
+			previousDistance = distance;
 			previousDegree = degree;
 		}
 	};
@@ -180,7 +187,7 @@ export function PanControl3({
 		<>
 			<div
 				className={twMerge(
-					'rounded-full w-full h-full aspect-square relative rotate-[315deg] transform-gpu bg-[#000000CC] text-[#C0C0C0]',
+					'rounded-full w-full h-full aspect-square relative rotate-[45deg] transform-gpu bg-[#000000CC] text-[#C0C0C0]',
 					className,
 				)}
 			>
@@ -227,10 +234,11 @@ export function PanControl3({
 			</div>
 			<div className={isDisabled ? 'disabled_pan-control' : ''}>
 				<ReactNipple
+					key={`react-nipple_${nippleKey}`}
 					options={{
 						mode: 'static',
-						threshold: 0.7,
-						size: 120,
+						threshold: 0.5,
+						size: 160,
 						position: { top: '50%', left: '50%' },
 					}}
 					onMove={onMoveHandler}
