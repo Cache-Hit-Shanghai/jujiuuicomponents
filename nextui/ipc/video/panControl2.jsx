@@ -167,14 +167,14 @@ export function PanControl3({
 		} else {
 			degree = (450 - data.angle.degree) % 360;
 		}
-		// const force = data?.force;
-		const distance = data?.distance % 80;
+		const distance = Number((data?.distance / 80).toFixed(0.1));
+		console.log('distance:>>', distance);
 		degree = Number(degree.toFixed(1));
 		if (
 			previousDistance === null ||
 			previousDegree === null ||
 			Math.abs(previousDegree - degree) >= 5 ||
-			Math.abs(previousDistance - distance) >= 0.2
+			Math.abs(previousDistance - distance) >= 0.1
 		) {
 			onMove?.(distance, degree);
 			previousDistance = distance;
