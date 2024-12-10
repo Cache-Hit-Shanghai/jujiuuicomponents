@@ -5,7 +5,6 @@ import { twMerge } from 'tailwind-merge';
 import './panControl2.scss';
 import dynamic from 'next/dynamic';
 const ReactNipple = dynamic(() => import('react-nipple'), { ssr: false });
-import { v4 as uuid } from 'uuid';
 
 function Circle() {
 	return (
@@ -168,7 +167,7 @@ export function PanControl3({
 		} else {
 			degree = (450 - data.angle.degree) % 360;
 		}
-		const force = data?.force;
+		// const force = data?.force;
 		const distance = data?.distance % 80;
 		degree = Number(degree.toFixed(1));
 		if (
@@ -177,7 +176,7 @@ export function PanControl3({
 			Math.abs(previousDegree - degree) >= 5 ||
 			Math.abs(previousDistance - distance) >= 0.2
 		) {
-			onMove?.(force, degree, distance);
+			onMove?.(distance, degree);
 			previousDistance = distance;
 			previousDegree = degree;
 		}
