@@ -47,6 +47,7 @@ import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { redirectRootAndRefresh } from '@/helper/redirect';
+import { useIsUpdatedInfo } from '@/hook/native';
 
 export function MobileHeader({ children, className, ...props }) {
 	return (
