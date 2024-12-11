@@ -12,4 +12,5 @@ export const WEB_BACK_TO_APP_URL_MAP = {
 	'/pixelbot/device/record': '/device',
 	'/pixelbot/device/replay': '/device',
 	'/pixelbot/device/demovideo': '/device',
+	'/pixelbot/device/settings': '/device',
 };

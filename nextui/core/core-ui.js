@@ -10,8 +10,8 @@ import { Lightning } from '@/jujiu-ui-components/icons/Lightning';
 import { Wifi2 } from '@/jujiu-ui-components/icons/Wifi2';
 import { Wifi3 } from '@/jujiu-ui-components/icons/Wifi3';
 import { Wifi4 } from '@/jujiu-ui-components/icons/Wifi4';
-import { redirectByLocationHref } from '@/jujiu_react_common/helper/redirect';
 import { backViewForIOS } from '@/jujiu_react_common/helper/wkWebView';
+import { redirectByLocationHref } from '@/jujiu_react_common/helper/redirect';
 import {
 	DeviceCard,
 	DeviceSettingWrapper,
@@ -46,6 +46,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
+import { redirectRootAndRefresh } from '@/helper/redirect';
 
 export function MobileHeader({ children, className, ...props }) {
 	return (
@@ -241,29 +242,15 @@ export function ButtonBackNative({
 	...props
 }) {
 	const router = useRouter();
-	const pathname = usePathname();
-	const isNativeBack =
-		isIos() && window?.webkit?.messageHandlers?.backViewController;
-
-	const goBackNative = () => {
-		const params = WEB_BACK_TO_APP_URL_MAP[pathname];
-		if (params) {
-			backViewForIOS(params);
-		}
-	};
-
+	const isNativeBack = isIos() && window?.webkit?.messageHandlers;
+	const { handleBackNative } = useIsUpdatedInfo();
 	return (
 		<Button
 			isIconOnly
 			variant='light'
 			onClick={() => {
-				console.log('goBackNative:>>', {
-					isIos: isIos(),
-					function: window?.webkit?.messageHandlers?.backViewController,
-					pathname,
-				});
 				if (isNativeBack) {
-					goBackNative();
+					handleBackNative?.();
 				} else {
 					onClick && onClick();
 					onPress && onPress();
@@ -277,7 +264,6 @@ export function ButtonBackNative({
 		</Button>
 	);
 }
-
 export function NavbarBackCenterForNative({
 	label,
 	className,
@@ -488,15 +474,20 @@ export function FeaturesDisplay({ label }) {
 		</div>
 	);
 }
-
-export function HomeButton() {
+export function HomeButton({ needRefresh = false }) {
 	const t = useJuJiuT();
 	return (
 		<Button
 			radius='lg'
 			variant='solid'
 			className='bg-[#FD9240] text-white w-full h-12'
-			onClick={() => redirectByLocationHref()}
+			onClick={() => {
+				if (needRefresh) {
+					redirectRootAndRefresh();
+				} else {
+					redirectByLocationHref();
+				}
+			}}
 		>
 			{t('回到主页')}
 		</Button>
