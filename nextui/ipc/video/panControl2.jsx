@@ -1,10 +1,9 @@
 // FIXME: filename
 import { ArrowDropUp } from '@styled-icons/material/ArrowDropUp';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 import './panControl2.scss';
-import dynamic from 'next/dynamic';
-const ReactNipple = dynamic(() => import('react-nipple'), { ssr: false });
+import ReactNipple from 'react-nipple';
 
 function Circle() {
 	return (
@@ -149,14 +148,17 @@ export function PanControl3({
 	arrowClass,
 	isDisabled,
 	deviceType,
+	needReload,
 }) {
 	const mastStyle =
 		'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)';
 	const [nippleKey, setNippleKey] = useState(0);
 
 	useEffect(() => {
-		setNippleKey((pre) => pre + 1);
-	}, [isDisabled]);
+		setTimeout(() => {
+			setNippleKey((pre) => pre + 1);
+		}, 1000);
+	}, [needReload]);
 
 	let previousDistance = null;
 	let previousDegree = null;
@@ -232,7 +234,9 @@ export function PanControl3({
 					arrowClass={arrowClass}
 				/>
 			</div>
-			<div className={isDisabled ? 'disabled_pan-control' : ''}>
+			<div
+				className={isDisabled ? 'disabled_pan-control' : ''}
+			>
 				<ReactNipple
 					key={`react-nipple_${nippleKey}`}
 					options={{
@@ -240,6 +244,7 @@ export function PanControl3({
 						threshold: 0.8,
 						size: 120,
 						position: { top: '50%', left: '50%' },
+						lockY: false,
 					}}
 					onMove={onMoveHandler}
 					onDir={(event, data) => {
@@ -284,7 +289,6 @@ export function PanControl3({
 						}
 					}}
 					onEnd={() => {
-						if (deviceType === 'L1') return;
 						if (!isDisabled) {
 							onLongPressUpEnd();
 						}
