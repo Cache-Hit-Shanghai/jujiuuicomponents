@@ -167,7 +167,7 @@ export function PanControl3({
 		} else {
 			degree = (450 - data.angle.degree) % 360;
 		}
-		const distance = Number((data?.distance / 80).toFixed(0.1));
+		const distance = Number((data?.distance / 80).toFixed(3));
 		console.log('distance:>>', distance);
 		degree = Number(degree.toFixed(1));
 		if (
