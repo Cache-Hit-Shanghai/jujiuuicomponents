@@ -148,6 +148,7 @@ export function PanControl3({
 	className,
 	arrowClass,
 	isDisabled,
+	deviceType,
 }) {
 	const mastStyle =
 		'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)';
@@ -168,7 +169,7 @@ export function PanControl3({
 			degree = (450 - data.angle.degree) % 360;
 		}
 		const distance = Number((data?.distance / 80).toFixed(3));
-		console.log('distance:>>', distance);
+		console.log('distance:>>', distance, degree);
 		degree = Number(degree.toFixed(1));
 		if (
 			previousDistance === null ||
@@ -236,13 +237,13 @@ export function PanControl3({
 					key={`react-nipple_${nippleKey}`}
 					options={{
 						mode: 'static',
-						threshold: 0.5,
-						size: 160,
+						threshold: 0.8,
+						size: 120,
 						position: { top: '50%', left: '50%' },
 					}}
 					onMove={onMoveHandler}
 					onDir={(event, data) => {
-						if (isDisabled) {
+						if (isDisabled || deviceType === 'L1') {
 							return;
 						}
 						if (fullscreen) {
@@ -283,6 +284,7 @@ export function PanControl3({
 						}
 					}}
 					onEnd={() => {
+						if (deviceType === 'L1') return;
 						if (!isDisabled) {
 							onLongPressUpEnd();
 						}
