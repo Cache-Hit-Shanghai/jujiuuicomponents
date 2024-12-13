@@ -1,6 +1,5 @@
 'use client';
 
-import { WEB_BACK_TO_APP_URL_MAP } from '@/jujiu-ui-components/data/native';
 import { Battery0Icon } from '@/jujiu-ui-components/icons/Battery0';
 import { Battery100Icon } from '@/jujiu-ui-components/icons/Battery100';
 import { Battery25Icon } from '@/jujiu-ui-components/icons/Battery25';
@@ -10,7 +9,6 @@ import { Lightning } from '@/jujiu-ui-components/icons/Lightning';
 import { Wifi2 } from '@/jujiu-ui-components/icons/Wifi2';
 import { Wifi3 } from '@/jujiu-ui-components/icons/Wifi3';
 import { Wifi4 } from '@/jujiu-ui-components/icons/Wifi4';
-import { backViewForIOS } from '@/jujiu_react_common/helper/wkWebView';
 import { redirectByLocationHref } from '@/jujiu_react_common/helper/redirect';
 import {
 	DeviceCard,
@@ -244,13 +242,15 @@ export function ButtonBackNative({
 	...props
 }) {
 	const router = useRouter();
-	const isNativeBack = isIos() && window?.webkit?.messageHandlers && checkIfNewVersionIOS();
+	const isNativeBack =
+		window?.webkit?.messageHandlers?.backViewController?.postMessage;
 	const { handleBackNative } = useIsUpdatedInfo();
 	return (
 		<Button
 			isIconOnly
 			variant='light'
 			onClick={() => {
+				console.log('isNativeBack:>>',isNativeBack);
 				if (isNativeBack) {
 					handleBackNative?.();
 				} else {
