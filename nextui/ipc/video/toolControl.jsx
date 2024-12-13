@@ -12,16 +12,10 @@ import { VolumeUp } from '@styled-icons/material/VolumeUp';
 import { FiberManualRecord } from '@styled-icons/material/FiberManualRecord';
 import { StopCircle } from '@styled-icons/material/StopCircle';
 import { Hd as Resolution } from '@styled-icons/material/Hd';
-import { IosShare } from '@styled-icons/material/IosShare';
-import { Settings } from '@styled-icons/material/Settings';
-import { Cameraswitch } from '@styled-icons/material/Cameraswitch';
-import { Battery3Bar } from '@styled-icons/material/Battery3Bar';
-import { Download } from '@styled-icons/material/Download';
 import { Hd } from '@/jujiu-ui-components/icons/hd';
 import { FullHd } from '@/jujiu-ui-components/icons/fullhd';
 import { R2kPlus } from '@/jujiu-ui-components/icons/2kplus';
 import { useJuJiuT } from '@/state/translate';
-import { LinkButton } from '../../core/core-ui';
 import Drawer from 'react-modern-drawer';
 
 import 'react-modern-drawer/dist/index.css';
@@ -37,20 +31,6 @@ import { trackEvent } from 'jujiu_js_common/util/umami';
  * @param {ButtonProps & {showLabel: boolean}} props
  * @returns
  */
-export function DownloadControl({ showLabel, ...prop }) {
-	const t = useJuJiuT();
-	const label = t('下载');
-
-	return (
-		<Button isIconOnly={!showLabel} variant='light' {...prop}>
-			<div className='flex flex-col items-center'>
-				<Download size={24} />
-				{showLabel && label}
-			</div>
-		</Button>
-	);
-}
-
 /**
  *
  * @param {ButtonProps & {showLabel: boolean}} props
@@ -120,7 +100,7 @@ export function MuteControl({
 		<Button
 			className={
 				'p-0 min-w-fit text-inherit bg-[#000000]/[0.3] rounded-full w-10 h-10' +
-				(isVideoFullscreen ? ' w-14 h-14' : showLabel?'w-12 h-12': '')
+				(isVideoFullscreen ? ' w-14 h-14' : showLabel ? 'w-12 h-12' : '')
 			}
 			isIconOnly={!showLabel}
 			variant='light'
@@ -129,7 +109,7 @@ export function MuteControl({
 		>
 			<div className='flex flex-col items-center'>
 				{mute ? unmuteIconApplied : muteIconApplied}
-				{showLabel && <p style={{fontSize: '9px',lineHeight:1}}>{label}</p>}
+				{showLabel && <p style={{ fontSize: '9px', lineHeight: 1 }}>{label}</p>}
 			</div>
 		</Button>
 	);
@@ -163,12 +143,6 @@ export function RecordControl({
 	);
 }
 
-function useConrollableState({ value, setValue, initValue }) {
-	const [state, setState] = useState(initValue);
-	if (setValue) return [value, setValue];
-	return [state, setState];
-}
-
 export function ResolutionControl({
 	isVideoFullscreen,
 	showLabel,
@@ -185,7 +159,7 @@ export function ResolutionControl({
 	direction,
 	...prop
 }) {
-	const label="分辨率";
+	const label = '分辨率';
 	const [isOpen, setIsOpen] = useState(false);
 	const toggleIsOpen = () => {
 		setIsOpen(!isOpen);
@@ -229,7 +203,7 @@ export function ResolutionControl({
 					onSelectionChange={(e) => {
 						onChangeSelected(e);
 						toggleIsOpen();
-						trackEvent('change-resolution',{newValue:e[0]});
+						trackEvent('change-resolution', { newValue: e[0] });
 					}}
 					color='primary'
 					shouldHighlightOnFocus
@@ -270,7 +244,11 @@ export function ResolutionControl({
 			>
 				<div className='flex flex-col items-center'>
 					{icon || <Resolution size={24} />}
-					{showLabel && <p style={{fontSize: '9px',lineHeight:1}} className='m-0 p-0' >{label}</p>}
+					{showLabel && (
+						<p style={{ fontSize: '9px', lineHeight: 1 }} className='m-0 p-0'>
+							{label}
+						</p>
+					)}
 				</div>
 			</Button>
 			{!isVideoFullscreen ? (
@@ -293,90 +271,6 @@ export function ResolutionControl({
 					{content}
 				</Drawer>
 			)}
-		</>
-	);
-}
-
-export function StreamingControlBar({ showLabel }) {
-	const [speaking, setSpeaking] = useState(false);
-	const [mute, setMute] = useState(true);
-	const [recording, setRecording] = useState(false);
-
-	return (
-		<>
-			<ScreenCopyControl showLabel={showLabel} />
-			<RecordControl
-				showLabel={showLabel}
-				recording={recording}
-				onPress={() => setRecording(!recording)}
-			/>
-			<ChatControl
-				showLabel={showLabel}
-				speaking={speaking}
-				onPress={() => setSpeaking(!speaking)}
-			/>
-			<MuteControl
-				showLabel={showLabel}
-				mute={mute}
-				onPress={() => setMute(!mute)}
-			/>
-			<ResolutionControl showLabel={showLabel} />
-		</>
-	);
-}
-
-export function StreamingControlBar2() {
-	return (
-		<>
-			<Button isIconOnly variant='light'>
-				<Cameraswitch size={24} />
-			</Button>
-			<LinkButton
-				href='/device/settings/sharing'
-				icon={<IosShare size={24} />}
-			/>
-			<LinkButton href='/device/settings' icon={<Settings size={24} />} />
-		</>
-	);
-}
-
-export function StreamingControlBar3({ showLabel }) {
-	const [speaking, setSpeaking] = useState(false);
-	const [mute, setMute] = useState(true);
-	const [recording, setRecording] = useState(false);
-
-	return (
-		<>
-			<ScreenCopyControl showLabel={showLabel} />
-			<RecordControl
-				showLabel={showLabel}
-				recording={recording}
-				onPress={() => setRecording(!recording)}
-			/>
-			<ChatControl
-				showLabel={showLabel}
-				speaking={speaking}
-				onPress={() => setSpeaking(!speaking)}
-			/>
-			<MuteControl
-				showLabel={showLabel}
-				mute={mute}
-				onPress={() => setMute(!mute)}
-			/>
-		</>
-	);
-}
-
-export function StreamingControlBar4() {
-	return (
-		<>
-			<ResolutionControl />
-			<Button isIconOnly variant='light'>
-				<Cameraswitch size={24} />
-			</Button>
-			<Button isIconOnly variant='light'>
-				<Battery3Bar size={24} />
-			</Button>
 		</>
 	);
 }
