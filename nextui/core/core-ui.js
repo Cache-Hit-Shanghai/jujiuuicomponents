@@ -243,7 +243,7 @@ export function ButtonBackNative({
 }) {
 	const router = useRouter();
 	const isNativeBack =
-		window?.webkit?.messageHandlers?.backViewController?.postMessage;
+		window?.webkit?.messageHandlers?.backViewController?.postMessage && checkIfNewVersionIOS();
 	const { handleBackNative } = useIsUpdatedInfo();
 	return (
 		<Button
