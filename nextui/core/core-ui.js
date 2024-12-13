@@ -48,6 +48,7 @@ import { useEffect, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { redirectRootAndRefresh } from '@/helper/redirect';
 import { useIsUpdatedInfo } from '@/hook/native';
+import { checkIfNewVersionIOS } from '@/helper/native';
 
 export function MobileHeader({ children, className, ...props }) {
 	return (
@@ -243,7 +244,7 @@ export function ButtonBackNative({
 	...props
 }) {
 	const router = useRouter();
-	const isNativeBack = isIos() && window?.webkit?.messageHandlers;
+	const isNativeBack = isIos() && window?.webkit?.messageHandlers && checkIfNewVersionIOS();
 	const { handleBackNative } = useIsUpdatedInfo();
 	return (
 		<Button
