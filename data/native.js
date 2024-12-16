@@ -13,5 +13,5 @@ export const WEB_BACK_TO_APP_URL_MAP = {
 	'/pixelbot/device/replay': '/device',
 	'/pixelbot/device/demovideo': '/device',
 	'/pixelbot/device/settings': '/device',
-	'/pixelbot/my/editPet/adds': '/device',
+	'/pixelbot/my/editPet/add': '/device',
 };
