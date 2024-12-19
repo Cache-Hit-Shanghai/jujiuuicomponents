@@ -8,7 +8,6 @@ import {
 	useCachedCloudStorageUrl,
 } from '@/hook/cloudstorage';
 import { useCachedGalleryUrl } from '@/hook/gallery';
-import { Router } from 'next/router';
 import { isVersionBelowTarget, sendRecordVideoUrl } from '@/config/device';
 import { useCannotPlayVideo } from '@/hook/webView';
 import { useRouter } from 'next/navigation';
@@ -83,7 +82,7 @@ const LinkBoxVideoV2 = ({
 	obj,
 	width = MEDIA_ELEMENT_WIDTH_PX,
 	height = 70,
-	pathname = './device/record/detail',
+	pathname = 'pixelbot/device/record/detail',
 }) => {
 	const { name } = obj;
 
@@ -107,7 +106,7 @@ const LinkBoxVideoV2 = ({
 			if (isBelow) return;
 			getCloudStorageUrlByName({
 				name,
-			}).then((url) => {
+			}).then(({ url }) => {
 				sendRecordVideoUrl(url);
 			});
 			return;
