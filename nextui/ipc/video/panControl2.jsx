@@ -157,7 +157,7 @@ export function PanControl3({
 	useEffect(() => {
 		setTimeout(() => {
 			setNippleKey((pre) => pre + 1);
-		}, 1000);
+		}, 100);
 	}, [needReload]);
 
 	let previousDistance = null;
