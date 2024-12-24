@@ -1,14 +1,14 @@
 // FIXME: filename
 
-import { ArrowDropUp } from '@styled-icons/material/ArrowDropUp';
+import { ArrowDropUp } from '@styled-icons/material/ArrowDropUp'
 
-function Circle() {
+function Circle () {
 	return (
 		<div className='w-2/5 aspect-square rounded-full bg-default opacity-90 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2' />
-	);
+	)
 }
 
-function Sectors({ onClickUp, onClickDown, onClickLeft, onClickRight }) {
+function Sectors ({ onClickUp, onClickDown, onClickLeft, onClickRight }) {
 	return (
 		<>
 			<div
@@ -16,7 +16,7 @@ function Sectors({ onClickUp, onClickDown, onClickLeft, onClickRight }) {
 				style={{
 					WebkitMaskImage:
 						'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)',
-					mask: 'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)',
+					mask: 'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)'
 				}}
 				onClick={onClickUp}
 			>
@@ -27,7 +27,7 @@ function Sectors({ onClickUp, onClickDown, onClickLeft, onClickRight }) {
 				style={{
 					WebkitMaskImage:
 						'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)',
-					mask: 'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)',
+					mask: 'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)'
 				}}
 				onClick={onClickRight}
 			>
@@ -38,7 +38,7 @@ function Sectors({ onClickUp, onClickDown, onClickLeft, onClickRight }) {
 				style={{
 					WebkitMaskImage:
 						'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)',
-					mask: 'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)',
+					mask: 'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)'
 				}}
 				onClick={onClickDown}
 			>
@@ -49,16 +49,22 @@ function Sectors({ onClickUp, onClickDown, onClickLeft, onClickRight }) {
 				style={{
 					WebkitMaskImage:
 						'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)',
-					mask: 'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)',
+					mask: 'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)'
 				}}
 				onClick={onClickLeft}
 			>
 				<ArrowDropUp size={24} className='-rotate-45 transform-gpu' />
 			</div>
 		</>
-	);
+	)
 }
-export function PanControl({ onClickUp, onClickDown, onClickLeft, onClickRight }) {
+
+export function PanControl ({
+	onClickUp,
+	onClickDown,
+	onClickLeft,
+	onClickRight
+}) {
 	return (
 		<div className='w-44 aspect-square relative rotate-[45deg] transform-gpu'>
 			<Sectors
@@ -69,5 +75,5 @@ export function PanControl({ onClickUp, onClickDown, onClickLeft, onClickRight }
 			/>
 			<Circle />
 		</div>
-	);
+	)
 }

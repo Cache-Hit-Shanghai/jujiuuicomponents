@@ -1,60 +1,61 @@
 // FIXME: filename
-import { ArrowDropUp } from '@styled-icons/material/ArrowDropUp';
-import { useCallback, useState } from 'react';
-import { twMerge } from 'tailwind-merge';
-import './panControl2.scss';
-import dynamic from 'next/dynamic';
-const ReactNipple = dynamic(() => import('react-nipple'), { ssr: false });
+import { ArrowDropUp } from '@styled-icons/material/ArrowDropUp'
+import { useCallback, useState } from 'react'
+import { twMerge } from 'tailwind-merge'
+import './panControl2.scss'
+import dynamic from 'next/dynamic'
+import { useEffect } from 'react'
+const ReactNipple = dynamic(() => import('react-nipple'), { ssr: false })
 
-function Circle() {
+function Circle () {
 	return (
 		<div className='w-2/5 aspect-square rounded-full bg-default opacity-90 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2' />
-	);
+	)
 }
 
-function Sector({
+function Sector ({
 	onClick,
 	onLongPressStart,
 	onLongPressEnd,
 	maskStyle,
 	rotateClass,
-	arrowClass,
+	arrowClass
 }) {
-	let pressTimer;
-	const [isLongPressStart, setIsLongPressStart] = useState(false);
+	let pressTimer
+	const [isLongPressStart, setIsLongPressStart] = useState(false)
 
 	const handlePressStart = useCallback(() => {
 		pressTimer = setTimeout(() => {
-			console.log('long press start');
-			onLongPressStart();
-			setIsLongPressStart(true);
-		}, 500);
-	});
+			console.log('long press start')
+			onLongPressStart()
+			setIsLongPressStart(true)
+		}, 500)
+	})
 
 	const handlePressEnd = useCallback(() => {
-		clearTimeout(pressTimer);
+		clearTimeout(pressTimer)
 		if (isLongPressStart) {
-			console.log('long press end');
-			onLongPressEnd();
-			setIsLongPressStart(false);
+			console.log('long press end')
+			onLongPressEnd()
+			setIsLongPressStart(false)
 		}
-	});
+	})
 
 	const handlePress = useCallback(() => {
-		clearTimeout(pressTimer);
+		clearTimeout(pressTimer)
 		if (!isLongPressStart) {
-			console.log('short press');
-			onClick();
+			console.log('short press')
+			onClick()
 		}
-		setIsLongPressStart(false);
-	});
+		setIsLongPressStart(false)
+	})
 
 	return (
 		<div
 			className={`absolute w-1/2 aspect-square rounded-tl-full origin-bottom-right flex items-center justify-center ${rotateClass}`}
 			style={{
 				WebkitMaskImage: maskStyle,
-				mask: maskStyle,
+				mask: maskStyle
 			}}
 			onClick={handlePress}
 			onTouchStart={handlePressStart}
@@ -65,10 +66,10 @@ function Sector({
 				className={twMerge('-rotate-45 transform-gpu', arrowClass)}
 			/>
 		</div>
-	);
+	)
 }
 
-export function PanControl2({
+export function PanControl2 ({
 	onClickUp,
 	onLongPressUpStart,
 	onLongPressUpEnd,
@@ -83,16 +84,16 @@ export function PanControl2({
 	onLongPressRightEnd,
 	className,
 	pointStyle,
-	arrowClass,
+	arrowClass
 }) {
 	const mastStyle =
-		'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)';
+		'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)'
 	return (
 		<>
 			<div
 				className={twMerge(
 					'rounded-full w-full h-full aspect-square relative rotate-[45deg] transform-gpu bg-[#000000CC] text-[#C0C0C0]',
-					className,
+					className
 				)}
 			>
 				<Sector
@@ -130,10 +131,10 @@ export function PanControl2({
 			</div>
 			<div className='bg-[#C0C0C0] rounded-full absolute' style={pointStyle} />
 		</>
-	);
+	)
 }
 
-export function PanControl3({
+export function PanControlL1 ({
 	fullscreen,
 	onLongPressUpStart,
 	onClickUp,
@@ -148,21 +149,55 @@ export function PanControl3({
 	className,
 	arrowClass,
 	isDisabled,
+	needReload
 }) {
 	const mastStyle =
-		'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)';
+		'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)'
+	const [nippleKey, setNippleKey] = useState(0)
+
+	useEffect(() => {
+		setTimeout(() => {
+			setNippleKey(pre => pre + 1)
+		}, 100)
+	}, [needReload])
+
+	let previousDistance = null
+	let previousDegree = null
+
+	const onMoveHandler = (event, data) => {
+		let degree
+		if (fullscreen) {
+			degree = (360 - data.angle.degree) % 360
+		} else {
+			degree = (450 - data.angle.degree) % 360
+		}
+		const distance = Number((data?.distance / 70).toFixed(3))
+		console.log('distance:>>', distance, degree)
+		degree = Number(degree.toFixed(1))
+		if (
+			previousDistance === null ||
+			previousDegree === null ||
+			Math.abs(previousDegree - degree) >= 5 ||
+			Math.abs(previousDistance - distance) >= 0.1
+		) {
+			onMove?.(distance, degree)
+			previousDistance = distance
+			previousDegree = degree
+		}
+	}
+
 	return (
 		<>
 			<div
 				className={twMerge(
 					'rounded-full w-full h-full aspect-square relative rotate-[45deg] transform-gpu bg-[#000000CC] text-[#C0C0C0]',
-					className,
+					className
 				)}
 			>
 				<Sector
 					onClick={() => {
 						if (!isDisabled) {
-							onClickUp();
+							onClickUp()
 						}
 					}}
 					maskStyle={mastStyle}
@@ -172,7 +207,7 @@ export function PanControl3({
 				<Sector
 					onClick={() => {
 						if (!isDisabled) {
-							onClickRight();
+							onClickRight()
 						}
 					}}
 					maskStyle={mastStyle}
@@ -182,7 +217,7 @@ export function PanControl3({
 				<Sector
 					onClick={() => {
 						if (!isDisabled) {
-							onClickDown();
+							onClickDown()
 						}
 					}}
 					maskStyle={mastStyle}
@@ -192,7 +227,104 @@ export function PanControl3({
 				<Sector
 					onClick={() => {
 						if (!isDisabled) {
-							onClickLeft();
+							onClickLeft()
+						}
+					}}
+					maskStyle={mastStyle}
+					rotateClass='rotate-[270deg] transform-gpu'
+					arrowClass={arrowClass}
+				/>
+			</div>
+			<div className={isDisabled ? 'disabled_pan-control' : ''}>
+				<ReactNipple
+					key={`react-nipple_${nippleKey}`}
+					options={{
+						mode: 'static',
+						threshold: 0.8,
+						size: 140,
+						position: { top: '50%', left: '50%' },
+						lockY: false
+					}}
+					onMove={onMoveHandler}
+					onEnd={() => {
+						if (!isDisabled) {
+							onLongPressUpEnd()
+						}
+					}}
+					style={{
+						zIndex: 0,
+						position: 'absolute',
+						top: '50%',
+						left: '50%',
+						transform: fullscreen ? 'rotate(-90deg)' : ''
+					}}
+				/>
+			</div>
+		</>
+	)
+}
+
+export function PanControl3 ({
+	fullscreen,
+	onLongPressUpStart,
+	onClickUp,
+	onLongPressUpEnd,
+	onLongPressDownStart,
+	onClickDown,
+	onLongPressLeftStart,
+	onClickLeft,
+	onLongPressRightStart,
+	onClickRight,
+	onMove,
+	className,
+	arrowClass,
+	isDisabled,
+	type
+}) {
+	const mastStyle =
+		'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)'
+	return (
+		<>
+			<div
+				className={twMerge(
+					'rounded-full w-full h-full aspect-square relative rotate-[45deg] transform-gpu bg-[#000000CC] text-[#C0C0C0]',
+					className
+				)}
+			>
+				<Sector
+					onClick={() => {
+						if (!isDisabled) {
+							onClickUp()
+						}
+					}}
+					maskStyle={mastStyle}
+					rotateClass=''
+					arrowClass={arrowClass}
+				/>
+				<Sector
+					onClick={() => {
+						if (!isDisabled) {
+							onClickRight()
+						}
+					}}
+					maskStyle={mastStyle}
+					rotateClass='rotate-[90deg] transform-gpu'
+					arrowClass={arrowClass}
+				/>
+				<Sector
+					onClick={() => {
+						if (!isDisabled) {
+							onClickDown()
+						}
+					}}
+					maskStyle={mastStyle}
+					rotateClass='rotate-[180deg] transform-gpu'
+					arrowClass={arrowClass}
+				/>
+				<Sector
+					onClick={() => {
+						if (!isDisabled) {
+							onClickLeft()
 						}
 					}}
 					maskStyle={mastStyle}
@@ -205,62 +337,62 @@ export function PanControl3({
 					options={{
 						mode: 'static',
 						threshold: 0.7,
-						size: 120,
-						position: { top: '50%', left: '50%' },
+						size: 140,
+						position: { top: '50%', left: '50%' }
 					}}
 					onMove={(event, data) => {
 						if (fullscreen) {
-							const degree = (360 - data.angle.degree) % 360;
-							onMove?.(data.force, degree);
+							const degree = (360 - data.angle.degree) % 360
+							onMove?.(data.force, degree)
 						} else {
-							const degree = (450 - data.angle.degree) % 360;
-							onMove?.(data.force, degree);
+							const degree = (450 - data.angle.degree) % 360
+							onMove?.(data.force, degree)
 						}
 					}}
 					onDir={(event, data) => {
 						if (isDisabled) {
-							return;
+							return
 						}
 						if (fullscreen) {
 							// process rotation 90deg
 							switch (data?.direction?.angle) {
 								case 'up':
-									onLongPressLeftStart();
-									break;
+									onLongPressLeftStart()
+									break
 								case 'down':
-									onLongPressRightStart();
-									break;
+									onLongPressRightStart()
+									break
 								case 'left':
-									onLongPressDownStart();
-									break;
+									onLongPressDownStart()
+									break
 								case 'right':
-									onLongPressUpStart();
-									break;
+									onLongPressUpStart()
+									break
 								default:
-									return;
+									return
 							}
 						} else {
 							switch (data?.direction?.angle) {
 								case 'up':
-									onLongPressUpStart();
-									break;
+									onLongPressUpStart()
+									break
 								case 'down':
-									onLongPressDownStart();
-									break;
+									onLongPressDownStart()
+									break
 								case 'left':
-									onLongPressLeftStart();
-									break;
+									onLongPressLeftStart()
+									break
 								case 'right':
-									onLongPressRightStart();
-									break;
+									onLongPressRightStart()
+									break
 								default:
-									return;
+									return
 							}
 						}
 					}}
 					onEnd={() => {
 						if (!isDisabled) {
-							onLongPressUpEnd();
+							onLongPressUpEnd()
 						}
 					}}
 					style={{
@@ -268,10 +400,10 @@ export function PanControl3({
 						position: 'absolute',
 						top: '50%',
 						left: '50%',
-						transform: fullscreen ? 'rotate(-90deg)' : '',
+						transform: fullscreen ? 'rotate(-90deg)' : ''
 					}}
 				/>
 			</div>
 		</>
-	);
+	)
 }
