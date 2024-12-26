@@ -19,7 +19,7 @@ function Sector ({
 	onLongPressEnd,
 	maskStyle,
 	rotateClass,
-	arrowClass
+	arrowClass,
 }) {
 	let pressTimer
 	const [isLongPressStart, setIsLongPressStart] = useState(false)
@@ -55,7 +55,7 @@ function Sector ({
 			className={`absolute w-1/2 aspect-square rounded-tl-full origin-bottom-right flex items-center justify-center ${rotateClass}`}
 			style={{
 				WebkitMaskImage: maskStyle,
-				mask: maskStyle
+				mask: maskStyle,
 			}}
 			onClick={handlePress}
 			onTouchStart={handlePressStart}
@@ -84,7 +84,7 @@ export function PanControl2 ({
 	onLongPressRightEnd,
 	className,
 	pointStyle,
-	arrowClass
+	arrowClass,
 }) {
 	const mastStyle =
 		'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)'
@@ -143,7 +143,7 @@ export function PanControlL1 ({
 	isDisabled,
 	needReload,
 	speedNum,
-	isSelected
+	isSelected,
 }) {
 	const mastStyle =
 		'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)'
@@ -151,7 +151,7 @@ export function PanControlL1 ({
 
 	useEffect(() => {
 		setTimeout(() => {
-			setNippleKey(pre => pre + 1)
+			setNippleKey((pre) => pre + 1)
 		}, 100)
 	}, [needReload, isSelected])
 
@@ -206,7 +206,7 @@ export function PanControlL1 ({
 						mode: 'static',
 						size: fullscreen ? 115 : 140,
 						position: { top: '50%', left: '50%' },
-						lockY: false
+						lockY: false,
 					}}
 					onMove={onMoveHandler}
 					onEnd={() => {
@@ -219,7 +219,7 @@ export function PanControlL1 ({
 						position: 'absolute',
 						top: '50%',
 						left: '50%',
-						transform: fullscreen ? 'rotate(-90deg)' : ''
+						transform: fullscreen ? 'rotate(-90deg)' : '',
 					}}
 				/>
 			</div>
@@ -235,7 +235,7 @@ export function PanControlL1Version1 ({
 	arrowClass,
 	isDisabled,
 	needReload,
-	isSelected
+	isSelected,
 }) {
 	const mastStyle =
 		'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)'
@@ -243,7 +243,7 @@ export function PanControlL1Version1 ({
 
 	useEffect(() => {
 		setTimeout(() => {
-			setNippleKey(pre => pre + 1)
+			setNippleKey((pre) => pre + 1)
 		}, 100)
 	}, [needReload, isSelected])
 
@@ -305,7 +305,7 @@ export function PanControlL1Version1 ({
 						threshold: 0.6,
 						size: fullscreen ? 115 : 140,
 						position: { top: '50%', left: '50%' },
-						lockY: false
+						lockY: false,
 					}}
 					onMove={onMoveHandler}
 					onEnd={() => {
@@ -318,7 +318,7 @@ export function PanControlL1Version1 ({
 						position: 'absolute',
 						top: '50%',
 						left: '50%',
-						transform: fullscreen ? 'rotate(-90deg)' : ''
+						transform: fullscreen ? 'rotate(-90deg)' : '',
 					}}
 				/>
 			</div>
@@ -340,7 +340,7 @@ export function PanControl3 ({
 	onMove,
 	className,
 	arrowClass,
-	isDisabled
+	isDisabled,
 }) {
 	const mastStyle =
 		'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)'
@@ -399,7 +399,7 @@ export function PanControl3 ({
 						mode: 'static',
 						threshold: 0.7,
 						size: 140,
-						position: { top: '50%', left: '50%' }
+						position: { top: '50%', left: '50%' },
 					}}
 					onMove={(event, data) => {
 						if (fullscreen) {
@@ -461,7 +461,7 @@ export function PanControl3 ({
 						position: 'absolute',
 						top: '50%',
 						left: '50%',
-						transform: fullscreen ? 'rotate(-90deg)' : ''
+						transform: fullscreen ? 'rotate(-90deg)' : '',
 					}}
 				/>
 			</div>
