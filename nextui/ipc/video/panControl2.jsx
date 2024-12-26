@@ -136,20 +136,14 @@ export function PanControl2 ({
 
 export function PanControlL1 ({
 	fullscreen,
-	onLongPressUpStart,
-	onClickUp,
 	onLongPressUpEnd,
-	onLongPressDownStart,
-	onClickDown,
-	onLongPressLeftStart,
-	onClickLeft,
-	onLongPressRightStart,
-	onClickRight,
 	onMove,
 	className,
 	arrowClass,
 	isDisabled,
-	needReload
+	needReload,
+	speedNum,
+	isSelected
 }) {
 	const mastStyle =
 		'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)'
@@ -159,7 +153,99 @@ export function PanControlL1 ({
 		setTimeout(() => {
 			setNippleKey(pre => pre + 1)
 		}, 100)
-	}, [needReload])
+	}, [needReload, isSelected])
+
+	let previousDegree = null
+
+	const onMoveHandler = (event, data) => {
+		if (data.distance <= 30) return
+		let degree
+		if (fullscreen) {
+			degree = (360 - data.angle.degree) % 360
+		} else {
+			degree = (450 - data.angle.degree) % 360
+		}
+		const speed = Number((speedNum / 100).toFixed(3))
+		console.log('distance:>>', speed, degree)
+		degree = Number(degree.toFixed(1))
+		if (previousDegree === null || Math.abs(previousDegree - degree) >= 5) {
+			onMove?.(speed, degree, 2)
+			previousDegree = degree
+		}
+	}
+
+	return (
+		<>
+			<div
+				className={twMerge(
+					'rounded-full w-full h-full aspect-square relative rotate-[45deg] transform-gpu bg-[#000000CC] text-[#C0C0C0]',
+					className
+				)}
+			>
+				<Sector maskStyle={mastStyle} rotateClass='' arrowClass={arrowClass} />
+				<Sector
+					maskStyle={mastStyle}
+					rotateClass='rotate-[90deg] transform-gpu'
+					arrowClass={arrowClass}
+				/>
+				<Sector
+					maskStyle={mastStyle}
+					rotateClass='rotate-[180deg] transform-gpu'
+					arrowClass={arrowClass}
+				/>
+				<Sector
+					maskStyle={mastStyle}
+					rotateClass='rotate-[270deg] transform-gpu'
+					arrowClass={arrowClass}
+				/>
+			</div>
+			<div className={isDisabled ? 'disabled_pan-control' : ''}>
+				<ReactNipple
+					key={`react-nipple_${nippleKey}`}
+					options={{
+						mode: 'static',
+						size: fullscreen ? 115 : 140,
+						position: { top: '50%', left: '50%' },
+						lockY: false
+					}}
+					onMove={onMoveHandler}
+					onEnd={() => {
+						if (!isDisabled) {
+							onLongPressUpEnd()
+						}
+					}}
+					style={{
+						zIndex: 0,
+						position: 'absolute',
+						top: '50%',
+						left: '50%',
+						transform: fullscreen ? 'rotate(-90deg)' : ''
+					}}
+				/>
+			</div>
+		</>
+	)
+}
+
+export function PanControlL1Version1 ({
+	fullscreen,
+	onLongPressUpEnd,
+	onMove,
+	className,
+	arrowClass,
+	isDisabled,
+	needReload,
+	isSelected
+}) {
+	const mastStyle =
+		'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)'
+	const [nippleKey, setNippleKey] = useState(0)
+
+	useEffect(() => {
+		setTimeout(() => {
+			setNippleKey(pre => pre + 1)
+		}, 100)
+	}, [needReload, isSelected])
 
 	let previousDistance = null
 	let previousDegree = null
@@ -180,7 +266,7 @@ export function PanControlL1 ({
 			Math.abs(previousDegree - degree) >= 5 ||
 			Math.abs(previousDistance - distance) >= 0.1
 		) {
-			onMove?.(distance, degree)
+			onMove?.(distance, degree, '1')
 			previousDistance = distance
 			previousDegree = degree
 		}
@@ -194,42 +280,18 @@ export function PanControlL1 ({
 					className
 				)}
 			>
+				<Sector maskStyle={mastStyle} rotateClass='' arrowClass={arrowClass} />
 				<Sector
-					onClick={() => {
-						if (!isDisabled) {
-							onClickUp()
-						}
-					}}
-					maskStyle={mastStyle}
-					rotateClass=''
-					arrowClass={arrowClass}
-				/>
-				<Sector
-					onClick={() => {
-						if (!isDisabled) {
-							onClickRight()
-						}
-					}}
 					maskStyle={mastStyle}
 					rotateClass='rotate-[90deg] transform-gpu'
 					arrowClass={arrowClass}
 				/>
 				<Sector
-					onClick={() => {
-						if (!isDisabled) {
-							onClickDown()
-						}
-					}}
 					maskStyle={mastStyle}
 					rotateClass='rotate-[180deg] transform-gpu'
 					arrowClass={arrowClass}
 				/>
 				<Sector
-					onClick={() => {
-						if (!isDisabled) {
-							onClickLeft()
-						}
-					}}
 					maskStyle={mastStyle}
 					rotateClass='rotate-[270deg] transform-gpu'
 					arrowClass={arrowClass}
@@ -240,8 +302,8 @@ export function PanControlL1 ({
 					key={`react-nipple_${nippleKey}`}
 					options={{
 						mode: 'static',
-						threshold: 0.8,
-						size: 140,
+						threshold: 0.6,
+						size: fullscreen ? 115 : 140,
 						position: { top: '50%', left: '50%' },
 						lockY: false
 					}}
@@ -278,8 +340,7 @@ export function PanControl3 ({
 	onMove,
 	className,
 	arrowClass,
-	isDisabled,
-	type
+	isDisabled
 }) {
 	const mastStyle =
 		'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)'

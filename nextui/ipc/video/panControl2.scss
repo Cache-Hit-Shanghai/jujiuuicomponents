@@ -16,17 +16,16 @@
 }
 
 .full-screen__pan-control {
-	opacity: 0.4;
+	opacity: 0.5 !important;
 	.front::before {
 		transform: rotate(90deg);
 	}
-}
-
-.full-screen__pan-control:focus,
-.full-screen__pan-control:active,
-.full-screen__pan-control:target,
-.full-screen__pan-control:hover {
-	opacity: 0.8 !important;
+	.front:active,
+	.front:hover,
+	.front:target,
+	.front:focus {
+		opacity: 1 !important;
+	}
 }
 
 .disabled_pan-control {
