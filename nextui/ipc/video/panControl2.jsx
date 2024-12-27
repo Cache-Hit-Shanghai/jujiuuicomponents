@@ -173,7 +173,10 @@ export function PanControlL1 ({
 		}
 	};
 
-	const onMoveThrottle = useThrottle(onMoveHandler, 100);
+	const { throttleFn: onMoveThrottle, handleReset } = useThrottle(
+		onMoveHandler,
+		100
+	);
 
 	return (
 		<>
@@ -211,6 +214,7 @@ export function PanControlL1 ({
 					}}
 					onMove={(__, data) => onMoveThrottle(__, data, speedNum)}
 					onEnd={() => {
+						handleReset();
 						if (!isDisabled) {
 							onLongPressUpEnd();
 						}
@@ -271,8 +275,10 @@ export function PanControlL1Version1 ({
 			previousDegree = degree;
 		}
 	};
-
-	const onMoveThrottle = useThrottle(onMoveHandler, 100);
+	const { throttleFn: onMoveThrottle, handleReset } = useThrottle(
+		onMoveHandler,
+		100
+	);
 
 	return (
 		<>
@@ -311,6 +317,7 @@ export function PanControlL1Version1 ({
 					}}
 					onMove={onMoveThrottle}
 					onEnd={() => {
+						handleReset();
 						if (!isDisabled) {
 							onLongPressUpEnd();
 						}
