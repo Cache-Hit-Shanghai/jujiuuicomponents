@@ -157,7 +157,7 @@ export function PanControlL1 ({
 	}, [needReload, isSelected]);
 
 	let previousDegree = null;
-	const onMoveHandler = (event, data) => {
+	const onMoveHandler = (event, data, speedParams) => {
 		if (data.distance <= 30) return;
 		let degree;
 		if (fullscreen) {
@@ -165,7 +165,7 @@ export function PanControlL1 ({
 		} else {
 			degree = (450 - data.angle.degree) % 360;
 		}
-		const speed = Number((speedNum / 100).toFixed(3));
+		const speed = Number((speedParams / 100).toFixed(3));
 		degree = Number(degree.toFixed(1));
 		if (previousDegree === null || Math.abs(previousDegree - degree) >= 5) {
 			onMove?.(speed, degree, 2);
@@ -209,7 +209,7 @@ export function PanControlL1 ({
 						position: { top: '50%', left: '50%' },
 						lockY: false,
 					}}
-					onMove={onMoveThrottle}
+					onMove={(__, data) => onMoveThrottle(__, data, speedNum)}
 					onEnd={() => {
 						if (!isDisabled) {
 							onLongPressUpEnd();
