@@ -1,16 +1,17 @@
 // FIXME: filename
-import { ArrowDropUp } from '@styled-icons/material/ArrowDropUp'
-import { useCallback, useState } from 'react'
-import { twMerge } from 'tailwind-merge'
-import './panControl2.scss'
-import dynamic from 'next/dynamic'
-import { useEffect } from 'react'
-const ReactNipple = dynamic(() => import('react-nipple'), { ssr: false })
+import { ArrowDropUp } from '@styled-icons/material/ArrowDropUp';
+import { useCallback, useState } from 'react';
+import { twMerge } from 'tailwind-merge';
+import './panControl2.scss';
+import dynamic from 'next/dynamic';
+import { useEffect } from 'react';
+const ReactNipple = dynamic(() => import('react-nipple'), { ssr: false });
+import { useThrottle } from '@/hook/common';
 
 function Circle () {
 	return (
 		<div className='w-2/5 aspect-square rounded-full bg-default opacity-90 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2' />
-	)
+	);
 }
 
 function Sector ({
@@ -21,34 +22,34 @@ function Sector ({
 	rotateClass,
 	arrowClass,
 }) {
-	let pressTimer
-	const [isLongPressStart, setIsLongPressStart] = useState(false)
+	let pressTimer;
+	const [isLongPressStart, setIsLongPressStart] = useState(false);
 
 	const handlePressStart = useCallback(() => {
 		pressTimer = setTimeout(() => {
-			console.log('long press start')
-			onLongPressStart()
-			setIsLongPressStart(true)
-		}, 500)
-	})
+			console.log('long press start');
+			onLongPressStart();
+			setIsLongPressStart(true);
+		}, 500);
+	});
 
 	const handlePressEnd = useCallback(() => {
-		clearTimeout(pressTimer)
+		clearTimeout(pressTimer);
 		if (isLongPressStart) {
-			console.log('long press end')
-			onLongPressEnd()
-			setIsLongPressStart(false)
+			console.log('long press end');
+			onLongPressEnd();
+			setIsLongPressStart(false);
 		}
-	})
+	});
 
 	const handlePress = useCallback(() => {
-		clearTimeout(pressTimer)
+		clearTimeout(pressTimer);
 		if (!isLongPressStart) {
-			console.log('short press')
-			onClick()
+			console.log('short press');
+			onClick();
 		}
-		setIsLongPressStart(false)
-	})
+		setIsLongPressStart(false);
+	});
 
 	return (
 		<div
@@ -66,7 +67,7 @@ function Sector ({
 				className={twMerge('-rotate-45 transform-gpu', arrowClass)}
 			/>
 		</div>
-	)
+	);
 }
 
 export function PanControl2 ({
@@ -87,7 +88,7 @@ export function PanControl2 ({
 	arrowClass,
 }) {
 	const mastStyle =
-		'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)'
+		'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)';
 	return (
 		<>
 			<div
@@ -131,7 +132,7 @@ export function PanControl2 ({
 			</div>
 			<div className='bg-[#C0C0C0] rounded-full absolute' style={pointStyle} />
 		</>
-	)
+	);
 }
 
 export function PanControlL1 ({
@@ -146,33 +147,33 @@ export function PanControlL1 ({
 	isSelected,
 }) {
 	const mastStyle =
-		'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)'
-	const [nippleKey, setNippleKey] = useState(0)
+		'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)';
+	const [nippleKey, setNippleKey] = useState(0);
 
 	useEffect(() => {
 		setTimeout(() => {
-			setNippleKey((pre) => pre + 1)
-		}, 100)
-	}, [needReload, isSelected])
+			setNippleKey((pre) => pre + 1);
+		}, 100);
+	}, [needReload, isSelected]);
 
-	let previousDegree = null
-
+	let previousDegree = null;
 	const onMoveHandler = (event, data) => {
-		if (data.distance <= 30) return
-		let degree
+		if (data.distance <= 30) return;
+		let degree;
 		if (fullscreen) {
-			degree = (360 - data.angle.degree) % 360
+			degree = (360 - data.angle.degree) % 360;
 		} else {
-			degree = (450 - data.angle.degree) % 360
+			degree = (450 - data.angle.degree) % 360;
 		}
-		const speed = Number((speedNum / 100).toFixed(3))
-		console.log('distance:>>', speed, degree)
-		degree = Number(degree.toFixed(1))
+		const speed = Number((speedNum / 100).toFixed(3));
+		degree = Number(degree.toFixed(1));
 		if (previousDegree === null || Math.abs(previousDegree - degree) >= 5) {
-			onMove?.(speed, degree, 2)
-			previousDegree = degree
+			onMove?.(speed, degree, 2);
+			previousDegree = degree;
 		}
-	}
+	};
+
+	const onMoveThrottle = useThrottle(onMoveHandler, 100);
 
 	return (
 		<>
@@ -208,10 +209,10 @@ export function PanControlL1 ({
 						position: { top: '50%', left: '50%' },
 						lockY: false,
 					}}
-					onMove={onMoveHandler}
+					onMove={onMoveThrottle}
 					onEnd={() => {
 						if (!isDisabled) {
-							onLongPressUpEnd()
+							onLongPressUpEnd();
 						}
 					}}
 					style={{
@@ -224,7 +225,7 @@ export function PanControlL1 ({
 				/>
 			</div>
 		</>
-	)
+	);
 }
 
 export function PanControlL1Version1 ({
@@ -238,39 +239,40 @@ export function PanControlL1Version1 ({
 	isSelected,
 }) {
 	const mastStyle =
-		'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)'
-	const [nippleKey, setNippleKey] = useState(0)
+		'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)';
+	const [nippleKey, setNippleKey] = useState(0);
 
 	useEffect(() => {
 		setTimeout(() => {
-			setNippleKey((pre) => pre + 1)
-		}, 100)
-	}, [needReload, isSelected])
+			setNippleKey((pre) => pre + 1);
+		}, 100);
+	}, [needReload, isSelected]);
 
-	let previousDistance = null
-	let previousDegree = null
+	let previousDistance = null;
+	let previousDegree = null;
 
 	const onMoveHandler = (event, data) => {
-		let degree
+		let degree;
 		if (fullscreen) {
-			degree = (360 - data.angle.degree) % 360
+			degree = (360 - data.angle.degree) % 360;
 		} else {
-			degree = (450 - data.angle.degree) % 360
+			degree = (450 - data.angle.degree) % 360;
 		}
-		const distance = Number((data?.distance / 70).toFixed(3))
-		console.log('distance:>>', distance, degree)
-		degree = Number(degree.toFixed(1))
+		const distance = Number((data?.distance / 70).toFixed(3));
+		degree = Number(degree.toFixed(1));
 		if (
 			previousDistance === null ||
 			previousDegree === null ||
 			Math.abs(previousDegree - degree) >= 5 ||
 			Math.abs(previousDistance - distance) >= 0.1
 		) {
-			onMove?.(distance, degree, '1')
-			previousDistance = distance
-			previousDegree = degree
+			onMove?.(distance, degree, 1);
+			previousDistance = distance;
+			previousDegree = degree;
 		}
-	}
+	};
+
+	const onMoveThrottle = useThrottle(onMoveHandler, 100);
 
 	return (
 		<>
@@ -307,10 +309,10 @@ export function PanControlL1Version1 ({
 						position: { top: '50%', left: '50%' },
 						lockY: false,
 					}}
-					onMove={onMoveHandler}
+					onMove={onMoveThrottle}
 					onEnd={() => {
 						if (!isDisabled) {
-							onLongPressUpEnd()
+							onLongPressUpEnd();
 						}
 					}}
 					style={{
@@ -323,7 +325,7 @@ export function PanControlL1Version1 ({
 				/>
 			</div>
 		</>
-	)
+	);
 }
 
 export function PanControl3 ({
@@ -343,7 +345,7 @@ export function PanControl3 ({
 	isDisabled,
 }) {
 	const mastStyle =
-		'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)'
+		'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)';
 	return (
 		<>
 			<div
@@ -355,7 +357,7 @@ export function PanControl3 ({
 				<Sector
 					onClick={() => {
 						if (!isDisabled) {
-							onClickUp()
+							onClickUp();
 						}
 					}}
 					maskStyle={mastStyle}
@@ -365,7 +367,7 @@ export function PanControl3 ({
 				<Sector
 					onClick={() => {
 						if (!isDisabled) {
-							onClickRight()
+							onClickRight();
 						}
 					}}
 					maskStyle={mastStyle}
@@ -375,7 +377,7 @@ export function PanControl3 ({
 				<Sector
 					onClick={() => {
 						if (!isDisabled) {
-							onClickDown()
+							onClickDown();
 						}
 					}}
 					maskStyle={mastStyle}
@@ -385,7 +387,7 @@ export function PanControl3 ({
 				<Sector
 					onClick={() => {
 						if (!isDisabled) {
-							onClickLeft()
+							onClickLeft();
 						}
 					}}
 					maskStyle={mastStyle}
@@ -403,57 +405,57 @@ export function PanControl3 ({
 					}}
 					onMove={(event, data) => {
 						if (fullscreen) {
-							const degree = (360 - data.angle.degree) % 360
-							onMove?.(data.force, degree)
+							const degree = (360 - data.angle.degree) % 360;
+							onMove?.(data.force, degree);
 						} else {
-							const degree = (450 - data.angle.degree) % 360
-							onMove?.(data.force, degree)
+							const degree = (450 - data.angle.degree) % 360;
+							onMove?.(data.force, degree);
 						}
 					}}
 					onDir={(event, data) => {
 						if (isDisabled) {
-							return
+							return;
 						}
 						if (fullscreen) {
 							// process rotation 90deg
 							switch (data?.direction?.angle) {
 								case 'up':
-									onLongPressLeftStart()
-									break
+									onLongPressLeftStart();
+									break;
 								case 'down':
-									onLongPressRightStart()
-									break
+									onLongPressRightStart();
+									break;
 								case 'left':
-									onLongPressDownStart()
-									break
+									onLongPressDownStart();
+									break;
 								case 'right':
-									onLongPressUpStart()
-									break
+									onLongPressUpStart();
+									break;
 								default:
-									return
+									return;
 							}
 						} else {
 							switch (data?.direction?.angle) {
 								case 'up':
-									onLongPressUpStart()
-									break
+									onLongPressUpStart();
+									break;
 								case 'down':
-									onLongPressDownStart()
-									break
+									onLongPressDownStart();
+									break;
 								case 'left':
-									onLongPressLeftStart()
-									break
+									onLongPressLeftStart();
+									break;
 								case 'right':
-									onLongPressRightStart()
-									break
+									onLongPressRightStart();
+									break;
 								default:
-									return
+									return;
 							}
 						}
 					}}
 					onEnd={() => {
 						if (!isDisabled) {
-							onLongPressUpEnd()
+							onLongPressUpEnd();
 						}
 					}}
 					style={{
@@ -466,5 +468,5 @@ export function PanControl3 ({
 				/>
 			</div>
 		</>
-	)
+	);
 }
