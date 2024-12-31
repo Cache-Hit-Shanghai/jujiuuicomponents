@@ -16,14 +16,21 @@
 }
 
 .full-screen__pan-control {
+	opacity: 0.5 !important;
 	.front::before {
 		transform: rotate(90deg);
+	}
+	.front:active,
+	.front:hover,
+	.front:target,
+	.front:focus {
+		opacity: 1 !important;
 	}
 }
 
 .disabled_pan-control {
-	.front{
-		transform: translate(0,0) !important;
+	.front {
+		transform: translate(0, 0) !important;
 		opacity: 0.5 !important; /* 设置背景半透明度 */
 	}
 }

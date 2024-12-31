@@ -4,15 +4,17 @@ import { useCallback, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 import './panControl2.scss';
 import dynamic from 'next/dynamic';
+import { useEffect } from 'react';
 const ReactNipple = dynamic(() => import('react-nipple'), { ssr: false });
+import { useThrottle } from '@/hook/common';
 
-function Circle() {
+function Circle () {
 	return (
 		<div className='w-2/5 aspect-square rounded-full bg-default opacity-90 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2' />
 	);
 }
 
-function Sector({
+function Sector ({
 	onClick,
 	onLongPressStart,
 	onLongPressEnd,
@@ -68,7 +70,7 @@ function Sector({
 	);
 }
 
-export function PanControl2({
+export function PanControl2 ({
 	onClickUp,
 	onLongPressUpStart,
 	onLongPressUpEnd,
@@ -92,7 +94,7 @@ export function PanControl2({
 			<div
 				className={twMerge(
 					'rounded-full w-full h-full aspect-square relative rotate-[45deg] transform-gpu bg-[#000000CC] text-[#C0C0C0]',
-					className,
+					className
 				)}
 			>
 				<Sector
@@ -133,7 +135,218 @@ export function PanControl2({
 	);
 }
 
-export function PanControl3({
+export function PanControlL1 ({
+	fullscreen,
+	onLongPressUpEnd,
+	onMove,
+	className,
+	arrowClass,
+	isDisabled,
+	needReload,
+	speedNum,
+	isSelected,
+}) {
+	const mastStyle =
+		'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)';
+	const [nippleKey, setNippleKey] = useState(0);
+
+	useEffect(() => {
+		setTimeout(() => {
+			setNippleKey((pre) => pre + 1);
+		}, 100);
+	}, [needReload, isSelected]);
+
+	let previousDegree = null;
+	const onMoveHandler = (event, data, speedParams) => {
+		if (data.distance <= 30) return;
+		let degree;
+		if (fullscreen) {
+			degree = (360 - data.angle.degree) % 360;
+		} else {
+			degree = (450 - data.angle.degree) % 360;
+		}
+		const speed = Number((speedParams / 100).toFixed(3));
+		degree = Number(degree.toFixed(1));
+		if (previousDegree === null || Math.abs(previousDegree - degree) >= 5) {
+			onMove?.(speed, degree, 2);
+			previousDegree = degree;
+		}
+	};
+
+	const { throttleFn: onMoveThrottle, handleReset } = useThrottle(
+		onMoveHandler,
+		100
+	);
+
+	const onEndHandler = () => {
+		previousDegree = null;
+		handleReset();
+	};
+
+	return (
+		<>
+			<div
+				className={twMerge(
+					'rounded-full w-full h-full aspect-square relative rotate-[45deg] transform-gpu bg-[#000000CC] text-[#C0C0C0]',
+					className
+				)}
+			>
+				<Sector maskStyle={mastStyle} rotateClass='' arrowClass={arrowClass} />
+				<Sector
+					maskStyle={mastStyle}
+					rotateClass='rotate-[90deg] transform-gpu'
+					arrowClass={arrowClass}
+				/>
+				<Sector
+					maskStyle={mastStyle}
+					rotateClass='rotate-[180deg] transform-gpu'
+					arrowClass={arrowClass}
+				/>
+				<Sector
+					maskStyle={mastStyle}
+					rotateClass='rotate-[270deg] transform-gpu'
+					arrowClass={arrowClass}
+				/>
+			</div>
+			<div className={isDisabled ? 'disabled_pan-control' : ''}>
+				<ReactNipple
+					key={`react-nipple_${nippleKey}`}
+					options={{
+						mode: 'static',
+						size: fullscreen ? 115 : 140,
+						position: { top: '50%', left: '50%' },
+						lockY: false,
+					}}
+					onMove={(__, data) => onMoveThrottle(__, data, speedNum)}
+					onEnd={() => {
+						onEndHandler();
+						if (!isDisabled) {
+							onLongPressUpEnd();
+						}
+					}}
+					style={{
+						zIndex: 0,
+						position: 'absolute',
+						top: '50%',
+						left: '50%',
+						transform: fullscreen ? 'rotate(-90deg)' : '',
+					}}
+				/>
+			</div>
+		</>
+	);
+}
+
+export function PanControlL1Version1 ({
+	fullscreen,
+	onLongPressUpEnd,
+	onMove,
+	className,
+	arrowClass,
+	isDisabled,
+	needReload,
+	isSelected,
+}) {
+	const mastStyle =
+		'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)';
+	const [nippleKey, setNippleKey] = useState(0);
+
+	useEffect(() => {
+		setTimeout(() => {
+			setNippleKey((pre) => pre + 1);
+		}, 100);
+	}, [needReload, isSelected]);
+
+	let previousDistance = null;
+	let previousDegree = null;
+
+	const onMoveHandler = (event, data) => {
+		let degree;
+		if (fullscreen) {
+			degree = (360 - data.angle.degree) % 360;
+		} else {
+			degree = (450 - data.angle.degree) % 360;
+		}
+		const distance = Number((data?.distance / 70).toFixed(3));
+		degree = Number(degree.toFixed(1));
+		if (
+			previousDistance === null ||
+			previousDegree === null ||
+			Math.abs(previousDegree - degree) >= 5 ||
+			Math.abs(previousDistance - distance) >= 0.1
+		) {
+			onMove?.(distance, degree, 1);
+			previousDistance = distance;
+			previousDegree = degree;
+		}
+	};
+	const { throttleFn: onMoveThrottle, handleReset } = useThrottle(
+		onMoveHandler,
+		100
+	);
+
+	const onEndHandler = () => {
+		previousDistance = null;
+		previousDegree = null;
+		handleReset();
+	};
+
+	return (
+		<>
+			<div
+				className={twMerge(
+					'rounded-full w-full h-full aspect-square relative rotate-[45deg] transform-gpu bg-[#000000CC] text-[#C0C0C0]',
+					className
+				)}
+			>
+				<Sector maskStyle={mastStyle} rotateClass='' arrowClass={arrowClass} />
+				<Sector
+					maskStyle={mastStyle}
+					rotateClass='rotate-[90deg] transform-gpu'
+					arrowClass={arrowClass}
+				/>
+				<Sector
+					maskStyle={mastStyle}
+					rotateClass='rotate-[180deg] transform-gpu'
+					arrowClass={arrowClass}
+				/>
+				<Sector
+					maskStyle={mastStyle}
+					rotateClass='rotate-[270deg] transform-gpu'
+					arrowClass={arrowClass}
+				/>
+			</div>
+			<div className={isDisabled ? 'disabled_pan-control' : ''}>
+				<ReactNipple
+					key={`react-nipple_${nippleKey}`}
+					options={{
+						mode: 'static',
+						threshold: 0.6,
+						size: fullscreen ? 115 : 140,
+						position: { top: '50%', left: '50%' },
+						lockY: false,
+					}}
+					onMove={onMoveThrottle}
+					onEnd={() => {
+						onEndHandler();
+						if (!isDisabled) {
+							onLongPressUpEnd();
+						}
+					}}
+					style={{
+						zIndex: 0,
+						position: 'absolute',
+						top: '50%',
+						left: '50%',
+						transform: fullscreen ? 'rotate(-90deg)' : '',
+					}}
+				/>
+			</div>
+		</>
+	);
+}
+
+export function PanControl3 ({
 	fullscreen,
 	onLongPressUpStart,
 	onClickUp,
@@ -156,7 +369,7 @@ export function PanControl3({
 			<div
 				className={twMerge(
 					'rounded-full w-full h-full aspect-square relative rotate-[45deg] transform-gpu bg-[#000000CC] text-[#C0C0C0]',
-					className,
+					className
 				)}
 			>
 				<Sector
@@ -205,7 +418,7 @@ export function PanControl3({
 					options={{
 						mode: 'static',
 						threshold: 0.7,
-						size: 120,
+						size: 140,
 						position: { top: '50%', left: '50%' },
 					}}
 					onMove={(event, data) => {
