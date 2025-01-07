@@ -8,12 +8,6 @@ import { useEffect } from 'react';
 const ReactNipple = dynamic(() => import('react-nipple'), { ssr: false });
 import { useThrottle } from '@/hook/common';
 
-function Circle () {
-	return (
-		<div className='w-2/5 aspect-square rounded-full bg-default opacity-90 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2' />
-	);
-}
-
 function Sector ({
 	onClick,
 	onLongPressStart,
@@ -53,7 +47,7 @@ function Sector ({
 
 	return (
 		<div
-			className={`absolute w-1/2 aspect-square rounded-tl-full origin-bottom-right flex items-center justify-center ${rotateClass}`}
+			className={`absolute w-1/2 h-1/2 rounded-tl-full origin-bottom-right flex items-center justify-center ${rotateClass}`}
 			style={{
 				WebkitMaskImage: maskStyle,
 				mask: maskStyle,
@@ -93,7 +87,7 @@ export function PanControl2 ({
 		<>
 			<div
 				className={twMerge(
-					'rounded-full w-full h-full aspect-square relative rotate-[45deg] transform-gpu bg-[#000000CC] text-[#C0C0C0]',
+					'rounded-full w-full h-full relative rotate-[45deg] transform-gpu bg-[#000000CC] text-[#C0C0C0]',
 					className
 				)}
 			>
@@ -187,7 +181,7 @@ export function PanControlL1 ({
 		<>
 			<div
 				className={twMerge(
-					'rounded-full w-full h-full aspect-square relative rotate-[45deg] transform-gpu bg-[#000000CC] text-[#C0C0C0]',
+					'rounded-full w-full h-full relative rotate-[45deg] transform-gpu bg-[#000000CC] text-[#C0C0C0]',
 					className
 				)}
 			>
@@ -295,7 +289,7 @@ export function PanControlL1Version1 ({
 		<>
 			<div
 				className={twMerge(
-					'rounded-full w-full h-full aspect-square relative rotate-[45deg] transform-gpu bg-[#000000CC] text-[#C0C0C0]',
+					'rounded-full w-full h-full relative rotate-[45deg] transform-gpu bg-[#000000CC] text-[#C0C0C0]',
 					className
 				)}
 			>
@@ -368,7 +362,7 @@ export function PanControl3 ({
 		<>
 			<div
 				className={twMerge(
-					'rounded-full w-full h-full aspect-square relative rotate-[45deg] transform-gpu bg-[#000000CC] text-[#C0C0C0]',
+					'rounded-full w-full h-full relative rotate-[45deg] transform-gpu bg-[#000000CC] text-[#C0C0C0]',
 					className
 				)}
 			>
