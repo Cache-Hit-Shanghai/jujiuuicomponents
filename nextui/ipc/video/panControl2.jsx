@@ -169,7 +169,8 @@ export function PanControlL1 ({
 
 	const { throttleFn: onMoveThrottle, handleReset } = useThrottle(
 		onMoveHandler,
-		100
+		100,
+		{trailing:false}
 	);
 
 	const onEndHandler = () => {
@@ -276,7 +277,8 @@ export function PanControlL1Version1 ({
 	};
 	const { throttleFn: onMoveThrottle, handleReset } = useThrottle(
 		onMoveHandler,
-		100
+		100,
+		{trailing:false}
 	);
 
 	const onEndHandler = () => {
