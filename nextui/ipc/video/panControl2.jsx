@@ -262,6 +262,7 @@ export function PanControlL1Version1({
 	let previousDegree = null;
 
 	const onMoveHandler = (event, data) => {
+		if (data.distance <= 30) return;
 		let degree;
 		if (fullscreen) {
 			degree = (360 - data.angle.degree) % 360;
