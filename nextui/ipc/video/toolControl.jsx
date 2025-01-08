@@ -37,7 +37,7 @@ import { trackEvent } from 'jujiu_js_common/util/umami';
  * @param {ButtonProps & {showLabel: boolean}} props
  * @returns
  */
-export function DownloadControl({ showLabel, ...prop }) {
+export function DownloadControl ({ showLabel, ...prop }) {
 	const t = useJuJiuT();
 	const label = t('下载');
 
@@ -56,13 +56,21 @@ export function DownloadControl({ showLabel, ...prop }) {
  * @param {ButtonProps & {showLabel: boolean}} props
  * @returns
  */
-export function ScreenCopyControl({ showLabel, icon, hasBorder, ...prop }) {
+export function ScreenCopyControl ({
+	showLabel,
+	icon,
+	hasBorder,
+	className = '',
+	...prop
+}) {
 	const t = useJuJiuT();
 	const label = t('拍照');
 
 	return (
 		<Button
-			className={`p-0 min-w-fit text-inherit flex flex-col items-center justify-center ${hasBorder ? 'w-10 h-10 rounded-full bg-[#000000B3]' : ''} ${label ? 'w-14 h-14' : ''}`}
+			className={`p-0 min-w-fit text-inherit flex flex-col items-center justify-center ${
+				hasBorder ? 'w-10 h-10 rounded-full bg-[#000000B3]' : ''
+			} ${label ? 'w-14 h-14' : ''} ${className}`}
 			isIconOnly={!showLabel}
 			variant='light'
 			radius='none'
@@ -74,12 +82,13 @@ export function ScreenCopyControl({ showLabel, icon, hasBorder, ...prop }) {
 	);
 }
 
-export function ChatControl({
+export function ChatControl ({
 	showLabel,
 	speaking,
 	callIcon,
 	hangupIcon,
 	hasBorder,
+	className = '',
 	...prop
 }) {
 	const t = useJuJiuT();
@@ -90,7 +99,11 @@ export function ChatControl({
 
 	return (
 		<Button
-			className={`p-0 min-w-fit text-inherit flex flex-col items-center justify-center ${hasBorder ? 'w-10 h-10 rounded-full bg-[#000000B3]' : ''} ${label ? 'w-14 h-14' : ''} ${speaking ? 'text-[ text-[#FD9240]' : ''}`}
+			className={`p-0 min-w-fit text-inherit flex flex-col items-center justify-center ${
+				hasBorder ? 'w-10 h-10 rounded-full bg-[#000000B3]' : ''
+			} ${label ? 'w-14 h-14' : ''} ${
+				speaking ? 'text-[ text-[#FD9240]' : ''
+			}  ${className}`}
 			isIconOnly={!showLabel}
 			variant='light'
 			radius='none'
@@ -102,7 +115,7 @@ export function ChatControl({
 	);
 }
 
-export function MuteControl({
+export function MuteControl ({
 	isVideoFullscreen,
 	showLabel,
 	mute = true,
@@ -120,7 +133,7 @@ export function MuteControl({
 		<Button
 			className={
 				'p-0 min-w-fit text-inherit bg-[#000000]/[0.3] rounded-full w-10 h-10' +
-				(isVideoFullscreen ? ' w-14 h-14' : showLabel?'w-12 h-12': '')
+				(isVideoFullscreen ? ' w-14 h-14' : showLabel ? 'w-12 h-12' : '')
 			}
 			isIconOnly={!showLabel}
 			variant='light'
@@ -129,13 +142,13 @@ export function MuteControl({
 		>
 			<div className='flex flex-col items-center'>
 				{mute ? unmuteIconApplied : muteIconApplied}
-				{showLabel && <p style={{fontSize: '9px',lineHeight:1}}>{label}</p>}
+				{showLabel && <p style={{ fontSize: '9px', lineHeight: 1 }}>{label}</p>}
 			</div>
 		</Button>
 	);
 }
 
-export function RecordControl({
+export function RecordControl ({
 	showLabel,
 	recording,
 	recordIcon,
@@ -151,7 +164,9 @@ export function RecordControl({
 
 	return (
 		<Button
-			className={`p-0 min-w-fit text-inherit flex flex-col items-center justify-center ${hasBorder ? 'w-10 h-10 rounded-full bg-[#000000B3]' : ''} ${label ? 'w-14 h-14' : ''}`}
+			className={`p-0 min-w-fit text-inherit flex flex-col items-center justify-center ${
+				hasBorder ? 'w-10 h-10 rounded-full bg-[#000000B3]' : ''
+			} ${label ? 'w-14 h-14' : ''}`}
 			isIconOnly={!showLabel}
 			variant='light'
 			radius='none'
@@ -163,13 +178,13 @@ export function RecordControl({
 	);
 }
 
-function useConrollableState({ value, setValue, initValue }) {
+function useConrollableState ({ value, setValue, initValue }) {
 	const [state, setState] = useState(initValue);
 	if (setValue) return [value, setValue];
 	return [state, setState];
 }
 
-export function ResolutionControl({
+export function ResolutionControl ({
 	isVideoFullscreen,
 	showLabel,
 	items,
@@ -183,9 +198,10 @@ export function ResolutionControl({
 	isForceLandscape = false,
 	icon,
 	direction,
+	className,
 	...prop
 }) {
-	const label="分辨率";
+	const label = '分辨率';
 	const [isOpen, setIsOpen] = useState(false);
 	const toggleIsOpen = () => {
 		setIsOpen(!isOpen);
@@ -229,7 +245,7 @@ export function ResolutionControl({
 					onSelectionChange={(e) => {
 						onChangeSelected(e);
 						toggleIsOpen();
-						trackEvent('change-resolution',{newValue:e[0]});
+						trackEvent('change-resolution', { newValue: e[0] });
 					}}
 					color='primary'
 					shouldHighlightOnFocus
@@ -240,7 +256,9 @@ export function ResolutionControl({
 						<ListboxItem
 							key={key}
 							startContent={icon}
-							className={`ps-5 h-14 text-[#000000] text-base ${selectedKeys.has(key) ? 'bg-[#FD9240]/[0.1] text-[#FD9240]' : ''}`}
+							className={`ps-5 h-14 text-[#000000] text-base ${
+								selectedKeys.has(key) ? 'bg-[#FD9240]/[0.1] text-[#FD9240]' : ''
+							}`}
 							shouldHighlightOnFocus
 						>
 							{label}
@@ -258,10 +276,8 @@ export function ResolutionControl({
 	return (
 		<>
 			<Button
-				className={
-					'p-0 min-w-fit text-inherit bg-[#000000]/[0.3] rounded-full w-10 h-10' +
-					(isVideoFullscreen ? ' w-14 h-14' : '')
-				}
+				className={`p-0 min-w-fit text-inherit bg-[#000000]/[0.3] rounded-full w-10 h-10 ${className}
+					${isVideoFullscreen ? ' w-14 h-14' : ''}`}
 				isIconOnly={!showLabel}
 				onClick={toggleIsOpen}
 				variant='light'
@@ -270,7 +286,11 @@ export function ResolutionControl({
 			>
 				<div className='flex flex-col items-center'>
 					{icon || <Resolution size={24} />}
-					{showLabel && <p style={{fontSize: '9px',lineHeight:1}} className='m-0 p-0' >{label}</p>}
+					{showLabel && (
+						<p style={{ fontSize: '9px', lineHeight: 1 }} className='m-0 p-0'>
+							{label}
+						</p>
+					)}
 				</div>
 			</Button>
 			{!isVideoFullscreen ? (
@@ -297,7 +317,7 @@ export function ResolutionControl({
 	);
 }
 
-export function StreamingControlBar({ showLabel }) {
+export function StreamingControlBar ({ showLabel }) {
 	const [speaking, setSpeaking] = useState(false);
 	const [mute, setMute] = useState(true);
 	const [recording, setRecording] = useState(false);
@@ -325,7 +345,7 @@ export function StreamingControlBar({ showLabel }) {
 	);
 }
 
-export function StreamingControlBar2() {
+export function StreamingControlBar2 () {
 	return (
 		<>
 			<Button isIconOnly variant='light'>
@@ -340,7 +360,7 @@ export function StreamingControlBar2() {
 	);
 }
 
-export function StreamingControlBar3({ showLabel }) {
+export function StreamingControlBar3 ({ showLabel }) {
 	const [speaking, setSpeaking] = useState(false);
 	const [mute, setMute] = useState(true);
 	const [recording, setRecording] = useState(false);
@@ -367,7 +387,7 @@ export function StreamingControlBar3({ showLabel }) {
 	);
 }
 
-export function StreamingControlBar4() {
+export function StreamingControlBar4 () {
 	return (
 		<>
 			<ResolutionControl />
