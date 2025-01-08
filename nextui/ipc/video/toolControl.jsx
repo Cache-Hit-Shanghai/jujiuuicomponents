@@ -31,18 +31,43 @@ import { trackEvent } from 'jujiu_js_common/util/umami';
  * @param {ButtonProps & {showLabel: boolean}} props
  * @returns
  */
+<<<<<<< HEAD
+=======
+export function DownloadControl ({ showLabel, ...prop }) {
+	const t = useJuJiuT();
+	const label = t('下载');
+
+	return (
+		<Button isIconOnly={!showLabel} variant='light' {...prop}>
+			<div className='flex flex-col items-center'>
+				<Download size={24} />
+				{showLabel && label}
+			</div>
+		</Button>
+	);
+}
+
+>>>>>>> origin/main
 /**
  *
  * @param {ButtonProps & {showLabel: boolean}} props
  * @returns
  */
-export function ScreenCopyControl({ showLabel, icon, hasBorder, ...prop }) {
+export function ScreenCopyControl ({
+	showLabel,
+	icon,
+	hasBorder,
+	className = '',
+	...prop
+}) {
 	const t = useJuJiuT();
 	const label = t('拍照');
 
 	return (
 		<Button
-			className={`p-0 min-w-fit text-inherit flex flex-col items-center justify-center ${hasBorder ? 'w-10 h-10 rounded-full bg-[#000000B3]' : ''} ${label ? 'w-14 h-14' : ''}`}
+			className={`p-0 min-w-fit text-inherit flex flex-col items-center justify-center ${
+				hasBorder ? 'w-10 h-10 rounded-full bg-[#000000B3]' : ''
+			} ${label ? 'w-14 h-14' : ''} ${className}`}
 			isIconOnly={!showLabel}
 			variant='light'
 			radius='none'
@@ -54,12 +79,13 @@ export function ScreenCopyControl({ showLabel, icon, hasBorder, ...prop }) {
 	);
 }
 
-export function ChatControl({
+export function ChatControl ({
 	showLabel,
 	speaking,
 	callIcon,
 	hangupIcon,
 	hasBorder,
+	className = '',
 	...prop
 }) {
 	const t = useJuJiuT();
@@ -70,7 +96,11 @@ export function ChatControl({
 
 	return (
 		<Button
-			className={`p-0 min-w-fit text-inherit flex flex-col items-center justify-center ${hasBorder ? 'w-10 h-10 rounded-full bg-[#000000B3]' : ''} ${label ? 'w-14 h-14' : ''} ${speaking ? 'text-[ text-[#FD9240]' : ''}`}
+			className={`p-0 min-w-fit text-inherit flex flex-col items-center justify-center ${
+				hasBorder ? 'w-10 h-10 rounded-full bg-[#000000B3]' : ''
+			} ${label ? 'w-14 h-14' : ''} ${
+				speaking ? 'text-[ text-[#FD9240]' : ''
+			}  ${className}`}
 			isIconOnly={!showLabel}
 			variant='light'
 			radius='none'
@@ -82,7 +112,7 @@ export function ChatControl({
 	);
 }
 
-export function MuteControl({
+export function MuteControl ({
 	isVideoFullscreen,
 	showLabel,
 	mute = true,
@@ -115,7 +145,7 @@ export function MuteControl({
 	);
 }
 
-export function RecordControl({
+export function RecordControl ({
 	showLabel,
 	recording,
 	recordIcon,
@@ -131,7 +161,9 @@ export function RecordControl({
 
 	return (
 		<Button
-			className={`p-0 min-w-fit text-inherit flex flex-col items-center justify-center ${hasBorder ? 'w-10 h-10 rounded-full bg-[#000000B3]' : ''} ${label ? 'w-14 h-14' : ''}`}
+			className={`p-0 min-w-fit text-inherit flex flex-col items-center justify-center ${
+				hasBorder ? 'w-10 h-10 rounded-full bg-[#000000B3]' : ''
+			} ${label ? 'w-14 h-14' : ''}`}
 			isIconOnly={!showLabel}
 			variant='light'
 			radius='none'
@@ -143,7 +175,7 @@ export function RecordControl({
 	);
 }
 
-export function ResolutionControl({
+export function ResolutionControl ({
 	isVideoFullscreen,
 	showLabel,
 	items,
@@ -157,6 +189,7 @@ export function ResolutionControl({
 	isForceLandscape = false,
 	icon,
 	direction,
+	className,
 	...prop
 }) {
 	const label = '分辨率';
@@ -214,7 +247,9 @@ export function ResolutionControl({
 						<ListboxItem
 							key={key}
 							startContent={icon}
-							className={`ps-5 h-14 text-[#000000] text-base ${selectedKeys.has(key) ? 'bg-[#FD9240]/[0.1] text-[#FD9240]' : ''}`}
+							className={`ps-5 h-14 text-[#000000] text-base ${
+								selectedKeys.has(key) ? 'bg-[#FD9240]/[0.1] text-[#FD9240]' : ''
+							}`}
 							shouldHighlightOnFocus
 						>
 							{label}
@@ -232,10 +267,8 @@ export function ResolutionControl({
 	return (
 		<>
 			<Button
-				className={
-					'p-0 min-w-fit text-inherit bg-[#000000]/[0.3] rounded-full w-10 h-10' +
-					(isVideoFullscreen ? ' w-14 h-14' : '')
-				}
+				className={`p-0 min-w-fit text-inherit bg-[#000000]/[0.3] rounded-full w-10 h-10 ${className}
+					${isVideoFullscreen ? ' w-14 h-14' : ''}`}
 				isIconOnly={!showLabel}
 				onClick={toggleIsOpen}
 				variant='light'
@@ -274,3 +307,90 @@ export function ResolutionControl({
 		</>
 	);
 }
+<<<<<<< HEAD
+=======
+
+export function StreamingControlBar ({ showLabel }) {
+	const [speaking, setSpeaking] = useState(false);
+	const [mute, setMute] = useState(true);
+	const [recording, setRecording] = useState(false);
+
+	return (
+		<>
+			<ScreenCopyControl showLabel={showLabel} />
+			<RecordControl
+				showLabel={showLabel}
+				recording={recording}
+				onPress={() => setRecording(!recording)}
+			/>
+			<ChatControl
+				showLabel={showLabel}
+				speaking={speaking}
+				onPress={() => setSpeaking(!speaking)}
+			/>
+			<MuteControl
+				showLabel={showLabel}
+				mute={mute}
+				onPress={() => setMute(!mute)}
+			/>
+			<ResolutionControl showLabel={showLabel} />
+		</>
+	);
+}
+
+export function StreamingControlBar2 () {
+	return (
+		<>
+			<Button isIconOnly variant='light'>
+				<Cameraswitch size={24} />
+			</Button>
+			<LinkButton
+				href='/device/settings/sharing'
+				icon={<IosShare size={24} />}
+			/>
+			<LinkButton href='/device/settings' icon={<Settings size={24} />} />
+		</>
+	);
+}
+
+export function StreamingControlBar3 ({ showLabel }) {
+	const [speaking, setSpeaking] = useState(false);
+	const [mute, setMute] = useState(true);
+	const [recording, setRecording] = useState(false);
+
+	return (
+		<>
+			<ScreenCopyControl showLabel={showLabel} />
+			<RecordControl
+				showLabel={showLabel}
+				recording={recording}
+				onPress={() => setRecording(!recording)}
+			/>
+			<ChatControl
+				showLabel={showLabel}
+				speaking={speaking}
+				onPress={() => setSpeaking(!speaking)}
+			/>
+			<MuteControl
+				showLabel={showLabel}
+				mute={mute}
+				onPress={() => setMute(!mute)}
+			/>
+		</>
+	);
+}
+
+export function StreamingControlBar4 () {
+	return (
+		<>
+			<ResolutionControl />
+			<Button isIconOnly variant='light'>
+				<Cameraswitch size={24} />
+			</Button>
+			<Button isIconOnly variant='light'>
+				<Battery3Bar size={24} />
+			</Button>
+		</>
+	);
+}
+>>>>>>> origin/main

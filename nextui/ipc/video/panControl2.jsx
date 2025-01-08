@@ -1,20 +1,13 @@
 // FIXME: filename
+import { useThrottle } from '@/hook/common';
 import { ArrowDropUp } from '@styled-icons/material/ArrowDropUp';
-import { useCallback, useState } from 'react';
+import dynamic from 'next/dynamic';
+import { useCallback, useEffect, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 import './panControl2.scss';
-import dynamic from 'next/dynamic';
-import { useEffect } from 'react';
 const ReactNipple = dynamic(() => import('react-nipple'), { ssr: false });
-import { useThrottle } from '@/hook/common';
 
-function Circle () {
-	return (
-		<div className='w-2/5 aspect-square rounded-full bg-default opacity-90 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2' />
-	);
-}
-
-function Sector ({
+function Sector({
 	onClick,
 	onLongPressStart,
 	onLongPressEnd,
@@ -53,7 +46,7 @@ function Sector ({
 
 	return (
 		<div
-			className={`absolute w-1/2 aspect-square rounded-tl-full origin-bottom-right flex items-center justify-center ${rotateClass}`}
+			className={`absolute w-1/2 h-1/2 rounded-tl-full origin-bottom-right flex items-center justify-center ${rotateClass}`}
 			style={{
 				WebkitMaskImage: maskStyle,
 				mask: maskStyle,
@@ -70,7 +63,7 @@ function Sector ({
 	);
 }
 
-export function PanControl2 ({
+export function PanControl2({
 	onClickUp,
 	onLongPressUpStart,
 	onLongPressUpEnd,
@@ -93,7 +86,7 @@ export function PanControl2 ({
 		<>
 			<div
 				className={twMerge(
-					'rounded-full w-full h-full aspect-square relative rotate-[45deg] transform-gpu bg-[#000000CC] text-[#C0C0C0]',
+					'rounded-full w-full h-full relative rotate-[45deg] transform-gpu bg-[#000000CC] text-[#C0C0C0]',
 					className
 				)}
 			>
@@ -135,7 +128,7 @@ export function PanControl2 ({
 	);
 }
 
-export function PanControlL1 ({
+export function PanControlL1({
 	fullscreen,
 	onLongPressUpEnd,
 	onMove,
@@ -175,7 +168,8 @@ export function PanControlL1 ({
 
 	const { throttleFn: onMoveThrottle, handleReset } = useThrottle(
 		onMoveHandler,
-		100
+		100,
+		{ trailing: false }
 	);
 
 	const onEndHandler = () => {
@@ -187,26 +181,32 @@ export function PanControlL1 ({
 		<>
 			<div
 				className={twMerge(
-					'rounded-full w-full h-full aspect-square relative rotate-[45deg] transform-gpu bg-[#000000CC] text-[#C0C0C0]',
+					'rounded-full w-full h-full pt-[100%] relative rotate-[45deg] transform-gpu bg-[#000000CC] text-[#C0C0C0]',
 					className
 				)}
 			>
-				<Sector maskStyle={mastStyle} rotateClass='' arrowClass={arrowClass} />
-				<Sector
-					maskStyle={mastStyle}
-					rotateClass='rotate-[90deg] transform-gpu'
-					arrowClass={arrowClass}
-				/>
-				<Sector
-					maskStyle={mastStyle}
-					rotateClass='rotate-[180deg] transform-gpu'
-					arrowClass={arrowClass}
-				/>
-				<Sector
-					maskStyle={mastStyle}
-					rotateClass='rotate-[270deg] transform-gpu'
-					arrowClass={arrowClass}
-				/>
+				<div class='absolute inset-0'>
+					<Sector
+						maskStyle={mastStyle}
+						rotateClass=''
+						arrowClass={arrowClass}
+					/>
+					<Sector
+						maskStyle={mastStyle}
+						rotateClass='rotate-[90deg] transform-gpu'
+						arrowClass={arrowClass}
+					/>
+					<Sector
+						maskStyle={mastStyle}
+						rotateClass='rotate-[180deg] transform-gpu'
+						arrowClass={arrowClass}
+					/>
+					<Sector
+						maskStyle={mastStyle}
+						rotateClass='rotate-[270deg] transform-gpu'
+						arrowClass={arrowClass}
+					/>
+				</div>
 			</div>
 			<div className={isDisabled ? 'disabled_pan-control' : ''}>
 				<ReactNipple
@@ -237,7 +237,7 @@ export function PanControlL1 ({
 	);
 }
 
-export function PanControlL1Version1 ({
+export function PanControlL1Version1({
 	fullscreen,
 	onLongPressUpEnd,
 	onMove,
@@ -282,7 +282,8 @@ export function PanControlL1Version1 ({
 	};
 	const { throttleFn: onMoveThrottle, handleReset } = useThrottle(
 		onMoveHandler,
-		100
+		100,
+		{ trailing: false }
 	);
 
 	const onEndHandler = () => {
@@ -295,26 +296,32 @@ export function PanControlL1Version1 ({
 		<>
 			<div
 				className={twMerge(
-					'rounded-full w-full h-full aspect-square relative rotate-[45deg] transform-gpu bg-[#000000CC] text-[#C0C0C0]',
+					'rounded-full w-full h-full pt-[100%] relative rotate-[45deg] transform-gpu bg-[#000000CC] text-[#C0C0C0]',
 					className
 				)}
 			>
-				<Sector maskStyle={mastStyle} rotateClass='' arrowClass={arrowClass} />
-				<Sector
-					maskStyle={mastStyle}
-					rotateClass='rotate-[90deg] transform-gpu'
-					arrowClass={arrowClass}
-				/>
-				<Sector
-					maskStyle={mastStyle}
-					rotateClass='rotate-[180deg] transform-gpu'
-					arrowClass={arrowClass}
-				/>
-				<Sector
-					maskStyle={mastStyle}
-					rotateClass='rotate-[270deg] transform-gpu'
-					arrowClass={arrowClass}
-				/>
+				<div class='absolute inset-0'>
+					<Sector
+						maskStyle={mastStyle}
+						rotateClass=''
+						arrowClass={arrowClass}
+					/>
+					<Sector
+						maskStyle={mastStyle}
+						rotateClass='rotate-[90deg] transform-gpu'
+						arrowClass={arrowClass}
+					/>
+					<Sector
+						maskStyle={mastStyle}
+						rotateClass='rotate-[180deg] transform-gpu'
+						arrowClass={arrowClass}
+					/>
+					<Sector
+						maskStyle={mastStyle}
+						rotateClass='rotate-[270deg] transform-gpu'
+						arrowClass={arrowClass}
+					/>
+				</div>
 			</div>
 			<div className={isDisabled ? 'disabled_pan-control' : ''}>
 				<ReactNipple
@@ -346,7 +353,7 @@ export function PanControlL1Version1 ({
 	);
 }
 
-export function PanControl3 ({
+export function PanControl3({
 	fullscreen,
 	onLongPressUpStart,
 	onClickUp,
@@ -368,50 +375,52 @@ export function PanControl3 ({
 		<>
 			<div
 				className={twMerge(
-					'rounded-full w-full h-full aspect-square relative rotate-[45deg] transform-gpu bg-[#000000CC] text-[#C0C0C0]',
+					'rounded-full w-full h-full pt-[100%] relative rotate-[45deg] transform-gpu bg-[#000000CC] text-[#C0C0C0]',
 					className
 				)}
 			>
-				<Sector
-					onClick={() => {
-						if (!isDisabled) {
-							onClickUp();
-						}
-					}}
-					maskStyle={mastStyle}
-					rotateClass=''
-					arrowClass={arrowClass}
-				/>
-				<Sector
-					onClick={() => {
-						if (!isDisabled) {
-							onClickRight();
-						}
-					}}
-					maskStyle={mastStyle}
-					rotateClass='rotate-[90deg] transform-gpu'
-					arrowClass={arrowClass}
-				/>
-				<Sector
-					onClick={() => {
-						if (!isDisabled) {
-							onClickDown();
-						}
-					}}
-					maskStyle={mastStyle}
-					rotateClass='rotate-[180deg] transform-gpu'
-					arrowClass={arrowClass}
-				/>
-				<Sector
-					onClick={() => {
-						if (!isDisabled) {
-							onClickLeft();
-						}
-					}}
-					maskStyle={mastStyle}
-					rotateClass='rotate-[270deg] transform-gpu'
-					arrowClass={arrowClass}
-				/>
+				<div class='absolute inset-0'>
+					<Sector
+						onClick={() => {
+							if (!isDisabled) {
+								onClickUp();
+							}
+						}}
+						maskStyle={mastStyle}
+						rotateClass=''
+						arrowClass={arrowClass}
+					/>
+					<Sector
+						onClick={() => {
+							if (!isDisabled) {
+								onClickRight();
+							}
+						}}
+						maskStyle={mastStyle}
+						rotateClass='rotate-[90deg] transform-gpu'
+						arrowClass={arrowClass}
+					/>
+					<Sector
+						onClick={() => {
+							if (!isDisabled) {
+								onClickDown();
+							}
+						}}
+						maskStyle={mastStyle}
+						rotateClass='rotate-[180deg] transform-gpu'
+						arrowClass={arrowClass}
+					/>
+					<Sector
+						onClick={() => {
+							if (!isDisabled) {
+								onClickLeft();
+							}
+						}}
+						maskStyle={mastStyle}
+						rotateClass='rotate-[270deg] transform-gpu'
+						arrowClass={arrowClass}
+					/>
+				</div>
 			</div>
 			<div className={isDisabled ? 'disabled_pan-control' : ''}>
 				<ReactNipple
