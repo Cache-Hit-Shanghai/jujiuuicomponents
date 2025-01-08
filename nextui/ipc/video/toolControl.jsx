@@ -31,8 +31,6 @@ import { trackEvent } from 'jujiu_js_common/util/umami';
  * @param {ButtonProps & {showLabel: boolean}} props
  * @returns
  */
-<<<<<<< HEAD
-=======
 export function DownloadControl ({ showLabel, ...prop }) {
 	const t = useJuJiuT();
 	const label = t('下载');
@@ -47,7 +45,6 @@ export function DownloadControl ({ showLabel, ...prop }) {
 	);
 }
 
->>>>>>> origin/main
 /**
  *
  * @param {ButtonProps & {showLabel: boolean}} props
@@ -307,8 +304,6 @@ export function ResolutionControl ({
 		</>
 	);
 }
-<<<<<<< HEAD
-=======
 
 export function StreamingControlBar ({ showLabel }) {
 	const [speaking, setSpeaking] = useState(false);
@@ -393,4 +388,3 @@ export function StreamingControlBar4 () {
 		</>
 	);
 }
->>>>>>> origin/main
