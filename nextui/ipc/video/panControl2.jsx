@@ -241,6 +241,7 @@ export function PanControlL1Version1 ({
 	isDisabled,
 	needReload,
 	isSelected,
+	speedNum,
 }) {
 	const mastStyle =
 		'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)';
@@ -252,7 +253,7 @@ export function PanControlL1Version1 ({
 		}, 100);
 	}, [needReload, isSelected]);
 
-	let previousDistance = null;
+	//let previousDistance = null;
 	let previousDegree = null;
 
 	const onMoveHandler = (event, data) => {
@@ -262,16 +263,17 @@ export function PanControlL1Version1 ({
 		} else {
 			degree = (450 - data.angle.degree) % 360;
 		}
-		const distance = Number((data?.distance / 70).toFixed(3));
+		//const distance = Number((data?.distance / 70).toFixed(3));
 		degree = Number(degree.toFixed(1));
 		if (
-			previousDistance === null ||
+			//previousDistance === null ||
 			previousDegree === null ||
-			Math.abs(previousDegree - degree) >= 5 ||
-			Math.abs(previousDistance - distance) >= 0.1
+			Math.abs(previousDegree - degree) >= 5 
+			//|| Math.abs(previousDistance - distance) >= 0.1
 		) {
-			onMove?.(distance, degree, 1);
-			previousDistance = distance;
+			console.log("(speedNum/100):",Number((speedNum/100).toFixed(3)));
+			onMove?.(Number((speedNum/100).toFixed(3)), degree, 1);
+			//previousDistance = distance;
 			previousDegree = degree;
 		}
 	};
@@ -282,7 +284,7 @@ export function PanControlL1Version1 ({
 	);
 
 	const onEndHandler = () => {
-		previousDistance = null;
+		//previousDistance = null;
 		previousDegree = null;
 		handleReset();
 	};
