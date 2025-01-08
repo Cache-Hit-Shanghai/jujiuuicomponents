@@ -48,7 +48,7 @@ import { redirectRootAndRefresh } from '@/helper/redirect';
 import { useIsUpdatedInfo } from '@/hook/native';
 import { checkIfNewVersionIOS } from '@/helper/native';
 
-export function MobileHeader({ children, className, ...props }) {
+export function MobileHeader ({ children, className, ...props }) {
 	return (
 		<div
 			className={twMerge('flex items-center p-2 justify-between', className)}
@@ -59,14 +59,14 @@ export function MobileHeader({ children, className, ...props }) {
 	);
 }
 
-export function MobileMain({ children, className, as = 'main', ...props }) {
+export function MobileMain ({ children, className, as = 'main', ...props }) {
 	const Component = as;
 
 	return (
 		<Component
 			className={twMerge(
 				'px-4 py-px flex flex-col gap-4 flex-1 overflow-auto',
-				className,
+				className
 			)}
 			{...props}
 		>
@@ -75,7 +75,7 @@ export function MobileMain({ children, className, as = 'main', ...props }) {
 	);
 }
 
-export function ThemeButton() {
+export function ThemeButton () {
 	const [mounted, setMounted] = useState(false);
 	const { theme, setTheme } = useTheme();
 
@@ -97,7 +97,7 @@ export function ThemeButton() {
 	);
 }
 
-export function ButtonBack({ onClick, onPress, goBack = true, ...props }) {
+export function ButtonBack ({ onClick, onPress, goBack = true, ...props }) {
 	const router = useRouter();
 
 	return (
@@ -117,7 +117,7 @@ export function ButtonBack({ onClick, onPress, goBack = true, ...props }) {
 	);
 }
 
-export function PermissionInstruction({ header, instruction }) {
+export function PermissionInstruction ({ header, instruction }) {
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
 	useEffect(() => {
 		onOpen();
@@ -145,12 +145,12 @@ export function PermissionInstruction({ header, instruction }) {
 	);
 }
 
-export function NavbarBack({ label, className, ...props }) {
+export function NavbarBack ({ label, className, ...props }) {
 	return (
 		<div
 			className={twMerge(
 				'gap-4 flex items-center top-0 left-0 z-50',
-				className,
+				className
 			)}
 		>
 			<ButtonBack {...props} />
@@ -159,7 +159,7 @@ export function NavbarBack({ label, className, ...props }) {
 	);
 }
 
-export function NavbarBackCenter({
+export function NavbarBackCenter ({
 	label,
 	className,
 	labelClassName,
@@ -170,7 +170,7 @@ export function NavbarBackCenter({
 		<div
 			className={twMerge(
 				'w-full gap-4 flex items-center top-0 left-0 z-50 relative',
-				className,
+				className
 			)}
 		>
 			<ButtonBack {...props} />
@@ -187,7 +187,7 @@ export function NavbarBackCenter({
 	);
 }
 
-export function NavbarBackNoCacheCenter({
+export function NavbarBackNoCacheCenter ({
 	label,
 	className,
 	href,
@@ -198,7 +198,7 @@ export function NavbarBackNoCacheCenter({
 		<div
 			className={twMerge(
 				'w-full gap-4 flex items-center top-0 left-0 z-50 relative',
-				className,
+				className
 			)}
 		>
 			<a href={href}>
@@ -218,12 +218,12 @@ export function NavbarBackNoCacheCenter({
 	);
 }
 
-export function NavbarBackNoCache({ label, className, href, ...props }) {
+export function NavbarBackNoCache ({ label, className, href, ...props }) {
 	return (
 		<div
 			className={twMerge(
 				'gap-4 flex items-center top-0 left-0 z-50',
-				className,
+				className
 			)}
 		>
 			<a href={href}>
@@ -235,7 +235,7 @@ export function NavbarBackNoCache({ label, className, href, ...props }) {
 		</div>
 	);
 }
-export function ButtonBackNative({
+export function ButtonBackNative ({
 	onClick,
 	onPress,
 	goBack = true,
@@ -270,7 +270,8 @@ export function ButtonBackNative({
 		</Button>
 	);
 }
-export function NavbarBackCenterForNative({
+
+export function NavbarBackCenterForNative ({
 	label,
 	className,
 	labelClassName,
@@ -281,7 +282,7 @@ export function NavbarBackCenterForNative({
 		<div
 			className={twMerge(
 				'w-full gap-4 flex items-center top-0 left-0 z-50 relative',
-				className,
+				className
 			)}
 		>
 			<ButtonBackNative {...props} />
@@ -298,7 +299,7 @@ export function NavbarBackCenterForNative({
 	);
 }
 
-export function LinkGroup({ data }) {
+export function LinkGroup ({ data }) {
 	return (
 		<Card className='flex-none'>
 			<CardBody className='py-0 divide-y divide-divider'>
@@ -322,7 +323,7 @@ export function LinkGroup({ data }) {
 	);
 }
 
-export function LabeledControl({ label, children }) {
+export function LabeledControl ({ label, children }) {
 	return (
 		<div className='p-2 flex flex-row justify-between items-center'>
 			<p>{label}</p>
@@ -331,7 +332,7 @@ export function LabeledControl({ label, children }) {
 	);
 }
 
-export function TextDisplay({ label, text }) {
+export function TextDisplay ({ label, text }) {
 	return (
 		<div className='p-2 flex flex-row justify-between items-center'>
 			<p>{label}</p>
@@ -340,7 +341,7 @@ export function TextDisplay({ label, text }) {
 	);
 }
 
-export function UsnDisplay({ label, usn, btnProps = {} }) {
+export function UsnDisplay ({ label, usn, btnProps = {} }) {
 	return (
 		<div className='p-2 '>
 			<div className='flex flex-row justify-between items-center'>
@@ -354,7 +355,7 @@ export function UsnDisplay({ label, usn, btnProps = {} }) {
 	);
 }
 
-export function IpDisplay({ label, ips }) {
+export function IpDisplay ({ label, ips }) {
 	return (
 		<div className='p-2 flex flex-row justify-between items-center'>
 			<p>{label}</p>
@@ -375,12 +376,12 @@ const WiFiIcons = new Map([
 	[4, Wifi4],
 ]);
 
-export function WiFiIcon({ signal, ...passProps }) {
+export function WiFiIcon ({ signal, ...passProps }) {
 	const Icon = WiFiIcons.get(signal) || SignalWifi4Bar;
 	return <Icon {...passProps} />;
 }
 
-export function WiFiDisplay({ label, text, signal }) {
+export function WiFiDisplay ({ label, text, signal }) {
 	return (
 		<div className='p-2 flex flex-row justify-between items-center'>
 			<p>{label}</p>
@@ -430,7 +431,7 @@ const BatteryIcons = new Map([
 	],
 ]);
 
-export function BatteryIcon({ batteryLevel, isCharging }) {
+export function BatteryIcon ({ batteryLevel, isCharging }) {
 	const boolIsCharging = parseInt(isCharging) === 1;
 	const { Icon, className } =
 		BatteryIcons.get(parseInt(batteryLevel)) ?? BatteryIcons.get(0);
@@ -442,7 +443,7 @@ export function BatteryIcon({ batteryLevel, isCharging }) {
 	);
 }
 
-export function BatteryDisplay({ label, level, isCharging }) {
+export function BatteryDisplay ({ label, level, isCharging }) {
 	return (
 		<div className='p-2 flex flex-row justify-between items-center'>
 			{label && <p>{label}</p>}
@@ -453,7 +454,7 @@ export function BatteryDisplay({ label, level, isCharging }) {
 	);
 }
 
-export function FeaturesDisplay({ label }) {
+export function FeaturesDisplay ({ label }) {
 	const t = useJuJiuT();
 
 	return (
@@ -480,7 +481,7 @@ export function FeaturesDisplay({ label }) {
 		</div>
 	);
 }
-export function HomeButton({ needRefresh = false }) {
+export function HomeButton ({ needRefresh = false, label }) {
 	const t = useJuJiuT();
 	return (
 		<Button
@@ -495,12 +496,12 @@ export function HomeButton({ needRefresh = false }) {
 				}
 			}}
 		>
-			{t('回到主页')}
+			<>{label ? <>{label}</> : <>{t('回到主页')}</>}</>
 		</Button>
 	);
 }
 
-export function LinkButton({
+export function LinkButton ({
 	href,
 	icon,
 	label,
@@ -532,7 +533,7 @@ export function LinkButton({
 	);
 }
 
-export function LabelButton({ label, children, onClick, ...props }) {
+export function LabelButton ({ label, children, onClick, ...props }) {
 	return (
 		<Button
 			{...props}
@@ -550,11 +551,11 @@ export function LabelButton({ label, children, onClick, ...props }) {
 	);
 }
 
-export function LabelLink({ href, ...props }) {
+export function LabelLink ({ href, ...props }) {
 	return <LabelButton as={Link} href={href} {...props} />;
 }
 
-export function IconButton({
+export function IconButton ({
 	icon,
 	label,
 	className,
@@ -579,7 +580,7 @@ export function IconButton({
 	);
 }
 
-export function NavTabs({ data = [] }) {
+export function NavTabs ({ data = [] }) {
 	const t = useJuJiuT();
 	const pathname = usePathname();
 
@@ -611,7 +612,7 @@ export function NavTabs({ data = [] }) {
 	);
 }
 
-export function Information({ label = '' }) {
+export function Information ({ label = '' }) {
 	return (
 		<div className='flex shrink-0 justify-center items-center gap-2'>
 			<div>
@@ -622,7 +623,7 @@ export function Information({ label = '' }) {
 	);
 }
 
-export function InfoGroup({ data }) {
+export function InfoGroup ({ data }) {
 	return (
 		<DeviceCard>
 			{data.map(({ key, value }, index) => (
@@ -638,7 +639,7 @@ export function InfoGroup({ data }) {
 	);
 }
 
-export function FadeAnimation({ show, children }) {
+export function FadeAnimation ({ show, children }) {
 	return (
 		<AnimatePresence>
 			{show && (
