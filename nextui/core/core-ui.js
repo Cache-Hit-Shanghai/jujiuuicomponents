@@ -9,14 +9,13 @@ import { Lightning } from '@/jujiu-ui-components/icons/Lightning';
 import { Wifi2 } from '@/jujiu-ui-components/icons/Wifi2';
 import { Wifi3 } from '@/jujiu-ui-components/icons/Wifi3';
 import { Wifi4 } from '@/jujiu-ui-components/icons/Wifi4';
-import { redirectByLocationHref } from '@/jujiu_react_common/helper/redirect';
+import { redirectByLocationHref } from '@/helper/redirect';
 import {
 	DeviceCard,
 	DeviceSettingWrapper,
 	SubDeviceInfo,
 } from '@/nextui-components/ui/device-settingsv2';
 import Link, { useJuJiuT, usePathname, useRouter } from '@/state/translate';
-import { isIos } from '@/util/platform';
 import {
 	Button,
 	Card,
