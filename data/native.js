@@ -9,7 +9,7 @@ export const WEB_BACK_TO_APP_URL_MAP = {
 	'/pixelbot/my/servicelistai': '/pixelbot/my',
 	'/pixelbot/my/settings': '/pixelbot/my',
 	'/pixelbot/my/help-feedback': '/pixelbot/my',
-	'/pixelbot/device/record': '/device',
+	'/pixelbot/device/record_v2': '/device',
 	'/pixelbot/device/replay': '/device',
 	'/pixelbot/device/demovideo': '/device',
 	'/pixelbot/device/settings': '/device',
