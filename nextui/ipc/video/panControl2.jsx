@@ -150,6 +150,7 @@ export function PanControlL1({
 	}, [needReload, isSelected]);
 
 	let previousDegree = null;
+	let isFirstTragger = true;//首次触发
 	const onMoveHandler = (event, data, speedParams) => {
 		if (data.distance <= 30) return;
 		let degree;
@@ -160,6 +161,10 @@ export function PanControlL1({
 		}
 		const speed = Number((speedParams / 100).toFixed(3));
 		degree = Number(degree.toFixed(1));
+		if (isFirstTragger){
+			isFirstTragger = false;
+			return;
+		}
 		if (previousDegree === null || Math.abs(previousDegree - degree) >= 5) {
 			onMove?.(speed, degree, 2);
 			previousDegree = degree;
@@ -174,6 +179,7 @@ export function PanControlL1({
 
 	const onEndHandler = () => {
 		previousDegree = null;
+		isFirstTragger = true;
 		handleReset();
 	};
 
