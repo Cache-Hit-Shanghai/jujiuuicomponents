@@ -17,10 +17,9 @@ import { FullHd } from '@/jujiu-ui-components/icons/fullhd';
 import { R2kPlus } from '@/jujiu-ui-components/icons/2kplus';
 import { useJuJiuT } from '@/state/translate';
 import Drawer from 'react-modern-drawer';
+import { trackEvent } from 'jujiu_js_common/util/umami';
 
 import 'react-modern-drawer/dist/index.css';
-import { SelectorModal } from '@/nextui-components/ui/pet-setting';
-import { trackEvent } from 'jujiu_js_common/util/umami';
 
 /**
  * @typedef {import("@nextui-org/react").ButtonProps} ButtonProps
@@ -281,26 +280,16 @@ export function ResolutionControl ({
 					)}
 				</div>
 			</Button>
-			{!isVideoFullscreen ? (
-				<SelectorModal
-					isOpen={isOpen}
-					onOpenChange={toggleIsOpen}
-					displayHeader={false}
-				>
-					{content}
-				</SelectorModal>
-			) : (
-				<Drawer
-					open={isOpen}
-					onClose={toggleIsOpen}
-					direction={direction}
-					className={`z-[99999] ${getBorderStyle()}`}
-					zIndex={99999}
-					duration='0'
-				>
-					{content}
-				</Drawer>
-			)}
+			<Drawer
+				open={isOpen}
+				onClose={toggleIsOpen}
+				direction={direction}
+				className={`z-[99999] ${getBorderStyle()}`}
+				zIndex={99999}
+				duration='0'
+			>
+				{content}
+			</Drawer>
 		</>
 	);
 }
