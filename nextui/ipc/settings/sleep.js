@@ -25,7 +25,14 @@ import { LabeledControl } from '../../core/core-ui';
  * @returns
  */
 export const DaySwitch = (props) => {
-	const { Component, slots, children, getBaseProps, getInputProps, getWrapperProps } = useSwitch(props);
+	const {
+		Component,
+		slots,
+		children,
+		getBaseProps,
+		getInputProps,
+		getWrapperProps,
+	} = useSwitch(props);
 
 	return (
 		<div className='flex flex-col gap-2'>
@@ -50,7 +57,13 @@ export const DaySwitch = (props) => {
 	);
 };
 
-function SleepPlanCard({ start = '9:00', end = '19:00', daysStr = '每天', onClick, onDel }) {
+function SleepPlanCard ({
+	start = '9:00',
+	end = '19:00',
+	daysStr = '每天',
+	onClick,
+	onDel,
+}) {
 	return (
 		<Card className='bg-default'>
 			<CardBody className='p-1' onClick={onClick}>
@@ -70,70 +83,6 @@ function SleepPlanCard({ start = '9:00', end = '19:00', daysStr = '每天', onCl
 				</div>
 			</CardBody>
 		</Card>
-	);
-}
-
-export function Sleep() {
-	const t = useJuJiuT();
-	const [sleep, setSleep] = useState(false);
-	const [sleepPlan, setSleepPlan] = useState(false);
-	const { isOpen, onOpen, onOpenChange } = useDisclosure();
-
-	return (
-		<>
-			<LabeledControl label={t('休眠')}>
-				<Switch isSelected={sleep} onValueChange={setSleep} />
-			</LabeledControl>
-			{!sleep && (
-				<div>
-					<LabeledControl label={t('休眠计划')}>
-						<Switch isSelected={sleepPlan} onValueChange={setSleepPlan} />
-					</LabeledControl>
-					{sleepPlan && (
-						<div className='pb-2 flex flex-col gap-2'>
-							<SleepPlanCard />
-							<SleepPlanCard />
-							<SleepPlanCard />
-							<Button size='sm' color='primary' onPress={onOpen}>
-								{t('添加时间段')}
-							</Button>
-							<Modal isOpen={isOpen} placement='bottom-center' onOpenChange={onOpenChange}>
-								<ModalContent>
-									{(onClose) => (
-										<>
-											<ModalHeader className='flex flex-col gap-1'>
-												{t('添加时间段')}
-											</ModalHeader>
-											<ModalBody>
-												<Input type='time' label={t('开始时间')} />
-												<Input type='time' label={t('结束时间')} />
-												<div className='flex flex-row justify-evenly'>
-													<DaySwitch>{t('日')}</DaySwitch>
-													<DaySwitch>{t('一')}</DaySwitch>
-													<DaySwitch>{t('二')}</DaySwitch>
-													<DaySwitch>{t('三')}</DaySwitch>
-													<DaySwitch>{t('四')}</DaySwitch>
-													<DaySwitch>{t('五')}</DaySwitch>
-													<DaySwitch>{t('六')}</DaySwitch>
-												</div>
-											</ModalBody>
-											<ModalFooter>
-												<Button color='danger' variant='light' onPress={onClose}>
-													{t('关闭')}
-												</Button>
-												<Button color='primary' onPress={onClose}>
-													{t('保存')}
-												</Button>
-											</ModalFooter>
-										</>
-									)}
-								</ModalContent>
-							</Modal>
-						</div>
-					)}
-				</div>
-			)}
-		</>
 	);
 }
 
