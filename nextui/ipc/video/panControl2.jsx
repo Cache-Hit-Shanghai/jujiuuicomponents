@@ -150,7 +150,7 @@ export function PanControlL1({
 	}, [needReload, isSelected]);
 
 	let previousDegree = null;
-	let isFirstTragger = true;//首次触发
+	let isFirstTragger = true; // 首次触发
 	const onMoveHandler = (event, data, speedParams) => {
 		if (data.distance <= 30) return;
 		let degree;
@@ -161,7 +161,7 @@ export function PanControlL1({
 		}
 		const speed = Number((speedParams / 100).toFixed(3));
 		degree = Number(degree.toFixed(1));
-		if (isFirstTragger){
+		if (isFirstTragger) {
 			isFirstTragger = false;
 			return;
 		}
@@ -267,7 +267,7 @@ export function PanControlL1Version1({
 	//let previousDistance = null;
 	let previousDegree = null;
 
-	const onMoveHandler = (event, data) => {
+	const onMoveHandler = (event, data, speedParams) => {
 		if (data.distance <= 30) return;
 		let degree;
 		if (fullscreen) {
@@ -280,11 +280,13 @@ export function PanControlL1Version1({
 		if (
 			//previousDistance === null ||
 			previousDegree === null ||
-			Math.abs(previousDegree - degree) >= 5 
+			Math.abs(previousDegree - degree) >= 5
 			//|| Math.abs(previousDistance - distance) >= 0.1
 		) {
-			console.log("(speedNum/100):",Number((speedNum/100).toFixed(3)));
-			onMove?.(Number((speedNum/100).toFixed(3)), degree, 1);
+			const speed = Number((speedParams / 100).toFixed(3));
+
+			console.log('(speedNum/100):', speed);
+			onMove?.(speed, degree, 1);
 			//previousDistance = distance;
 			previousDegree = degree;
 		}
@@ -342,7 +344,7 @@ export function PanControlL1Version1({
 						position: { top: '50%', left: '50%' },
 						lockY: false,
 					}}
-					onMove={onMoveThrottle}
+					onMove={(__, data) => onMoveThrottle(__, data, speedNum)}
 					onEnd={() => {
 						onEndHandler();
 						if (!isDisabled) {
