@@ -4,10 +4,9 @@ import { ArrowDropUp } from '@styled-icons/material/ArrowDropUp';
 import dynamic from 'next/dynamic';
 import { useCallback, useEffect, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
-import { v4 as uuid } from 'uuid';
 
 import './panControl2.scss';
-import { useRefreshNippleKey } from '@/jujiu_react_common/hook/device/pan-control';
+
 const ReactNipple = dynamic(() => import('react-nipple'), { ssr: false });
 
 function Sector ({
