@@ -4,10 +4,13 @@ import { ArrowDropUp } from '@styled-icons/material/ArrowDropUp';
 import dynamic from 'next/dynamic';
 import { useCallback, useEffect, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
+import { v4 as uuid } from 'uuid';
+
 import './panControl2.scss';
+import { useRefreshNippleKey } from '@/jujiu_react_common/hook/device/pan-control';
 const ReactNipple = dynamic(() => import('react-nipple'), { ssr: false });
 
-function Sector({
+function Sector ({
 	onClick,
 	onLongPressStart,
 	onLongPressEnd,
@@ -21,7 +24,7 @@ function Sector({
 	const handlePressStart = useCallback(() => {
 		pressTimer = setTimeout(() => {
 			console.log('long press start');
-			onLongPressStart();
+			onLongPressStart?.();
 			setIsLongPressStart(true);
 		}, 500);
 	});
@@ -30,7 +33,7 @@ function Sector({
 		clearTimeout(pressTimer);
 		if (isLongPressStart) {
 			console.log('long press end');
-			onLongPressEnd();
+			onLongPressEnd?.();
 			setIsLongPressStart(false);
 		}
 	});
@@ -63,7 +66,7 @@ function Sector({
 	);
 }
 
-export function PanControl2({
+export function PanControl2 ({
 	onClickUp,
 	onLongPressUpStart,
 	onLongPressUpEnd,
@@ -128,26 +131,18 @@ export function PanControl2({
 	);
 }
 
-export function PanControlL1({
+export function PanControlL1 ({
 	fullscreen,
 	onLongPressUpEnd,
 	onMove,
 	className,
 	arrowClass,
 	isDisabled,
-	needReload,
+	nippleKey,
 	speedNum,
-	isSelected,
 }) {
 	const mastStyle =
 		'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)';
-	const [nippleKey, setNippleKey] = useState(0);
-
-	useEffect(() => {
-		setTimeout(() => {
-			setNippleKey((pre) => pre + 1);
-		}, 100);
-	}, [needReload, isSelected]);
 
 	let previousDegree = null;
 	let isFirstTragger = true; // 首次触发
@@ -243,26 +238,18 @@ export function PanControlL1({
 	);
 }
 
-export function PanControlL1Version1({
+export function PanControlL1Version1 ({
 	fullscreen,
 	onLongPressUpEnd,
 	onMove,
 	className,
 	arrowClass,
 	isDisabled,
-	needReload,
-	isSelected,
+	nippleKey,
 	speedNum,
 }) {
 	const mastStyle =
 		'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)';
-	const [nippleKey, setNippleKey] = useState(0);
-
-	useEffect(() => {
-		setTimeout(() => {
-			setNippleKey((pre) => pre + 1);
-		}, 100);
-	}, [needReload, isSelected]);
 
 	//let previousDistance = null;
 	let previousDegree = null;
@@ -364,7 +351,7 @@ export function PanControlL1Version1({
 	);
 }
 
-export function PanControl3({
+export function PanControl3 ({
 	fullscreen,
 	onLongPressUpStart,
 	onClickUp,
