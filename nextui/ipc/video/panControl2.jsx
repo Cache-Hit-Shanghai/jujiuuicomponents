@@ -270,8 +270,6 @@ export function PanControlL1Version1 ({
 			//|| Math.abs(previousDistance - distance) >= 0.1
 		) {
 			const speed = Number((speedParams / 100).toFixed(3));
-
-			console.log('(speedNum/100):', speed);
 			onMove?.(speed, degree, 1);
 			//previousDistance = distance;
 			previousDegree = degree;
