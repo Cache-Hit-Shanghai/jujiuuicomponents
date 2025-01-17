@@ -140,6 +140,12 @@ export function PanControlL1 ({
 	nippleKey,
 	speedNum,
 }) {
+	useEffect(() => {
+		console.log('PanControlL1:>>', {
+			fullscreen,
+			nippleKey,
+		});
+	}, [fullscreen, nippleKey]);
 	const mastStyle =
 		'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)';
 
@@ -210,7 +216,9 @@ export function PanControlL1 ({
 			</div>
 			<div className={isDisabled ? 'disabled_pan-control' : ''}>
 				<ReactNipple
-					key={`react-nipple_${nippleKey}`}
+					key={`react-nipple_${
+						fullscreen ? 'fullscreen' : 'normal'
+					}_${nippleKey}`}
 					options={{
 						mode: 'static',
 						size: fullscreen ? 115 : 140,
@@ -247,6 +255,13 @@ export function PanControlL1Version1 ({
 	nippleKey,
 	speedNum,
 }) {
+	useEffect(() => {
+		console.log('PanControlL1:>>', {
+			fullscreen,
+			nippleKey,
+		});
+	}, [fullscreen, nippleKey]);
+
 	const mastStyle =
 		'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)';
 
@@ -320,7 +335,9 @@ export function PanControlL1Version1 ({
 			</div>
 			<div className={isDisabled ? 'disabled_pan-control' : ''}>
 				<ReactNipple
-					key={`react-nipple_${nippleKey}`}
+					key={`react-nipple_${
+						fullscreen ? 'fullscreen' : 'normal'
+					}_${nippleKey}`}
 					options={{
 						mode: 'static',
 						threshold: 0.6,
