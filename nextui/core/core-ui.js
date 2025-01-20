@@ -10,11 +10,6 @@ import { Wifi2 } from '@/jujiu-ui-components/icons/Wifi2';
 import { Wifi3 } from '@/jujiu-ui-components/icons/Wifi3';
 import { Wifi4 } from '@/jujiu-ui-components/icons/Wifi4';
 import { redirectByLocationHref } from '@/helper/redirect';
-import {
-	DeviceCard,
-	DeviceSettingWrapper,
-	SubDeviceInfo,
-} from '@/nextui-components/ui/device-settingsv2';
 import Link, { useJuJiuT, usePathname, useRouter } from '@/state/translate';
 import {
 	Button,
@@ -619,22 +614,6 @@ export function Information ({ label = '' }) {
 			</div>
 			<span className='text-xs text-[#FD9240]'>{label}</span>
 		</div>
-	);
-}
-
-export function InfoGroup ({ data }) {
-	return (
-		<DeviceCard>
-			{data.map(({ key, value }, index) => (
-				<DeviceSettingWrapper
-					hasBorder={index < data.length - 1}
-					label={key}
-					key={key}
-				>
-					<SubDeviceInfo>{value}</SubDeviceInfo>
-				</DeviceSettingWrapper>
-			))}
-		</DeviceCard>
 	);
 }
 

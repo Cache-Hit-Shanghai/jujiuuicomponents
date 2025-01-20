@@ -17,7 +17,7 @@ import { CircleInformation, FormPrevious, FormNext } from 'grommet-icons';
 import Link, { useRouter } from '@/state/translate';
 import { useJuJiuT } from '@/state/translate';
 
-function JuJiuTag({ icon, label, background }) {
+function JuJiuTag ({ icon, label, background }) {
 	return (
 		<Tag
 			border={false}
@@ -34,7 +34,7 @@ function JuJiuTag({ icon, label, background }) {
 	);
 }
 
-function JuJiuLinkTag({ href, icon, label, background }) {
+function JuJiuLinkTag ({ href, icon, label, background }) {
 	return (
 		<Link href={href} passHref legacyBehavior>
 			<Box>
@@ -44,7 +44,7 @@ function JuJiuLinkTag({ href, icon, label, background }) {
 	);
 }
 
-function JuJiuLayer({ onClickOutside, position, target, children, ...props }) {
+function JuJiuLayer ({ onClickOutside, position, target, children, ...props }) {
 	return (
 		<Layer
 			position={position || 'bottom'}
@@ -130,7 +130,7 @@ const LoadingLayer = ({
 	);
 };
 
-function JuJiuMain({ children, ...props }) {
+function JuJiuMain ({ children, ...props }) {
 	return (
 		<Main
 			flex={{ grow: 1, shrink: 1 }}
@@ -144,7 +144,7 @@ function JuJiuMain({ children, ...props }) {
 	);
 }
 
-function JuJiuCard({ children, ...props }) {
+function JuJiuCard ({ children, ...props }) {
 	return (
 		<Card
 			pad='small'
@@ -159,7 +159,7 @@ function JuJiuCard({ children, ...props }) {
 	);
 }
 
-function ButtonLink({ href, children, ...props }) {
+function ButtonLink ({ href, children, ...props }) {
 	return (
 		<Link href={href} passHref legacyBehavior>
 			<Button as='a' style={{ textAlign: 'center' }} {...props}>
@@ -169,7 +169,7 @@ function ButtonLink({ href, children, ...props }) {
 	);
 }
 
-function JuJiuInformation({ label, size, ...props }) {
+function JuJiuInformation ({ label, size, ...props }) {
 	return (
 		<Box
 			direction='row'
@@ -187,27 +187,7 @@ function JuJiuInformation({ label, size, ...props }) {
 	);
 }
 
-function InfoGroup({ data }) {
-	return (
-		<JuJiuCard>
-			<CardBody>
-				<List
-					pad={{ vertical: 'small' }}
-					data={data}
-					border={false}
-					primaryKey='key'
-					secondaryKey={(item) => (
-						<Text key={item.key} size='small' color='text-xweak'>
-							{item.value}
-						</Text>
-					)}
-				/>
-			</CardBody>
-		</JuJiuCard>
-	);
-}
-
-function ButtonGroup({ data }) {
+function ButtonGroup ({ data }) {
 	return (
 		<JuJiuCard pad='none'>
 			<CardBody>
@@ -242,7 +222,7 @@ function ButtonGroup({ data }) {
 	);
 }
 
-function LinkGroup({ data }) {
+function LinkGroup ({ data }) {
 	return (
 		<JuJiuCard>
 			<CardBody>
@@ -265,7 +245,7 @@ function LinkGroup({ data }) {
 	);
 }
 
-function IconBack({ onClick }) {
+function IconBack ({ onClick }) {
 	const router = useRouter();
 	return (
 		<Button
@@ -278,7 +258,7 @@ function IconBack({ onClick }) {
 	);
 }
 
-function IconButton({ icon, label, onClick, disabled }) {
+function IconButton ({ icon, label, onClick, disabled }) {
 	return (
 		<Button onClick={onClick} disabled={disabled}>
 			<Box pad='small' align='center'>
@@ -289,7 +269,7 @@ function IconButton({ icon, label, onClick, disabled }) {
 	);
 }
 
-function IconLink({ icon, label, href }) {
+function IconLink ({ icon, label, href }) {
 	return (
 		<Link href={href} passHref legacyBehavior>
 			<Button as='a'>
@@ -312,7 +292,6 @@ export {
 	JuJiuCard,
 	ButtonLink,
 	JuJiuInformation,
-	InfoGroup,
 	ButtonGroup,
 	LinkGroup,
 	IconBack,
