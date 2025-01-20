@@ -140,12 +140,6 @@ export function PanControlL1 ({
 	nippleKey,
 	speedNum,
 }) {
-	useEffect(() => {
-		console.log('PanControlL1:>>', {
-			fullscreen,
-			nippleKey,
-		});
-	}, [fullscreen, nippleKey]);
 	const mastStyle =
 		'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)';
 
@@ -215,31 +209,33 @@ export function PanControlL1 ({
 				</div>
 			</div>
 			<div className={isDisabled ? 'disabled_pan-control' : ''}>
-				<ReactNipple
-					key={`react-nipple_${
-						fullscreen ? 'fullscreen' : 'normal'
-					}_${nippleKey}`}
-					options={{
-						mode: 'static',
-						size: fullscreen ? 115 : 140,
-						position: { top: '50%', left: '50%' },
-						lockY: false,
-					}}
-					onMove={(__, data) => onMoveThrottle(__, data, speedNum)}
-					onEnd={() => {
-						onEndHandler();
-						if (!isDisabled) {
-							onLongPressUpEnd();
-						}
-					}}
-					style={{
-						zIndex: 0,
-						position: 'absolute',
-						top: '50%',
-						left: '50%',
-						transform: fullscreen ? 'rotate(-90deg)' : '',
-					}}
-				/>
+				{nippleKey && (
+					<ReactNipple
+						key={`react-nipple_${
+							fullscreen ? 'fullscreen' : 'normal'
+						}_${nippleKey}`}
+						options={{
+							mode: 'static',
+							size: fullscreen ? 115 : 140,
+							position: { top: '50%', left: '50%' },
+							lockY: false,
+						}}
+						onMove={(__, data) => onMoveThrottle(__, data, speedNum)}
+						onEnd={() => {
+							onEndHandler();
+							if (!isDisabled) {
+								onLongPressUpEnd();
+							}
+						}}
+						style={{
+							zIndex: 0,
+							position: 'absolute',
+							top: '50%',
+							left: '50%',
+							transform: fullscreen ? 'rotate(-90deg)' : '',
+						}}
+					/>
+				)}
 			</div>
 		</>
 	);
@@ -255,13 +251,6 @@ export function PanControlL1Version1 ({
 	nippleKey,
 	speedNum,
 }) {
-	useEffect(() => {
-		console.log('PanControlL1:>>', {
-			fullscreen,
-			nippleKey,
-		});
-	}, [fullscreen, nippleKey]);
-
 	const mastStyle =
 		'radial-gradient(circle farthest-side at bottom right, transparent 40%, #000 40%)';
 
@@ -334,32 +323,34 @@ export function PanControlL1Version1 ({
 				</div>
 			</div>
 			<div className={isDisabled ? 'disabled_pan-control' : ''}>
-				<ReactNipple
-					key={`react-nipple_${
-						fullscreen ? 'fullscreen' : 'normal'
-					}_${nippleKey}`}
-					options={{
-						mode: 'static',
-						threshold: 0.6,
-						size: fullscreen ? 115 : 140,
-						position: { top: '50%', left: '50%' },
-						lockY: false,
-					}}
-					onMove={(__, data) => onMoveThrottle(__, data, speedNum)}
-					onEnd={() => {
-						onEndHandler();
-						if (!isDisabled) {
-							onLongPressUpEnd();
-						}
-					}}
-					style={{
-						zIndex: 0,
-						position: 'absolute',
-						top: '50%',
-						left: '50%',
-						transform: fullscreen ? 'rotate(-90deg)' : '',
-					}}
-				/>
+				{nippleKey && (
+					<ReactNipple
+						key={`react-nipple_${
+							fullscreen ? 'fullscreen' : 'normal'
+						}_${nippleKey}`}
+						options={{
+							mode: 'static',
+							threshold: 0.6,
+							size: fullscreen ? 115 : 140,
+							position: { top: '50%', left: '50%' },
+							lockY: false,
+						}}
+						onMove={(__, data) => onMoveThrottle(__, data, speedNum)}
+						onEnd={() => {
+							onEndHandler();
+							if (!isDisabled) {
+								onLongPressUpEnd();
+							}
+						}}
+						style={{
+							zIndex: 0,
+							position: 'absolute',
+							top: '50%',
+							left: '50%',
+							transform: fullscreen ? 'rotate(-90deg)' : '',
+						}}
+					/>
+				)}
 			</div>
 		</>
 	);
