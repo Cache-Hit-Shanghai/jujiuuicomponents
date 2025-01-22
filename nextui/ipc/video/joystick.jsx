@@ -1,7 +1,7 @@
 import { FaAngleUp, FaAngleDown } from 'react-icons/fa6';
 import { Joystick, JoystickShape } from 'react-joystick-component';
 import { twMerge } from 'tailwind-merge';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 const Arrow = ({ icon, onClick, onStart, onStop }) => {
 	let pressTimer;
@@ -72,8 +72,9 @@ export const PanControlL1Fullscreen = ({
 }) => {
 	const speed = speedNum / 100;
 	const onMove = makeOnMove(getWebrtcCaller, speed);
-	let preUpDown;
-	let preLeftRight;
+	let preUpDown = useRef(null);
+	let preLeftRight = useRef(null);
+
 	return (
 		<>
 			<div className='absolute left-14 bottom-2'>
@@ -83,13 +84,16 @@ export const PanControlL1Fullscreen = ({
 					isDisabled={isDisabled}
 					onMove={({ x }) => {
 						const curDir = x > 0 ? 'up' : 'down';
-						if (curDir === preUpDown) return;
-						preUpDown = curDir;
+						if (curDir === preUpDown.current) return;
+						preUpDown.current = curDir;
 						onMove({ x });
 					}}
 					onUp={() => onMove({ x: 1 })}
 					onDown={() => onMove({ x: -1 })}
-					onStop={() => onMove({ x: 1, platform: 'end' })}
+					onStop={() => {
+						onMove({ x: 1, platform: 'end' });
+						preUpDown.current = null;
+					}}
 					onClickUp={() => {
 						onMove({ x: 1, platform: 'click' });
 					}}
@@ -105,13 +109,16 @@ export const PanControlL1Fullscreen = ({
 					isDisabled={isDisabled}
 					onMove={({ y }) => {
 						const curDir = y > 0 ? 'left' : 'right';
-						if (curDir === preLeftRight) return;
-						preLeftRight = curDir;
+						if (curDir === preLeftRight.current) return;
+						preLeftRight.current = curDir;
 						onMove({ y });
 					}}
 					onUp={() => onMove({ y: 1 })}
 					onDown={() => onMove({ y: -1 })}
-					onStop={() => onMove({ y: 1, platform: 'end' })}
+					onStop={() => {
+						onMove({ y: 1, platform: 'end' });
+						preLeftRight.current = null;
+					}}
 					onClickUp={() => {
 						onMove({ y: 1, platform: 'click' });
 					}}
@@ -160,7 +167,6 @@ export const CommonJoystick = ({
 					baseColor='transparent'
 					stickColor='white'
 					start={onStart}
-					throttle={50}
 					move={onMove}
 					stop={onStop}
 				/>
