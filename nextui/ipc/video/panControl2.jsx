@@ -8,7 +8,6 @@ import { twMerge } from 'tailwind-merge';
 import './panControl2.scss';
 
 const ReactNipple = dynamic(() => import('react-nipple'), { ssr: false });
-
 function Sector ({
 	onClick,
 	onLongPressStart,
@@ -209,33 +208,31 @@ export function PanControlL1 ({
 				</div>
 			</div>
 			<div className={isDisabled ? 'disabled_pan-control' : ''}>
-				{nippleKey && (
-					<ReactNipple
-						key={`react-nipple_${
-							fullscreen ? 'fullscreen' : 'normal'
-						}_${nippleKey}`}
-						options={{
-							mode: 'static',
-							size: fullscreen ? 115 : 140,
-							position: { top: '50%', left: '50%' },
-							lockY: false,
-						}}
-						onMove={(__, data) => onMoveThrottle(__, data, speedNum)}
-						onEnd={() => {
-							onEndHandler();
-							if (!isDisabled) {
-								onLongPressUpEnd();
-							}
-						}}
-						style={{
-							zIndex: 0,
-							position: 'absolute',
-							top: '50%',
-							left: '50%',
-							transform: fullscreen ? 'rotate(-90deg)' : '',
-						}}
-					/>
-				)}
+				<ReactNipple
+					key={`react-nipple_${
+						fullscreen ? 'fullscreen' : 'normal'
+					}_${nippleKey}`}
+					options={{
+						mode: 'static',
+						size: fullscreen ? 115 : 140,
+						position: { top: '50%', left: '50%' },
+						lockY: false,
+					}}
+					onMove={(__, data) => onMoveThrottle(__, data, speedNum)}
+					onEnd={() => {
+						onEndHandler();
+						if (!isDisabled) {
+							onLongPressUpEnd();
+						}
+					}}
+					style={{
+						zIndex: 0,
+						position: 'absolute',
+						top: '50%',
+						left: '50%',
+						transform: fullscreen ? 'rotate(-90deg)' : '',
+					}}
+				/>
 			</div>
 		</>
 	);
