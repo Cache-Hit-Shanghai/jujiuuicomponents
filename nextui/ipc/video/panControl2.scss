@@ -1,18 +1,43 @@
-.back {
-	opacity: 0 !important;
+.pixelbot__pan-control {
+	.back {
+		opacity: 0 !important;
+	}
+	.front::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-image: url('https://pixelbot.oss-accelerate.aliyuncs.com/paw.svg');
+		padding: 8px;
+		background-origin: content-box;
+		background-repeat: no-repeat;
+	}
 }
 
-.front::before {
-	content: '';
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background-image: url('https://pixelbot.oss-accelerate.aliyuncs.com/paw.svg');
-	padding: 8px;
-	background-origin: content-box;
-	background-repeat: no-repeat;
+.pixelbot__pan-control__vertical {
+	.back {
+		opacity: 0 !important;
+	}
+	.front::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-image: url('https://pixelbot.oss-accelerate.aliyuncs.com/pawWithBorder.svg');
+		padding: 10px;
+		background-origin: content-box;
+		background-repeat: no-repeat;
+		transform: rotate(90deg);
+		opacity: 1 !important;
+	}
+	.nipple,
+	.front {
+		opacity: 1 !important;
+	}
 }
 
 .full-screen__pan-control {

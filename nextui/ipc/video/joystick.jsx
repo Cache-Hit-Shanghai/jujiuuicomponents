@@ -1,7 +1,30 @@
-import { FaAngleUp, FaAngleDown } from 'react-icons/fa6';
-import { Joystick, JoystickShape } from 'react-joystick-component';
 import { twMerge } from 'tailwind-merge';
 import { useRef, useState } from 'react';
+import ReactNipple from 'react-nipple';
+import { PanControlArrow } from '@/jujiu-ui-components/icons/RightArrow';
+
+const VerticalOnlyJoystick = ({ onMove, onDir, onEnd, config }) => {
+	return (
+		<div className='w-40 h-40 pixelbot__pan-control__vertical'>
+			<ReactNipple
+				options={{
+					mode: 'static',
+					position: { left: '50%', top: '50%' },
+					size: 110,
+					threshold: 0.6,
+					color: 'transparent',
+					...config,
+				}}
+				onMove={onMove}
+				onDir={onDir}
+				onEnd={onEnd}
+				style={{
+					opacity: 1,
+				}}
+			/>
+		</div>
+	);
+};
 
 const Arrow = ({ icon, onClick, onStart, onStop }) => {
 	let pressTimer;
@@ -38,7 +61,7 @@ const Arrow = ({ icon, onClick, onStart, onStop }) => {
 			role='button'
 			className='w-full flex items-center justify-center'
 		>
-			<span className='w-full flex justify-center'>{icon}</span>
+			{icon}
 		</div>
 	);
 };
@@ -79,8 +102,7 @@ export const PanControlL1Fullscreen = ({
 		<>
 			<div className='absolute left-14 bottom-2'>
 				<CommonJoystick
-					controlPlaneShape={JoystickShape.AxisX}
-					stickClassName={'rotate-[270deg]'}
+					stickClassName={'rotate-[270deg] bottom-6'}
 					isDisabled={isDisabled}
 					onMove={({ x }) => {
 						const curDir = x > 0 ? 'up' : 'down';
@@ -100,12 +122,15 @@ export const PanControlL1Fullscreen = ({
 					onClickDown={() => {
 						onMove({ x: -1, platform: 'click' });
 					}}
+					config={{
+						lockX: true,
+					}}
 				/>
 			</div>
-			<div className='absolute right-[12%] bottom-[-24px]'>
+			<div className='absolute right-[12%] bottom-[-20px]'>
 				<CommonJoystick
 					wrapperClassName={'rotate-[270deg]'}
-					controlPlaneShape={JoystickShape.AxisY}
+					stickClassName={'bottom-6'}
 					isDisabled={isDisabled}
 					onMove={({ y }) => {
 						const curDir = y > 0 ? 'left' : 'right';
@@ -125,6 +150,9 @@ export const PanControlL1Fullscreen = ({
 					onClickDown={() => {
 						onMove({ y: -1, platform: 'click' });
 					}}
+					config={{
+						lockY: true,
+					}}
 				/>
 			</div>
 		</>
@@ -132,47 +160,50 @@ export const PanControlL1Fullscreen = ({
 };
 
 export const CommonJoystick = ({
-	height = 160,
-	width = 56,
+	height = 120,
+	width = 40,
 	onMove,
 	onStop,
 	onStart,
 	onUp,
 	onDown,
-	controlPlaneShape,
 	wrapperClassName,
 	stickClassName,
 	onClickUp,
 	onClickDown,
+	config,
 }) => {
+	const handleMotion = (__, data) => {
+		onMove({
+			x: data.vector.x,
+			y: data.vector.y,
+		});
+	};
+
 	return (
 		<div
 			className={twMerge(
-				'bg-[#000000]/[0.3] rounded-full flex flex-col justify-between items-center relative px-4 py-2',
+				'bg-[#ffffff]/[0.3] rounded-full flex flex-col justify-between items-center relative px-2 py-1',
 				wrapperClassName
 			)}
 			style={{ height, width }}
 		>
 			<Arrow
-				icon={<FaAngleUp color='white' />}
+				icon={<PanControlArrow className='rotate-[270deg]' />}
 				onStart={onUp}
 				onStop={onStop}
 				onClick={onClickUp}
 			/>
 			<div className={twMerge('absolute top-6', stickClassName)}>
-				<Joystick
-					controlPlaneShape={controlPlaneShape}
-					size={height - 48}
-					stickSize={width - 32}
-					baseColor='transparent'
-					stickColor='white'
-					start={onStart}
-					move={onMove}
-					stop={onStop}
+				<VerticalOnlyJoystick
+					onMove={handleMotion}
+					onEnd={onStop}
+					onDir={handleMotion}
+					config={config}
 				/>
 			</div>
 			<Arrow
-				icon={<FaAngleDown color='white' />}
+				icon={<PanControlArrow className='rotate-[90deg]' />}
 				onStart={onDown}
 				onStop={onStop}
 				onClick={onClickDown}

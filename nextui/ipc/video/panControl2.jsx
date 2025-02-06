@@ -207,7 +207,11 @@ export function PanControlL1 ({
 					/>
 				</div>
 			</div>
-			<div className={isDisabled ? 'disabled_pan-control' : ''}>
+			<div
+				className={`pixelbot__pan-control ${
+					isDisabled ? 'disabled_pan-control' : ''
+				}`}
+			>
 				<ReactNipple
 					key={`react-nipple_${
 						fullscreen ? 'fullscreen' : 'normal'
@@ -319,7 +323,11 @@ export function PanControlL1Version1 ({
 					/>
 				</div>
 			</div>
-			<div className={isDisabled ? 'disabled_pan-control' : ''}>
+			<div
+				className={`pixelbot__pan-control ${
+					isDisabled ? 'disabled_pan-control' : ''
+				}`}
+			>
 				{nippleKey && (
 					<ReactNipple
 						key={`react-nipple_${
@@ -422,7 +430,11 @@ export function PanControl3 ({
 					/>
 				</div>
 			</div>
-			<div className={isDisabled ? 'disabled_pan-control' : ''}>
+			<div
+				className={`pixelbot__pan-control ${
+					isDisabled ? 'disabled_pan-control' : ''
+				}`}
+			>
 				<ReactNipple
 					options={{
 						mode: 'static',
