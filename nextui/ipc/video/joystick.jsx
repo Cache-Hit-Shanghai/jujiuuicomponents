@@ -9,11 +9,9 @@ const VerticalOnlyJoystick = ({ onMove, onPlain, onEnd, config }) => {
 			options={{
 				mode: 'static',
 				position: { left: '50%', top: '50%' },
-				size: 112,
+				size: 110,
 				color: 'transparent',
 				restOpacity: 1,
-				shape: 'square',
-				restJoystick: true,
 				...config,
 			}}
 			onMove={onMove}
