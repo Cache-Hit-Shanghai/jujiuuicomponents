@@ -3,26 +3,26 @@ import { useRef, useState } from 'react';
 import ReactNipple from 'react-nipple';
 import { PanControlArrow } from '@/jujiu-ui-components/icons/RightArrow';
 
-const VerticalOnlyJoystick = ({ onMove, onDir, onEnd, config }) => {
+const VerticalOnlyJoystick = ({ onMove, onPlain, onEnd, config }) => {
 	return (
-		<div className='w-40 h-40 pixelbot__pan-control__vertical'>
-			<ReactNipple
-				options={{
-					mode: 'static',
-					position: { left: '50%', top: '50%' },
-					size: 110,
-					threshold: 0.6,
-					color: 'transparent',
-					...config,
-				}}
-				onMove={onMove}
-				onDir={onDir}
-				onEnd={onEnd}
-				style={{
-					opacity: 1,
-				}}
-			/>
-		</div>
+		<ReactNipple
+			options={{
+				mode: 'static',
+				position: { left: '50%', top: '50%' },
+				size: 112,
+				color: 'transparent',
+				restOpacity: 1,
+				shape: 'square',
+				restJoystick: true,
+				...config,
+			}}
+			onMove={onMove}
+			onPlain={onPlain}
+			onEnd={onEnd}
+			style={{
+				opacity: 1,
+			}}
+		/>
 	);
 };
 
@@ -48,7 +48,7 @@ const Arrow = ({ icon, onClick, onStart, onStop }) => {
 	const handlePress = () => {
 		clearTimeout(pressTimer);
 		if (!isLongPressStart) {
-			onClick();
+			onClick?.();
 		}
 		setIsLongPressStart(false);
 	};
@@ -100,9 +100,9 @@ export const PanControlL1Fullscreen = ({
 
 	return (
 		<>
-			<div className='absolute left-14 bottom-2'>
+			<div className='absolute left-20 bottom-6'>
 				<CommonJoystick
-					stickClassName={'rotate-[270deg] bottom-6'}
+					stickClassName={'rotate-[270deg] top-1/2'}
 					isDisabled={isDisabled}
 					onMove={({ x }) => {
 						const curDir = x > 0 ? 'up' : 'down';
@@ -127,10 +127,10 @@ export const PanControlL1Fullscreen = ({
 					}}
 				/>
 			</div>
-			<div className='absolute right-[12%] bottom-[-20px]'>
+			<div className='absolute right-[15%] bottom-0'>
 				<CommonJoystick
 					wrapperClassName={'rotate-[270deg]'}
-					stickClassName={'bottom-6'}
+					stickClassName={'left-1/2 top-1/2'}
 					isDisabled={isDisabled}
 					onMove={({ y }) => {
 						const curDir = y > 0 ? 'left' : 'right';
@@ -192,13 +192,18 @@ export const CommonJoystick = ({
 				icon={<PanControlArrow className='rotate-[270deg]' />}
 				onStart={onUp}
 				onStop={onStop}
-				onClick={onClickUp}
+				// onClick={onClickUp}
 			/>
-			<div className={twMerge('absolute top-6', stickClassName)}>
+			<div
+				className={twMerge(
+					'absolute pixelbot__pan-control__vertical',
+					stickClassName
+				)}
+			>
 				<VerticalOnlyJoystick
 					onMove={handleMotion}
 					onEnd={onStop}
-					onDir={handleMotion}
+					onPlain={handleMotion}
 					config={config}
 				/>
 			</div>
@@ -206,7 +211,7 @@ export const CommonJoystick = ({
 				icon={<PanControlArrow className='rotate-[90deg]' />}
 				onStart={onDown}
 				onStop={onStop}
-				onClick={onClickDown}
+				// onClick={onClickDown}
 			/>
 		</div>
 	);

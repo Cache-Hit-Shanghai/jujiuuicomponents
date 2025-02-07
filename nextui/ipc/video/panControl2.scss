@@ -17,6 +17,7 @@
 }
 
 .pixelbot__pan-control__vertical {
+	z-index: 9999;
 	.back {
 		opacity: 0 !important;
 	}
@@ -28,7 +29,7 @@
 		right: 0;
 		bottom: 0;
 		background-image: url('https://pixelbot.oss-accelerate.aliyuncs.com/pawWithBorder.svg');
-		padding: 10px;
+		padding: 12px;
 		background-origin: content-box;
 		background-repeat: no-repeat;
 		transform: rotate(90deg);
