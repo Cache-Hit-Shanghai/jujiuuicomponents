@@ -181,7 +181,7 @@ export const CommonJoystick = ({
 	return (
 		<div
 			className={twMerge(
-				'bg-[#ffffff]/[0.3] rounded-full flex flex-col justify-between items-center relative px-2 py-1',
+				'bg-[#333333]/[0.3] rounded-full flex flex-col justify-between items-center relative px-2 py-1',
 				wrapperClassName
 			)}
 			style={{ height, width }}

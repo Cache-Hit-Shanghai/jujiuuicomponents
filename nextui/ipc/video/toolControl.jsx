@@ -62,14 +62,14 @@ export function ScreenCopyControl ({
 	return (
 		<Button
 			className={`p-0 min-w-fit text-inherit flex flex-col items-center justify-center ${
-				hasBorder ? 'w-10 h-10 rounded-full bg-[#000000B3]' : ''
+				hasBorder ? 'w-10 h-10 rounded-full bg-[#333333]/[0.3]' : ''
 			} ${label ? 'w-14 h-14' : ''} ${className}`}
 			isIconOnly={!showLabel}
 			variant='light'
 			radius='none'
 			{...prop}
 		>
-			{icon || <PhotoCamera size={24} />}
+			{icon || <PhotoCamera size={20} />}
 			{showLabel && <p>{label}</p>}
 		</Button>
 	);
@@ -93,7 +93,7 @@ export function ChatControl ({
 	return (
 		<Button
 			className={`p-0 min-w-fit text-inherit flex flex-col items-center justify-center ${
-				hasBorder ? 'w-10 h-10 rounded-full bg-[#000000B3]' : ''
+				hasBorder ? 'w-10 h-10 rounded-full bg-[#333333]/[0.3]' : ''
 			} ${label ? 'w-14 h-14' : ''} ${
 				speaking ? 'text-[ text-[#FD9240]' : ''
 			}  ${className}`}
@@ -114,18 +114,19 @@ export function MuteControl ({
 	mute = true,
 	muteIcon,
 	unmuteIcon,
+	size = 24,
 	...prop
 }) {
 	const t = useJuJiuT();
 	const label = t(mute ? '解除静音' : '静音');
 
-	const muteIconApplied = muteIcon || <VolumeUp size={24} />;
-	const unmuteIconApplied = unmuteIcon || <VolumeOff size={24} />;
+	const muteIconApplied = muteIcon || <VolumeUp size={size} />;
+	const unmuteIconApplied = unmuteIcon || <VolumeOff size={size} />;
 
 	return (
 		<Button
 			className={
-				'p-0 min-w-fit text-inherit bg-[#000000]/[0.3] rounded-full w-10 h-10' +
+				'p-0 min-w-fit text-inherit bg-[#333333]/[0.3] rounded-full w-10 h-10 ' +
 				(isVideoFullscreen ? ' w-14 h-14' : showLabel ? 'w-12 h-12' : '')
 			}
 			isIconOnly={!showLabel}
@@ -147,19 +148,21 @@ export function RecordControl ({
 	recordIcon,
 	recordingIcon,
 	hasBorder,
+	size = 24,
+	className = '',
 	...prop
 }) {
 	const t = useJuJiuT();
 	const label = t(recording ? '停止' : '录像');
 
-	const recordIconApplied = recordIcon || <FiberManualRecord size={24} />;
-	const recordingIconApplied = recordingIcon || <StopCircle size={24} />;
+	const recordIconApplied = recordIcon || <FiberManualRecord size={size} />;
+	const recordingIconApplied = recordingIcon || <StopCircle size={size} />;
 
 	return (
 		<Button
 			className={`p-0 min-w-fit text-inherit flex flex-col items-center justify-center ${
-				hasBorder ? 'w-10 h-10 rounded-full bg-[#000000B3]' : ''
-			} ${label ? 'w-14 h-14' : ''}`}
+				hasBorder ? 'w-10 h-10 rounded-full bg-[#333333]/[0.3]' : ''
+			} ${label ? 'w-14 h-14' : ''} ${className}`}
 			isIconOnly={!showLabel}
 			variant='light'
 			radius='none'
@@ -263,7 +266,7 @@ export function ResolutionControl ({
 	return (
 		<>
 			<Button
-				className={`p-0 min-w-fit text-inherit bg-[#000000]/[0.3] rounded-full w-10 h-10 ${className}
+				className={`p-0 min-w-fit text-inherit bg-[#333333]/[0.3] rounded-full w-10 h-10 ${className}
 					${isVideoFullscreen ? ' w-14 h-14' : ''}`}
 				isIconOnly={!showLabel}
 				onClick={toggleIsOpen}
@@ -290,90 +293,6 @@ export function ResolutionControl ({
 			>
 				{content}
 			</Drawer>
-		</>
-	);
-}
-
-export function StreamingControlBar ({ showLabel }) {
-	const [speaking, setSpeaking] = useState(false);
-	const [mute, setMute] = useState(true);
-	const [recording, setRecording] = useState(false);
-
-	return (
-		<>
-			<ScreenCopyControl showLabel={showLabel} />
-			<RecordControl
-				showLabel={showLabel}
-				recording={recording}
-				onPress={() => setRecording(!recording)}
-			/>
-			<ChatControl
-				showLabel={showLabel}
-				speaking={speaking}
-				onPress={() => setSpeaking(!speaking)}
-			/>
-			<MuteControl
-				showLabel={showLabel}
-				mute={mute}
-				onPress={() => setMute(!mute)}
-			/>
-			<ResolutionControl showLabel={showLabel} />
-		</>
-	);
-}
-
-export function StreamingControlBar2 () {
-	return (
-		<>
-			<Button isIconOnly variant='light'>
-				<Cameraswitch size={24} />
-			</Button>
-			<LinkButton
-				href='/device/settings/sharing'
-				icon={<IosShare size={24} />}
-			/>
-			<LinkButton href='/device/settings' icon={<Settings size={24} />} />
-		</>
-	);
-}
-
-export function StreamingControlBar3 ({ showLabel }) {
-	const [speaking, setSpeaking] = useState(false);
-	const [mute, setMute] = useState(true);
-	const [recording, setRecording] = useState(false);
-
-	return (
-		<>
-			<ScreenCopyControl showLabel={showLabel} />
-			<RecordControl
-				showLabel={showLabel}
-				recording={recording}
-				onPress={() => setRecording(!recording)}
-			/>
-			<ChatControl
-				showLabel={showLabel}
-				speaking={speaking}
-				onPress={() => setSpeaking(!speaking)}
-			/>
-			<MuteControl
-				showLabel={showLabel}
-				mute={mute}
-				onPress={() => setMute(!mute)}
-			/>
-		</>
-	);
-}
-
-export function StreamingControlBar4 () {
-	return (
-		<>
-			<ResolutionControl />
-			<Button isIconOnly variant='light'>
-				<Cameraswitch size={24} />
-			</Button>
-			<Button isIconOnly variant='light'>
-				<Battery3Bar size={24} />
-			</Button>
 		</>
 	);
 }

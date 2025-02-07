@@ -10,7 +10,7 @@
 		right: 0;
 		bottom: 0;
 		background-image: url('https://pixelbot.oss-accelerate.aliyuncs.com/paw.svg');
-		padding: 8px;
+		padding: 15px;
 		background-origin: content-box;
 		background-repeat: no-repeat;
 	}
@@ -42,7 +42,7 @@
 }
 
 .full-screen__pan-control {
-	opacity: 0.5 !important;
+	opacity: 0.8 !important;
 	.front::before {
 		transform: rotate(90deg);
 	}

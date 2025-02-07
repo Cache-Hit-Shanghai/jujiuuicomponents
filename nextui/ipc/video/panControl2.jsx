@@ -441,6 +441,8 @@ export function PanControl3 ({
 						threshold: 0.7,
 						size: 140,
 						position: { top: '50%', left: '50%' },
+						color: 'white',
+						restOpacity: 1,
 					}}
 					onMove={(event, data) => {
 						if (fullscreen) {
