@@ -16,4 +16,6 @@ export const WEB_BACK_TO_APP_URL_MAP = {
 	'/pixelbot/my/editPet/add': '/device',
 	'/pixelbot/device/transfer/next/accept': '/device',
 	'/pixelbot/device/sharing/accept': '/device',
+	'/resource/userAgreement': '/',
+	'/resource/privacyPolicy': '/',
 };
