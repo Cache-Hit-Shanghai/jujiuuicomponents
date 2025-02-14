@@ -253,7 +253,7 @@ export function ButtonBackNative({
 				});
 				if (isNativeBack) {
 					handleBackNative?.();
-				} else if (window.backViewController.backViewController) {
+				} else if (window?.backViewController?.backViewController) {
 					console.log(
 						'[Android Native]:>>',
 						window?.backViewController?.backViewController
