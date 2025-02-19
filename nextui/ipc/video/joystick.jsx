@@ -1,7 +1,7 @@
-import { twMerge } from 'tailwind-merge';
+import { PanControlArrow } from '@/jujiu-ui-components/icons/RightArrow';
 import { useRef, useState } from 'react';
 import ReactNipple from 'react-nipple';
-import { PanControlArrow } from '@/jujiu-ui-components/icons/RightArrow';
+import { twMerge } from 'tailwind-merge';
 
 const VerticalOnlyJoystick = ({ onMove, onPlain, onEnd, config }) => {
 	return (
@@ -90,6 +90,7 @@ export const PanControlL1Fullscreen = ({
 	speedNum,
 	isDisabled,
 	getWebrtcCaller,
+	nippleKey,
 }) => {
 	const speed = speedNum / 100;
 	const onMove = makeOnMove(getWebrtcCaller, speed);
@@ -123,6 +124,7 @@ export const PanControlL1Fullscreen = ({
 					config={{
 						lockX: true,
 					}}
+					key={`pikebao-common_joystick-up-down_${nippleKey}`}
 				/>
 			</div>
 			<div className='absolute right-[15%] bottom-0'>
@@ -151,6 +153,7 @@ export const PanControlL1Fullscreen = ({
 					config={{
 						lockY: true,
 					}}
+					key={`pikebao-common_joystick-left-right_${nippleKey}`}
 				/>
 			</div>
 		</>
