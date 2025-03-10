@@ -1,5 +1,6 @@
 'use client';
 
+import HeaderBar from '@/components/layout/content-wrapper';
 import { checkIfNewVersionIOS } from '@/helper/native';
 import {
 	redirectByLocationHref,
@@ -46,12 +47,15 @@ import { twMerge } from 'tailwind-merge';
 
 export function MobileHeader({ children, className, ...props }) {
 	return (
-		<div
-			className={twMerge('flex items-center p-2 justify-between', className)}
-			{...props}
-		>
-			{children}
-		</div>
+		<>
+			<HeaderBar />
+			<div
+				className={twMerge('flex items-center p-2 justify-between', className)}
+				{...props}
+			>
+				{children}
+			</div>
+		</>
 	);
 }
 
