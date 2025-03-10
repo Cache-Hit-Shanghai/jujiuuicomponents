@@ -1,7 +1,7 @@
 'use client';
 
 import HeaderBar from '@/components/layout/content-wrapper';
-import { checkIfNewVersionIOS } from '@/helper/native';
+import { checkIfNative } from '@/helper/native';
 import {
 	redirectByLocationHref,
 	redirectRootAndRefresh,
@@ -242,20 +242,14 @@ export function ButtonBackNative({
 	...props
 }) {
 	const router = useRouter();
-	const isNativeBack =
-		window?.webkit?.messageHandlers?.backViewController?.postMessage &&
-		checkIfNewVersionIOS();
+
 	const { handleBackNative } = useIsUpdatedInfo();
 	return (
 		<Button
 			isIconOnly
 			variant='light'
 			onClick={() => {
-				console.log('isNativeBack:>>', {
-					isNativeBack,
-					version: checkIfNewVersionIOS(),
-				});
-				if (isNativeBack) {
+				if (checkIfNative()) {
 					handleBackNative?.();
 				} else {
 					onClick && onClick();
