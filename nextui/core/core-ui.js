@@ -242,7 +242,6 @@ export function ButtonBackNative({
 	...props
 }) {
 	const router = useRouter();
-
 	const { handleBackNative } = useIsUpdatedInfo();
 	return (
 		<Button
