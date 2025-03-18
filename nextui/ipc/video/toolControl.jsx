@@ -2,22 +2,19 @@
 
 // FIXME: filename
 
+import { useJuJiuT } from '@/state/translate';
 import { Button, Listbox, ListboxItem, Spinner } from '@nextui-org/react';
-import { useEffect, useState } from 'react';
-import { PhotoCamera } from '@styled-icons/material/PhotoCamera';
-import { Phone } from '@styled-icons/material/Phone';
 import { CallEnd } from '@styled-icons/material/CallEnd';
+import { FiberManualRecord } from '@styled-icons/material/FiberManualRecord';
+import { Hd as Resolution } from '@styled-icons/material/Hd';
+import { Phone } from '@styled-icons/material/Phone';
+import { PhotoCamera } from '@styled-icons/material/PhotoCamera';
+import { StopCircle } from '@styled-icons/material/StopCircle';
 import { VolumeOff } from '@styled-icons/material/VolumeOff';
 import { VolumeUp } from '@styled-icons/material/VolumeUp';
-import { FiberManualRecord } from '@styled-icons/material/FiberManualRecord';
-import { StopCircle } from '@styled-icons/material/StopCircle';
-import { Hd as Resolution } from '@styled-icons/material/Hd';
-import { Hd } from '@/jujiu-ui-components/icons/hd';
-import { FullHd } from '@/jujiu-ui-components/icons/fullhd';
-import { R2kPlus } from '@/jujiu-ui-components/icons/2kplus';
-import { useJuJiuT } from '@/state/translate';
-import Drawer from 'react-modern-drawer';
 import { trackEvent } from 'jujiu_js_common/util/umami';
+import { useEffect, useState } from 'react';
+import Drawer from 'react-modern-drawer';
 
 import 'react-modern-drawer/dist/index.css';
 
@@ -30,7 +27,7 @@ import 'react-modern-drawer/dist/index.css';
  * @param {ButtonProps & {showLabel: boolean}} props
  * @returns
  */
-export function DownloadControl ({ showLabel, ...prop }) {
+export function DownloadControl({ showLabel, ...prop }) {
 	const t = useJuJiuT();
 	const label = t('下载');
 
@@ -49,7 +46,7 @@ export function DownloadControl ({ showLabel, ...prop }) {
  * @param {ButtonProps & {showLabel: boolean}} props
  * @returns
  */
-export function ScreenCopyControl ({
+export function ScreenCopyControl({
 	showLabel,
 	icon,
 	hasBorder,
@@ -75,7 +72,7 @@ export function ScreenCopyControl ({
 	);
 }
 
-export function ChatControl ({
+export function ChatControl({
 	showLabel,
 	speaking,
 	callIcon,
@@ -108,7 +105,7 @@ export function ChatControl ({
 	);
 }
 
-export function MuteControl ({
+export function MuteControl({
 	isVideoFullscreen,
 	showLabel,
 	mute = true,
@@ -142,7 +139,7 @@ export function MuteControl ({
 	);
 }
 
-export function RecordControl ({
+export function RecordControl({
 	showLabel,
 	recording,
 	recordIcon,
@@ -174,15 +171,34 @@ export function RecordControl ({
 	);
 }
 
-export function ResolutionControl ({
+const RESOLUTION_CONFIG = {
+	auto: {
+		key: 'auto',
+		label: '自动',
+		// icon: <Hd size={24} />,
+	},
+	'2.5k': {
+		key: '2.5k',
+		label: '2.5k',
+		// icon: <R2kPlus size={24} />
+	},
+	'1080p': {
+		key: '1080p',
+		label: '1080p',
+		// icon: <FullHd size={24} />
+	},
+	'720p': {
+		key: '720p',
+		label: '720p',
+		//  icon: <Hd size={24} />
+	},
+};
+
+export function ResolutionControl({
 	isVideoFullscreen,
 	showLabel,
 	items,
-	options = [
-		{ key: '2.5k', label: '超清', icon: <R2kPlus size={24} /> },
-		{ key: '1080p', label: '高清', icon: <FullHd size={24} /> },
-		{ key: '720p', label: '标清', icon: <Hd size={24} /> },
-	],
+	resolutions = ['2.5k', '1080p', '720p'],
 	current,
 	onSelect,
 	isForceLandscape = false,
@@ -192,11 +208,15 @@ export function ResolutionControl ({
 	...prop
 }) {
 	const label = '分辨率';
+
+	const options = resolutions
+		.map((key) => RESOLUTION_CONFIG[key])
+		.filter((e) => e);
+
 	const [isOpen, setIsOpen] = useState(false);
 	const toggleIsOpen = () => {
 		setIsOpen(!isOpen);
 	};
-
 	const [selectedKeys, setSelectedKeys] = useState(new Set([current]));
 
 	useEffect(() => {
@@ -222,7 +242,7 @@ export function ResolutionControl ({
 	};
 
 	const content = (
-		<div className='w-full'>
+		<div className='w-full min-h-[300px]'>
 			<div className='text-[#000000] w-full text-lg text-center h-16 py-5 font-semibold'>
 				画质选择
 			</div>
@@ -290,6 +310,7 @@ export function ResolutionControl ({
 				className={`z-[99999] ${getBorderStyle()}`}
 				zIndex={99999}
 				duration='0'
+				size={80 + options.length * 56}
 			>
 				{content}
 			</Drawer>
