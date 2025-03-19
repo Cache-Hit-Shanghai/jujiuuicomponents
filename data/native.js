@@ -18,4 +18,5 @@ export const WEB_BACK_TO_APP_URL_MAP = {
 	'/pixelbot/device/sharing/accept': '/device',
 	'/resource/userAgreement': '/',
 	'/resource/privacyPolicy': '/',
+	'/pixelbot/device/replay_30d': '/device',
 };
