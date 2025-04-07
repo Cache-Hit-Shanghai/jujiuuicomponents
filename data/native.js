@@ -20,4 +20,6 @@ export const WEB_BACK_TO_APP_URL_MAP = {
 	'/resource/privacyPolicy': '/',
 	'/pixelbot/device/replay_30d': '/device',
 	'/login/forgetPwd': '/',
+	'/pixelbot/device/settings/settings': '/device',
+	'/pixelbot/my/ota': '/device',
 };
