@@ -5,7 +5,7 @@ import {
 	redirectByLocationHref,
 	redirectRootAndRefresh,
 } from '@/helper/redirect';
-import { useIsUpdatedInfo } from '@/hook/native';
+import { useIsUpdatedInfo, useSwitchBack } from '@/hook/native';
 import { Battery0Icon } from '@/jujiu-ui-components/icons/Battery0';
 import { Battery100Icon } from '@/jujiu-ui-components/icons/Battery100';
 import { Battery25Icon } from '@/jujiu-ui-components/icons/Battery25';
@@ -181,6 +181,11 @@ export function NavbarBackCenter({
 			{endContent && <span className='absolute right-2'>{endContent}</span>}
 		</div>
 	);
+}
+
+export function NavbarBackCenterForSwitch(props) {
+	const { handleBack } = useSwitchBack();
+	return <NavbarBackCenter {...props} onClick={handleBack} />;
 }
 
 export function NavbarBackNoCacheCenter({
