@@ -1,9 +1,10 @@
 import { DocumentLandscapeStyle } from '@/components';
-import { ChevronLeft } from 'styled-icons/material';
-import { twMerge } from 'tailwind-merge';
+import { videoFullForNative } from '@/jujiu_react_common/helper/wkWebView';
+import { documentFullscreen } from '@/util/document';
 import { Button } from '@nextui-org/react';
 import { useRef } from 'react';
-import { documentFullscreen } from '@/util/document';
+import { ChevronLeft } from 'styled-icons/material';
+import { twMerge } from 'tailwind-merge';
 
 export const VideoPlayerWrapper = ({
 	fullscreen,
@@ -22,7 +23,7 @@ export const VideoPlayerWrapper = ({
 					const target = !document.fullscreenElement;
 					documentFullscreen(target);
 					customFullscreenToggle.setIcon(
-						target ? 'fullscreen-exit' : 'fullscreen-enter',
+						target ? 'fullscreen-exit' : 'fullscreen-enter'
 					);
 				},
 			});
@@ -32,6 +33,7 @@ export const VideoPlayerWrapper = ({
 
 	const fullscreenToggle = () => {
 		toggleScreenRef.current?.handleClick?.();
+		videoFullForNative();
 	};
 
 	return (
@@ -40,7 +42,7 @@ export const VideoPlayerWrapper = ({
 				`flex flex-col justify-center bg-background w-full h-full  ${
 					fullscreen ? 'fixed top-0 left-0 z-[1111]' : 'relative'
 				} `,
-				wrapperClass,
+				wrapperClass
 			)}
 		>
 			{fullscreen && (
