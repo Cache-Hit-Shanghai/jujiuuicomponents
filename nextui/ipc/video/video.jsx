@@ -25,6 +25,7 @@ export const VideoPlayerWrapper = ({
 					customFullscreenToggle.setIcon(
 						target ? 'fullscreen-exit' : 'fullscreen-enter'
 					);
+					videoFullForNative();
 				},
 			});
 		customFullscreenToggle.setIcon('fullscreen-enter');
@@ -33,7 +34,6 @@ export const VideoPlayerWrapper = ({
 
 	const fullscreenToggle = () => {
 		toggleScreenRef.current?.handleClick?.();
-		videoFullForNative();
 	};
 
 	return (
