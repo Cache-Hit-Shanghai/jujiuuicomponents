@@ -1,6 +1,7 @@
 'use client';
 
-import { checkIfNewVersionIOS } from '@/helper/native';
+import HeaderBar from '@/components/layout/content-wrapper';
+import { checkIfNative } from '@/helper/native';
 import {
 	redirectByLocationHref,
 	redirectRootAndRefresh,
@@ -46,12 +47,15 @@ import { twMerge } from 'tailwind-merge';
 
 export function MobileHeader({ children, className, ...props }) {
 	return (
-		<div
-			className={twMerge('flex items-center p-2 justify-between', className)}
-			{...props}
-		>
-			{children}
-		</div>
+		<>
+			<HeaderBar />
+			<div
+				className={twMerge('flex items-center p-2 justify-between', className)}
+				{...props}
+			>
+				{children}
+			</div>
+		</>
 	);
 }
 
@@ -243,17 +247,13 @@ export function ButtonBackNative({
 	...props
 }) {
 	const router = useRouter();
-	const isNativeBack =
-		typeof window !== 'undefined' &&
-		window?.webkit?.messageHandlers?.backViewController?.postMessage &&
-		checkIfNewVersionIOS();
 	const { handleBackNative } = useIsUpdatedInfo();
 	return (
 		<Button
 			isIconOnly
 			variant='light'
 			onClick={() => {
-				if (isNativeBack) {
+				if (checkIfNative()) {
 					handleBackNative?.();
 				} else {
 					onClick && onClick();
