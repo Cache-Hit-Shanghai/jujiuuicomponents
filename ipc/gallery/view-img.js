@@ -1,14 +1,14 @@
+import { useRef } from 'react';
 import Drawer from 'react-modern-drawer';
+import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
+import { twMerge } from 'tailwind-merge';
+import Lightbox from 'yet-another-react-lightbox';
 import Fullscreen from 'yet-another-react-lightbox/plugins/fullscreen';
-import Lightbox, { EventsProvider } from 'yet-another-react-lightbox';
 import Video from 'yet-another-react-lightbox/plugins/video';
 import Zoom from 'yet-another-react-lightbox/plugins/zoom';
-import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
-import { useRef } from 'react';
-import { twMerge } from 'tailwind-merge';
 
-import 'yet-another-react-lightbox/styles.css';
 import 'react-modern-drawer/dist/index.css';
+import 'yet-another-react-lightbox/styles.css';
 import './style.scss';
 
 export const ZoomWrapper = ({ children }) => {
@@ -44,7 +44,7 @@ export const ZoomWrapper = ({ children }) => {
 };
 
 const CommonLightbox = ({
-	inApp,
+	hasHeaderBar,
 	open,
 	slides,
 	handleClose,
@@ -69,7 +69,7 @@ const CommonLightbox = ({
 				root: {
 					backgroundColor: '#f6f6f6',
 				},
-				container: inApp
+				container: hasHeaderBar
 					? {
 							backgroundColor: '#f6f6f6',
 							paddingTop: 44,
@@ -135,7 +135,7 @@ function ConfirmDrawer({
 				<div
 					className={twMerge(
 						'w-full h-full flex flex-col justify-around z-[99999]',
-						wrapperClass,
+						wrapperClass
 					)}
 				>
 					{content}
@@ -145,4 +145,4 @@ function ConfirmDrawer({
 	);
 }
 
-export { ConfirmDrawer, CommonLightbox };
+export { CommonLightbox, ConfirmDrawer };
