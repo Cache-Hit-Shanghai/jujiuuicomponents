@@ -22,13 +22,13 @@ export const VideoPlayerWrapper = ({
 					setFullscreen((pre) => !pre);
 					const target = !document.fullscreenElement;
 					documentFullscreen(target);
-					customFullscreenToggle.setIcon(
+					customFullscreenToggle?.setIcon?.(
 						target ? 'fullscreen-exit' : 'fullscreen-enter'
 					);
 					videoFullForNative();
 				},
 			});
-		customFullscreenToggle.setIcon('fullscreen-enter');
+		customFullscreenToggle?.setIcon?.('fullscreen-enter');
 		toggleScreenRef.current = customFullscreenToggle;
 	};
 
