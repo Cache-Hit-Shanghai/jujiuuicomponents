@@ -1,7 +1,6 @@
 'use client';
 
-// FIXME: filename
-
+import { isGTEVersion } from '@/jujiu_js_common/util/version';
 import { useJuJiuT } from '@/state/translate';
 import { Button, Listbox, ListboxItem, Spinner } from '@nextui-org/react';
 import { CallEnd } from '@styled-icons/material/CallEnd';
@@ -175,22 +174,20 @@ const RESOLUTION_CONFIG = {
 	auto: {
 		key: 'auto',
 		label: '自动',
-		// icon: <Hd size={24} />,
+		checkDisplay: ({ version, type }) =>
+			type !== 'E1' || (type === 'E1' && isGTEVersion(version, '1.8.41')),
 	},
 	'2.5k': {
 		key: '2.5k',
 		label: '2.5k',
-		// icon: <R2kPlus size={24} />
 	},
 	'1080p': {
 		key: '1080p',
 		label: '1080p',
-		// icon: <FullHd size={24} />
 	},
 	'720p': {
 		key: '720p',
 		label: '720p',
-		//  icon: <Hd size={24} />
 	},
 };
 
@@ -207,11 +204,12 @@ export function ResolutionControl({
 	className,
 	...prop
 }) {
+	const { type, version } = prop;
 	const label = '分辨率';
 
 	const options = resolutions
 		.map((key) => RESOLUTION_CONFIG[key])
-		.filter((e) => e);
+		.filter((e) => (e.checkDisplay ? e.checkDisplay({ version, type }) : true));
 
 	const [isOpen, setIsOpen] = useState(false);
 	const toggleIsOpen = () => {
