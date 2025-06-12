@@ -1,17 +1,15 @@
-import { Box, Stack } from 'grommet';
-import React from 'react';
-import { JJIconCirclePlay } from '../icons';
-import { Link } from '@/state/translate';
-import { PlayCircleOutline } from 'styled-icons/material';
+import { sendRecordVideoUrl } from '@/config/device';
 import {
 	getCloudStorageUrlByName,
 	useCachedCloudStorageUrl,
 } from '@/hook/cloudstorage';
 import { useCachedGalleryUrl } from '@/hook/gallery';
-import { isVersionBelowTarget, sendRecordVideoUrl } from '@/config/device';
 import { useCannotPlayVideo } from '@/hook/webView';
+import { Link } from '@/state/translate';
+import { Box, Stack } from 'grommet';
 import { useRouter } from 'next/navigation';
-import { getShellVersion } from '@/util/shell';
+import { PlayCircleOutline } from 'styled-icons/material';
+import { JJIconCirclePlay } from '../icons';
 
 const DEFAULT_IMAGE = '';
 const MEDIA_ELEMENT_WIDTH_PX = 108;
@@ -97,13 +95,6 @@ const LinkBoxVideoV2 = ({
 	const cannotPlayVideo = useCannotPlayVideo();
 	const handleClick = () => {
 		if (cannotPlayVideo) {
-			const version = getShellVersion();
-
-			const isBelow = isVersionBelowTarget({
-				version,
-				targetVersion: '1.0.9',
-			});
-			if (isBelow) return;
 			getCloudStorageUrlByName({
 				name,
 			}).then(({ url }) => {
