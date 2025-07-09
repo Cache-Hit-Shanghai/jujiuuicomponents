@@ -24,5 +24,5 @@ export const WEB_BACK_TO_APP_URL_MAP = {
 	'/login/forgetPwd': '/',
 	'/pixelbot/device/snapped_video': '/',
 	'/pixelbot/cloud-storage/subscriptions': '/',
-	'/pixelbot/device/fullday_record': '',
+	'/pixelbot/device/fullday_record': '/',
 };
