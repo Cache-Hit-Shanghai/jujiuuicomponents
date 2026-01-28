@@ -23,4 +23,5 @@ export const WEB_BACK_TO_APP_URL_MAP = {
 	'/pixelbot/my/ota': '/device',
 	'/login/forgetPwd': '/',
 	'/pixelbot/cloud-storage/subscriptions': '/',
+	'/pixelbot/premium/product': '/',
 };
